@@ -237,12 +237,6 @@
         0 40px 80px rgba(24,22,30,0.08),
         0 0 60px rgba(10, 107, 70,0.08);
     }
-    .price-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(10, 107, 70,0.5), transparent);
-    }
-
     /* ── FAQ ── */
     details summary {
       list-style: none; cursor: pointer;
@@ -285,19 +279,8 @@
     }
 
     /* ── Scroll animations ── */
-    .fade-up { opacity: 0; transform: translateY(24px); }
-    .fade-up.visible {
-      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-up:nth-child(1) { animation-delay: 0ms; }
-    .fade-up:nth-child(2) { animation-delay: 80ms; }
-    .fade-up:nth-child(3) { animation-delay: 160ms; }
-    .fade-up:nth-child(4) { animation-delay: 240ms; }
-    .fade-up:nth-child(5) { animation-delay: 320ms; }
-    .fade-up:nth-child(6) { animation-delay: 400ms; }
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* ── Section spacing ── */
     .section { padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 2rem); }
@@ -398,14 +381,14 @@
     /* Price card top shimmer */
     .price-card::before {
       content: '';
-      position: absolute; top: 0; left: -100%; right: 0; height: 1px;
+      position: absolute; top: 0; left: 0; width: 100%; height: 1px;
       background: linear-gradient(90deg, transparent 0%, rgba(10, 107, 70,0.7) 50%, transparent 100%);
       background-size: 200% 100%;
       animation: shimmerLine 3s ease-in-out infinite;
     }
     @keyframes shimmerLine {
-      0%   { left: -100%; }
-      100% { left: 100%; }
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
     /* Floating cursor-like blink on hero */
     @keyframes blink {
@@ -426,33 +409,23 @@
     .reveal {
       opacity: 0;
       transform: translateY(30px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal.visible {
-      animation: revealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes revealUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
     .reveal-scale {
       opacity: 0;
       transform: scale(0.94) translateY(18px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal-scale.visible {
-      animation: revealScale 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes revealScale {
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1) translateY(0); }
+
     .reveal-left {
       opacity: 0;
       transform: translateX(-24px);
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal-left.visible {
-      animation: revealLeft 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes revealLeft {
-      to { opacity: 1; transform: translateX(0); }
-    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
 
     /* ── Form input placeholders ── */
     input::placeholder, textarea::placeholder {
@@ -817,23 +790,23 @@
 <!-- ╔══════════════════════════════════════════╗ -->
 <!-- ║         PRICING + CONTACT               ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
-<section id="pricing" style="background:#F5F1EC;padding:clamp(5rem,10vw,8rem) clamp(1.5rem,5vw,2rem);position:relative;overflow:hidden;">
+<section id="pricing" style="background:#F5F1EC;padding:clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,2rem);position:relative;overflow:hidden;">
   <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(10, 107, 70,0.06) 0%,transparent 65%);pointer-events:none;"></div>
 
   <div class="container" style="position:relative;">
 
     <!-- Section header -->
-    <div class="reveal" style="text-align:center;margin-bottom:3.5rem;">
+    <div class="reveal" style="text-align:center;margin-bottom:2rem;">
       <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Pris & kontakt</p>
       <h2 class="heading-lg" style="color:#18161E;">Simpelt. Gennemsigtigt.</h2>
     </div>
 
-    <div id="kontakt" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:stretch;" class="contact-grid">
+    <div id="kontakt" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:stretch;scroll-margin-top:80px;" class="contact-grid">
 
       <!-- Left: Price card -->
-      <div class="price-card reveal-scale" style="padding:clamp(2rem,4vw,2.75rem);display:flex;flex-direction:column;">
+      <div class="price-card reveal-scale" style="padding:clamp(1.5rem,3vw,2rem);display:flex;flex-direction:column;">
         <!-- Top badge -->
-        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.8rem;background:rgba(10, 107, 70,0.15);border:1px solid rgba(10, 107, 70,0.3);border-radius:100px;margin-bottom:1.75rem;">
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.8rem;background:rgba(10, 107, 70,0.15);border:1px solid rgba(10, 107, 70,0.3);border-radius:100px;margin-bottom:1.25rem;">
           <span class="chip-dot"></span>
           <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0A6B46;">Alt inkluderet</span>
         </div>
@@ -968,7 +941,7 @@
               <textarea
                 name="message"
                 placeholder="Beskriv kort hvad du har brug for..."
-                rows="4"
+                rows="3"
                 style="
                   width:100%;
                   background:rgba(24,22,30,0.04);
@@ -980,7 +953,7 @@
                   color:#18161E;
                   outline:none;
                   resize:vertical;
-                  min-height:100px;
+                  min-height:80px;
                   transition:border-color 0.2s ease, box-shadow 0.2s ease;
                 "
                 onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
@@ -1100,20 +1073,22 @@
     mockupEl.classList.add('go');
   }
 
-  // ── Scroll-reveal with staggered children ──
+  // ── Scroll-reveal with staggered children (bidirectional) ──
   function makeObserver(selector, stagger = false) {
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
         const el = entry.target;
-        if (stagger) {
-          // Stagger siblings within the same parent grid
-          const siblings = Array.from(el.parentElement.querySelectorAll('.' + selector.slice(1)));
-          const idx = siblings.indexOf(el);
-          el.style.animationDelay = (idx * 55) + 'ms';
+        if (entry.isIntersecting) {
+          if (stagger) {
+            const siblings = Array.from(el.parentElement.querySelectorAll('.' + selector.slice(1)));
+            const idx = siblings.indexOf(el);
+            el.style.transitionDelay = (idx * 55) + 'ms';
+          }
+          el.classList.add('visible');
+        } else {
+          el.style.transitionDelay = '0ms';
+          el.classList.remove('visible');
         }
-        el.classList.add('visible');
-        obs.unobserve(el);
       });
     }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
     document.querySelectorAll(selector).forEach(el => obs.observe(el));
