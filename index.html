@@ -671,7 +671,6 @@
   </div>
 </section>
 
-
 <!-- ╔══════════════════════════════════════════╗ -->
 <!-- ║           BEFORE / AFTER SLIDER          ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
@@ -684,28 +683,69 @@
       <p class="body-md" style="color:rgba(24,22,30,0.5);margin-top:0.75rem;">Fra usynlig til synlig — et eksempel</p>
     </div>
 
-    <!-- Slider -->
-    <div class="reveal-scale" style="position:relative;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(24,22,30,0.1),0 0 0 1px rgba(24,22,30,0.06);user-select:none;" id="compare-wrap">
+    <!--
+      Teknik: begge billeder har browser-chrome øverst (~80px ved naturlig bredde ~1400px).
+      Vi bruger object-fit:cover + object-position for at croppe toppen væk konsistent.
+      "Før"-billedet sidder absolutt og matcher præcis "Efter"-billedets dimensioner — ingen zoom.
+    -->
+    <div class="reveal-scale" id="cmp-wrap" style="
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(24,22,30,0.1),0 0 0 1px rgba(24,22,30,0.06);
+      user-select:none;
+      cursor:ew-resize;
+    ">
 
-      <!-- After image (bottom layer, full width) -->
-      <img src="efter.png" alt="Efter" style="display:block;width:100%;height:auto;max-height:520px;object-fit:cover;">
+      <!-- Efter (base layer, sætter højden) -->
+      <img src="efter.png" alt="Efter" style="
+        display:block;
+        width:100%;
+        height:420px;
+        object-fit:cover;
+        object-position:top center;
+      ">
 
-      <!-- Before image (top layer, clipped) -->
-      <div id="compare-before" style="position:absolute;inset:0;overflow:hidden;width:50%;">
-        <img src="før.png" alt="Før" style="display:block;width:100%;height:100%;object-fit:cover;object-position:left top;min-width:var(--compare-min-width,200%);">
+      <!-- Før (clip-container, absolut over efter) -->
+      <div id="cmp-clip" style="
+        position:absolute;
+        inset:0;
+        width:50%;
+        overflow:hidden;
+      ">
+        <img src="før.png" alt="Før" style="
+          display:block;
+          width:100%;
+          height:420px;
+          object-fit:cover;
+          object-position:top center;
+        ">
       </div>
 
       <!-- Labels -->
-      <div style="position:absolute;top:1rem;left:1rem;background:rgba(24,22,30,0.7);color:#fff;padding:0.3rem 0.75rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(6px);">Før</div>
-      <div style="position:absolute;top:1rem;right:1rem;background:rgba(10,107,70,0.85);color:#fff;padding:0.3rem 0.75rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(6px);">Efter</div>
+      <span style="position:absolute;top:1rem;left:1rem;z-index:3;background:rgba(24,22,30,0.7);color:#fff;padding:0.3rem 0.75rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(6px);pointer-events:none;">Før</span>
+      <span style="position:absolute;top:1rem;right:1rem;z-index:3;background:rgba(10,107,70,0.85);color:#fff;padding:0.3rem 0.75rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(6px);pointer-events:none;">Efter</span>
 
-      <!-- Divider line -->
-      <div id="compare-line" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 8px rgba(0,0,0,0.3);transform:translateX(-50%);pointer-events:none;"></div>
+      <!-- Linje -->
+      <div id="cmp-line" style="position:absolute;inset:0 auto;left:50%;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 8px rgba(0,0,0,0.25);transform:translateX(-50%);pointer-events:none;z-index:2;"></div>
 
       <!-- Handle -->
-      <div id="compare-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,0.2),0 0 0 2px rgba(10,107,70,0.3);display:flex;align-items:center;justify-content:center;cursor:ew-resize;touch-action:none;">
+      <div id="cmp-handle" style="
+        position:absolute;
+        top:50%;left:50%;
+        transform:translate(-50%,-50%);
+        width:44px;height:44px;
+        border-radius:50%;
+        background:#fff;
+        box-shadow:0 2px 16px rgba(0,0,0,0.2),0 0 0 2px rgba(10,107,70,0.3);
+        display:flex;align-items:center;justify-content:center;
+        z-index:4;
+        touch-action:none;
+        pointer-events:none;
+      ">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 7L3 10L6 13M14 7L17 10L14 13" stroke="#0A6B46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
+
     </div>
 
     <!-- Caption -->
@@ -718,30 +758,28 @@
 
 <script>
 (function() {
-  var wrap = document.getElementById('compare-wrap');
-  var before = document.getElementById('compare-before');
-  var line = document.getElementById('compare-line');
-  var handle = document.getElementById('compare-handle');
-  var dragging = false;
+  var wrap   = document.getElementById('cmp-wrap');
+  var clip   = document.getElementById('cmp-clip');
+  var line   = document.getElementById('cmp-line');
+  var handle = document.getElementById('cmp-handle');
+  var active = false;
 
-  function setPos(x) {
-    var rect = wrap.getBoundingClientRect();
-    var pct = Math.min(Math.max((x - rect.left) / rect.width, 0.02), 0.98);
-    var pctPx = (pct * 100).toFixed(2) + '%';
-    before.style.width = pctPx;
-    line.style.left = pctPx;
-    handle.style.left = pctPx;
-    // keep before img full-width regardless of clip container width
-    before.querySelector('img').style.width = (1 / pct * 100).toFixed(2) + '%';
+  function setPos(clientX) {
+    var r   = wrap.getBoundingClientRect();
+    var pct = Math.min(Math.max((clientX - r.left) / r.width, 0.02), 0.98);
+    var p   = (pct * 100).toFixed(2) + '%';
+    clip.style.width   = p;
+    line.style.left    = p;
+    handle.style.left  = p;
   }
 
-  handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
-  window.addEventListener('mouseup', function() { dragging = false; });
-  window.addEventListener('mousemove', function(e) { if (dragging) setPos(e.clientX); });
+  wrap.addEventListener('mousedown',  function(e) { active = true; setPos(e.clientX); e.preventDefault(); });
+  window.addEventListener('mouseup',  function()  { active = false; });
+  window.addEventListener('mousemove',function(e) { if (active) setPos(e.clientX); });
 
-  handle.addEventListener('touchstart', function(e) { dragging = true; }, {passive:true});
-  window.addEventListener('touchend', function() { dragging = false; });
-  window.addEventListener('touchmove', function(e) { if (dragging) setPos(e.touches[0].clientX); }, {passive:true});
+  wrap.addEventListener('touchstart', function(e) { active = true; setPos(e.touches[0].clientX); }, {passive:true});
+  window.addEventListener('touchend', function()  { active = false; });
+  window.addEventListener('touchmove',function(e) { if (active) setPos(e.touches[0].clientX); }, {passive:true});
 })();
 </script>
 
