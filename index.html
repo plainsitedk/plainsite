@@ -685,50 +685,51 @@
 
     <!-- Browser frame wrapper -->
     <div class="reveal-scale" style="
-      border-radius:14px;
+      max-width:640px;
+      margin:0 auto;
+      border-radius:12px;
       overflow:hidden;
       box-shadow:
         0 0 0 1px rgba(24,22,30,0.08),
-        0 24px 64px rgba(24,22,30,0.12),
-        0 8px 24px rgba(24,22,30,0.06);
+        0 16px 48px rgba(24,22,30,0.12),
+        0 4px 16px rgba(24,22,30,0.06);
       user-select:none;
     ">
 
-      <!-- Browser chrome (statisk — slides ikke) -->
+      <!-- Browser chrome -->
       <div style="
         background:#E2DDD8;
-        padding:0.6rem 1rem;
+        padding:0.45rem 0.85rem;
         display:flex;
         align-items:center;
-        gap:0.75rem;
+        gap:0.65rem;
         border-bottom:1px solid rgba(24,22,30,0.07);
         position:relative;
         z-index:5;
       ">
         <!-- Traffic lights -->
-        <div style="display:flex;gap:6px;flex-shrink:0;">
-          <div style="width:11px;height:11px;border-radius:50%;background:#FF5F57;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
-          <div style="width:11px;height:11px;border-radius:50%;background:#FFBD2E;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
-          <div style="width:11px;height:11px;border-radius:50%;background:#28C940;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
+        <div style="display:flex;gap:5px;flex-shrink:0;">
+          <div style="width:9px;height:9px;border-radius:50%;background:#FF5F57;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
+          <div style="width:9px;height:9px;border-radius:50%;background:#FFBD2E;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
+          <div style="width:9px;height:9px;border-radius:50%;background:#28C940;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
         </div>
         <!-- URL bar -->
         <div style="
           flex:1;
-          background:rgba(255,255,255,0.6);
+          background:rgba(255,255,255,0.65);
           border:1px solid rgba(24,22,30,0.1);
-          border-radius:6px;
-          padding:0.3rem 0.75rem;
+          border-radius:5px;
+          padding:0.22rem 0.6rem;
           display:flex;
           align-items:center;
-          gap:0.4rem;
-          max-width:320px;
+          gap:0.35rem;
+          max-width:260px;
           margin:0 auto;
         ">
-          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;opacity:0.4;"><path d="M5.5 1C3.01 1 1 3.01 1 5.5S3.01 10 5.5 10 10 7.99 10 5.5 7.99 1 5.5 1z" stroke="#18161E" stroke-width="1.2"/><path d="M5.5 1c-1.1 1.5-1.75 2.9-1.75 4.5S4.4 8.5 5.5 10M5.5 1c1.1 1.5 1.75 2.9 1.75 4.5S6.6 8.5 5.5 10M1.25 5.5h9" stroke="#18161E" stroke-width="1.2" stroke-linecap="round"/></svg>
-          <span id="cmp-url" style="font-family:'DM Sans',sans-serif;font-size:0.72rem;color:rgba(24,22,30,0.45);letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">før.dk</span>
+          <svg width="9" height="9" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;opacity:0.35;"><path d="M5.5 1C3.01 1 1 3.01 1 5.5S3.01 10 5.5 10 10 7.99 10 5.5 7.99 1 5.5 1z" stroke="#18161E" stroke-width="1.2"/><path d="M5.5 1c-1.1 1.5-1.75 2.9-1.75 4.5S4.4 8.5 5.5 10M5.5 1c1.1 1.5 1.75 2.9 1.75 4.5S6.6 8.5 5.5 10M1.25 5.5h9" stroke="#18161E" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <span id="cmp-url" style="font-family:'DM Sans',sans-serif;font-size:0.65rem;color:rgba(24,22,30,0.4);letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">før.dk</span>
         </div>
-        <!-- Spacer to balance traffic lights -->
-        <div style="width:54px;flex-shrink:0;"></div>
+        <div style="width:42px;flex-shrink:0;"></div>
       </div>
 
       <!-- Slider area -->
@@ -738,9 +739,9 @@
         overflow:hidden;
         display:block;
         line-height:0;
-        aspect-ratio:16/9;
+        aspect-ratio:16/10;
       ">
-        <!-- Efter (fylder hele wrapperen) -->
+        <!-- Efter (base layer) -->
         <img src="efter 2.png" alt="Efter" style="
           position:absolute;inset:0;
           width:100%;height:100%;
@@ -748,7 +749,7 @@
           object-position:center top;
         ">
 
-        <!-- Før (clip-container — kun bredden ændres, billedet rører sig ikke) -->
+        <!-- Før (clip-container) -->
         <div id="cmp-clip" style="
           position:absolute;inset:0;
           width:50%;
@@ -762,24 +763,32 @@
           ">
         </div>
 
-        <!-- Labels -->
-        <span style="position:absolute;top:0.85rem;left:0.85rem;z-index:3;background:rgba(24,22,30,0.65);color:#fff;padding:0.25rem 0.65rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;backdrop-filter:blur(6px);pointer-events:none;">Før</span>
-        <span style="position:absolute;top:0.85rem;right:0.85rem;z-index:3;background:rgba(10,107,70,0.9);color:#fff;padding:0.25rem 0.65rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;backdrop-filter:blur(6px);pointer-events:none;">Efter</span>
+        <!-- Label Før — stor, tydelig, med ikon -->
+        <div style="position:absolute;bottom:0;left:0;z-index:3;pointer-events:none;background:linear-gradient(to top,rgba(24,22,30,0.7) 0%,transparent 100%);width:50%;padding:1.25rem 1rem 0.75rem;display:flex;align-items:flex-end;gap:0.4rem;" id="cmp-label-before">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;font-weight:700;color:#fff;letter-spacing:-0.01em;text-shadow:0 1px 4px rgba(0,0,0,0.3);">Før</span>
+          <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.6);padding-bottom:0.1rem;">gammel side</span>
+        </div>
+
+        <!-- Label Efter — stor, tydelig, med ikon -->
+        <div style="position:absolute;bottom:0;right:0;z-index:3;pointer-events:none;background:linear-gradient(to top,rgba(10,107,70,0.65) 0%,transparent 100%);width:50%;padding:1.25rem 1rem 0.75rem;display:flex;align-items:flex-end;justify-content:flex-end;gap:0.4rem;">
+          <span style="font-family:'DM Sans',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.7);padding-bottom:0.1rem;">ny side</span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;font-weight:700;color:#fff;letter-spacing:-0.01em;text-shadow:0 1px 4px rgba(0,0,0,0.2);">Efter</span>
+        </div>
 
         <!-- Skillelinje -->
-        <div id="cmp-line" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 12px rgba(0,0,0,0.2);transform:translateX(-50%);pointer-events:none;z-index:2;"></div>
+        <div id="cmp-line" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 10px rgba(0,0,0,0.2);transform:translateX(-50%);pointer-events:none;z-index:4;"></div>
 
         <!-- Handle -->
         <div id="cmp-handle" style="
           position:absolute;top:50%;left:50%;
           transform:translate(-50%,-50%);
-          width:44px;height:44px;border-radius:50%;
+          width:38px;height:38px;border-radius:50%;
           background:#fff;
-          box-shadow:0 2px 16px rgba(0,0,0,0.18),0 0 0 2px rgba(10,107,70,0.3);
+          box-shadow:0 2px 12px rgba(0,0,0,0.18),0 0 0 2px rgba(10,107,70,0.3);
           display:flex;align-items:center;justify-content:center;
-          pointer-events:none;z-index:4;
+          pointer-events:none;z-index:5;
         ">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 7L3 10L6 13M14 7L17 10L14 13" stroke="#0A6B46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M6 7L3 10L6 13M14 7L17 10L14 13" stroke="#0A6B46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </div>
 
@@ -815,8 +824,12 @@
     clip.style.width  = p;
     line.style.left   = p;
     handle.style.left = p;
-    syncImgWidth(); // kør på hvert drag så billedet aldrig warper
-    if (urlEl) urlEl.textContent = pct < 0.5 ? 'før.dk' : 'efter.dk';
+    syncImgWidth();
+    // Vis URL for den dominerende side: venstre = før, højre = efter
+    if (urlEl) urlEl.textContent = pct > 0.5 ? 'før.dk' : 'efter.dk';
+    // Flyt "Før"-label-gradient så den følger slideren
+    var labelBefore = document.getElementById('cmp-label-before');
+    if (labelBefore) labelBefore.style.width = p;
   }
 
   wrap.addEventListener('mousedown',   function (e) { active = true; setPos(e.clientX); e.preventDefault(); });
