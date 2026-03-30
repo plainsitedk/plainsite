@@ -557,14 +557,18 @@
         </div>
 
         <h1 class="heading-xl hero-enter" style="color:#18161E;margin-bottom:1.5rem;">
-          En hjemmeside<br>
-          til din<br>
-          <em style="font-style:italic;color:#0A6B46;">praksis.</em>
+          Få flere klienter<br>
+          til din praksis —<br>
+          <em style="font-style:italic;color:#0A6B46;">automatisk.</em>
         </h1>
 
-        <p class="body-lg hero-enter" style="color:rgba(24,22,30,0.6);margin-bottom:2.5rem;max-width:440px;">
-          Vi designer, bygger og driver din hjemmeside, så dine klienter nemt kan finde dig og tage kontakt.
-          Du fokuserer på dine klienter. Vi tager os af resten.
+        <p class="body-lg hero-enter" style="color:rgba(24,22,30,0.6);margin-bottom:0.75rem;max-width:440px;">
+          Vi bygger og driver din hjemmeside, så du bliver fundet på Google og får henvendelser fra nye klienter.
+          Du fokuserer på behandlingen. Vi sørger for resten.
+        </p>
+
+        <p class="hero-enter" style="font-family:'DM Sans',sans-serif;font-size:0.875rem;color:rgba(24,22,30,0.4);margin-bottom:2.5rem;max-width:440px;">
+          Specialiseret i hjemmesider til alternative behandlere og terapeuter.
         </p>
 
         <!-- Trust signals -->
@@ -576,7 +580,7 @@
           <div class="trust-dot"></div>
           <div class="trust-item">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#0A6B46" stroke-width="1.5"/><path d="M5 7L6.5 8.5L9 5.5" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Diskret og professionel
+            Synlig på Google
           </div>
           <div class="trust-dot"></div>
           <div class="trust-item">
@@ -587,11 +591,11 @@
 
         <div class="hero-enter" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
           <a href="#pricing" class="btn-primary btn-primary-lg">
-            Bestil din hjemmeside
+            Få en gratis vurdering
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="#how" class="btn-ghost">
-            Sådan virker det
+            Se hvordan det virker
           </a>
         </div>
       </div>
@@ -668,6 +672,78 @@
 </section>
 
 
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║           BEFORE / AFTER SLIDER          ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section class="section" style="background:#EDE8E2;padding-top:clamp(4rem,8vw,7rem);padding-bottom:clamp(4rem,8vw,7rem);">
+  <div class="container" style="max-width:860px;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Resultater</p>
+      <h2 class="heading-lg" style="color:#18161E;">Se forskellen</h2>
+      <p class="body-md" style="color:rgba(24,22,30,0.5);margin-top:0.75rem;">Fra usynlig til synlig — et eksempel</p>
+    </div>
+
+    <!-- Slider -->
+    <div class="reveal-scale" style="position:relative;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(24,22,30,0.1),0 0 0 1px rgba(24,22,30,0.06);user-select:none;" id="compare-wrap">
+
+      <!-- After image (bottom layer, full width) -->
+      <img src="efter.png" alt="Efter" style="display:block;width:100%;height:auto;max-height:520px;object-fit:cover;">
+
+      <!-- Before image (top layer, clipped) -->
+      <div id="compare-before" style="position:absolute;inset:0;overflow:hidden;width:50%;">
+        <img src="før.png" alt="Før" style="display:block;width:100%;height:100%;object-fit:cover;object-position:left top;min-width:var(--compare-min-width,200%);">
+      </div>
+
+      <!-- Labels -->
+      <div style="position:absolute;top:1rem;left:1rem;background:rgba(24,22,30,0.7);color:#fff;padding:0.3rem 0.75rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(6px);">Før</div>
+      <div style="position:absolute;top:1rem;right:1rem;background:rgba(10,107,70,0.85);color:#fff;padding:0.3rem 0.75rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(6px);">Efter</div>
+
+      <!-- Divider line -->
+      <div id="compare-line" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 8px rgba(0,0,0,0.3);transform:translateX(-50%);pointer-events:none;"></div>
+
+      <!-- Handle -->
+      <div id="compare-handle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,0.2),0 0 0 2px rgba(10,107,70,0.3);display:flex;align-items:center;justify-content:center;cursor:ew-resize;touch-action:none;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 7L3 10L6 13M14 7L17 10L14 13" stroke="#0A6B46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- Caption -->
+    <p class="reveal" style="text-align:center;margin-top:1.25rem;font-size:0.85rem;color:rgba(24,22,30,0.45);font-family:'DM Sans',sans-serif;line-height:1.6;">
+      <strong style="color:rgba(24,22,30,0.6);">Før:</strong> Ingen synlighed eller henvendelser&nbsp;&nbsp;·&nbsp;&nbsp;<strong style="color:rgba(24,22,30,0.6);">Efter:</strong> Professionel side optimeret til at få nye klienter
+    </p>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  var wrap = document.getElementById('compare-wrap');
+  var before = document.getElementById('compare-before');
+  var line = document.getElementById('compare-line');
+  var handle = document.getElementById('compare-handle');
+  var dragging = false;
+
+  function setPos(x) {
+    var rect = wrap.getBoundingClientRect();
+    var pct = Math.min(Math.max((x - rect.left) / rect.width, 0.02), 0.98);
+    var pctPx = (pct * 100).toFixed(2) + '%';
+    before.style.width = pctPx;
+    line.style.left = pctPx;
+    handle.style.left = pctPx;
+    // keep before img full-width regardless of clip container width
+    before.querySelector('img').style.width = (1 / pct * 100).toFixed(2) + '%';
+  }
+
+  handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
+  window.addEventListener('mouseup', function() { dragging = false; });
+  window.addEventListener('mousemove', function(e) { if (dragging) setPos(e.clientX); });
+
+  handle.addEventListener('touchstart', function(e) { dragging = true; }, {passive:true});
+  window.addEventListener('touchend', function() { dragging = false; });
+  window.addEventListener('touchmove', function(e) { if (dragging) setPos(e.touches[0].clientX); }, {passive:true});
+})();
+</script>
 
 
 <!-- ╔══════════════════════════════════════════╗ -->
