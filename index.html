@@ -421,6 +421,73 @@
     }
     .reveal-left.visible { opacity: 1; transform: translateX(0); }
 
+    /* ── Timeline ── */
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 1.375rem;
+      top: 2.75rem;
+      bottom: 2rem;
+      width: 1px;
+      background: linear-gradient(to bottom, #0A6B46 60%, rgba(10,107,70,0.1) 100%);
+    }
+    .timeline-step {
+      display: flex;
+      gap: 2rem;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+    .timeline-step:last-child { padding-bottom: 0; }
+    .timeline-node { flex-shrink: 0; }
+    .timeline-dot {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: #0A6B46;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 4px rgba(10,107,70,0.12);
+    }
+    .timeline-dot-final {
+      background: #18161E;
+      box-shadow: 0 0 0 4px rgba(24,22,30,0.1);
+    }
+    .timeline-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #0A6B46;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-content { padding-top: 0.25rem; }
+    .timeline-content h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #18161E;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-content p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(24,22,30,0.55);
+    }
+
     /* ── Form input placeholders ── */
     input::placeholder, textarea::placeholder {
       color: rgba(24,22,30,0.2);
@@ -616,41 +683,56 @@
       <h2 class="heading-lg" style="color:#18161E;">Fra idé til online<br>på under en uge</h2>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;">
+    <div class="timeline">
 
       <!-- Step 1 -->
-      <div class="reveal" style="padding:2rem;background:#FFFFFF;border:1px solid rgba(24,22,30,0.08);border-radius:12px;position:relative;box-shadow:0 2px 16px rgba(24,22,30,0.07);">
-        <div class="step-num" style="margin-bottom:1.25rem;">1</div>
-        <h3 class="heading-md" style="color:#18161E;margin-bottom:0.75rem;font-size:1.25rem;">Vi taler sammen</h3>
-        <p class="body-md" style="color:rgba(24,22,30,0.55);">
-          En kort snak om hvad din virksomhed laver, og hvad du har brug for på din hjemmeside. Ingen teknisk snak.
-        </p>
-        <div style="position:absolute;top:1.5rem;right:1.5rem;opacity:0.08;">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 12C8 9.79 9.79 8 12 8H36C38.21 8 40 9.79 40 12V32C40 34.21 38.21 36 36 36H28L20 44V36H12C9.79 36 8 34.21 8 32V12Z" fill="#0A6B46"/></svg>
+      <div class="timeline-step reveal">
+        <div class="timeline-node">
+          <div class="timeline-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4C2 3.45 2.45 3 3 3H13C13.55 3 14 3.45 14 4V10C14 10.55 13.55 11 13 11H9L6 14V11H3C2.45 11 2 10.55 2 10V4Z" fill="white"/></svg>
+          </div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-tag">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#0A6B46"/></svg>
+            Dag 1 · ca. 30 min
+          </div>
+          <h3>Vi taler sammen</h3>
+          <p>En kort snak om hvad din virksomhed laver, og hvad du har brug for. Du behøver ingen teknisk viden — vi stiller spørgsmålene.</p>
         </div>
       </div>
 
       <!-- Step 2 -->
-      <div class="reveal" style="padding:2rem;background:#FFFFFF;border:1px solid rgba(24,22,30,0.08);border-radius:12px;position:relative;box-shadow:0 2px 16px rgba(24,22,30,0.07);">
-        <div class="step-num" style="margin-bottom:1.25rem;">2</div>
-        <h3 class="heading-md" style="color:#18161E;margin-bottom:0.75rem;font-size:1.25rem;">Vi bygger din side</h3>
-        <p class="body-md" style="color:rgba(24,22,30,0.55);">
-          Inden for 7 dage har du et udkast. Vi justerer, til du er 100% tilfreds — og så går vi live.
-        </p>
-        <div style="position:absolute;top:1.5rem;right:1.5rem;opacity:0.08;">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="3" fill="#0A6B46"/><path d="M14 22L20 28L34 18" stroke="#F5F1EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="timeline-step reveal">
+        <div class="timeline-node">
+          <div class="timeline-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="white" stroke-width="1.5"/><path d="M5 4V3.5A2.5 2.5 0 0 1 11 3.5V4" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8v2M7 9h2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-tag">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#0A6B46"/></svg>
+            Dag 2–6 · vi bygger
+          </div>
+          <h3>Vi designer og bygger din side</h3>
+          <p>Du sender logo og tekster — eller vi hjælper dig med det. Vi bygger siden og sender dig et udkast. Vi justerer til du er 100% tilfreds.</p>
         </div>
       </div>
 
       <!-- Step 3 -->
-      <div class="reveal" style="padding:2rem;background:#FFFFFF;border:1px solid rgba(24,22,30,0.08);border-radius:12px;position:relative;box-shadow:0 2px 16px rgba(24,22,30,0.07);">
-        <div class="step-num" style="margin-bottom:1.25rem;">3</div>
-        <h3 class="heading-md" style="color:#18161E;margin-bottom:0.75rem;font-size:1.25rem;">Du betaler — vi driver</h3>
-        <p class="body-md" style="color:rgba(24,22,30,0.55);">
-          499 kr/md. og din hjemmeside kører. Vi sørger for opdateringer, sikkerhed og support. Altid.
-        </p>
-        <div style="position:absolute;top:1.5rem;right:1.5rem;opacity:0.08;">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M24 4L28.9 16.2L42 18.2L33 27L35.8 40L24 33.4L12.2 40L15 27L6 18.2L19.1 16.2L24 4Z" fill="#0A6B46"/></svg>
+      <div class="timeline-step reveal">
+        <div class="timeline-node">
+          <div class="timeline-dot timeline-dot-final">
+            <span style="width:8px;height:8px;border-radius:50%;background:#0A6B46;display:block;animation:dotBeat 2.2s ease-in-out infinite;"></span>
+          </div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-tag" style="color:#18161E;">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#0A6B46"/></svg>
+            Dag 7 · du er online
+          </div>
+          <h3>Din hjemmeside er live</h3>
+          <p>499 kr/md. — og så kører den. Vi holder den opdateret, sikker og online. Du fokuserer på din forretning, vi tager os af resten.</p>
         </div>
       </div>
 
@@ -680,24 +762,6 @@
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#0A6B46" stroke-width="1.5"/><path d="M5 7L6.5 8.5L9 5.5" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <span style="font-size:0.875rem;font-weight:500;color:rgba(24,22,30,0.65);">Opsig med <strong style="color:#18161E;font-weight:700;">1 måneds varsel</strong></span>
-      </div>
-
-      <div style="width:1px;height:20px;background:rgba(24,22,30,0.08);flex-shrink:0;" class="trust-divider"></div>
-
-      <div style="display:flex;align-items:center;gap:0.65rem;">
-        <div style="width:32px;height:32px;border-radius:50%;background:rgba(10, 107, 70,0.12);border:1px solid rgba(10, 107, 70,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10v7a1 1 0 01-1 1H3a1 1 0 01-1-1V4zM5 4V3a2 2 0 014 0v1" stroke="#0A6B46" stroke-width="1.3" stroke-linecap="round"/></svg>
-        </div>
-        <span style="font-size:0.875rem;font-weight:500;color:rgba(24,22,30,0.65);">Ingen <strong style="color:#18161E;font-weight:700;">oprettelsesgebyr</strong></span>
-      </div>
-
-      <div style="width:1px;height:20px;background:rgba(24,22,30,0.08);flex-shrink:0;" class="trust-divider"></div>
-
-      <div style="display:flex;align-items:center;gap:0.65rem;">
-        <div style="width:32px;height:32px;border-radius:50%;background:rgba(10, 107, 70,0.12);border:1px solid rgba(10, 107, 70,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2C4.24 2 2 4.24 2 7s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 9V3" stroke="#0A6B46" stroke-width="1.3" stroke-linecap="round"/><path d="M4.5 7l2.5 2.5L9.5 5" stroke="#0A6B46" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <span style="font-size:0.875rem;font-weight:500;color:rgba(24,22,30,0.65);">Svar inden for <strong style="color:#18161E;font-weight:700;">24 timer</strong></span>
       </div>
 
     </div>
@@ -829,7 +893,6 @@
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Ingen binding — opsig når du vil</div>
         </div>
 
-        <p style="font-size:0.8rem;color:rgba(24,22,30,0.3);text-align:center;">Udfyld formularen til højre for at komme i gang →</p>
       </div>
 
       <!-- Right: Form -->
@@ -857,8 +920,9 @@
 
             <!-- Name -->
             <div>
-              <label style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.45);margin-bottom:0.5rem;">Navn</label>
+              <label for="input-name" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Navn</label>
               <input
+                id="input-name"
                 type="text"
                 name="name"
                 placeholder="Dit fulde navn"
@@ -882,8 +946,9 @@
 
             <!-- Email -->
             <div>
-              <label style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.45);margin-bottom:0.5rem;">Email</label>
+              <label for="input-email" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Email</label>
               <input
+                id="input-email"
                 type="email"
                 name="email"
                 placeholder="din@email.dk"
@@ -907,8 +972,9 @@
 
             <!-- Business type -->
             <div>
-              <label style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.45);margin-bottom:0.5rem;">Hvad laver din virksomhed?</label>
+              <label for="input-business" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Hvad laver din virksomhed?</label>
               <input
+                id="input-business"
                 type="text"
                 name="business"
                 placeholder="F.eks. tømrer, café, frisør..."
@@ -931,8 +997,9 @@
 
             <!-- Message -->
             <div>
-              <label style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.45);margin-bottom:0.5rem;">Besked <span style="font-weight:400;text-transform:none;letter-spacing:0;">(valgfrit)</span></label>
+              <label for="input-message" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Besked <span style="font-weight:400;text-transform:none;letter-spacing:0;">(valgfrit)</span></label>
               <textarea
+                id="input-message"
                 name="message"
                 placeholder="Beskriv kort hvad du har brug for..."
                 rows="3"
@@ -953,6 +1020,11 @@
                 onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
                 onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"
               ></textarea>
+            </div>
+
+            <!-- Inline error message (hidden by default) -->
+            <div id="form-error" style="display:none;padding:0.75rem 1rem;background:rgba(180,40,40,0.07);border:1px solid rgba(180,40,40,0.2);border-radius:8px;font-size:0.875rem;color:#8B2020;">
+              Noget gik galt. Prøv igen eller skriv direkte til <a href="mailto:hej@plainsite.dk" style="color:#8B2020;font-weight:600;">hej@plainsite.dk</a>
             </div>
 
             <!-- Pre-submit reassurance -->
@@ -984,6 +1056,12 @@
             <p style="font-size:0.9rem;color:rgba(24,22,30,0.5);">Vi sender dig en mail inden for 24 timer med en konkret plan.</p>
           </div>
         </form>
+
+        <!-- Email alternative -->
+        <p style="text-align:center;margin-top:1rem;font-size:0.85rem;color:rgba(24,22,30,0.4);">
+          Foretrækker du mail?
+          <a href="mailto:hej@plainsite.dk" style="color:#0A6B46;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(10,107,70,0.3);padding-bottom:1px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(10,107,70,0.8)'" onmouseout="this.style.borderColor='rgba(10,107,70,0.3)'">Skriv til hej@plainsite.dk</a>
+        </p>
       </div>
 
     </div>
@@ -1034,7 +1112,7 @@
     <div class="divider" style="margin-bottom:1.5rem;"></div>
 
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-      <p style="font-size:0.8rem;color:rgba(24,22,30,0.25);">© 2025 plainsite. Alle rettigheder forbeholdes.</p>
+      <p style="font-size:0.8rem;color:rgba(24,22,30,0.25);">© 2026 plainsite. Alle rettigheder forbeholdes.</p>
       <div style="display:flex;gap:1.5rem;">
         <a href="#" style="font-size:0.8rem;color:rgba(24,22,30,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(24,22,30,0.5)'" onmouseout="this.style.color='rgba(24,22,30,0.25)'">Privatlivspolitik</a>
         <a href="#" style="font-size:0.8rem;color:rgba(24,22,30,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(24,22,30,0.5)'" onmouseout="this.style.color='rgba(24,22,30,0.25)'">Handelsbetingelser</a>
@@ -1126,7 +1204,8 @@
         btn.style.opacity = '1';
         arrow.style.display = 'inline-block';
         spinner.style.display = 'none';
-        alert('Noget gik galt. Prøv igen eller skriv direkte til hej@plainsite.dk');
+        const errEl = document.getElementById('form-error');
+        if (errEl) errEl.style.display = 'block';
       }
     });
   }
