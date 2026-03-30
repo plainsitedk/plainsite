@@ -683,59 +683,107 @@
       <p class="body-md" style="color:rgba(24,22,30,0.5);margin-top:0.75rem;">Fra usynlig til synlig — et eksempel</p>
     </div>
 
-    <div class="reveal-scale" id="cmp-wrap" style="
-      position:relative;
+    <!-- Browser frame wrapper -->
+    <div class="reveal-scale" style="
       border-radius:14px;
       overflow:hidden;
-      box-shadow:0 20px 60px rgba(24,22,30,0.1),0 0 0 1px rgba(24,22,30,0.06);
+      box-shadow:
+        0 0 0 1px rgba(24,22,30,0.08),
+        0 24px 64px rgba(24,22,30,0.12),
+        0 8px 24px rgba(24,22,30,0.06);
       user-select:none;
-      cursor:ew-resize;
     ">
-      <!-- Efter (base, sætter højden på wrapperen) -->
-      <img src="efter 2.png" alt="Efter" style="
-        display:block;
-        width:100%;
-        height:420px;
-        object-fit:cover;
-        object-position:center top;
-      ">
 
-      <!-- Før (clip-container — bredden ændres, billedet skalerer ikke) -->
-      <div id="cmp-clip" style="
-        position:absolute;inset:0;
-        width:50%;
-        overflow:hidden;
+      <!-- Browser chrome (statisk — slides ikke) -->
+      <div style="
+        background:#E2DDD8;
+        padding:0.6rem 1rem;
+        display:flex;
+        align-items:center;
+        gap:0.75rem;
+        border-bottom:1px solid rgba(24,22,30,0.07);
+        position:relative;
+        z-index:5;
       ">
-        <img src="før2.png" alt="Før" style="
+        <!-- Traffic lights -->
+        <div style="display:flex;gap:6px;flex-shrink:0;">
+          <div style="width:11px;height:11px;border-radius:50%;background:#FF5F57;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
+          <div style="width:11px;height:11px;border-radius:50%;background:#FFBD2E;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
+          <div style="width:11px;height:11px;border-radius:50%;background:#28C940;box-shadow:inset 0 0 0 0.5px rgba(0,0,0,0.12);"></div>
+        </div>
+        <!-- URL bar -->
+        <div style="
+          flex:1;
+          background:rgba(255,255,255,0.6);
+          border:1px solid rgba(24,22,30,0.1);
+          border-radius:6px;
+          padding:0.3rem 0.75rem;
+          display:flex;
+          align-items:center;
+          gap:0.4rem;
+          max-width:320px;
+          margin:0 auto;
+        ">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;opacity:0.4;"><path d="M5.5 1C3.01 1 1 3.01 1 5.5S3.01 10 5.5 10 10 7.99 10 5.5 7.99 1 5.5 1z" stroke="#18161E" stroke-width="1.2"/><path d="M5.5 1c-1.1 1.5-1.75 2.9-1.75 4.5S4.4 8.5 5.5 10M5.5 1c1.1 1.5 1.75 2.9 1.75 4.5S6.6 8.5 5.5 10M1.25 5.5h9" stroke="#18161E" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <span id="cmp-url" style="font-family:'DM Sans',sans-serif;font-size:0.72rem;color:rgba(24,22,30,0.45);letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">benjaminhoff.dk</span>
+        </div>
+        <!-- Spacer to balance traffic lights -->
+        <div style="width:54px;flex-shrink:0;"></div>
+      </div>
+
+      <!-- Slider area (kun denne del slides) -->
+      <div id="cmp-wrap" style="
+        position:relative;
+        cursor:ew-resize;
+        overflow:hidden;
+        display:block;
+        line-height:0;
+      ">
+        <!-- Efter (base, sætter højden) -->
+        <img src="efter 2.png" alt="Efter" style="
           display:block;
           width:100%;
-          height:420px;
+          height:auto;
+          max-height:440px;
           object-fit:cover;
           object-position:center top;
-          min-width:100vw;
-          max-width:none;
         ">
+
+        <!-- Før (clip-container — bredden ændres, billedet skalerer ikke) -->
+        <div id="cmp-clip" style="
+          position:absolute;inset:0;
+          width:50%;
+          overflow:hidden;
+        ">
+          <img src="før2.png" alt="Før" style="
+            display:block;
+            height:100%;
+            object-fit:cover;
+            object-position:center top;
+          ">
+        </div>
+
+        <!-- Labels -->
+        <span style="position:absolute;top:0.85rem;left:0.85rem;z-index:3;background:rgba(24,22,30,0.65);color:#fff;padding:0.25rem 0.65rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;backdrop-filter:blur(6px);pointer-events:none;">Før</span>
+        <span style="position:absolute;top:0.85rem;right:0.85rem;z-index:3;background:rgba(10,107,70,0.9);color:#fff;padding:0.25rem 0.65rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;backdrop-filter:blur(6px);pointer-events:none;">Efter</span>
+
+        <!-- Skillelinje -->
+        <div id="cmp-line" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 12px rgba(0,0,0,0.2);transform:translateX(-50%);pointer-events:none;z-index:2;"></div>
+
+        <!-- Handle -->
+        <div id="cmp-handle" style="
+          position:absolute;top:50%;left:50%;
+          transform:translate(-50%,-50%);
+          width:44px;height:44px;border-radius:50%;
+          background:#fff;
+          box-shadow:0 2px 16px rgba(0,0,0,0.18),0 0 0 2px rgba(10,107,70,0.3);
+          display:flex;align-items:center;justify-content:center;
+          pointer-events:none;z-index:4;
+        ">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 7L3 10L6 13M14 7L17 10L14 13" stroke="#0A6B46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
       </div>
 
-      <!-- Labels -->
-      <span style="position:absolute;top:1rem;left:1rem;z-index:3;background:rgba(24,22,30,0.7);color:#fff;padding:0.3rem 0.75rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(6px);pointer-events:none;">Før</span>
-      <span style="position:absolute;top:1rem;right:1rem;z-index:3;background:rgba(10,107,70,0.85);color:#fff;padding:0.3rem 0.75rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.05em;backdrop-filter:blur(6px);pointer-events:none;">Efter</span>
-
-      <!-- Skillelinje -->
-      <div id="cmp-line" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 8px rgba(0,0,0,0.25);transform:translateX(-50%);pointer-events:none;z-index:2;"></div>
-
-      <!-- Handle -->
-      <div id="cmp-handle" style="
-        position:absolute;top:50%;left:50%;
-        transform:translate(-50%,-50%);
-        width:44px;height:44px;border-radius:50%;
-        background:#fff;
-        box-shadow:0 2px 16px rgba(0,0,0,0.2),0 0 0 2px rgba(10,107,70,0.3);
-        display:flex;align-items:center;justify-content:center;
-        pointer-events:none;z-index:4;
-      ">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 7L3 10L6 13M14 7L17 10L14 13" stroke="#0A6B46" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
     </div>
 
     <!-- Caption -->
@@ -752,9 +800,10 @@
   var clip   = document.getElementById('cmp-clip');
   var line   = document.getElementById('cmp-line');
   var handle = document.getElementById('cmp-handle');
+  var urlEl  = document.getElementById('cmp-url');
   var active = false;
 
-  // Ensure "før"-billedet altid er wrap-bredden bred, uanset clip-containerens bredde
+  // Før-billedet skal altid have samme bredde som wrap, uanset clip-containerens bredde
   function syncImgWidth() {
     var img = clip.querySelector('img');
     img.style.width = wrap.offsetWidth + 'px';
@@ -767,6 +816,8 @@
     clip.style.width  = p;
     line.style.left   = p;
     handle.style.left = p;
+    // Skift URL-bar afhængigt af hvilken side der dominerer
+    if (urlEl) urlEl.textContent = pct < 0.5 ? 'benjaminhoff.dk' : 'dinpraksis.dk';
   }
 
   wrap.addEventListener('mousedown',   function (e) { active = true; syncImgWidth(); setPos(e.clientX); e.preventDefault(); });
