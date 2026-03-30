@@ -723,10 +723,10 @@
         <div style="width:42px;flex-shrink:0;"></div>
       </div>
 
-      <!-- Billede-container: fast aspect-ratio så ingen layout-hop -->
-      <div style="position:relative;overflow:hidden;line-height:0;aspect-ratio:16/10;">
-        <img id="tab-img-before" src="før2.png" alt="Før" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity 0.35s ease;">
-        <img id="tab-img-after"  src="efter 2.png" alt="Efter" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity 0.35s ease;">
+      <!-- Billede-container: grid stacker begge billeder i samme celle — ingen crop, ingen layout-hop -->
+      <div style="display:grid;line-height:0;">
+        <img id="tab-img-before" src="før2.png" alt="Før" style="grid-area:1/1;width:100%;height:auto;display:block;transition:opacity 0.4s ease;">
+        <img id="tab-img-after"  src="efter 2.png" alt="Efter" style="grid-area:1/1;width:100%;height:auto;display:block;opacity:0;transition:opacity 0.4s ease;">
       </div>
     </div>
 
@@ -750,16 +750,33 @@ function tabSwitch(tab) {
   imgBefore.style.opacity = isBefore ? '1' : '0';
   imgAfter.style.opacity  = isBefore ? '0' : '1';
 
-  // Aktiv: brand-grøn. Inaktiv: transparent med dæmpet tekst
-  btnBefore.style.background  = isBefore ? '#0A6B46' : 'transparent';
-  btnBefore.style.color       = isBefore ? '#fff' : 'rgba(24,22,30,0.45)';
-  btnBefore.style.boxShadow   = isBefore ? '0 1px 6px rgba(10,107,70,0.3)' : 'none';
-  btnAfter.style.background   = isBefore ? 'transparent' : '#0A6B46';
-  btnAfter.style.color        = isBefore ? 'rgba(24,22,30,0.45)' : '#fff';
-  btnAfter.style.boxShadow    = isBefore ? 'none' : '0 1px 6px rgba(10,107,70,0.3)';
+  btnBefore.style.background = isBefore ? '#0A6B46' : 'transparent';
+  btnBefore.style.color      = isBefore ? '#fff' : 'rgba(24,22,30,0.45)';
+  btnBefore.style.boxShadow  = isBefore ? '0 1px 6px rgba(10,107,70,0.3)' : 'none';
+  btnAfter.style.background  = isBefore ? 'transparent' : '#0A6B46';
+  btnAfter.style.color       = isBefore ? 'rgba(24,22,30,0.45)' : '#fff';
+  btnAfter.style.boxShadow   = isBefore ? 'none' : '0 1px 6px rgba(10,107,70,0.3)';
 
   if (urlEl) urlEl.textContent = isBefore ? 'før.dk' : 'efter.dk';
 }
+
+// Auto-switch ved scroll: vis Før → vent 1.2s → fade til Efter
+(function () {
+  var triggered = false;
+  var section = document.querySelector('#tab-img-before');
+  if (!section) return;
+
+  var observer = new IntersectionObserver(function (entries) {
+    if (triggered) return;
+    if (entries[0].isIntersecting) {
+      triggered = true;
+      tabSwitch('before');
+      setTimeout(function () { tabSwitch('after'); }, 1400);
+    }
+  }, { threshold: 0.5 });
+
+  observer.observe(section);
+})();
 </script>
 
 
