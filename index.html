@@ -760,20 +760,45 @@ function tabSwitch(tab) {
   if (urlEl) urlEl.textContent = isBefore ? 'før.dk' : 'efter.dk';
 }
 
-// Auto-switch ved scroll: vis Før → vent 1.2s → fade til Efter
+// Scroll-pause: lås scroll → vis Før → fade til Efter → frigiv scroll
 (function () {
   var triggered = false;
-  var section = document.querySelector('#tab-img-before');
+  var section   = document.getElementById('tab-img-before');
   if (!section) return;
 
   var observer = new IntersectionObserver(function (entries) {
     if (triggered) return;
-    if (entries[0].isIntersecting) {
-      triggered = true;
-      tabSwitch('before');
-      setTimeout(function () { tabSwitch('after'); }, 1400);
-    }
-  }, { threshold: 0.5 });
+    if (!entries[0].isIntersecting) return;
+    triggered = true;
+    observer.disconnect();
+
+    // Lås scroll: gem position og sæt body fixed
+    var scrollY = window.scrollY;
+    document.body.style.position   = 'fixed';
+    document.body.style.top        = '-' + scrollY + 'px';
+    document.body.style.left       = '0';
+    document.body.style.right      = '0';
+    document.body.style.overflowY  = 'scroll';
+
+    // Sørg for at Før er aktiv
+    tabSwitch('before');
+
+    // Skift til Efter efter 1s
+    setTimeout(function () {
+      tabSwitch('after');
+
+      // Frigiv scroll efter fade (0.4s transition + 0.3s buffer)
+      setTimeout(function () {
+        document.body.style.position  = '';
+        document.body.style.top       = '';
+        document.body.style.left      = '';
+        document.body.style.right     = '';
+        document.body.style.overflowY = '';
+        window.scrollTo({ top: scrollY, behavior: 'instant' });
+      }, 700);
+    }, 1000);
+
+  }, { threshold: 0.6 });
 
   observer.observe(section);
 })();
