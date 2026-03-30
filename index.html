@@ -725,41 +725,40 @@
           margin:0 auto;
         ">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0;opacity:0.4;"><path d="M5.5 1C3.01 1 1 3.01 1 5.5S3.01 10 5.5 10 10 7.99 10 5.5 7.99 1 5.5 1z" stroke="#18161E" stroke-width="1.2"/><path d="M5.5 1c-1.1 1.5-1.75 2.9-1.75 4.5S4.4 8.5 5.5 10M5.5 1c1.1 1.5 1.75 2.9 1.75 4.5S6.6 8.5 5.5 10M1.25 5.5h9" stroke="#18161E" stroke-width="1.2" stroke-linecap="round"/></svg>
-          <span id="cmp-url" style="font-family:'DM Sans',sans-serif;font-size:0.72rem;color:rgba(24,22,30,0.45);letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">benjaminhoff.dk</span>
+          <span id="cmp-url" style="font-family:'DM Sans',sans-serif;font-size:0.72rem;color:rgba(24,22,30,0.45);letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">før.dk</span>
         </div>
         <!-- Spacer to balance traffic lights -->
         <div style="width:54px;flex-shrink:0;"></div>
       </div>
 
-      <!-- Slider area (kun denne del slides) -->
+      <!-- Slider area -->
       <div id="cmp-wrap" style="
         position:relative;
         cursor:ew-resize;
         overflow:hidden;
         display:block;
         line-height:0;
+        aspect-ratio:16/9;
       ">
-        <!-- Efter (base, sætter højden) -->
+        <!-- Efter (fylder hele wrapperen) -->
         <img src="efter 2.png" alt="Efter" style="
-          display:block;
-          width:100%;
-          height:auto;
-          max-height:440px;
+          position:absolute;inset:0;
+          width:100%;height:100%;
           object-fit:cover;
           object-position:center top;
         ">
 
-        <!-- Før (clip-container — bredden ændres, billedet skalerer ikke) -->
+        <!-- Før (clip-container — kun bredden ændres, billedet rører sig ikke) -->
         <div id="cmp-clip" style="
           position:absolute;inset:0;
           width:50%;
           overflow:hidden;
         ">
-          <img src="før2.png" alt="Før" style="
-            display:block;
+          <img src="før2.png" alt="Før" id="cmp-before-img" style="
+            position:absolute;top:0;left:0;
             height:100%;
             object-fit:cover;
-            object-position:center top;
+            object-position:left top;
           ">
         </div>
 
@@ -796,17 +795,17 @@
 
 <script>
 (function () {
-  var wrap   = document.getElementById('cmp-wrap');
-  var clip   = document.getElementById('cmp-clip');
-  var line   = document.getElementById('cmp-line');
-  var handle = document.getElementById('cmp-handle');
-  var urlEl  = document.getElementById('cmp-url');
-  var active = false;
+  var wrap    = document.getElementById('cmp-wrap');
+  var clip    = document.getElementById('cmp-clip');
+  var beforeImg = document.getElementById('cmp-before-img');
+  var line    = document.getElementById('cmp-line');
+  var handle  = document.getElementById('cmp-handle');
+  var urlEl   = document.getElementById('cmp-url');
+  var active  = false;
 
-  // Før-billedet skal altid have samme bredde som wrap, uanset clip-containerens bredde
+  // Før-billedet skal altid være præcis wrap-bredden — uanset clip-containerens aktuelle bredde
   function syncImgWidth() {
-    var img = clip.querySelector('img');
-    img.style.width = wrap.offsetWidth + 'px';
+    beforeImg.style.width = wrap.offsetWidth + 'px';
   }
 
   function setPos(clientX) {
@@ -816,15 +815,15 @@
     clip.style.width  = p;
     line.style.left   = p;
     handle.style.left = p;
-    // Skift URL-bar afhængigt af hvilken side der dominerer
-    if (urlEl) urlEl.textContent = pct < 0.5 ? 'benjaminhoff.dk' : 'dinpraksis.dk';
+    syncImgWidth(); // kør på hvert drag så billedet aldrig warper
+    if (urlEl) urlEl.textContent = pct < 0.5 ? 'før.dk' : 'efter.dk';
   }
 
-  wrap.addEventListener('mousedown',   function (e) { active = true; syncImgWidth(); setPos(e.clientX); e.preventDefault(); });
+  wrap.addEventListener('mousedown',   function (e) { active = true; setPos(e.clientX); e.preventDefault(); });
   window.addEventListener('mouseup',   function ()  { active = false; });
   window.addEventListener('mousemove', function (e) { if (active) setPos(e.clientX); });
 
-  wrap.addEventListener('touchstart',  function (e) { active = true; syncImgWidth(); setPos(e.touches[0].clientX); }, { passive: true });
+  wrap.addEventListener('touchstart',  function (e) { active = true; setPos(e.touches[0].clientX); }, { passive: true });
   window.addEventListener('touchend',  function ()  { active = false; });
   window.addEventListener('touchmove', function (e) { if (active) setPos(e.touches[0].clientX); }, { passive: true });
 
