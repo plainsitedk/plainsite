@@ -855,9 +855,10 @@
   <div class="container" style="position:relative;">
 
     <!-- Section header -->
-    <div class="reveal" style="text-align:center;margin-bottom:2rem;">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
       <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Pris & kontakt</p>
-      <h2 class="heading-lg" style="color:#18161E;">Simpelt. Gennemsigtigt.</h2>
+      <h2 class="heading-lg" style="color:#18161E;margin-bottom:0.75rem;">Simpelt. Gennemsigtigt.</h2>
+      <p style="font-size:0.95rem;color:rgba(24,22,30,0.5);max-width:480px;margin:0 auto;line-height:1.6;">Udfyld formularen — vi vender tilbage inden for 24 timer med en konkret plan.</p>
     </div>
 
     <div id="kontakt" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:stretch;scroll-margin-top:80px;" class="contact-grid">
@@ -883,7 +884,7 @@
         <div class="divider" style="margin-bottom:1rem;"></div>
 
         <!-- Feature list -->
-        <div style="display:flex;flex-direction:column;gap:0.1rem;margin-bottom:1.25rem;">
+        <div style="display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.25rem;">
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>En flot hjemmeside der passer til din praksis</div>
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Virker perfekt på mobil, tablet og computer</div>
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Dine klienter kan finde dig på Google</div>
@@ -891,7 +892,6 @@
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Vi opdaterer den, når du har brug for det</div>
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Support via mail — vi svarer inden for 24 timer</div>
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Klar på 7 hverdage</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Ingen binding — 30 dages opsigelse</div>
         </div>
 
       </div>
@@ -973,27 +973,44 @@
 
             <!-- Business type -->
             <div>
-              <label for="input-business" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Hvad er din specialitet?</label>
-              <input
-                id="input-business"
-                type="text"
-                name="business"
-                placeholder="F.eks. psykolog, fysioterapeut, massør..."
-                style="
-                  width:100%;
-                  background:rgba(24,22,30,0.04);
-                  border:1px solid rgba(24,22,30,0.1);
-                  border-radius:8px;
-                  padding:0.8rem 1rem;
-                  font-family:'DM Sans',sans-serif;
-                  font-size:0.95rem;
-                  color:#18161E;
-                  outline:none;
-                  transition:border-color 0.2s ease, box-shadow 0.2s ease;
-                "
-                onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
-                onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"
-              >
+              <label for="input-business" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Din specialitet</label>
+              <div style="position:relative;">
+                <select
+                  id="input-business"
+                  name="business"
+                  style="
+                    width:100%;
+                    background:rgba(24,22,30,0.04);
+                    border:1px solid rgba(24,22,30,0.1);
+                    border-radius:8px;
+                    padding:0.8rem 2.5rem 0.8rem 1rem;
+                    font-family:'DM Sans',sans-serif;
+                    font-size:0.95rem;
+                    color:#18161E;
+                    outline:none;
+                    appearance:none;
+                    -webkit-appearance:none;
+                    cursor:pointer;
+                    transition:border-color 0.2s ease, box-shadow 0.2s ease;
+                  "
+                  onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
+                  onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"
+                >
+                  <option value="" disabled selected style="color:rgba(24,22,30,0.4);">Vælg din specialitet</option>
+                  <option value="Psykolog / Psykoterapeut">Psykolog / Psykoterapeut</option>
+                  <option value="Fysioterapeut">Fysioterapeut</option>
+                  <option value="Massør / Massageterapeut">Massør / Massageterapeut</option>
+                  <option value="Osteopat / Kiropraktor">Osteopat / Kiropraktor</option>
+                  <option value="Zoneterapeut / Refleksolog">Zoneterapeut / Refleksolog</option>
+                  <option value="Coach / Stressterapeut">Coach / Stressterapeut</option>
+                  <option value="Ernæringsrådgiver">Ernæringsrådgiver</option>
+                  <option value="Akupunktør">Akupunktør</option>
+                  <option value="Andet">Andet</option>
+                </select>
+                <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="rgba(24,22,30,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
             </div>
 
             <!-- Message -->
@@ -1029,7 +1046,7 @@
             </div>
 
             <!-- Pre-submit reassurance -->
-            <p style="font-size:0.8rem;color:rgba(24,22,30,0.4);text-align:center;margin-bottom:-0.25rem;">Vi sender dig en mail inden for 24 timer — ingen forpligtelse, ingen sælger der ringer.</p>
+            <p style="font-size:0.8rem;color:rgba(24,22,30,0.55);text-align:center;margin-bottom:-0.25rem;">Ingen forpligtelse · Ingen sælger der ringer · Svar inden for 24 timer</p>
 
             <!-- Submit -->
             <button
