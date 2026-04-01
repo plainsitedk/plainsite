@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>plainsite – hjemmeside til terapeuter og behandlere</title>
-  <meta name="description" content="Vi designer, bygger og driver din hjemmeside som terapeut eller behandler. Fast pris, ingen overraskelser. Fra 499 kr/md.">
+  <meta name="description" content="Vi designer, bygger og driver din hjemmeside som terapeut eller behandler. Fast pris, ingen overraskelser. Fra 299 kr/md.">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="favicon.svg">
@@ -507,6 +507,7 @@
     /* ── Contact grid responsive ── */
     @media (max-width: 800px) {
       .contact-grid { grid-template-columns: 1fr !important; }
+      .pricing-grid { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -556,7 +557,7 @@
       <div style="max-width:560px;">
         <div class="hero-enter" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 0.9rem;background:rgba(10, 107, 70,0.1);border:1px solid rgba(10, 107, 70,0.25);border-radius:100px;margin-bottom:2rem;">
           <span class="chip-dot dot-beat"></span>
-          <span class="label" style="color:#0A6B46;font-size:0.7rem;">Fast pris · 499 kr/md.</span>
+          <span class="label" style="color:#0A6B46;font-size:0.7rem;">Fra 299 kr/md.</span>
         </div>
 
         <h1 class="heading-xl hero-enter" style="color:#18161E;margin-bottom:1.5rem;">
@@ -588,7 +589,7 @@
           <div class="trust-dot"></div>
           <div class="trust-item">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7C2 4.24 4.24 2 7 2s5 2.24 5 5-2.24 5-5 5-5-2.24-5-5Z" stroke="#0A6B46" stroke-width="1.5"/><path d="M7 4.5V7l1.5 1.5" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Ingen binding — 30 dages opsigelse
+            Opsigelse med 30 dages varsel
           </div>
         </div>
 
@@ -666,7 +667,7 @@
           box-shadow:0 8px 24px rgba(10, 107, 70,0.3);
           white-space:nowrap;
         ">
-          499 kr<span style="font-size:0.7rem;font-weight:500;opacity:0.85;">/md.</span>
+          Fra 299 kr<span style="font-size:0.7rem;font-weight:500;opacity:0.85;">/md.</span>
         </div>
       </div>
 
@@ -736,7 +737,7 @@
             Dag 7 · du er online
           </div>
           <h3>Din hjemmeside er live</h3>
-          <p>499 kr/md. — og så kører den. Dine klienter kan finde dig på Google og kontakte dig direkte. Vi holder siden opdateret, sikker og online.</p>
+          <p>Fra 299 kr/md. — og så kører den. Dine klienter kan finde dig på Google og kontakte dig direkte. Vi holder siden opdateret, sikker og online.</p>
         </div>
       </div>
 
@@ -787,11 +788,11 @@
 
     <details class="reveal-left">
       <summary>
-        Hvad er der inkluderet i de 499 kr/md.?
+        Hvad er der inkluderet i pakkerne?
         <span class="faq-icon">+</span>
       </summary>
       <div class="faq-body">
-        Alt. Design, hosting, domæne-opsætning, SSL-certifikat, mobiloptimering, SEO-grundopsætning, kontaktformular, løbende teknisk vedligeholdelse og support. Du betaler én fast pris og behøver aldrig bekymre dig om skjulte gebyrer.
+        Begge pakker inkluderer design, hosting, domæne-opsætning, SSL-certifikat, mobiloptimering og løbende teknisk vedligeholdelse. Starter (299 kr/md.) giver 1–3 sider, basis SEO og kontaktformular. Vækst (599 kr/md.) giver op til 10 sider, udvidet lokal SEO, blog, prioriteret support og løbende optimering. Du betaler én fast pris — aldrig skjulte gebyrer.
       </div>
     </details>
 
@@ -811,7 +812,7 @@
         <span class="faq-icon">+</span>
       </summary>
       <div class="faq-body">
-        Ja. Du opsiger med 30 dages varsel — ingen binding, ingen oprettelsesgebyr og ingen skjulte gebyrer. Vi tror på, at du bliver fordi du er tilfreds, ikke fordi du er låst fast.
+        Ja. Du opsiger løbende måned + 30 dages varsel. Ingen oprettelsesgebyr og ingen skjulte gebyrer. Vi tror på, at du bliver fordi du er tilfreds.
       </div>
     </details>
 
@@ -859,199 +860,173 @@
 
     <!-- Section header -->
     <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
-      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Pris & kontakt</p>
+      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Vælg din pakke</p>
       <h2 class="heading-lg" style="color:#18161E;margin-bottom:0.75rem;">Simpelt. Gennemsigtigt.</h2>
-      <p style="font-size:0.95rem;color:rgba(24,22,30,0.5);max-width:480px;margin:0 auto;line-height:1.6;">Udfyld formularen — vi vender tilbage inden for 24 timer med en konkret plan.</p>
+      <p style="font-size:0.95rem;color:rgba(24,22,30,0.5);max-width:480px;margin:0 auto;line-height:1.6;">Begge pakker inkluderer hosting, drift og løbende vedligeholdelse. Ingen skjulte gebyrer.</p>
     </div>
 
-    <div id="kontakt" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:stretch;scroll-margin-top:80px;" class="contact-grid">
+    <!-- Two pricing cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.25rem,3vw,2rem);align-items:start;margin-bottom:clamp(3rem,5vw,4.5rem);" class="pricing-grid">
 
-      <!-- Left: Price card -->
-      <div class="price-card reveal-scale" style="padding:clamp(1.25rem,2vw,1.5rem);display:flex;flex-direction:column;">
-        <!-- Top badge -->
-        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.7rem;background:rgba(10, 107, 70,0.15);border:1px solid rgba(10, 107, 70,0.3);border-radius:100px;margin-bottom:1rem;">
-          <span class="chip-dot"></span>
-          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0A6B46;">Alt inkluderet</span>
+      <!-- Starter -->
+      <div class="price-card reveal-scale" style="padding:clamp(1.25rem,2vw,1.75rem);display:flex;flex-direction:column;">
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.7rem;background:rgba(10, 107, 70,0.1);border:1px solid rgba(10, 107, 70,0.2);border-radius:100px;margin-bottom:1.25rem;align-self:flex-start;">
+          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(10, 107, 70,0.8);">Starter</span>
         </div>
 
-        <!-- Price -->
         <div style="display:flex;align-items:flex-end;gap:0.25rem;margin-bottom:0.3rem;">
-          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#18161E;line-height:1;letter-spacing:-0.04em;">499</span>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#18161E;line-height:1;letter-spacing:-0.04em;">299</span>
           <div style="padding-bottom:0.3rem;">
             <span style="font-size:1rem;color:rgba(24,22,30,0.6);font-weight:500;">kr</span>
             <span style="font-size:0.85rem;color:rgba(24,22,30,0.4);font-weight:400;">/md.</span>
           </div>
         </div>
-        <p style="font-size:0.8rem;color:rgba(24,22,30,0.35);margin-bottom:1rem;">Ingen oprettelsesgebyr · Ingen binding · 30 dages opsigelse</p>
+        <p style="font-size:0.85rem;color:rgba(24,22,30,0.55);margin-bottom:1.25rem;line-height:1.5;">Til dig der vil have en simpel, professionel hjemmeside med det nødvendige.</p>
 
-        <div class="divider" style="margin-bottom:1rem;"></div>
+        <div class="divider" style="margin-bottom:1.25rem;"></div>
 
-        <!-- Feature list -->
-        <div style="display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.25rem;">
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>En flot hjemmeside der passer til din praksis</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Virker perfekt på mobil, tablet og computer</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Dine klienter kan finde dig på Google</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Kontaktformular så klienter nemt kan række ud</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Vi opdaterer den, når du har brug for det</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Support via mail — vi svarer inden for 24 timer</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Klar på 7 hverdage</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.75rem;">
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>1–3 sider</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Standard template design</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Basis SEO (titel + meta descriptions)</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Kontaktformular</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting og drift inkluderet</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Små ændringer efter behov</div>
         </div>
 
-        <p style="font-size:0.75rem;color:rgba(24,22,30,0.35);margin-top:auto;padding-top:1rem;">Ved betaling accepterer du vores <a href="/vilkaar" style="color:rgba(24,22,30,0.45);text-decoration:underline;text-underline-offset:2px;">vilkår</a> og <a href="/privacy" style="color:rgba(24,22,30,0.45);text-decoration:underline;text-underline-offset:2px;">privatlivspolitik</a></p>
-
+        <a href="#kontakt" class="btn-ghost" style="text-align:center;justify-content:center;margin-top:auto;">Kom i gang</a>
       </div>
 
-      <!-- Right: Form -->
-      <div class="reveal" style="animation-delay:150ms;display:flex;flex-direction:column;">
-        <form
-          action="https://formspree.io/f/mkoprqrn"
-          method="POST"
-          id="contact-form"
-          style="
-            background:linear-gradient(135deg,#FFFFFF 0%,#F8F5F1 100%);
-            border:1px solid rgba(10, 107, 70,0.2);
-            border-radius:16px;
-            padding:clamp(1.25rem,2.5vw,1.75rem);
-            position:relative;
-            overflow:hidden;
-            flex:1;
-            display:flex;
-            flex-direction:column;
-          "
-        >
-          <!-- Top shimmer line -->
-          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10, 107, 70,0.4),transparent);"></div>
+      <!-- Vækst (fremhævet) -->
+      <div class="reveal-scale" style="background:linear-gradient(145deg,#0A6B46 0%,#065237 100%);border:1px solid rgba(10,107,70,0.5);border-radius:16px;position:relative;overflow:hidden;padding:clamp(1.25rem,2vw,1.75rem);display:flex;flex-direction:column;box-shadow:0 0 0 1px rgba(10,107,70,0.2),0 40px 80px rgba(10,107,70,0.2),0 0 60px rgba(10,107,70,0.15);animation-delay:100ms;">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);"></div>
 
-          <div id="form-fields" style="display:flex;flex-direction:column;gap:0.85rem;flex:1;">
+        <!-- Mest valgt badge -->
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.8rem;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.25);border-radius:100px;margin-bottom:1.25rem;align-self:flex-start;">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.12 3.73H9L6.69 5.52L7.56 8.5L5 6.83L2.44 8.5L3.31 5.52L1 3.73H3.88L5 1Z" fill="white"/></svg>
+          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.95);">Mest valgt</span>
+        </div>
 
-            <!-- Name -->
-            <div>
-              <label for="input-name" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Navn</label>
-              <input
-                id="input-name"
-                type="text"
-                name="name"
-                placeholder="Dit fulde navn"
-                required
-                style="
-                  width:100%;
-                  background:rgba(24,22,30,0.04);
-                  border:1px solid rgba(24,22,30,0.1);
-                  border-radius:8px;
-                  padding:0.8rem 1rem;
-                  font-family:'DM Sans',sans-serif;
-                  font-size:0.95rem;
-                  color:#18161E;
-                  outline:none;
-                  transition:border-color 0.2s ease, box-shadow 0.2s ease;
-                "
+        <div style="display:flex;align-items:flex-end;gap:0.25rem;margin-bottom:0.3rem;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.04em;">599</span>
+          <div style="padding-bottom:0.3rem;">
+            <span style="font-size:1rem;color:rgba(255,255,255,0.7);font-weight:500;">kr</span>
+            <span style="font-size:0.85rem;color:rgba(255,255,255,0.5);font-weight:400;">/md.</span>
+          </div>
+        </div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.65);margin-bottom:1.25rem;line-height:1.5;">Til dig der vil vokse — en hjemmeside der aktivt hjælper dig med at tiltrække nye klienter.</p>
+
+        <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);margin-bottom:1.25rem;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.75rem;">
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 10 sider</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Udvidet SEO (lokal SEO + optimerede tekster)</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Blog / indholdssektion</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Prioriterede ændringer + hurtigere support</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Løbende optimering</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting og drift inkluderet</div>
+        </div>
+
+        <a href="#kontakt" class="btn-primary" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;text-align:center;justify-content:center;margin-top:auto;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">Kom i gang</a>
+      </div>
+    </div>
+
+    <!-- CTA section above form -->
+    <div id="kontakt" class="reveal" style="text-align:center;margin-bottom:2.5rem;scroll-margin-top:80px;">
+      <h2 class="heading-lg" style="color:#18161E;margin-bottom:1rem;">Ingen bøvl.<br>Bare en hjemmeside der virker.</h2>
+      <p style="font-size:1rem;color:rgba(24,22,30,0.55);max-width:500px;margin:0 auto;line-height:1.7;">Du udfylder formularen — vi tager os af resten. Klar på 7 hverdage, og vi guider dig hele vejen. Du behøver ingen teknisk viden.</p>
+    </div>
+
+    <!-- Contact form -->
+    <div class="reveal" style="max-width:580px;margin:0 auto;animation-delay:100ms;">
+      <form
+        action="https://formspree.io/f/mkoprqrn"
+        method="POST"
+        id="contact-form"
+        style="background:linear-gradient(135deg,#FFFFFF 0%,#F8F5F1 100%);border:1px solid rgba(10, 107, 70,0.2);border-radius:16px;padding:clamp(1.25rem,2.5vw,1.75rem);position:relative;overflow:hidden;display:flex;flex-direction:column;"
+      >
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10, 107, 70,0.4),transparent);"></div>
+
+        <div id="form-fields" style="display:flex;flex-direction:column;gap:0.85rem;">
+
+          <!-- Name -->
+          <div>
+            <label for="input-name" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Navn</label>
+            <input id="input-name" type="text" name="name" placeholder="Dit fulde navn" required
+              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
+              onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
+              onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="input-email" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Email</label>
+            <input id="input-email" type="email" name="email" placeholder="din@email.dk" required
+              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
+              onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
+              onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
+          </div>
+
+          <!-- Package selector -->
+          <div>
+            <label for="input-package" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Hvilken pakke er du interesseret i?</label>
+            <div style="position:relative;">
+              <select id="input-package" name="package"
+                style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 2.5rem 0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
                 onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
-                onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"
-              >
-            </div>
-
-            <!-- Email -->
-            <div>
-              <label for="input-email" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Email</label>
-              <input
-                id="input-email"
-                type="email"
-                name="email"
-                placeholder="din@email.dk"
-                required
-                style="
-                  width:100%;
-                  background:rgba(24,22,30,0.04);
-                  border:1px solid rgba(24,22,30,0.1);
-                  border-radius:8px;
-                  padding:0.8rem 1rem;
-                  font-family:'DM Sans',sans-serif;
-                  font-size:0.95rem;
-                  color:#18161E;
-                  outline:none;
-                  transition:border-color 0.2s ease, box-shadow 0.2s ease;
-                "
-                onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
-                onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"
-              >
-            </div>
-
-            <!-- Business type -->
-            <div>
-              <label for="input-business" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Din specialitet</label>
-              <div style="position:relative;">
-                <select
-                  id="input-business"
-                  name="business"
-                  style="
-                    width:100%;
-                    background:rgba(24,22,30,0.04);
-                    border:1px solid rgba(24,22,30,0.1);
-                    border-radius:8px;
-                    padding:0.8rem 2.5rem 0.8rem 1rem;
-                    font-family:'DM Sans',sans-serif;
-                    font-size:0.95rem;
-                    color:#18161E;
-                    outline:none;
-                    appearance:none;
-                    -webkit-appearance:none;
-                    cursor:pointer;
-                    transition:border-color 0.2s ease, box-shadow 0.2s ease;
-                  "
-                  onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
-                  onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"
-                >
-                  <option value="" disabled selected style="color:rgba(24,22,30,0.4);">Vælg din specialitet</option>
-                  <option value="Psykolog / Psykoterapeut">Psykolog / Psykoterapeut</option>
-                  <option value="Fysioterapeut">Fysioterapeut</option>
-                  <option value="Massør / Massageterapeut">Massør / Massageterapeut</option>
-                  <option value="Osteopat / Kiropraktor">Osteopat / Kiropraktor</option>
-                  <option value="Zoneterapeut / Refleksolog">Zoneterapeut / Refleksolog</option>
-                  <option value="Coach / Stressterapeut">Coach / Stressterapeut</option>
-                  <option value="Ernæringsrådgiver">Ernæringsrådgiver</option>
-                  <option value="Akupunktør">Akupunktør</option>
-                  <option value="Andet">Andet</option>
-                </select>
-                <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="rgba(24,22,30,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
+                onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
+                <option value="" disabled selected style="color:rgba(24,22,30,0.4);">Vælg pakke</option>
+                <option value="Starter – 299 kr/md.">Starter – 299 kr/md.</option>
+                <option value="Vækst – 599 kr/md.">Vækst – 599 kr/md. (mest valgt)</option>
+                <option value="Ved ikke endnu">Ved ikke endnu</option>
+              </select>
+              <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="rgba(24,22,30,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
             </div>
+          </div>
 
-            <!-- Message -->
-            <div>
-              <label for="input-message" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Besked <span style="font-weight:400;text-transform:none;letter-spacing:0;">(valgfrit)</span></label>
-              <textarea
-                id="input-message"
-                name="message"
-                placeholder="Beskriv kort hvad du har brug for..."
-                rows="3"
-                style="
-                  width:100%;
-                  background:rgba(24,22,30,0.04);
-                  border:1px solid rgba(24,22,30,0.1);
-                  border-radius:8px;
-                  padding:0.8rem 1rem;
-                  font-family:'DM Sans',sans-serif;
-                  font-size:0.95rem;
-                  color:#18161E;
-                  outline:none;
-                  resize:vertical;
-                  min-height:80px;
-                  transition:border-color 0.2s ease, box-shadow 0.2s ease;
-                "
+          <!-- Business type -->
+          <div>
+            <label for="input-business" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Din specialitet</label>
+            <div style="position:relative;">
+              <select id="input-business" name="business"
+                style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 2.5rem 0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
                 onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
-                onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"
-              ></textarea>
+                onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
+                <option value="" disabled selected style="color:rgba(24,22,30,0.4);">Vælg din specialitet</option>
+                <option value="Psykolog / Psykoterapeut">Psykolog / Psykoterapeut</option>
+                <option value="Fysioterapeut">Fysioterapeut</option>
+                <option value="Massør / Massageterapeut">Massør / Massageterapeut</option>
+                <option value="Osteopat / Kiropraktor">Osteopat / Kiropraktor</option>
+                <option value="Zoneterapeut / Refleksolog">Zoneterapeut / Refleksolog</option>
+                <option value="Coach / Stressterapeut">Coach / Stressterapeut</option>
+                <option value="Ernæringsrådgiver">Ernæringsrådgiver</option>
+                <option value="Akupunktør">Akupunktør</option>
+                <option value="Andet">Andet</option>
+              </select>
+              <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="rgba(24,22,30,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
             </div>
+          </div>
 
-            <!-- Inline error message (hidden by default) -->
-            <div id="form-error" style="display:none;padding:0.75rem 1rem;background:rgba(180,40,40,0.07);border:1px solid rgba(180,40,40,0.2);border-radius:8px;font-size:0.875rem;color:#8B2020;">
-              Noget gik galt. Prøv igen eller skriv direkte til <a href="mailto:kontakt@plainsite.dk" style="color:#8B2020;font-weight:600;">kontakt@plainsite.dk</a>
+          <!-- Message -->
+          <div>
+            <label for="input-message" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Besked <span style="font-weight:400;text-transform:none;letter-spacing:0;">(valgfrit)</span></label>
+            <textarea id="input-message" name="message" placeholder="Beskriv kort hvad du har brug for..." rows="3"
+              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;resize:vertical;min-height:80px;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
+              onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
+              onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"></textarea>
+          </div>
+
+          <!-- Inline error message (hidden by default) -->
+          <div id="form-error" style="display:none;padding:0.75rem 1rem;background:rgba(180,40,40,0.07);border:1px solid rgba(180,40,40,0.2);border-radius:8px;font-size:0.875rem;color:#8B2020;">
+            Noget gik galt. Prøv igen eller skriv direkte til <a href="mailto:kontakt@plainsite.dk" style="color:#8B2020;font-weight:600;">kontakt@plainsite.dk</a>
             </div>
 
             <!-- Pre-submit reassurance -->
-            <p style="font-size:0.8rem;color:rgba(24,22,30,0.55);text-align:center;margin-bottom:-0.25rem;">Ingen forpligtelse · Ingen sælger der ringer · Svar inden for 24 timer</p>
+            <p style="font-size:0.8rem;color:rgba(24,22,30,0.55);text-align:center;margin-bottom:-0.25rem;">Klar på 7 hverdage · Svar inden for 24 timer</p>
             <!-- Privacy note -->
             <p style="font-size:0.75rem;color:rgba(24,22,30,0.35);text-align:center;margin-top:0.5rem;margin-bottom:-0.5rem;">Ved indsendelse accepterer du vores <a href="/privacy" style="color:rgba(24,22,30,0.45);text-decoration:underline;text-underline-offset:2px;">privatlivspolitik</a></p>
 
@@ -1089,7 +1064,6 @@
         </p>
       </div>
 
-    </div>
   </div>
 </section>
 
