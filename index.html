@@ -240,21 +240,20 @@
         0 40px 80px rgba(24,22,30,0.08),
         0 0 60px rgba(10, 107, 70,0.08);
     }
-    /* ── FAQ ── */
-    details summary {
-      list-style: none; cursor: pointer;
+    /* ── FAQ accordion ── */
+    .faq-item { border-bottom: 1px solid rgba(24,22,30,0.08); }
+    .faq-trigger {
+      width: 100%; background: none; border: none; cursor: pointer;
       padding: 1.25rem 0;
       display: flex; align-items: center; justify-content: space-between; gap: 1rem;
       font-family: "Bricolage Grotesque", sans-serif;
       font-size: 1.05rem; font-weight: 600;
-      color: #18161E;
-      border-bottom: 1px solid rgba(24,22,30,0.08);
+      color: #18161E; text-align: left;
       transition: color 0.2s ease;
       user-select: none;
     }
-    details summary::-webkit-details-marker { display: none; }
-    details summary:hover { color: #0A6B46; }
-    details[open] summary { color: #0A6B46; border-bottom-color: rgba(10, 107, 70,0.2); }
+    .faq-trigger:hover { color: #0A6B46; }
+    .faq-trigger.open { color: #0A6B46; }
     .faq-icon {
       width: 20px; height: 20px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
@@ -264,13 +263,18 @@
       font-size: 1rem; line-height: 1;
       transition: background 0.2s ease, color 0.2s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    details[open] .faq-icon {
+    .faq-trigger.open .faq-icon {
       background: rgba(10, 107, 70,0.15);
       color: #0A6B46;
       transform: rotate(45deg);
     }
     .faq-body {
-      padding: 1rem 0 1.5rem;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-body-inner {
+      padding: 0.75rem 0 1.5rem;
       font-size: 0.95rem; line-height: 1.75;
       color: rgba(24,22,30,0.6);
     }
@@ -528,7 +532,8 @@
 
   <div class="nav-links" style="display:flex;align-items:center;gap:2rem;">
     <a href="#how" class="nav-link">Sådan virker det</a>
-    <a href="#pricing" class="nav-link">Pris & kontakt</a>
+    <a href="#pricing" class="nav-link">Pakker</a>
+    <a href="#kontakt" class="nav-link">Kontakt</a>
     <a href="#faq" class="nav-link">FAQ</a>
   </div>
 
@@ -786,65 +791,65 @@
       <h2 class="heading-lg" style="color:#18161E;">Ofte stillede spørgsmål</h2>
     </div>
 
-    <details class="reveal-left">
-      <summary>
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
         Hvad er der inkluderet i pakkerne?
         <span class="faq-icon">+</span>
-      </summary>
-      <div class="faq-body">
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
         Begge pakker inkluderer design, hosting, domæne-opsætning, SSL-certifikat, mobiloptimering og løbende teknisk vedligeholdelse. Starter (299 kr/md.) giver 1–3 sider, basis SEO og kontaktformular. Vækst (599 kr/md.) giver op til 10 sider, udvidet lokal SEO, blog, prioriteret support og løbende optimering. Du betaler én fast pris — aldrig skjulte gebyrer.
-      </div>
-    </details>
+      </div></div>
+    </div>
 
-    <details class="reveal-left">
-      <summary>
-        Ejer jeg min hjemmeside?
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvem hoster min hjemmeside?
         <span class="faq-icon">+</span>
-      </summary>
-      <div class="faq-body">
-        Din hjemmeside hostes og driftes af os som en del af abonnementet. Vi sørger for at den altid er opdateret, sikker og online.
-      </div>
-    </details>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Det gør vi. Din hjemmeside hostes og driftes af plainsite som en del af dit abonnement. Vi sørger for at den altid er opdateret, sikker og online — du behøver ikke tænke på det.
+      </div></div>
+    </div>
 
-    <details class="reveal-left">
-      <summary>
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
         Kan jeg opsige mit abonnement?
         <span class="faq-icon">+</span>
-      </summary>
-      <div class="faq-body">
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
         Ja. Du opsiger løbende måned + 30 dages varsel. Ingen oprettelsesgebyr og ingen skjulte gebyrer. Vi tror på, at du bliver fordi du er tilfreds.
-      </div>
-    </details>
+      </div></div>
+    </div>
 
-    <details class="reveal-left">
-      <summary>
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
         Hvad sker der, hvis jeg vil ændre noget på siden?
         <span class="faq-icon">+</span>
-      </summary>
-      <div class="faq-body">
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
         Små rettelser og opdateringer — som tekst, billeder og åbningstider — er inkluderet. Skriv til os, og vi ordner det typisk inden for 1-2 hverdage. Større strukturelle ændringer aftales separat.
-      </div>
-    </details>
+      </div></div>
+    </div>
 
-    <details class="reveal-left">
-      <summary>
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
         Hvad har I brug for fra mig for at komme i gang?
         <span class="faq-icon">+</span>
-      </summary>
-      <div class="faq-body">
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
         Vi starter med en kort snak om din praksis og dine ønsker. Herfra guider vi dig til at sende logo, billeder og tekster — eller vi hjælper dig med at lave dem. Du behøver ingen teknisk viden.
-      </div>
-    </details>
+      </div></div>
+    </div>
 
-    <details class="reveal-left">
-      <summary>
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
         Kan jeg se et udkast, inden siden går live?
         <span class="faq-icon">+</span>
-      </summary>
-      <div class="faq-body">
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
         Selvfølgelig. Vi viser dig altid et udkast, inden siden offentliggøres. Vi justerer, til du er fuldt tilfreds — uden ekstraomkostninger.
-      </div>
-    </details>
+      </div></div>
+    </div>
 
   </div>
 </section>
@@ -1088,21 +1093,10 @@
       </div>
 
       <!-- Links -->
-      <div style="display:flex;gap:4rem;flex-wrap:wrap;">
-        <div>
-          <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(24,22,30,0.35);margin-bottom:1rem;">Navigation</p>
-          <div style="display:flex;flex-direction:column;gap:0.6rem;">
-            <a href="#how" style="font-size:0.875rem;color:rgba(24,22,30,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#18161E'" onmouseout="this.style.color='rgba(24,22,30,0.5)'">Sådan virker det</a>
-            <a href="#pricing" style="font-size:0.875rem;color:rgba(24,22,30,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#18161E'" onmouseout="this.style.color='rgba(24,22,30,0.5)'">Pris</a>
-            <a href="#faq" style="font-size:0.875rem;color:rgba(24,22,30,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#18161E'" onmouseout="this.style.color='rgba(24,22,30,0.5)'">FAQ</a>
-            <a href="#kontakt" style="font-size:0.875rem;color:rgba(24,22,30,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#18161E'" onmouseout="this.style.color='rgba(24,22,30,0.5)'">Kontakt</a>
-          </div>
-        </div>
-        <div>
-          <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(24,22,30,0.35);margin-bottom:1rem;">Kontakt</p>
-          <div style="display:flex;flex-direction:column;gap:0.6rem;">
-            <a href="mailto:kontakt@plainsite.dk" style="font-size:0.875rem;color:rgba(24,22,30,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#0A6B46'" onmouseout="this.style.color='rgba(24,22,30,0.5)'">kontakt@plainsite.dk</a>
-          </div>
+      <div>
+        <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(24,22,30,0.35);margin-bottom:1rem;">Kontakt</p>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;">
+          <a href="mailto:kontakt@plainsite.dk" style="font-size:0.875rem;color:rgba(24,22,30,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#0A6B46'" onmouseout="this.style.color='rgba(24,22,30,0.5)'">kontakt@plainsite.dk</a>
         </div>
       </div>
 
@@ -1208,6 +1202,26 @@
       }
     });
   }
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-trigger').forEach(t => {
+        t.classList.remove('open');
+        t.setAttribute('aria-expanded', 'false');
+        t.nextElementSibling.style.maxHeight = '0';
+      });
+      // Open clicked if it was closed
+      if (!isOpen) {
+        trigger.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+        const body = trigger.nextElementSibling;
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
 
   // ── Hero responsive grid ──
   function updateHeroGrid() {
