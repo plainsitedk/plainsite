@@ -329,6 +329,59 @@
     }
     .nav-cta-mobile { display: none; }
 
+    /* ── Hamburger ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none; cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .hamburger:hover { background: rgba(24,22,30,0.06); }
+    .hamburger span {
+      display: block; height: 2px;
+      background: #18161E; border-radius: 2px;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.2s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) { .hamburger { display: flex; } }
+
+    /* ── Mobile menu overlay ── */
+    #mobile-menu {
+      position: fixed; inset: 0; z-index: 49;
+      background: #F5F1EC;
+      display: flex; flex-direction: column;
+      padding: 6rem 2rem 2.5rem;
+      gap: 0.25rem;
+      transform: translateY(-100%);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+    #mobile-menu.open {
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav-link {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.75rem; font-weight: 700;
+      color: #18161E; text-decoration: none;
+      letter-spacing: -0.03em;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(24,22,30,0.06);
+      transition: color 0.2s;
+    }
+    .mobile-nav-link:hover { color: #0A6B46; }
+    .mobile-menu-cta {
+      margin-top: 1.5rem;
+    }
+
     /* ══════════════════════════════════════════
        ANIMATIONS
     ══════════════════════════════════════════ */
@@ -537,15 +590,26 @@
     <a href="#faq" class="nav-link">FAQ</a>
   </div>
 
-  <div style="display:flex;align-items:center;gap:1rem;">
-    <a href="#pricing" class="btn-primary nav-cta-desktop" style="padding:0.65rem 1.25rem;font-size:0.875rem;">
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <a href="#kontakt" class="btn-primary nav-cta-desktop" style="padding:0.65rem 1.25rem;font-size:0.875rem;">
       Kom i gang
     </a>
-    <a href="#pricing" class="btn-primary nav-cta-mobile" style="padding:0.6rem 1rem;font-size:0.8rem;">
-      Kom i gang
-    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="#how" class="mobile-nav-link">Sådan virker det</a>
+  <a href="#pricing" class="mobile-nav-link">Pakker</a>
+  <a href="#kontakt" class="mobile-nav-link">Kontakt</a>
+  <a href="#faq" class="mobile-nav-link">FAQ</a>
+  <div class="mobile-menu-cta">
+    <a href="#kontakt" class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem;">Kom i gang</a>
+  </div>
+</div>
 
 
 <!-- ╔══════════════════════════════════════════╗ -->
@@ -599,7 +663,7 @@
         </div>
 
         <div class="hero-enter" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-          <a href="#pricing" class="btn-primary btn-primary-lg">
+          <a href="#kontakt" class="btn-primary btn-primary-lg">
             Få en gratis vurdering
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -634,11 +698,11 @@
               <div style="width:50px;height:20px;background:#0A6B46;border-radius:4px;opacity:0.9;"></div>
             </div>
             <!-- Mock hero image -->
-            <div style="height:160px;background:linear-gradient(135deg, #1A1428 0%, #0F1520 100%);display:flex;flex-direction:column;justify-content:center;padding:1.5rem;">
-              <div style="width:200px;height:14px;background:rgba(24,22,30,0.18);border-radius:4px;margin-bottom:0.6rem;"></div>
-              <div style="width:160px;height:10px;background:rgba(24,22,30,0.1);border-radius:4px;margin-bottom:0.5rem;"></div>
-              <div style="width:120px;height:10px;background:rgba(24,22,30,0.07);border-radius:4px;margin-bottom:1rem;"></div>
-              <div style="width:80px;height:24px;background:#0A6B46;border-radius:5px;opacity:0.85;"></div>
+            <div style="height:160px;background:#EDE8E0;display:flex;flex-direction:column;justify-content:center;padding:1.5rem;border-bottom:1px solid rgba(24,22,30,0.06);">
+              <div style="width:140px;height:12px;background:rgba(24,22,30,0.12);border-radius:4px;margin-bottom:0.75rem;"></div>
+              <div style="width:200px;height:18px;background:rgba(24,22,30,0.18);border-radius:4px;margin-bottom:0.5rem;"></div>
+              <div style="width:170px;height:18px;background:rgba(24,22,30,0.13);border-radius:4px;margin-bottom:1rem;"></div>
+              <div style="width:90px;height:26px;background:#0A6B46;border-radius:5px;opacity:0.9;"></div>
             </div>
             <!-- Mock content rows -->
             <div style="padding:1rem 1.25rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem;">
@@ -688,7 +752,7 @@
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(10, 107, 70,0.04) 0%,transparent 70%);pointer-events:none;"></div>
 
   <div class="container" style="position:relative;">
-    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+    <div style="text-align:center;margin-bottom:2.5rem;">
       <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Processen</p>
       <h2 class="heading-lg" style="color:#18161E;">Fra idé til online<br>på under en uge</h2>
     </div>
@@ -782,80 +846,6 @@
 
 
 <!-- ╔══════════════════════════════════════════╗ -->
-<!-- ║                  FAQ                     ║ -->
-<!-- ╚══════════════════════════════════════════╝ -->
-<section id="faq" class="section" style="background:#EDE8E2;scroll-margin-top:80px;">
-  <div class="container" style="max-width:700px;">
-    <div style="text-align:center;margin-bottom:3.5rem;">
-      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">FAQ</p>
-      <h2 class="heading-lg" style="color:#18161E;">Ofte stillede spørgsmål</h2>
-    </div>
-
-    <div class="faq-item reveal-left">
-      <button class="faq-trigger" aria-expanded="false">
-        Hvad er der inkluderet i pakkerne?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-body"><div class="faq-body-inner">
-        Begge pakker inkluderer design, hosting, domæne-opsætning, SSL-certifikat, mobiloptimering og løbende teknisk vedligeholdelse. Starter (299 kr/md.) giver 1–3 sider, basis SEO og kontaktformular. Vækst (599 kr/md.) giver op til 10 sider, udvidet lokal SEO, blog, prioriteret support og løbende optimering. Du betaler én fast pris — aldrig skjulte gebyrer.
-      </div></div>
-    </div>
-
-    <div class="faq-item reveal-left">
-      <button class="faq-trigger" aria-expanded="false">
-        Hvem hoster min hjemmeside?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-body"><div class="faq-body-inner">
-        Det gør vi. Din hjemmeside hostes og driftes af plainsite som en del af dit abonnement. Vi sørger for at den altid er opdateret, sikker og online — du behøver ikke tænke på det.
-      </div></div>
-    </div>
-
-    <div class="faq-item reveal-left">
-      <button class="faq-trigger" aria-expanded="false">
-        Kan jeg opsige mit abonnement?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-body"><div class="faq-body-inner">
-        Ja. Du opsiger løbende måned + 30 dages varsel. Ingen oprettelsesgebyr og ingen skjulte gebyrer. Vi tror på, at du bliver fordi du er tilfreds.
-      </div></div>
-    </div>
-
-    <div class="faq-item reveal-left">
-      <button class="faq-trigger" aria-expanded="false">
-        Hvad sker der, hvis jeg vil ændre noget på siden?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-body"><div class="faq-body-inner">
-        Små rettelser og opdateringer — som tekst, billeder og åbningstider — er inkluderet. Skriv til os, og vi ordner det typisk inden for 1-2 hverdage. Større strukturelle ændringer aftales separat.
-      </div></div>
-    </div>
-
-    <div class="faq-item reveal-left">
-      <button class="faq-trigger" aria-expanded="false">
-        Hvad har I brug for fra mig for at komme i gang?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-body"><div class="faq-body-inner">
-        Vi starter med en kort snak om din praksis og dine ønsker. Herfra guider vi dig til at sende logo, billeder og tekster — eller vi hjælper dig med at lave dem. Du behøver ingen teknisk viden.
-      </div></div>
-    </div>
-
-    <div class="faq-item reveal-left">
-      <button class="faq-trigger" aria-expanded="false">
-        Kan jeg se et udkast, inden siden går live?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-body"><div class="faq-body-inner">
-        Selvfølgelig. Vi viser dig altid et udkast, inden siden offentliggøres. Vi justerer, til du er fuldt tilfreds — uden ekstraomkostninger.
-      </div></div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ╔══════════════════════════════════════════╗ -->
 <!-- ║         PRICING + CONTACT               ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
 <section id="pricing" style="background:#F5F1EC;padding:clamp(2.25rem,4.5vw,3.75rem) clamp(1.5rem,5vw,2rem);position:relative;overflow:hidden;scroll-margin-top:80px;">
@@ -864,7 +854,7 @@
   <div class="container" style="position:relative;">
 
     <!-- Section header -->
-    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+    <div style="text-align:center;margin-bottom:2.5rem;">
       <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Vælg din pakke</p>
       <h2 class="heading-lg" style="color:#18161E;margin-bottom:0.75rem;">Simpelt. Gennemsigtigt.</h2>
       <p style="font-size:0.95rem;color:rgba(24,22,30,0.5);max-width:480px;margin:0 auto;line-height:1.6;">Begge pakker inkluderer hosting, drift og løbende vedligeholdelse. Ingen skjulte gebyrer.</p>
@@ -1074,6 +1064,81 @@
 
 
 <!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║                  FAQ                     ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section id="faq" class="section" style="background:#EDE8E2;scroll-margin-top:80px;">
+  <div class="container" style="max-width:700px;">
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">FAQ</p>
+      <h2 class="heading-lg" style="color:#18161E;">Ofte stillede spørgsmål</h2>
+    </div>
+
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvad er der inkluderet i pakkerne?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Begge pakker inkluderer design, hosting, domæne-opsætning, SSL-certifikat, mobiloptimering og løbende teknisk vedligeholdelse. Starter (299 kr/md.) giver 1–3 sider, basis SEO og kontaktformular. Vækst (599 kr/md.) giver op til 10 sider, udvidet lokal SEO, blog, prioriteret support og løbende optimering. Du betaler én fast pris — aldrig skjulte gebyrer.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvem hoster min hjemmeside?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Det gør vi. Din hjemmeside hostes og driftes af plainsite som en del af dit abonnement. Vi sørger for at den altid er opdateret, sikker og online — du behøver ikke tænke på det.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Kan jeg opsige mit abonnement?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Ja. Du opsiger løbende måned + 30 dages varsel. Ingen oprettelsesgebyr og ingen skjulte gebyrer. Vi tror på, at du bliver fordi du er tilfreds.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvad sker der, hvis jeg vil ændre noget på siden?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Små rettelser og opdateringer — som tekst, billeder og åbningstider — er inkluderet. Skriv til os, og vi ordner det typisk inden for 1-2 hverdage. Større strukturelle ændringer aftales separat.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvad har I brug for fra mig for at komme i gang?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Vi starter med en kort snak om din praksis og dine ønsker. Herfra guider vi dig til at sende logo, billeder og tekster — eller vi hjælper dig med at lave dem. Du behøver ingen teknisk viden.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Kan jeg se et udkast, inden siden går live?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Selvfølgelig. Vi viser dig altid et udkast, inden siden offentliggøres. Vi justerer, til du er fuldt tilfreds — uden ekstraomkostninger.
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
 <!-- ║                FOOTER                    ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
 <footer style="background:#E5E0D8;border-top:1px solid rgba(24,22,30,0.06);padding:3rem clamp(1.5rem,5vw,2rem) 2rem;">
@@ -1202,6 +1267,24 @@
       }
     });
   }
+
+  // ── Hamburger menu ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
 
   // ── FAQ accordion ──
   document.querySelectorAll('.faq-trigger').forEach(trigger => {
