@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Testformular</title>
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+  <h1>Testformular</h1>
+  <form id="form" action="https://plainsite-forms.tobias-gutkin.workers.dev" method="POST">
+    <input type="hidden" name="_token" value="tobias">
+    <p><input type="text" name="name" placeholder="Navn" required></p>
+    <p><input type="email" name="email" placeholder="Email" required></p>
+    <p><textarea name="message" placeholder="Besked"></textarea></p>
+    <p><button type="submit">Send</button></p>
+  </form>
+  <p id="status"></p>
+  <script>
+    document.getElementById('form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target) });
+      const data = await res.json();
+      document.getElementById('status').textContent = data.ok ? 'Sendt!' : 'Fejl.';
+    });
+  </script>
+</body>
+</html>
