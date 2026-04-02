@@ -935,12 +935,14 @@
     <!-- Contact form -->
     <div class="reveal" style="max-width:580px;margin:0 auto;animation-delay:100ms;">
       <form
-        action="https://formspree.io/f/mkoprqrn"
+        action="https://plainsite-forms.tobias-gutkin.workers.dev"
         method="POST"
         id="contact-form"
         style="background:linear-gradient(135deg,#FFFFFF 0%,#F8F5F1 100%);border:1px solid rgba(10, 107, 70,0.2);border-radius:16px;padding:clamp(1.25rem,2.5vw,1.75rem);position:relative;overflow:hidden;display:flex;flex-direction:column;"
       >
         <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10, 107, 70,0.4),transparent);"></div>
+
+        <input type="hidden" name="_token" value="plainsite-main">
 
         <div id="form-fields" style="display:flex;flex-direction:column;gap:0.85rem;">
 
@@ -1229,7 +1231,7 @@
   makeObserver('.reveal-left', true);
 
 
-  // ── Contact form: AJAX submit via Formspree ──
+  // ── Contact form: AJAX submit ──
   const form = document.getElementById('contact-form');
   if (form) {
     form.addEventListener('submit', async (e) => {
@@ -1248,10 +1250,10 @@
       try {
         const res = await fetch(form.action, {
           method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' }
+          body: new FormData(form)
         });
-        if (res.ok) {
+        const data = await res.json();
+        if (data.ok) {
           document.getElementById('form-fields').style.display = 'none';
           success.style.display = 'block';
         } else {
