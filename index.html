@@ -1006,44 +1006,11 @@
               onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
           </div>
 
-          <!-- Package selector -->
-          <div>
-            <label style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Hvilken pakke er du interesseret i?</label>
-            <input type="hidden" name="package" id="input-package" value="">
-            <div id="pkg-dropdown" style="position:relative;">
-              <button type="button" id="pkg-trigger" onclick="togglePkg()"
-                style="width:100%;text-align:left;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:rgba(24,22,30,0.4);cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;display:flex;justify-content:space-between;align-items:center;">
-                <span id="pkg-label">Vælg pakke</span>
-                <svg id="pkg-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" style="transition:transform 0.2s;flex-shrink:0;"><path d="M2 4L6 8L10 4" stroke="rgba(24,22,30,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <div id="pkg-menu" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid rgba(24,22,30,0.12);border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.08);z-index:10;">
-                <button type="button" onclick="pickPkg(this, 'Starter – 299 kr/md.')" style="width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(24,22,30,0.07);padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onmouseover="this.style.background='rgba(24,22,30,0.03)'" onmouseout="this.style.background='none'">
-                  <span>Starter</span><span style="font-size:0.85rem;color:rgba(24,22,30,0.45);">299 kr/md.</span>
-                </button>
-                <button type="button" onclick="pickPkg(this, 'Vækst – 599 kr/md.')" style="width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(24,22,30,0.07);padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onmouseover="this.style.background='rgba(24,22,30,0.03)'" onmouseout="this.style.background='none'">
-                  <span>Vækst <span style="font-size:0.72rem;background:rgba(10,107,70,0.1);color:#0A6B46;padding:0.15rem 0.4rem;border-radius:4px;font-weight:600;margin-left:0.35rem;">mest valgt</span></span><span style="font-size:0.85rem;color:rgba(24,22,30,0.45);">599 kr/md.</span>
-                </button>
-                <button type="button" onclick="pickPkg(this, 'Ved ikke endnu')" style="width:100%;text-align:left;background:none;border:none;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;cursor:pointer;" onmouseover="this.style.background='rgba(24,22,30,0.03)'" onmouseout="this.style.background='none'">
-                  Ved ikke endnu
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Business type -->
-          <div>
-            <label for="input-business" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Din specialitet</label>
-            <input id="input-business" type="text" name="business" placeholder="F.eks. psykoterapeut, massør, ernæringsrådgiver..."
-              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
-              onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
-              onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
-          </div>
-
           <!-- Message -->
           <div>
             <label for="input-message" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Besked <span style="font-weight:400;text-transform:none;letter-spacing:0;">(valgfrit)</span></label>
-            <textarea id="input-message" name="message" placeholder="Beskriv kort hvad du har brug for..." rows="3"
-              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;resize:vertical;min-height:80px;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
+            <textarea id="input-message" name="message" placeholder="Fortæl os hvad du laver, og hvad du har brug for..." rows="3"
+              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;resize:none;min-height:80px;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
               onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
               onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"></textarea>
           </div>
@@ -1054,7 +1021,7 @@
             </div>
 
             <!-- Pre-submit reassurance -->
-            <p style="font-size:0.8rem;color:rgba(24,22,30,0.55);text-align:center;margin-bottom:-0.25rem;">Klar på 7 hverdage · Svar inden for 24 timer</p>
+            <p style="font-size:0.8rem;color:rgba(24,22,30,0.55);text-align:center;margin-bottom:-0.25rem;">Helt uforpligtende · Vi svarer inden for 24 timer</p>
             <!-- Privacy note -->
             <p style="font-size:0.75rem;color:rgba(24,22,30,0.35);text-align:center;margin-top:0.5rem;margin-bottom:-0.5rem;">Ved indsendelse accepterer du vores <a href="/privacy" style="color:rgba(24,22,30,0.45);text-decoration:underline;text-underline-offset:2px;">privatlivspolitik</a></p>
 
@@ -1261,35 +1228,6 @@
   makeObserver('.reveal-scale', false);
   makeObserver('.reveal-left', true);
 
-
-  // ── Package dropdown ──
-  window.togglePkg = function() {
-    const menu = document.getElementById('pkg-menu');
-    const trigger = document.getElementById('pkg-trigger');
-    const chevron = document.getElementById('pkg-chevron');
-    const open = menu.style.display === 'none';
-    menu.style.display = open ? 'block' : 'none';
-    chevron.style.transform = open ? 'rotate(180deg)' : '';
-    trigger.style.borderColor = open ? 'rgba(10, 107, 70,0.5)' : 'rgba(24,22,30,0.1)';
-    trigger.style.boxShadow = open ? '0 0 0 3px rgba(10, 107, 70,0.1)' : 'none';
-  };
-  window.pickPkg = function(btn, value) {
-    document.getElementById('input-package').value = value;
-    const label = document.getElementById('pkg-label');
-    label.textContent = btn.querySelector('span').textContent;
-    label.style.color = '#18161E';
-    const trigger = document.getElementById('pkg-trigger');
-    trigger.style.borderColor = 'rgba(24,22,30,0.1)';
-    trigger.style.boxShadow = 'none';
-    document.getElementById('pkg-menu').style.display = 'none';
-    document.getElementById('pkg-chevron').style.transform = '';
-  };
-  document.addEventListener('click', e => {
-    if (!document.getElementById('pkg-dropdown').contains(e.target)) {
-      document.getElementById('pkg-menu').style.display = 'none';
-      document.getElementById('pkg-chevron').style.transform = '';
-    }
-  });
 
   // ── Contact form: AJAX submit ──
   const form = document.getElementById('contact-form');
