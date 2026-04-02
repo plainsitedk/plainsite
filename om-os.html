@@ -91,6 +91,16 @@
 
     .divider { height: 1px; background: rgba(24,22,30,0.08); }
     .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ── Page entrance animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .enter {
+      opacity: 0;
+      animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
   </style>
 </head>
 <body>
@@ -137,22 +147,22 @@
 <main style="padding-top:8rem;padding-bottom:6rem;">
   <div style="max-width:640px;margin:0 auto;padding:0 clamp(1.5rem,5vw,2rem);">
 
-    <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(10,107,70,0.8);margin-bottom:1rem;">Om os</p>
-    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-0.04em;color:#18161E;margin-bottom:1.75rem;">Det startede med<br>min mors hjemmeside.</h1>
+    <p class="enter" style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(10,107,70,0.8);margin-bottom:1rem;animation-delay:0ms;">Om os</p>
+    <h1 class="enter" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-0.04em;color:#18161E;margin-bottom:1.75rem;animation-delay:80ms;">Det startede med<br>min mors hjemmeside.</h1>
 
     <div style="display:flex;flex-direction:column;gap:1.25rem;font-size:1rem;line-height:1.75;color:rgba(24,22,30,0.75);">
 
-      <p>Jeg hedder Tobias. Til daglig arbejdede jeg i en børnehave. En dag skulle min mor, der er terapeut, have en hjemmeside. Så jeg satte mig ned og fandt ud af det.</p>
+      <p class="enter" style="animation-delay:160ms;">Jeg hedder Tobias. Til daglig arbejdede jeg i en børnehave. En dag skulle min mor, der er terapeut, have en hjemmeside. Så jeg satte mig ned og fandt ud af det.</p>
 
-      <p>Det gik overraskende godt. Jeg opdagede at jeg faktisk har et godt øje for design, og at jeg forstår hvad terapeuter og behandlere har brug for på nettet. Ikke fordi jeg er ekspert i alt muligt, men fordi jeg kender den verden. Min mor har fortalt mig om den i mange år.</p>
+      <p class="enter" style="animation-delay:220ms;">Det gik overraskende godt. Jeg opdagede at jeg faktisk har et godt øje for design, og at jeg forstår hvad terapeuter og behandlere har brug for på nettet. Ikke fordi jeg er ekspert i alt muligt, men fordi jeg kender den verden. Min mor har fortalt mig om den i mange år.</p>
 
-      <p>plainsite er ikke et bureau med ti ansatte og et fancy kontor. Det er mig, der sidder og laver hjemmesider til folk i behandlerbranchen. Jeg ved hvad der virker, jeg ved hvad der ser godt ud, og jeg sørger for at det er nemt for dig fra start til slut.</p>
+      <p class="enter" style="animation-delay:280ms;">plainsite er ikke et bureau med ti ansatte og et fancy kontor. Det er mig, der sidder og laver hjemmesider til folk i behandlerbranchen. Jeg ved hvad der virker, jeg ved hvad der ser godt ud, og jeg sørger for at det er nemt for dig fra start til slut.</p>
 
-      <p>Du skal ikke sætte dig ind i domæner, hosting eller kode. Det klarer jeg. Du fortæller mig hvad du laver og hvad du vil fremhæve, så bygger jeg noget der passer til dig.</p>
+      <p class="enter" style="animation-delay:340ms;">Du skal ikke sætte dig ind i domæner, hosting eller kode. Det klarer jeg. Du fortæller mig hvad du laver og hvad du vil fremhæve, så bygger jeg noget der passer til dig.</p>
 
     </div>
 
-    <div style="margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(24,22,30,0.08);">
+    <div class="enter" style="margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(24,22,30,0.08);animation-delay:400ms;">
       <p style="font-size:0.95rem;color:rgba(24,22,30,0.5);margin-bottom:1.5rem;">Har du spørgsmål eller vil du bare snakke om hvad du har brug for?</p>
       <a href="/#kontakt" class="btn-primary" style="font-size:1rem;padding:0.9rem 1.75rem;">
         Skriv til os
