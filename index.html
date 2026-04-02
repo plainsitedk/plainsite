@@ -1007,20 +1007,21 @@
 
           <!-- Package selector -->
           <div>
-            <label for="input-package" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Hvilken pakke er du interesseret i?</label>
-            <div style="position:relative;">
-              <select id="input-package" name="package"
-                style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 2.5rem 0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
-                onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
-                onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
-                <option value="" disabled selected style="color:rgba(24,22,30,0.4);">Vælg pakke</option>
-                <option value="Starter – 299 kr/md.">Starter – 299 kr/md.</option>
-                <option value="Vækst – 599 kr/md.">Vækst – 599 kr/md. (mest valgt)</option>
-                <option value="Ved ikke endnu">Ved ikke endnu</option>
-              </select>
-              <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="rgba(24,22,30,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
+            <label style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Hvilken pakke er du interesseret i?</label>
+            <input type="hidden" name="package" id="input-package" value="">
+            <div style="display:flex;flex-direction:column;gap:0.5rem;" id="package-options">
+              <button type="button" onclick="selectPackage(this, 'Starter – 299 kr/md.')"
+                style="width:100%;text-align:left;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;cursor:pointer;transition:border-color 0.2s ease,background 0.2s ease;display:flex;justify-content:space-between;align-items:center;">
+                <span>Starter</span><span style="font-size:0.85rem;color:rgba(24,22,30,0.5);">299 kr/md.</span>
+              </button>
+              <button type="button" onclick="selectPackage(this, 'Vækst – 599 kr/md.')"
+                style="width:100%;text-align:left;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;cursor:pointer;transition:border-color 0.2s ease,background 0.2s ease;display:flex;justify-content:space-between;align-items:center;">
+                <span>Vækst <span style="font-size:0.75rem;background:rgba(10,107,70,0.1);color:#0A6B46;padding:0.15rem 0.5rem;border-radius:4px;font-weight:600;margin-left:0.4rem;">mest valgt</span></span><span style="font-size:0.85rem;color:rgba(24,22,30,0.5);">599 kr/md.</span>
+              </button>
+              <button type="button" onclick="selectPackage(this, 'Ved ikke endnu')"
+                style="width:100%;text-align:left;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;cursor:pointer;transition:border-color 0.2s ease,background 0.2s ease;">
+                Ved ikke endnu
+              </button>
             </div>
           </div>
 
@@ -1255,6 +1256,17 @@
   makeObserver('.reveal-scale', false);
   makeObserver('.reveal-left', true);
 
+
+  // ── Package selector ──
+  window.selectPackage = function(btn, value) {
+    document.getElementById('input-package').value = value;
+    document.querySelectorAll('#package-options button').forEach(b => {
+      b.style.borderColor = 'rgba(24,22,30,0.1)';
+      b.style.background = 'rgba(24,22,30,0.04)';
+    });
+    btn.style.borderColor = 'rgba(10, 107, 70,0.5)';
+    btn.style.background = 'rgba(10, 107, 70,0.06)';
+  };
 
   // ── Contact form: AJAX submit ──
   const form = document.getElementById('contact-form');
