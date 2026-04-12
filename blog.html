@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | plainsite</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "DM Sans", sans-serif; background: #F5F1EC; color: #18161E; -webkit-font-smoothing: antialiased; margin: 0; }
+
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s ease, border-bottom 0.3s ease;
+    }
+    #nav.scrolled {
+      background: rgba(245, 241, 236, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(10, 107, 70, 0.12);
+    }
+    .nav-link {
+      font-size: 0.9rem; font-weight: 500; color: rgba(24, 22, 30, 0.65);
+      text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-link:hover { color: #18161E; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #0A6B46; color: #fff;
+      padding: 0.65rem 1.25rem; border-radius: 6px;
+      font-family: "DM Sans", sans-serif; font-size: 0.875rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .btn-primary:hover { background: #085c3d; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: #18161E; border-radius: 2px;
+    }
+    #mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 40;
+      background: #F5F1EC; flex-direction: column;
+      padding: 5rem 2rem 2rem; gap: 0.25rem;
+    }
+    #mobile-menu.open { display: flex; }
+    .mobile-nav-link {
+      font-size: 1.5rem; font-weight: 700; color: #18161E;
+      text-decoration: none; padding: 0.75rem 0;
+      font-family: "Bricolage Grotesque", sans-serif;
+      letter-spacing: -0.02em;
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta-desktop { display: none !important; }
+      .hamburger { display: flex; }
+    }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 2rem); }
+
+    /* Liste-visning */
+    #view-list { display: block; }
+    #view-post { display: none; }
+
+    .post-card {
+      border-bottom: 1px solid rgba(24,22,30,0.08);
+      padding: 2rem 0;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .post-card:hover { opacity: 0.7; }
+    .post-card:first-child { padding-top: 0; }
+
+    .post-date {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(10,107,70,0.8);
+      margin-bottom: 0.5rem;
+    }
+    .post-title {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      color: #18161E; margin: 0 0 0.6rem;
+    }
+    .post-excerpt {
+      font-size: 0.95rem; line-height: 1.7;
+      color: rgba(24,22,30,0.55); margin: 0;
+    }
+
+    /* Enkelt opslag */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.85rem; font-weight: 500;
+      color: rgba(24,22,30,0.5); text-decoration: none;
+      cursor: pointer; background: none; border: none; padding: 0;
+      margin-bottom: 2.5rem; transition: color 0.2s;
+    }
+    .back-btn:hover { color: #0A6B46; }
+
+    .post-content h1, .post-content h2, .post-content h3 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      letter-spacing: -0.03em; color: #18161E;
+    }
+    .post-content h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+    .post-content h2 { font-size: 1.4rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    .post-content h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.5rem; }
+    .post-content p { font-size: 1rem; line-height: 1.8; color: rgba(24,22,30,0.75); margin-bottom: 1.25rem; }
+    .post-content ul, .post-content ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .post-content li { font-size: 1rem; line-height: 1.8; color: rgba(24,22,30,0.75); margin-bottom: 0.3rem; }
+    .post-content a { color: #0A6B46; }
+    .post-content strong { color: #18161E; }
+    .post-content blockquote {
+      border-left: 3px solid rgba(10,107,70,0.4);
+      padding-left: 1.25rem; margin: 1.5rem 0;
+      color: rgba(24,22,30,0.6); font-style: italic;
+    }
+
+    #empty-state {
+      text-align: center; padding: 5rem 0;
+      color: rgba(24,22,30,0.35); font-size: 0.95rem;
+    }
+
+    footer {
+      background: #E5E0D8;
+      border-top: 1px solid rgba(24,22,30,0.06);
+      padding: 2rem clamp(1.5rem, 5vw, 2rem);
+      margin-top: 4rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-inner p { font-size: 0.8rem; color: rgba(24,22,30,0.25); margin: 0; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.8rem; color: rgba(24,22,30,0.25); text-decoration: none; }
+    .footer-links a:hover { color: rgba(24,22,30,0.5); }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="/" style="display:flex;align-items:center;gap:0.65rem;text-decoration:none;">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:34px;height:34px;flex-shrink:0;border-radius:7px;overflow:hidden;">
+      <rect width="36" height="36" fill="#18161E"/>
+      <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="12" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+    </svg>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.15rem;color:#18161E;letter-spacing:-0.02em;">plainsite</span>
+  </a>
+
+  <div class="nav-links" style="display:flex;align-items:center;gap:2rem;">
+    <a href="/#how" class="nav-link">Sådan virker det</a>
+    <a href="/#pricing" class="nav-link">Pakker</a>
+    <a href="/#kontakt" class="nav-link">Kontakt</a>
+    <a href="/#faq" class="nav-link">FAQ</a>
+    <a href="/om-os" class="nav-link">Om os</a>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <a href="/#kontakt" class="btn-primary nav-cta-desktop">Kom i gang</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="/#how" class="mobile-nav-link">Sådan virker det</a>
+  <a href="/#pricing" class="mobile-nav-link">Pakker</a>
+  <a href="/#kontakt" class="mobile-nav-link">Kontakt</a>
+  <a href="/#faq" class="mobile-nav-link">FAQ</a>
+  <a href="/om-os" class="mobile-nav-link">Om os</a>
+  <div style="margin-top:1.5rem;">
+    <a href="/#kontakt" class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem;">Kom i gang</a>
+  </div>
+</div>
+
+<main style="padding-top: 8rem; padding-bottom: 4rem;">
+  <div class="container">
+
+    <!-- Liste -->
+    <div id="view-list">
+      <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(10,107,70,0.8);margin-bottom:1rem;">Blog</p>
+      <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-0.04em;color:#18161E;margin-bottom:3rem;">Tanker og indsigt<br>fra plainsite.</h1>
+
+      <div id="posts-list"></div>
+      <div id="empty-state" style="display:none;">
+        <p>Ingen opslag endnu.</p>
+      </div>
+    </div>
+
+    <!-- Enkelt opslag -->
+    <div id="view-post">
+      <button class="back-btn" id="back-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Tilbage til blog
+      </button>
+      <div class="post-content" id="post-content"></div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 plainsite. Alle rettigheder forbeholdes.</p>
+    <div class="footer-links">
+      <a href="/privacy">Privatlivspolitik</a>
+      <a href="/vilkaar">Vilkår</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const API = 'https://plainsite-blog.tobias-gutkin.workers.dev';
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  // Routing
+  function getSlug() {
+    return new URLSearchParams(window.location.search).get('post');
+  }
+
+  function showList() {
+    document.getElementById('view-list').style.display = 'block';
+    document.getElementById('view-post').style.display = 'none';
+    history.pushState({}, '', '/blog');
+  }
+
+  function showPost(post) {
+    document.getElementById('view-list').style.display = 'none';
+    document.getElementById('view-post').style.display = 'block';
+    history.pushState({}, '', `/blog?post=${post.slug}`);
+
+    const content = document.getElementById('post-content');
+    content.innerHTML = `
+      <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(10,107,70,0.8);margin-bottom:1.5rem;">${formatDate(post.date)}</p>
+      <h1>${escapeHtml(post.title)}</h1>
+      <div style="height:1px;background:rgba(24,22,30,0.08);margin:2rem 0;"></div>
+      ${marked.parse(post.content)}
+    `;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.getElementById('back-btn').addEventListener('click', () => {
+    showList();
+  });
+
+  window.addEventListener('popstate', () => {
+    const slug = getSlug();
+    if (slug) loadPost(slug);
+    else showList();
+  });
+
+  async function loadPost(slug) {
+    const res = await fetch(`${API}/posts/${slug}`);
+    if (res.ok) {
+      const post = await res.json();
+      showPost(post);
+    }
+  }
+
+  async function init() {
+    const res = await fetch(`${API}/posts`);
+    const posts = await res.json();
+
+    const list = document.getElementById('posts-list');
+    const empty = document.getElementById('empty-state');
+
+    if (!posts.length) {
+      empty.style.display = 'block';
+      return;
+    }
+
+    posts.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'post-card';
+      card.innerHTML = `
+        <p class="post-date">${formatDate(p.date)}</p>
+        <h2 class="post-title">${escapeHtml(p.title)}</h2>
+      `;
+      card.addEventListener('click', () => loadPost(p.slug));
+      list.appendChild(card);
+    });
+
+    const slug = getSlug();
+    if (slug) loadPost(slug);
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  init();
+</script>
+</body>
+</html>
