@@ -133,35 +133,18 @@
       margin-top: 0.5rem; display: none;
     }
 
-    /* ── Editor tabs ── */
-    .editor-tabs {
-      display: flex; gap: 0; margin-bottom: 0;
-    }
-    .editor-tab {
-      padding: 0.55rem 1.1rem;
-      font-family: "DM Sans", sans-serif; font-size: 0.85rem; font-weight: 600;
-      border: 1px solid rgba(24,22,30,0.12); background: rgba(24,22,30,0.04);
-      color: rgba(24,22,30,0.45); cursor: pointer; transition: all 0.15s;
-    }
-    .editor-tab:first-child { border-radius: 8px 0 0 0; }
-    .editor-tab:last-child  { border-radius: 0 8px 0 0; border-left: none; }
-    .editor-tab.active {
-      background: #fff; color: #18161E;
-      border-bottom-color: #fff;
-      position: relative; z-index: 1;
-    }
-
     /* ── Markdown toolbar ── */
     .md-toolbar {
       display: flex; flex-wrap: wrap; gap: 0.3rem;
       padding: 0.6rem 0.75rem;
-      background: #fff;
+      background: rgba(24,22,30,0.03);
       border: 1px solid rgba(24,22,30,0.12);
-      border-top: none; border-bottom: none;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
     }
     .md-btn {
       display: inline-flex; align-items: center; justify-content: center;
-      background: rgba(24,22,30,0.04); border: 1px solid rgba(24,22,30,0.1);
+      background: #fff; border: 1px solid rgba(24,22,30,0.1);
       border-radius: 5px; padding: 0.3rem 0.6rem;
       font-family: "DM Sans", sans-serif; font-size: 0.8rem; font-weight: 600;
       color: rgba(24,22,30,0.7); cursor: pointer;
@@ -171,37 +154,67 @@
     .md-btn:hover { background: #0A6B46; border-color: #0A6B46; color: #fff; }
     .md-sep { width: 1px; background: rgba(24,22,30,0.1); margin: 0.1rem 0.15rem; align-self: stretch; }
 
-    .md-toolbar + textarea { border-top-left-radius: 0; border-top-right-radius: 0; border-top: none; }
-
-    /* ── Preview panel ── */
-    #preview-panel {
-      display: none;
-      min-height: 300px;
-      padding: 1.25rem 1.25rem;
-      background: #fff;
+    /* ── Split editor ── */
+    .split-editor {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       border: 1px solid rgba(24,22,30,0.12);
       border-radius: 0 0 8px 8px;
-      border-top: none;
+      overflow: hidden;
+      min-height: 360px;
     }
-    #preview-panel h1, #preview-panel h2, #preview-panel h3 {
+    .split-editor textarea {
+      border: none !important;
+      border-right: 1px solid rgba(24,22,30,0.1) !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      resize: none;
+      height: 100%;
+      min-height: 360px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      background: #fff;
+    }
+    .split-editor textarea:focus {
+      outline: none;
+      border-color: rgba(24,22,30,0.1) !important;
+      box-shadow: none !important;
+    }
+    .preview-pane {
+      padding: 1rem 1.25rem;
+      background: #FAFAF8;
+      overflow-y: auto;
+    }
+    .preview-pane-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(24,22,30,0.25);
+      margin-bottom: 0.75rem;
+    }
+    .preview-pane h1, .preview-pane h2, .preview-pane h3 {
       font-family: "Bricolage Grotesque", sans-serif;
-      letter-spacing: -0.03em; color: #18161E; margin-top: 1.5rem;
+      letter-spacing: -0.03em; color: #18161E; margin-top: 1.25rem;
     }
-    #preview-panel h1 { font-size: 1.75rem; font-weight: 800; margin-top: 0; }
-    #preview-panel h2 { font-size: 1.3rem; font-weight: 700; }
-    #preview-panel h3 { font-size: 1.05rem; font-weight: 700; }
-    #preview-panel p  { font-size: 0.95rem; line-height: 1.8; color: rgba(24,22,30,0.75); margin-bottom: 1rem; }
-    #preview-panel ul, #preview-panel ol { padding-left: 1.5rem; margin-bottom: 1rem; }
-    #preview-panel li { font-size: 0.95rem; line-height: 1.8; color: rgba(24,22,30,0.75); }
-    #preview-panel strong { color: #18161E; }
-    #preview-panel blockquote {
+    .preview-pane h1 { font-size: 1.5rem; font-weight: 800; margin-top: 0; }
+    .preview-pane h2 { font-size: 1.2rem; font-weight: 700; }
+    .preview-pane h3 { font-size: 1rem; font-weight: 700; }
+    .preview-pane p  { font-size: 0.9rem; line-height: 1.8; color: rgba(24,22,30,0.75); margin-bottom: 0.9rem; }
+    .preview-pane ul, .preview-pane ol { padding-left: 1.4rem; margin-bottom: 0.9rem; }
+    .preview-pane li { font-size: 0.9rem; line-height: 1.8; color: rgba(24,22,30,0.75); }
+    .preview-pane strong { color: #18161E; }
+    .preview-pane em { color: rgba(24,22,30,0.7); }
+    .preview-pane blockquote {
       border-left: 3px solid rgba(10,107,70,0.4);
       padding-left: 1rem; margin: 1rem 0;
       color: rgba(24,22,30,0.6); font-style: italic;
     }
-    #preview-panel hr { border: none; border-top: 1px solid rgba(24,22,30,0.1); margin: 1.5rem 0; }
-    #preview-empty {
-      color: rgba(24,22,30,0.25); font-size: 0.9rem; font-style: italic;
+    .preview-pane hr { border: none; border-top: 1px solid rgba(24,22,30,0.1); margin: 1.25rem 0; }
+    .preview-placeholder { color: rgba(24,22,30,0.2); font-size: 0.875rem; font-style: italic; }
+
+    @media (max-width: 700px) {
+      .split-editor { grid-template-columns: 1fr; }
+      .split-editor textarea { border-right: none !important; border-bottom: 1px solid rgba(24,22,30,0.1) !important; min-height: 200px; }
+      .preview-pane { min-height: 200px; }
     }
   </style>
 </head>
@@ -287,11 +300,7 @@
         </div>
         <div>
           <label>Indhold</label>
-          <div class="editor-tabs">
-            <button type="button" class="editor-tab active" id="tab-write">Skriv</button>
-            <button type="button" class="editor-tab" id="tab-preview">Forhåndsvisning</button>
-          </div>
-          <div class="md-toolbar" id="md-toolbar">
+          <div class="md-toolbar">
             <button type="button" class="md-btn" data-action="h2" title="Stor overskrift">H1</button>
             <button type="button" class="md-btn" data-action="h3" title="Mindre overskrift">H2</button>
             <div class="md-sep"></div>
@@ -304,9 +313,12 @@
             <button type="button" class="md-btn" data-action="quote" title="Citat">❝ Citat</button>
             <button type="button" class="md-btn" data-action="hr" title="Skillelinje">— Linje</button>
           </div>
-          <textarea id="post-content" placeholder="Skriv dit opslag her..."></textarea>
-          <div id="preview-panel">
-            <div id="preview-body"></div>
+          <div class="split-editor">
+            <textarea id="post-content" placeholder="Skriv dit opslag her..."></textarea>
+            <div class="preview-pane">
+              <p class="preview-pane-label">Forhåndsvisning</p>
+              <div id="preview-body"><p class="preview-placeholder">Begyndt at skrive for at se forhåndsvisning...</p></div>
+            </div>
           </div>
         </div>
         <p id="error-msg">Udfyld venligst både titel og indhold.</p>
@@ -506,30 +518,20 @@
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
-  // ── Skriv / Forhåndsvisning tabs ──
-  document.getElementById('tab-write').addEventListener('click', () => {
-    document.getElementById('tab-write').classList.add('active');
-    document.getElementById('tab-preview').classList.remove('active');
-    document.getElementById('md-toolbar').style.display = 'flex';
-    document.getElementById('post-content').style.display = 'block';
-    document.getElementById('preview-panel').style.display = 'none';
+  // ── Live preview ──
+  let previewTimer;
+  document.getElementById('post-content').addEventListener('input', () => {
+    clearTimeout(previewTimer);
+    previewTimer = setTimeout(updatePreview, 120);
   });
 
-  document.getElementById('tab-preview').addEventListener('click', () => {
-    document.getElementById('tab-preview').classList.add('active');
-    document.getElementById('tab-write').classList.remove('active');
-    document.getElementById('md-toolbar').style.display = 'none';
-    document.getElementById('post-content').style.display = 'none';
-    document.getElementById('preview-panel').style.display = 'block';
-
+  function updatePreview() {
     const content = document.getElementById('post-content').value.trim();
     const body = document.getElementById('preview-body');
-    if (content) {
-      body.innerHTML = marked.parse(content);
-    } else {
-      body.innerHTML = '<p id="preview-empty">Ingen tekst at vise endnu.</p>';
-    }
-  });
+    body.innerHTML = content
+      ? marked.parse(content)
+      : '<p class="preview-placeholder">Begynd at skrive for at se forhåndsvisning...</p>';
+  }
 
   // ── Markdown toolbar ──
   document.querySelectorAll('.md-btn').forEach(btn => {
