@@ -131,6 +131,28 @@
       font-size: 0.85rem; color: rgb(200,40,40);
       margin-top: 0.5rem; display: none;
     }
+
+    /* ── Markdown toolbar ── */
+    .md-toolbar {
+      display: flex; flex-wrap: wrap; gap: 0.3rem;
+      padding: 0.6rem 0.75rem;
+      background: rgba(24,22,30,0.04);
+      border: 1px solid rgba(24,22,30,0.12);
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+    }
+    .md-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #fff; border: 1px solid rgba(24,22,30,0.12);
+      border-radius: 5px; padding: 0.3rem 0.6rem;
+      font-family: "DM Sans", sans-serif; font-size: 0.8rem; font-weight: 600;
+      color: rgba(24,22,30,0.7); cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      white-space: nowrap; line-height: 1.4;
+    }
+    .md-btn:hover { background: #0A6B46; border-color: #0A6B46; color: #fff; }
+    .md-sep { width: 1px; background: rgba(24,22,30,0.1); margin: 0.1rem 0.15rem; align-self: stretch; }
+    .md-toolbar + textarea { border-top-left-radius: 0; border-top-right-radius: 0; }
   </style>
 </head>
 <body>
@@ -215,10 +237,20 @@
         </div>
         <div>
           <label for="post-content">Indhold</label>
-          <textarea id="post-content" placeholder="Skriv dit opslag her...&#10;&#10;Du kan bruge markdown til formatering."></textarea>
-          <p class="markdown-hint">
-            Markdown: <code>**fed**</code> · <code>*kursiv*</code> · <code>## Overskrift</code> · <code>- liste</code>
-          </p>
+          <div class="md-toolbar">
+            <button type="button" class="md-btn" data-action="h2" title="Stor overskrift">H1</button>
+            <button type="button" class="md-btn" data-action="h3" title="Mindre overskrift">H2</button>
+            <div class="md-sep"></div>
+            <button type="button" class="md-btn" data-action="bold" title="Fed"><b>F</b></button>
+            <button type="button" class="md-btn" data-action="italic" title="Kursiv"><i>K</i></button>
+            <div class="md-sep"></div>
+            <button type="button" class="md-btn" data-action="ul" title="Punktliste">• Liste</button>
+            <button type="button" class="md-btn" data-action="ol" title="Nummereret liste">1. Liste</button>
+            <div class="md-sep"></div>
+            <button type="button" class="md-btn" data-action="quote" title="Citat">❝ Citat</button>
+            <button type="button" class="md-btn" data-action="hr" title="Skillelinje">— Linje</button>
+          </div>
+          <textarea id="post-content" placeholder="Skriv dit opslag her..."></textarea>
         </div>
         <p id="error-msg">Udfyld venligst både titel og indhold.</p>
       </div>
@@ -416,6 +448,43 @@
   function escapeHtml(str) {
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
+
+  // ── Markdown toolbar ──
+  document.querySelectorAll('.md-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ta = document.getElementById('post-content');
+      const start = ta.selectionStart;
+      const end = ta.selectionEnd;
+      const sel = ta.value.slice(start, end);
+      const action = btn.dataset.action;
+      let before = '', after = '', insert = '', block = false;
+
+      switch (action) {
+        case 'bold':   before = '**'; after = '**'; insert = sel || 'fed tekst'; break;
+        case 'italic': before = '*';  after = '*';  insert = sel || 'kursiv tekst'; break;
+        case 'h2':     before = '## '; after = ''; insert = sel || 'Overskrift'; block = true; break;
+        case 'h3':     before = '### '; after = ''; insert = sel || 'Overskrift'; block = true; break;
+        case 'ul':     before = '- '; after = ''; insert = sel || 'Punkt'; block = true; break;
+        case 'ol':     before = '1. '; after = ''; insert = sel || 'Punkt'; block = true; break;
+        case 'quote':  before = '> '; after = ''; insert = sel || 'Citat'; block = true; break;
+        case 'hr':     before = '\n---\n'; after = ''; insert = ''; block = true; break;
+      }
+
+      // Sæt blok-elementer på ny linje
+      let prefix = '';
+      if (block && start > 0 && ta.value[start - 1] !== '\n') prefix = '\n';
+
+      const replacement = prefix + before + insert + after;
+      ta.setRangeText(replacement, start, end, 'end');
+
+      // Sæt cursor inden i wrappede tegn
+      if (!block && !sel) {
+        const cursorPos = start + prefix.length + before.length + insert.length;
+        ta.setSelectionRange(start + prefix.length + before.length, cursorPos);
+      }
+      ta.focus();
+    });
+  });
 </script>
 </body>
 </html>
