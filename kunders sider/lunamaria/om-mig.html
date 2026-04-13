@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Om mig — Luna Maria · Psykoterapeut</title>
+  <meta name="description" content="Luna Maria Gutkin er uddannet psykoterapeut med speciale i parterapi og nærhed. Baseret i Aarhus." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:      #F6EEE2;
+      --sand:       #E2D5BF;
+      --sand-dk:    #C8B89E;
+      --brown:      #7A5840;
+      --brown-lt:   #A37655;
+      --forest:     #2C4A3E;
+      --forest-lt:  #3D6355;
+      --ink:        #1C1410;
+      --ink-muted:  #6B5744;
+      --paper:      #FDF9F3;
+      --white:      #FEFCF8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+    .r { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .r.in { opacity: 1; transform: translateY(0); }
+    .r.in.d1 { transition-delay: 0.07s; }
+    .r.in.d2 { transition-delay: 0.14s; }
+    .r.in.d3 { transition-delay: 0.21s; }
+    .r.in.d4 { transition-delay: 0.28s; }
+    .r.out { opacity: 0; transform: translateY(-16px); transition-delay: 0s !important; }
+    @media (prefers-reduced-motion: reduce) { .r { opacity: 1; transform: none; transition: none; } }
+
+    nav { position: fixed; inset: 0 0 auto; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: rgba(246, 238, 226, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(200, 184, 158, 0.4); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--forest); letter-spacing: 0.04em; text-decoration: none; display: flex; align-items: center; gap: 0.45rem; }
+    .nav-logo-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--brown-lt); flex-shrink: 0; }
+    .nav-links { display: flex; align-items: center; gap: 1.6rem; }
+    .nav-link { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); text-decoration: none; opacity: 0.65; transition: opacity 0.2s; }
+    .nav-link:hover { opacity: 1; }
+    .nav-link.active { opacity: 1; }
+    .nav-btn { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); text-decoration: none; padding: 0.6rem 1.4rem; border: 1.5px solid var(--forest); border-radius: 999px; transition: background 0.22s, color 0.22s; }
+    .nav-btn:hover { background: var(--forest); color: var(--white); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--forest); transition: transform 0.25s, opacity 0.25s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; inset: 0; z-index: 400; background: var(--cream); padding: 6rem 2.5rem 3rem; flex-direction: column; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--forest); text-decoration: none; padding: 1rem 0; border-bottom: 1px solid var(--sand); opacity: 0.85; }
+    .nav-mobile a:hover { opacity: 1; }
+    .nav-mobile .nav-mobile-btn { margin-top: 2rem; font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.5rem; background: var(--forest); color: var(--white); padding: 1rem 2rem; border-radius: 999px; text-decoration: none; width: fit-content; }
+    @media (max-width: 680px) { nav { padding: 1.1rem 1.5rem; } .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+    /* ── HELPERS ─────────────────────────────────────────── */
+    .wrap    { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    .wrap-sm { max-width: 680px; margin: 0 auto; padding: 0 2rem; }
+    .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brown-lt); display: block; margin-bottom: 1.2rem; }
+    .section-h { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 300; color: var(--forest); line-height: 1.15; margin-bottom: 3rem; }
+    .section-h em { font-style: italic; color: var(--brown); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    #hero { padding: 10rem 2rem 6rem; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 5.5rem;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    @media (max-width: 720px) { .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .om-img {
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 999px 999px 160px 160px;
+      display: block;
+    }
+    @media (max-width: 720px) { .om-img { max-width: 220px; margin: 0 auto; } }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--forest);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-role {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      margin-bottom: 2rem;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+      max-width: 500px;
+    }
+
+    /* ── TILGANG ─────────────────────────────────────────── */
+    #tilgang { padding: 7rem 2rem; background: var(--sand); }
+
+    .tcards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    @media (max-width: 560px) { .tcards { grid-template-columns: 1fr; } }
+
+    .tcard {
+      background: var(--paper);
+      padding: 2.2rem;
+      border-radius: 18px;
+      border: 1px solid var(--sand-dk);
+    }
+    .tcard-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--sand-dk);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+    .tcard p {
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    /* ── CITAT ───────────────────────────────────────────── */
+    #citat {
+      background: var(--forest);
+      padding: 9rem 2rem;
+      text-align: center;
+    }
+    #citat .eyebrow { color: rgba(226,213,191,0.4); }
+    #citat blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      max-width: 720px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    #citat blockquote em { font-style: normal; color: var(--sand); }
+
+    /* ── KONTAKT LINK ────────────────────────────────────── */
+    #cta { padding: 7rem 2rem; }
+
+    #cta .sub {
+      font-size: 0.97rem;
+      font-weight: 300;
+      color: var(--ink-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.85;
+      max-width: 480px;
+    }
+
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--forest);
+      color: var(--white);
+      padding: 1rem 2.2rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: background 0.22s, transform 0.18s;
+    }
+    .btn-dark:hover { background: var(--forest-lt); transform: translateY(-1px); }
+    .btn-dark:focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; }
+    .arrow { transition: transform 0.18s; }
+    .btn-dark:hover .arrow { transform: translateX(3px); }
+
+    footer { border-top: 1px solid var(--sand-dk); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; }
+    footer span { font-size: 0.8rem; font-weight: 400; color: var(--brown-lt); letter-spacing: 0.06em; }
+    @media (max-width: 480px) { footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-dot"></span>
+      Luna Maria · Psykoterapeut
+    </a>
+    <div class="nav-links">
+      <a href="maskulint.html" class="nav-link">Det maskuline</a>
+      <a href="feminint.html" class="nav-link">Det feminine</a>
+      <a href="om-mig.html" class="nav-link active">Om mig</a>
+      <a href="index.html#kontakt" class="nav-btn">Book samtale</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" id="mobileMenu" aria-hidden="true">
+    <a href="maskulint.html">Det maskuline</a>
+    <a href="feminint.html">Det feminine</a>
+    <a href="om-mig.html">Om mig</a>
+    <a href="index.html#kontakt" class="nav-mobile-btn">Book samtale →</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid">
+      <div class="r">
+        <img src="luna-gutkin.jpg" alt="Luna Maria Gutkin, psykoterapeut" class="om-img" />
+      </div>
+      <div class="hero-text">
+        <span class="eyebrow r">Om mig</span>
+        <h1 class="hero-name r d1">Luna Maria Gutkin</h1>
+        <p class="hero-role r d2">Psykoterapeut · Aarhus</p>
+        <p class="r d3">Jeg er uddannet psykoterapeut med speciale i parterapi og seksualitet. Jeg har valgt at fokusere på det, der sker mellem mennesker — ikke bare det, der sker inden i dem.</p>
+        <p class="r d3">Min tilgang er direkte og varm. Jeg tror ikke på, at folk skal "arbejde med sig selv" i årevis, inden noget ændrer sig. Jeg tror på, at den rette samtale — i det rette rum — kan rykke noget hurtigt.</p>
+        <p class="r d4">Jeg arbejder i Aarhus og tilbyder hjemmebesøg til par, der foretrækker at mødes i egne trygge rammer. Første samtale er altid uforpligtende.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TILGANG -->
+  <section id="tilgang">
+    <div class="wrap">
+      <span class="eyebrow r">Min tilgang</span>
+      <h2 class="section-h r d1">Sådan arbejder jeg</h2>
+      <div class="tcards">
+        <div class="tcard r d1">
+          <div class="tcard-num">01</div>
+          <p>Jeg oversætter mellem jer — så I endelig forstår hinanden</p>
+        </div>
+        <div class="tcard r d2">
+          <div class="tcard-num">02</div>
+          <p>Jeg arbejder med mønstre — ikke symptomer</p>
+        </div>
+        <div class="tcard r d3">
+          <div class="tcard-num">03</div>
+          <p>Jeg stopper fastlåste dynamikker og skaber bevægelse</p>
+        </div>
+        <div class="tcard r d4">
+          <div class="tcard-num">04</div>
+          <p>Jeg gør det usagte tydeligt — på en måde begge kan rumme</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITAT -->
+  <section id="citat">
+    <div class="wrap-sm">
+      <span class="eyebrow r">Mit udgangspunkt</span>
+      <blockquote class="r d1">De fleste konflikter handler om noget, der ikke er <em>blevet sagt</em></blockquote>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="wrap-sm">
+      <span class="eyebrow r">Kom i gang</span>
+      <h2 class="section-h r d1">Tag det første skridt —<br><em>sammen eller individuelt</em></h2>
+      <p class="sub r d2">Skriv til mig, og vi finder ud af, hvad der giver mening for jer. Du er meget velkommen til at starte individuelt.</p>
+      <a href="index.html#kontakt" class="btn-dark r d3">Book samtale <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Luna Maria · Psykoterapeut</span>
+    <span>lunagutkin@gmail.com</span>
+    <span>&copy; 2026</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        if (entry.isIntersecting) { el.classList.remove('out'); el.classList.add('in'); }
+        else { el.classList.remove('in'); if (entry.boundingClientRect.top < 0) el.classList.add('out'); else el.classList.remove('out'); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.r').forEach(el => observer.observe(el));
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }));
+  </script>
+</body>
+</html>

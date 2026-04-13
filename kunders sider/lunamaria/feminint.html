@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Det feminine — Luna Maria · Psykoterapeut</title>
+  <meta name="description" content="Når lysten forsvinder, og hun ikke ved hvorfor. Om det feminine perspektiv i parforholdet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:      #F6EEE2;
+      --sand:       #E2D5BF;
+      --sand-dk:    #C8B89E;
+      --brown:      #7A5840;
+      --brown-lt:   #A37655;
+      --forest:     #2C4A3E;
+      --forest-lt:  #3D6355;
+      --ink:        #1C1410;
+      --ink-muted:  #6B5744;
+      --paper:      #FDF9F3;
+      --white:      #FEFCF8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+    .r { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .r.in { opacity: 1; transform: translateY(0); }
+    .r.in.d1 { transition-delay: 0.07s; }
+    .r.in.d2 { transition-delay: 0.14s; }
+    .r.out { opacity: 0; transform: translateY(-16px); transition-delay: 0s !important; }
+    @media (prefers-reduced-motion: reduce) { .r { opacity: 1; transform: none; transition: none; } }
+
+    nav { position: fixed; inset: 0 0 auto; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: rgba(246, 238, 226, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(200, 184, 158, 0.4); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--forest); letter-spacing: 0.04em; text-decoration: none; display: flex; align-items: center; gap: 0.45rem; }
+    .nav-logo-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--brown-lt); flex-shrink: 0; }
+    .nav-links { display: flex; align-items: center; gap: 1.6rem; }
+    .nav-link { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); text-decoration: none; opacity: 0.65; transition: opacity 0.2s; }
+    .nav-link:hover { opacity: 1; }
+    .nav-link.active { opacity: 1; }
+    .nav-btn { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); text-decoration: none; padding: 0.6rem 1.4rem; border: 1.5px solid var(--forest); border-radius: 999px; transition: background 0.22s, color 0.22s; }
+    .nav-btn:hover { background: var(--forest); color: var(--white); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--forest); transition: transform 0.25s, opacity 0.25s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; inset: 0; z-index: 400; background: var(--cream); padding: 6rem 2.5rem 3rem; flex-direction: column; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--forest); text-decoration: none; padding: 1rem 0; border-bottom: 1px solid var(--sand); opacity: 0.85; }
+    .nav-mobile a:hover { opacity: 1; }
+    .nav-mobile .nav-mobile-btn { margin-top: 2rem; font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.5rem; background: var(--forest); color: var(--white); padding: 1rem 2rem; border-radius: 999px; text-decoration: none; width: fit-content; }
+    @media (max-width: 680px) { nav { padding: 1.1rem 1.5rem; } .nav-links { display: none; } .nav-hamburger { display: flex; } }
+
+    .article-header { padding: 10rem 2rem 5rem; max-width: 680px; margin: 0 auto; }
+    .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brown-lt); display: block; margin-bottom: 1.4rem; }
+    .article-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 7vw, 4.8rem); font-weight: 300; color: var(--forest); line-height: 1.08; margin-bottom: 2rem; letter-spacing: -0.01em; }
+    .article-title em { font-style: italic; color: var(--brown); }
+    .article-intro { font-size: 1.1rem; font-weight: 300; color: var(--ink-muted); line-height: 1.85; border-top: 1px solid var(--sand-dk); padding-top: 2rem; }
+
+    .article-body { padding: 4rem 2rem 9rem; max-width: 680px; margin: 0 auto; }
+    .article-body p { font-family: 'Cormorant Garamond', serif; font-size: 1.22rem; font-weight: 400; color: var(--ink); line-height: 1.9; margin-bottom: 1.8rem; }
+    .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 300; color: var(--forest); line-height: 1.2; margin-top: 4rem; margin-bottom: 1.4rem; }
+    .article-body h2 em { font-style: italic; color: var(--brown); }
+
+    .pull-quote { border-left: 2px solid var(--brown-lt); margin: 3.5rem 0; padding: 0.4rem 0 0.4rem 2rem; }
+    .pull-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem !important; font-style: italic; color: var(--brown) !important; line-height: 1.5 !important; margin-bottom: 0 !important; }
+
+    .article-cta { background: var(--forest); border-radius: 20px; padding: 2.8rem; margin-top: 4rem; text-align: center; }
+    .article-cta p { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem !important; font-weight: 300; font-style: italic; color: rgba(253,249,243,0.85) !important; margin-bottom: 1.6rem !important; line-height: 1.55 !important; }
+    .article-cta a { display: inline-flex; align-items: center; gap: 0.45rem; font-family: 'Raleway', sans-serif; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; background: var(--sand); color: var(--forest); padding: 0.95rem 2rem; border-radius: 999px; text-decoration: none; transition: background 0.22s, transform 0.18s; }
+    .article-cta a:hover { background: var(--paper); transform: translateY(-1px); }
+
+    footer { border-top: 1px solid var(--sand-dk); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; }
+    footer span { font-size: 0.8rem; font-weight: 400; color: var(--brown-lt); letter-spacing: 0.06em; }
+    @media (max-width: 480px) { footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-dot"></span>
+      Luna Maria · Psykoterapeut
+    </a>
+    <div class="nav-links">
+      <a href="maskulint.html" class="nav-link">Det maskuline</a>
+      <a href="feminint.html" class="nav-link active">Det feminine</a>
+      <a href="om-mig.html" class="nav-link">Om mig</a>
+      <a href="index.html#kontakt" class="nav-btn">Book samtale</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile" id="mobileMenu" aria-hidden="true">
+    <a href="maskulint.html">Det maskuline</a>
+    <a href="feminint.html">Det feminine</a>
+    <a href="om-mig.html">Om mig</a>
+    <a href="index.html#kontakt" class="nav-mobile-btn">Book samtale →</a>
+  </div>
+
+  <header class="article-header">
+    <span class="eyebrow r">Om kvinder i parforhold</span>
+    <h1 class="article-title r d1">Når lysten forsvinder —<br>og hun ikke ved <em>hvorfor</em></h1>
+    <p class="article-intro r d2">Lysten forsvinder ikke uden grund. Den fortæller noget om, hvad der mangler — i relationen, og måske i kontakten med en selv. Det er ikke et svigt. Det er et signal.</p>
+  </header>
+
+  <article class="article-body">
+
+    <p class="r">Det er ikke ualmindeligt. En kvinde holder af sin partner. Hun vil gerne have det godt sammen med ham. Men når hun mærker efter, er der ingenting. Lysten er væk. Og hun ved ikke rigtig, hvornår den forsvandt — eller hvad hun skal stille op med det.</p>
+
+    <p class="r">Det er ikke, fordi hun ikke elsker ham. Det er, fordi noget andet mangler.</p>
+
+    <h2 class="r">Lyst opstår i <em>tryghed</em></h2>
+
+    <p class="r">For mange kvinder er lyst ikke noget, der bare er der. Den opstår i en bestemt slags kontakt — når hun føler sig set, forstået og ikke presset. Når der er plads til hende, som hun er, og ikke kun forventninger til, hvad hun bør føle eller ville.</p>
+
+    <p class="r">Når den kontakt ikke er der — når hun føler sig alene, misforstået eller konstant mødt af et behov hun ikke kan matche — trækker kroppen sig. Det er ikke en beslutning. Det sker bare.</p>
+
+    <div class="pull-quote r">
+      <p>Lysten er ikke forsvundet. Den venter på noget, der endnu ikke er til stede.</p>
+    </div>
+
+    <h2 class="r">Følelsen af at skulle <em>forklare sig</em></h2>
+
+    <p class="r">En af de mest udmattende ting er at skulle forklare, hvorfor man ikke har lyst. At stå i en situation, hvor ens egne grænser føles som en afvisning af den anden. Mange kvinder bærer på en skyld, der ikke er deres — og det gør det endnu sværere at mærke, hvad de egentlig har brug for.</p>
+
+    <p class="r">Med tiden holder de op med at forsøge at forklare. Det er nemmere at sige ja, selvom man egentlig siger nej indeni. Eller at undgå situationen helt. Og afstanden vokser.</p>
+
+    <h2 class="r">At finde tilbage til <em>sig selv</em></h2>
+
+    <p class="r">Det handler ikke om at præstere noget anderledes. Det handler om at finde ud af, hvad der faktisk mangler — og begynde at sige det højt. Ikke som en anklage, men som en åbning. En mulighed for at skabe noget andet end det, der ikke virker.</p>
+
+    <p class="r">Mange kvinder opdager, at det ikke er lysten, der er problemet. Det er det, der kommer før lysten. Kontakten. Forståelsen. Følelsen af at blive mødt, som den man er.</p>
+
+    <div class="article-cta r">
+      <p>Du behøver ikke finde svarene alene. Vi finder dem sammen.</p>
+      <a href="index.html#kontakt">Book samtale →</a>
+    </div>
+
+  </article>
+
+  <footer>
+    <span>Luna Maria · Psykoterapeut</span>
+    <span>lunagutkin@gmail.com</span>
+    <span>&copy; 2026</span>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        if (entry.isIntersecting) { el.classList.remove('out'); el.classList.add('in'); }
+        else { el.classList.remove('in'); if (entry.boundingClientRect.top < 0) el.classList.add('out'); else el.classList.remove('out'); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.r').forEach(el => observer.observe(el));
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false'); mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }));
+  </script>
+</body>
+</html>

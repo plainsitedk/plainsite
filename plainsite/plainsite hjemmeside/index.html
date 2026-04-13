@@ -24,22 +24,112 @@
         "@id": "https://plainsite.dk/#website",
         "url": "https://plainsite.dk/",
         "name": "plainsite",
-        "description": "Hjemmeside til terapeuter og behandlere",
+        "description": "Professionelle hjemmesider til terapeuter, psykologer og behandlere i Danmark. Ingen opstartsgebyr — kun et fast månedligt beløb.",
         "inLanguage": "da-DK"
       },
       {
-        "@type": "LocalBusiness",
+        "@type": "ProfessionalService",
         "@id": "https://plainsite.dk/#business",
         "name": "plainsite",
         "url": "https://plainsite.dk/",
         "email": "kontakt@plainsite.dk",
-        "description": "Vi designer, bygger og driver professionelle hjemmesider til terapeuter og behandlere i Danmark.",
-        "areaServed": {
-          "@type": "Country",
-          "name": "DK"
+        "vatID": "46384040",
+        "description": "plainsite designer, bygger og driver professionelle hjemmesider til terapeuter, psykologer, coaches og andre behandlere i Danmark. Ingen opstartsgebyr — du betaler kun et fast månedligt beløb. Hjemmesiden er klar på 7 hverdage.",
+        "slogan": "Din hjemmeside — uden opstartsgebyr. Kun et fast månedligt beløb.",
+        "areaServed": { "@type": "Country", "name": "DK" },
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Terapeuter, psykologer, coaches og behandlere med privat praksis i Danmark"
         },
-        "priceRange": "Fra 299 kr/md.",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Hjemmesidepakker til behandlere",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Online — 299 kr/md.",
+              "description": "1–3 siders hjemmeside. Standard design, synlig på Google, kontaktformular, hosting og drift inkluderet. Ingen opstartsgebyr.",
+              "price": "299",
+              "priceCurrency": "DKK"
+            },
+            {
+              "@type": "Offer",
+              "name": "Synlig — 399 kr/md.",
+              "description": "Op til 5 siders hjemmeside. Tilpasset design, synlig i lokale Google-søgninger, synlig på Google Maps, ændringer inkluderet. Ingen opstartsgebyr.",
+              "price": "399",
+              "priceCurrency": "DKK"
+            },
+            {
+              "@type": "Offer",
+              "name": "Vækst — 599 kr/md.",
+              "description": "Op til 10 siders hjemmeside. Fremtrædende i Google, optimerede tekster, blog, besøgsstatistik, rapport 4 gange om året, ændringer inden for 24 timer. Ingen opstartsgebyr.",
+              "price": "599",
+              "priceCurrency": "DKK"
+            }
+          ]
+        },
         "inLanguage": "da-DK"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Hvad koster det at få lavet en hjemmeside som terapeut?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hos plainsite koster design og udvikling ingenting. Du betaler ikke en krone før din side er live og godkendt. Derefter betaler du et fast månedligt abonnement: Online fra 299 kr/md., Synlig fra 399 kr/md. eller Vækst fra 599 kr/md. Ingen opstartsgebyr, ingen skjulte gebyrer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Har jeg brug for en hjemmeside som terapeut eller psykolog?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja. En professionel hjemmeside er den vigtigste måde, nye klienter finder og vurderer dig på. Den signalerer professionalisme, skaber tillid og gør det nemt at tage kontakt. Mange klienter googler en terapeut eller psykolog inden de ringer — har du ingen hjemmeside, mister du disse henvendelser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvor lang tid tager det at få lavet en hjemmeside som terapeut?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "plainsite leverer færdige hjemmesider til terapeuter på 7 hverdage fra første samtale."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvad er inkluderet i en hjemmeside fra plainsite?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Alle pakker inkluderer design, hosting, domæne og mobiloptimering. Online (299 kr/md.): 1–3 sider, synlig på Google. Synlig (399 kr/md.): op til 5 sider, synlig i lokale søgninger og på Google Maps. Vækst (599 kr/md.): op til 10 sider, blog, besøgsstatistik og kvartalsvise rapporter."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Kan jeg opsige min hjemmeside-aftale?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja. Opsigelse sker med løbende måned plus 30 dages varsel. Der er ingen bindingsperiode og intet oprettelsesgebyr."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvem passer min hjemmeside når den er live?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "plainsite sørger for alt. Hosting, sikkerhed og drift er inkluderet i abonnementet. Du skal ikke forholde dig til tekniske ting."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvad er det billigste man kan få en hjemmeside til som terapeut?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "plainsite tilbyder hjemmesider til terapeuter fra 299 kr/md. uden opstartsgebyr. Design og udvikling er gratis — du betaler kun det månedlige beløb."
+            }
+          }
+        ]
       }
     ]
   }
@@ -272,13 +362,14 @@
     /* ── Pricing card ── */
     .price-card {
       background: linear-gradient(135deg, #FFFFFF 0%, #F8F5F1 100%);
-      border: 1px solid rgba(10, 107, 70, 0.2);
-      border-radius: 1.5rem;
+      border: 1px solid rgba(10, 107, 70, 0.25);
+      border-radius: 16px;
       position: relative;
       overflow: hidden;
       box-shadow:
-        0 0 0 1px rgba(10, 107, 70,0.06),
-        0 20px 50px rgba(24,22,30,0.07);
+        0 0 0 1px rgba(10, 107, 70,0.08),
+        0 40px 80px rgba(24,22,30,0.08),
+        0 0 60px rgba(10, 107, 70,0.08);
     }
     /* ── FAQ accordion ── */
     .faq-item { border-bottom: 1px solid rgba(24,22,30,0.08); }
@@ -604,144 +695,7 @@
     /* ── Contact grid responsive ── */
     @media (max-width: 800px) {
       .contact-grid { grid-template-columns: 1fr !important; }
-    }
-
-    /* ── Pricing carousel (mobil) ── */
-    @media (max-width: 800px) {
-      .pricing-grid {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        margin-left: calc(-1 * clamp(1.5rem, 5vw, 2rem)) !important;
-        margin-right: calc(-1 * clamp(1.5rem, 5vw, 2rem)) !important;
-        padding: 0.5rem clamp(1.5rem, 5vw, 2rem) 1.75rem !important;
-        gap: 1rem !important;
-        align-items: stretch;
-      }
-      .pricing-grid::-webkit-scrollbar { display: none; }
-      .pricing-grid .price-card {
-        flex: 0 0 82vw !important;
-        max-width: 320px !important;
-        scroll-snap-align: center !important;
-      }
-    }
-
-    /* ── Pricing dots ── */
-    .pricing-dots {
-      display: none;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 0.25rem;
-      margin-bottom: 1.5rem;
-    }
-    .pricing-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: rgba(24,22,30,0.15);
-      transition: background 0.25s ease, transform 0.25s ease, width 0.25s ease;
-      cursor: pointer;
-      border: none;
-      padding: 0;
-    }
-    .pricing-dot.active {
-      background: #0A6B46;
-      width: 18px;
-      border-radius: 3px;
-    }
-    @media (max-width: 800px) {
-      .pricing-dots { display: flex; }
-    }
-
-    /* ── Trust items ── */
-    .trust-item-wrap {
-      transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
-    }
-    .trust-item-wrap:hover { transform: translateY(-4px); }
-
-    /* ── Bento cards ── */
-    .bento-card {
-      border-radius: 14px;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s ease;
-    }
-    .bento-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(24,22,30,0.1), 0 0 0 1px rgba(10,107,70,0.15);
-    }
-
-    /* ── Price card hover (spring pop) ── */
-    .price-card {
-      transition: transform 0.45s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.45s ease;
-    }
-    .price-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 0 1px rgba(10,107,70,0.15), 0 30px 60px rgba(24,22,30,0.1), 0 0 40px rgba(10,107,70,0.1);
-    }
-
-    @media (max-width: 900px) {
-      .trust-grid-main { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
-    }
-    @media (max-width: 560px) {
-      .trust-grid-main { grid-template-columns: 1fr !important; gap: 2rem !important; }
-    }
-    @media (max-width: 768px) {
-      .bento-outer-main { grid-template-columns: 1fr !important; }
-      .bento-outer-main > * { grid-column: span 1 !important; grid-row: span 1 !important; }
-      .bento-outer-main .bento-card { min-height: auto !important; }
-    }
-
-    /* ── Mobiloptimeringer ── */
-    @media (max-width: 640px) {
-      /* Nav: strammere padding på små skærme */
-      #nav { padding: 1rem 1.25rem; }
-
-      /* Hero: trust-prikker skjules når items wrapper */
-      .hero-trust-strip .trust-dot { display: none; }
-      .hero-trust-strip { gap: 0.6rem 1rem; }
-
-      /* Hero CTA: stack knapper og giv dem fuld bredde */
-      .hero-cta-row {
-        flex-direction: column !important;
-        align-items: stretch !important;
-      }
-      .hero-cta-row .btn-primary,
-      .hero-cta-row .btn-ghost {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-      }
-
-      /* Hero overskrift: fjern manuelle linjeskift på meget små skærme */
-      .hero-heading-br { display: none; }
-
-      /* Section padding: lidt tættere på mobil */
-      .section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-
-      /* Priskortet 'Anbefalet': stand-alone margin på mobil */
-      .price-card { margin-left: 0; margin-right: 0; }
-    }
-
-    @media (max-width: 480px) {
-      /* Endnu strammere nav på mini-skærme */
-      #nav { padding: 0.875rem 1rem; }
-
-      /* Hero trust strip: sæt items i column på meget smalle skærme */
-      .hero-trust-strip {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-      }
-
-      /* Formular padding */
-      #contact-form { padding: 1.25rem !important; }
-
-      /* Bento-kort: lidt mindre padding */
-      .bento-card { padding: 1.25rem !important; }
+      .pricing-grid { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -809,9 +763,8 @@
         </div>
 
         <h1 class="heading-xl hero-enter" style="color:#18161E;margin-bottom:1.5rem;">
-          Design og udvikling<br class="hero-heading-br">
-          er gratis —<br class="hero-heading-br">
-          <em style="font-style:italic;color:#0A6B46;">du betaler kun driften.</em>
+          En professionel hjemmeside –<br>
+          <em style="font-style:italic;color:#0A6B46;">helt uden teknisk besvær.</em>
         </h1>
 
         <p class="body-lg hero-enter" style="color:rgba(24,22,30,0.6);margin-bottom:2.5rem;max-width:440px;">
@@ -819,7 +772,7 @@
         </p>
 
         <!-- Trust signals -->
-        <div class="hero-enter hero-trust-strip" style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+        <div class="hero-enter" style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-bottom:2.5rem;">
           <div class="trust-item">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5.5H13L9.25 8.25L10.75 13L7 10.25L3.25 13L4.75 8.25L1 5.5H5.5L7 1Z" fill="#0A6B46"/></svg>
             Klar på 7 dage
@@ -832,11 +785,11 @@
           <div class="trust-dot"></div>
           <div class="trust-item" style="color:rgba(24,22,30,0.55);font-weight:600;">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4Z" stroke="#0A6B46" stroke-width="1.5"/><path d="M5 4V3a2 2 0 0 1 4 0v1" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round"/><path d="M5 7.5h4" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round"/></svg>
-            Design og dev gratis
+            Design og udvikling gratis
           </div>
         </div>
 
-        <div class="hero-enter hero-cta-row" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div class="hero-enter" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
           <a href="#kontakt" class="btn-primary btn-primary-lg">
             Få en gratis vurdering
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -920,36 +873,6 @@
 </section>
 
 <!-- ╔══════════════════════════════════════════╗ -->
-<!-- ║            TRUST / WHY US               ║ -->
-<!-- ╚══════════════════════════════════════════╝ -->
-<section style="background:#EDE8E2;padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3.5rem;" class="trust-grid-main reveal">
-
-      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L7 8.5v9c0 6 4.4 11.6 9 12.5 4.6-.9 9-6.5 9-12.5v-9L16 4Z" stroke="#0A6B46" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 16l3 3 5-5" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3 class="heading-md" style="color:#18161E;">Etisk &amp; GDPR-sikker</h3>
-        <p style="font-size:0.9rem;line-height:1.8;color:rgba(24,22,30,0.6);">Alle løsninger overholder GDPR-krav, så dine klienters fortrolige data altid er beskyttet.</p>
-      </div>
-
-      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="13" r="6" stroke="#0A6B46" stroke-width="1.4"/><path d="M16 21c-5.5 0-9 2.5-9 4.5" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round"/><path d="M20 10.5c1 .8 2 2.2 2 3.5" stroke="#0A6B46" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/></svg>
-        <h3 class="heading-md" style="color:#18161E;">Vi forstår din praksis</h3>
-        <p style="font-size:0.9rem;line-height:1.8;color:rgba(24,22,30,0.6);">Ingen teknisk jargon. Kun fokus på at skabe den rette atmosfære for de klienter, du vil nå.</p>
-      </div>
-
-      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 6C10.5 6 6 10.5 6 16s4.5 10 10 10 10-4.5 10-10S21.5 6 16 6Z" stroke="#0A6B46" stroke-width="1.4"/><path d="M16 11v5l3.5 3.5" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3 class="heading-md" style="color:#18161E;">Ro i sindet</h3>
-        <p style="font-size:0.9rem;line-height:1.8;color:rgba(24,22,30,0.6);">Vi tager os af alt det tekniske, så du kan fokusere på det, du er bedst til: At hjælpe andre.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ╔══════════════════════════════════════════╗ -->
 <!-- ║            HOW IT WORKS                  ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
 <section id="how" class="section" style="background:#F5F1EC;position:relative;overflow:hidden;scroll-margin-top:80px;">
@@ -1025,53 +948,6 @@
 
 
 <!-- ╔══════════════════════════════════════════╗ -->
-<!-- ║              BENTO GRID                  ║ -->
-<!-- ╚══════════════════════════════════════════╝ -->
-<section style="background:#F5F1EC;padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <h2 class="heading-lg" style="color:#18161E;">Hvordan vi hjælper dig</h2>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:1rem;" class="bento-outer-main reveal-scale">
-
-      <!-- Large card: 2×2 -->
-      <div class="bento-card" style="grid-column:span 2;grid-row:span 2;background:#EDE8E2;justify-content:flex-end;min-height:300px;gap:1rem;">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:0.5rem;"><path d="M8 28c2-2 4-2.5 6-1.5l10-14a3 3 0 1 1 4 4L14 26.5c1 2 .5 4-1.5 6-1 1-3 1.5-4.5 1-.5-1.5 0-3.5 0-5.5Z" stroke="#0A6B46" stroke-width="1.4" stroke-linejoin="round"/><path d="M26 10l2-4" stroke="#0A6B46" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/></svg>
-        <h4 class="heading-md" style="color:#18161E;">Skræddersyet design</h4>
-        <p style="font-size:0.88rem;line-height:1.75;color:rgba(24,22,30,0.6);">Hver hjemmeside er unik og afspejler din specifikke tilgang, målgruppe og personlighed.</p>
-      </div>
-
-      <!-- Wide card: 2×1 -->
-      <div class="bento-card" style="grid-column:span 2;background:rgba(10,107,70,0.07);flex-direction:row;align-items:center;gap:1.5rem;">
-        <div style="padding:0.875rem;background:rgba(10,107,70,0.12);border-radius:0.75rem;flex-shrink:0;">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 20a10 10 0 1 1 20 0" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round"/><path d="M16 20l4-7" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round"/><circle cx="16" cy="20" r="1.5" fill="#0A6B46"/></svg>
-        </div>
-        <div>
-          <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;color:#18161E;margin-bottom:0.25rem;">Lynhurtig hosting</h4>
-          <p style="font-size:0.82rem;line-height:1.65;color:rgba(24,22,30,0.55);">Dine klienter skal ikke vente. Vi sikrer hurtig og stabil drift.</p>
-        </div>
-      </div>
-
-      <!-- Bottom right: 2 small cards -->
-      <div class="bento-card" style="background:#F5F1EC;border:1px solid rgba(24,22,30,0.07);align-items:center;text-align:center;gap:0.5rem;">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 8h16M6 13h10M6 18h7" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round"/><path d="M19 17l3 3-2 2-3-3v-2h2Z" stroke="#0A6B46" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.95rem;color:#18161E;">Blog inkluderet</h4>
-        <p style="font-size:0.78rem;color:rgba(24,22,30,0.55);line-height:1.55;">Skriv faglige artikler, der øger din synlighed</p>
-      </div>
-
-      <div class="bento-card" style="background:rgba(10,107,70,0.1);border:1px solid rgba(10,107,70,0.2);align-items:center;text-align:center;gap:0.5rem;">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3L5 7v8c0 5.25 3.85 10.15 9 11.35C19.15 25.15 23 20.25 23 15V7L14 3Z" stroke="#0A6B46" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 14l3 3 5-5" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.95rem;color:#18161E;">GDPR-klar</h4>
-        <p style="font-size:0.78rem;color:rgba(24,22,30,0.55);line-height:1.55;">Fuldt lovlig opsætning fra dag ét</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ╔══════════════════════════════════════════╗ -->
 <!-- ║         PRICING + CONTACT               ║ -->
 <!-- ╚══════════════════════════════════════════╝ -->
 <section id="pricing" style="background:#F5F1EC;padding:1.5rem clamp(1.5rem,5vw,2rem) clamp(2.25rem,4.5vw,3.75rem);position:relative;overflow:hidden;scroll-margin-top:80px;">
@@ -1087,89 +963,111 @@
     </div>
 
     <!-- Three pricing cards -->
-    <div id="pricing-carousel" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(1rem,2.5vw,1.5rem);align-items:stretch;margin-bottom:2rem;" class="pricing-grid">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(1rem,2.5vw,1.5rem);align-items:stretch;margin-bottom:2rem;" class="pricing-grid">
 
-      <!-- Online -->
-      <div class="price-card reveal-scale" style="padding:1.75rem;display:flex;flex-direction:column;">
-        <div style="display:inline-flex;align-items:center;padding:0.3rem 0.75rem;background:rgba(10,107,70,0.1);border-radius:100px;margin-bottom:1rem;align-self:flex-start;">
-          <span style="font-size:0.63rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(10,107,70,0.8);">Starter</span>
+      <!-- Starter -->
+      <div class="price-card reveal-scale" style="padding:clamp(1rem,2vw,1.5rem);display:flex;flex-direction:column;">
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.7rem;background:rgba(10, 107, 70,0.1);border:1px solid rgba(10, 107, 70,0.2);border-radius:100px;margin-bottom:0.75rem;align-self:flex-start;">
+          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(10, 107, 70,0.8);">Starter</span>
         </div>
-        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.35rem;font-weight:800;color:#18161E;letter-spacing:-0.03em;margin-bottom:0.75rem;">Online</h3>
-        <div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.4rem;">
-          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:2.75rem;font-weight:800;color:#18161E;line-height:1;letter-spacing:-0.04em;">299</span>
-          <div style="padding-bottom:0.3rem;">
+
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;font-weight:800;color:#18161E;letter-spacing:-0.03em;margin-bottom:0.75rem;">Online</h3>
+
+        <div style="display:flex;align-items:flex-end;gap:0.25rem;margin-bottom:0.25rem;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;color:#18161E;line-height:1;letter-spacing:-0.04em;">299</span>
+          <div style="padding-bottom:0.25rem;">
             <span style="font-size:1rem;color:rgba(24,22,30,0.6);font-weight:500;">kr</span>
-            <span style="font-size:0.82rem;color:rgba(24,22,30,0.4);">/md.</span>
+            <span style="font-size:0.85rem;color:rgba(24,22,30,0.4);font-weight:400;">/md.</span>
           </div>
         </div>
-        <p style="font-size:0.83rem;color:rgba(24,22,30,0.5);margin-bottom:1.25rem;line-height:1.6;">Design og opsætning gratis. Du betaler kun driften.</p>
-        <div style="height:1px;background:rgba(10,107,70,0.12);margin-bottom:1.25rem;"></div>
-        <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:1.5rem;flex:1;">
+        <p style="font-size:0.85rem;color:rgba(24,22,30,0.55);margin-bottom:1rem;line-height:1.5;">Design og opsætning gratis. Du betaler kun driften.</p>
+
+        <div class="divider" style="margin-bottom:1rem;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.25rem;">
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>1–3 sider</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Basis SEO</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>SSL &amp; mobiloptimering</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Standard design</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Synlig på Google</div>
           <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Kontaktformular</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Domæne inkluderet</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting og drift inkluderet</div>
         </div>
-        <a href="#kontakt" class="btn-ghost vælg-pakke" data-pakke="Online (299 kr/md.)" style="text-align:center;justify-content:center;margin-top:auto;">Vælg Online</a>
+
+        <a href="#kontakt" class="btn-ghost" style="text-align:center;justify-content:center;margin-top:auto;">Kom i gang</a>
       </div>
 
-      <!-- Synlig (fremhævet) -->
-      <div class="price-card reveal-scale" style="padding:1.75rem;display:flex;flex-direction:column;background:linear-gradient(145deg,#0A6B46 0%,#085c3d 100%);border:1px solid rgba(10,107,70,0.5);box-shadow:0 0 0 1px rgba(10,107,70,0.15),0 30px 60px rgba(10,107,70,0.2);">
-        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);border-radius:1.5rem 1.5rem 0 0;"></div>
-        <div style="display:inline-flex;align-items:center;padding:0.3rem 0.75rem;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);border-radius:100px;margin-bottom:1rem;align-self:flex-start;">
-          <span style="font-size:0.63rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.9);">Populær</span>
-        </div>
-        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.35rem;font-weight:800;color:#F5F1EC;letter-spacing:-0.03em;margin-bottom:0.75rem;">Synlig</h3>
-        <div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.4rem;">
-          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:2.75rem;font-weight:800;color:#F5F1EC;line-height:1;letter-spacing:-0.04em;">399</span>
-          <div style="padding-bottom:0.3rem;">
-            <span style="font-size:1rem;color:rgba(245,241,236,0.7);font-weight:500;">kr</span>
-            <span style="font-size:0.82rem;color:rgba(245,241,236,0.5);">/md.</span>
-          </div>
-        </div>
-        <p style="font-size:0.83rem;color:rgba(245,241,236,0.6);margin-bottom:1.25rem;line-height:1.6;">Mere synlighed lokalt og på Google.</p>
-        <div style="height:1px;background:rgba(255,255,255,0.12);margin-bottom:1.25rem;"></div>
-        <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:1.5rem;flex:1;">
-          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.9rem;color:rgba(245,241,236,0.8);padding:0.3rem 0;"><div style="width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg viewBox="0 0 10 10" fill="none" width="9" height="9"><path d="M2 5L4.2 7.2L8 3" stroke="#F5F1EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 5 sider</div>
-          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.9rem;color:rgba(245,241,236,0.8);padding:0.3rem 0;"><div style="width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg viewBox="0 0 10 10" fill="none" width="9" height="9"><path d="M2 5L4.2 7.2L8 3" stroke="#F5F1EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Lokal SEO</div>
-          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.9rem;color:rgba(245,241,236,0.8);padding:0.3rem 0;"><div style="width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg viewBox="0 0 10 10" fill="none" width="9" height="9"><path d="M2 5L4.2 7.2L8 3" stroke="#F5F1EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Google Business opsætning</div>
-          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.9rem;color:rgba(245,241,236,0.8);padding:0.3rem 0;"><div style="width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg viewBox="0 0 10 10" fill="none" width="9" height="9"><path d="M2 5L4.2 7.2L8 3" stroke="#F5F1EC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Alt fra Online +</div>
-        </div>
-        <a href="#kontakt" class="btn-primary vælg-pakke" data-pakke="Synlig (399 kr/md.)" style="background:#F5F1EC;color:#0A6B46;text-align:center;justify-content:center;margin-top:auto;font-weight:700;" onmouseover="this.style.background='#ffffff'" onmouseout="this.style.background='#F5F1EC'">Vælg Synlig</a>
-      </div>
+      <!-- Plus (fremhævet — anbefalet) -->
+      <div class="price-card reveal-scale" style="padding:clamp(1rem,2vw,1.5rem);display:flex;flex-direction:column;background:linear-gradient(135deg,#FFFFFF 0%,#F0F8F4 100%);border:2px solid rgba(10,107,70,0.45);box-shadow:0 0 0 1px rgba(10,107,70,0.1),0 40px 80px rgba(10,107,70,0.12),0 0 60px rgba(10,107,70,0.1);animation-delay:75ms;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(10,107,70,0.7),transparent);border-radius:16px 16px 0 0;"></div>
 
-      <!-- Vækst -->
-      <div class="price-card reveal-scale" style="padding:1.75rem;display:flex;flex-direction:column;">
-        <div style="display:inline-flex;align-items:center;padding:0.3rem 0.75rem;background:rgba(10,107,70,0.1);border-radius:100px;margin-bottom:1rem;align-self:flex-start;">
-          <span style="font-size:0.63rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(10,107,70,0.8);">Vækst</span>
+        <!-- Anbefalet badge -->
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.8rem;background:rgba(10,107,70,0.12);border:1px solid rgba(10,107,70,0.3);border-radius:100px;margin-bottom:0.75rem;align-self:flex-start;">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.12 3.73H9L6.69 5.52L7.56 8.5L5 6.83L2.44 8.5L3.31 5.52L1 3.73H3.88L5 1Z" fill="#0A6B46"/></svg>
+          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0A6B46;">Anbefalet</span>
         </div>
-        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.35rem;font-weight:800;color:#18161E;letter-spacing:-0.03em;margin-bottom:0.75rem;">Vækst</h3>
-        <div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.4rem;">
-          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:2.75rem;font-weight:800;color:#18161E;line-height:1;letter-spacing:-0.04em;">599</span>
-          <div style="padding-bottom:0.3rem;">
+
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;font-weight:800;color:#18161E;letter-spacing:-0.03em;margin-bottom:0.75rem;">Synlig</h3>
+
+        <div style="display:flex;align-items:flex-end;gap:0.25rem;margin-bottom:0.25rem;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;color:#18161E;line-height:1;letter-spacing:-0.04em;">399</span>
+          <div style="padding-bottom:0.25rem;">
             <span style="font-size:1rem;color:rgba(24,22,30,0.6);font-weight:500;">kr</span>
-            <span style="font-size:0.82rem;color:rgba(24,22,30,0.4);">/md.</span>
+            <span style="font-size:0.85rem;color:rgba(24,22,30,0.4);font-weight:400;">/md.</span>
           </div>
         </div>
-        <p style="font-size:0.83rem;color:rgba(24,22,30,0.5);margin-bottom:1.25rem;line-height:1.6;">Avanceret SEO og løbende rapporter.</p>
-        <div style="height:1px;background:rgba(10,107,70,0.12);margin-bottom:1.25rem;"></div>
-        <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:1.5rem;flex:1;">
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 10 sider</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Avanceret SEO</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Blog-opsætning</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Analytics &amp; kvartalsvise rapporter</div>
-          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Alt fra Synlig +</div>
-        </div>
-        <a href="#kontakt" class="btn-ghost vælg-pakke" data-pakke="Vækst (599 kr/md.)" style="text-align:center;justify-content:center;margin-top:auto;">Vælg Vækst</a>
-      </div>
-    </div>
+        <p style="font-size:0.85rem;color:rgba(24,22,30,0.55);margin-bottom:1rem;line-height:1.5;">Tilpasset design og lokal SEO — stadig uden opstartsgebyr.</p>
 
-    <!-- Carousel dots (kun synlige på mobil) -->
-    <div class="pricing-dots" id="pricing-dots">
-      <button class="pricing-dot active" data-index="0" aria-label="Online"></button>
-      <button class="pricing-dot" data-index="1" aria-label="Synlig"></button>
-      <button class="pricing-dot" data-index="2" aria-label="Vækst"></button>
+        <div class="divider" style="margin-bottom:1rem;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.25rem;">
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 5 sider</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Tilpasset design</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Synlig i lokale Google-søgninger</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Kontaktformular</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Synlig på Google Maps</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting og drift inkluderet</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Ændringer inkluderet</div>
+        </div>
+
+        <a href="#kontakt" class="btn-primary" style="text-align:center;justify-content:center;margin-top:auto;">Kom i gang</a>
+      </div>
+
+      <!-- Vækst (premium) -->
+      <div class="reveal-scale" style="background:linear-gradient(145deg,#0A6B46 0%,#065237 100%);border:1px solid rgba(10,107,70,0.5);border-radius:16px;position:relative;overflow:hidden;padding:clamp(1rem,2vw,1.5rem);display:flex;flex-direction:column;box-shadow:0 0 0 1px rgba(10,107,70,0.2),0 40px 80px rgba(10,107,70,0.2),0 0 60px rgba(10,107,70,0.15);animation-delay:150ms;">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);"></div>
+
+        <!-- Premium badge -->
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.8rem;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.25);border-radius:100px;margin-bottom:0.75rem;align-self:flex-start;">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.12 3.73H9L6.69 5.52L7.56 8.5L5 6.83L2.44 8.5L3.31 5.52L1 3.73H3.88L5 1Z" fill="white"/></svg>
+          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.95);">Premium</span>
+        </div>
+
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:-0.03em;margin-bottom:0.75rem;">Vækst</h3>
+
+        <div style="display:flex;align-items:flex-end;gap:0.25rem;margin-bottom:0.25rem;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.04em;">599</span>
+          <div style="padding-bottom:0.25rem;">
+            <span style="font-size:1rem;color:rgba(255,255,255,0.7);font-weight:500;">kr</span>
+            <span style="font-size:0.85rem;color:rgba(255,255,255,0.5);font-weight:400;">/md.</span>
+          </div>
+        </div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.65);margin-bottom:1rem;line-height:1.5;">Alt inkluderet — design, SEO og drift. Ingen opstartsgebyr.</p>
+
+        <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);margin-bottom:1rem;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.25rem;">
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 10 sider</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Premium tilpasset design</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Fremtrædende i Google + optimerede tekster</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Blog / indholdssektion</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Se hvem der besøger din side</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Rapport 4 gange om året: hvem finder dig, og hvad vi gør bedre</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Ændringer inden for 24 timer</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Løbende optimering</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting og drift inkluderet</div>
+        </div>
+
+        <a href="#kontakt" class="btn-primary" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;text-align:center;justify-content:center;margin-top:auto;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">Kom i gang</a>
+      </div>
     </div>
 
   </div>
@@ -1199,7 +1097,6 @@
         <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10, 107, 70,0.4),transparent);"></div>
 
         <input type="hidden" name="_token" value="plainsite-main">
-        <input type="hidden" name="pakke" id="valgt-pakke" value="">
 
         <div id="form-fields" style="display:flex;flex-direction:column;gap:0.85rem;">
 
@@ -1305,7 +1202,7 @@
         <span class="faq-icon">+</span>
       </button>
       <div class="faq-body"><div class="faq-body-inner">
-        Alle pakker inkluderer design, hosting, domæne, SSL og mobiloptimering. Online (299 kr/md.): 1–3 sider, basis SEO. Synlig (399 kr/md.): op til 5 sider, lokal SEO, Google Business. Vækst (599 kr/md.): op til 10 sider, avanceret SEO, blog og kvartalsvise rapporter.
+        Alle pakker inkluderer design, hosting, domæne og mobiloptimering. Online (299 kr/md.): 1–3 sider, synlig på Google. Synlig (399 kr/md.): op til 5 sider, synlig i lokale søgninger og på Google Maps. Vækst (599 kr/md.): op til 10 sider, blog, besøgsstatistik og kvartalsvise rapporter.
       </div></div>
     </div>
 
@@ -1315,7 +1212,7 @@
         <span class="faq-icon">+</span>
       </button>
       <div class="faq-body"><div class="faq-body-inner">
-        Vi gør. Hosting og drift er inkluderet i dit abonnement.
+        Vi sørger for det hele. Din side kører — du behøver ikke gøre noget.
       </div></div>
     </div>
 
@@ -1542,51 +1439,6 @@
       }
     });
   });
-
-  // ── Pakkevalg: gem i hidden felt ──
-  document.querySelectorAll('.vælg-pakke').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById('valgt-pakke').value = btn.dataset.pakke;
-    });
-  });
-
-  // ── Pricing carousel dots ──
-  (function () {
-    const carousel = document.getElementById('pricing-carousel');
-    const dots = document.querySelectorAll('.pricing-dot');
-    if (!carousel || !dots.length) return;
-
-    function getActiveIndex() {
-      const cards = carousel.querySelectorAll('.price-card');
-      const center = carousel.scrollLeft + carousel.offsetWidth / 2;
-      let closest = 0, minDist = Infinity;
-      cards.forEach((card, i) => {
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const dist = Math.abs(cardCenter - center);
-        if (dist < minDist) { minDist = dist; closest = i; }
-      });
-      return closest;
-    }
-
-    function updateDots(idx) {
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    }
-
-    carousel.addEventListener('scroll', () => {
-      updateDots(getActiveIndex());
-    }, { passive: true });
-
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const idx = parseInt(dot.dataset.index);
-        const card = carousel.querySelectorAll('.price-card')[idx];
-        if (card) {
-          const offset = card.offsetLeft - (carousel.offsetWidth - card.offsetWidth) / 2;
-          carousel.scrollTo({ left: offset, behavior: 'smooth' });
-        }
-      });
-    });
-  })();
 
   // ── Hero responsive grid ──
   function updateHeroGrid() {
