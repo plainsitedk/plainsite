@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hjemmeside til terapeuter og behandlere | plainsite</title>
+  <meta name="description" content="Få en professionel hjemmeside som terapeut, psykolog eller behandler. Vi designer, bygger og driver den for dig. Klar på 7 hverdage. Fra 299 kr/md.">
+  <link rel="canonical" href="https://plainsite.dk/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plainsite.dk/">
+  <meta property="og:title" content="Hjemmeside til terapeuter og behandlere | plainsite">
+  <meta property="og:description" content="Få en professionel hjemmeside som terapeut, psykolog eller behandler. Vi designer, bygger og driver den for dig. Klar på 7 hverdage. Fra 299 kr/md.">
+  <meta property="og:locale" content="da_DK">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://plainsite.dk/#website",
+        "url": "https://plainsite.dk/",
+        "name": "plainsite",
+        "description": "Hjemmeside til terapeuter og behandlere",
+        "inLanguage": "da-DK"
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://plainsite.dk/#business",
+        "name": "plainsite",
+        "url": "https://plainsite.dk/",
+        "email": "kontakt@plainsite.dk",
+        "description": "Vi designer, bygger og driver professionelle hjemmesider til terapeuter og behandlere i Danmark.",
+        "areaServed": {
+          "@type": "Country",
+          "name": "DK"
+        },
+        "priceRange": "Fra 299 kr/md.",
+        "inLanguage": "da-DK"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0A6B46',
+            'brand-light': '#8ECFB7',
+            'brand-dark': '#065237',
+            'ink': '#F5F1EC',
+            'ink-2': '#FFFFFF',
+            'ink-3': '#2C2830',
+            'ink-4': '#4A4555',
+            'cream': '#18161E',
+            'cream-2': '#EDE8E0',
+          },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'sans-serif'],
+            body: ['"DM Sans"', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "DM Sans", sans-serif; background: #F5F1EC; color: #18161E; -webkit-font-smoothing: antialiased; }
+
+    /* ── Typography ── */
+    .font-display { font-family: "Bricolage Grotesque", sans-serif; }
+    .heading-xl {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+    .heading-lg {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+    }
+    .heading-md {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+    .body-lg { font-size: 1rem; line-height: 1.75; }
+    .body-md { font-size: 0.9rem; line-height: 1.7; }
+    .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* ── Pink text ── */
+    .text-brand { color: #0A6B46; }
+    .bg-brand { background-color: #0A6B46; }
+
+    /* ── Nav ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 1.25rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s ease, border-bottom 0.3s ease;
+    }
+    #nav.scrolled {
+      background: rgba(245, 241, 236, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(10, 107, 70, 0.12);
+    }
+    .nav-link {
+      font-size: 0.9rem; font-weight: 500; color: rgba(24, 22, 30, 0.65);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover { color: #18161E; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #0A6B46; color: #fff;
+      padding: 0.85rem 1.75rem; border-radius: 6px;
+      font-family: "DM Sans", sans-serif; font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 2px 12px rgba(10, 107, 70, 0.35), 0 1px 3px rgba(10, 107, 70, 0.2);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: #085c3d;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(10, 107, 70, 0.45), 0 2px 6px rgba(10, 107, 70, 0.25);
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: 2px solid #0A6B46; outline-offset: 3px; }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: rgba(24, 22, 30, 0.75);
+      padding: 0.85rem 1.75rem; border-radius: 6px;
+      font-family: "DM Sans", sans-serif; font-size: 0.95rem; font-weight: 500;
+      text-decoration: none; border: 1px solid rgba(24, 22, 30, 0.2); cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(24, 22, 30, 0.4);
+      color: #18161E;
+      background: rgba(24, 22, 30, 0.05);
+    }
+    .btn-ghost:focus-visible { outline: 2px solid #0A6B46; outline-offset: 3px; }
+
+    .btn-primary-lg {
+      padding: 0.8rem 1.75rem; font-size: 0.95rem;
+    }
+
+    /* ── Noise grain texture ── */
+    .grain::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      border-radius: inherit;
+    }
+
+    /* ── Hero section ── */
+    #hero {
+      min-height: 100vh;
+      background: #F5F1EC;
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+    .hero-glow-1 {
+      width: 600px; height: 600px;
+      top: -100px; left: -100px;
+      background: radial-gradient(circle, rgba(10, 107, 70, 0.15) 0%, transparent 70%);
+    }
+    .hero-glow-2 {
+      width: 500px; height: 500px;
+      bottom: -150px; right: 10%;
+      background: radial-gradient(circle, rgba(10, 107, 70, 0.08) 0%, transparent 70%);
+    }
+
+    /* ── Browser mockup ── */
+    .browser-wrap {
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid rgba(24,22,30,0.08);
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(10, 107, 70, 0.1),
+        0 40px 80px rgba(24,22,30,0.1),
+        0 16px 32px rgba(24,22,30,0.06);
+    }
+    .browser-bar {
+      background: #DDD8D0;
+      padding: 0.65rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid rgba(24,22,30,0.06);
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-url {
+      flex: 1; background: rgba(24,22,30,0.06);
+      border-radius: 4px; padding: 0.25rem 0.75rem;
+      font-size: 0.7rem; color: rgba(24,22,30,0.35);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    /* ── Steps ── */
+    .step-num {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      background: rgba(10, 107, 70, 0.12);
+      border: 1px solid rgba(10, 107, 70, 0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700; font-size: 0.9rem;
+      color: #0A6B46;
+      flex-shrink: 0;
+    }
+
+    /* ── Feature chips ── */
+    .feature-chip {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.75rem 1.1rem;
+      background: rgba(24,22,30,0.04);
+      border: 1px solid rgba(24,22,30,0.08);
+      border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500; color: rgba(24,22,30,0.8);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .feature-chip:hover {
+      background: rgba(10, 107, 70, 0.08);
+      border-color: rgba(10, 107, 70, 0.25);
+    }
+    .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: #0A6B46; flex-shrink: 0; }
+
+    /* ── Portfolio cards ── */
+    .port-card {
+      background: #F8F5F1;
+      border: 1px solid rgba(24,22,30,0.07);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    }
+    .port-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(24,22,30,0.1), 0 0 0 1px rgba(10, 107, 70,0.15);
+    }
+
+    /* ── Pricing card ── */
+    .price-card {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F8F5F1 100%);
+      border: 1px solid rgba(10, 107, 70, 0.25);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(10, 107, 70,0.08),
+        0 40px 80px rgba(24,22,30,0.08),
+        0 0 60px rgba(10, 107, 70,0.08);
+    }
+    /* ── FAQ accordion ── */
+    .faq-item { border-bottom: 1px solid rgba(24,22,30,0.08); }
+    .faq-trigger {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 1.25rem 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: #18161E; text-align: left;
+      transition: color 0.2s ease;
+      user-select: none;
+    }
+    .faq-trigger:hover { color: #0A6B46; }
+    .faq-trigger.open { color: #0A6B46; }
+    .faq-icon {
+      width: 20px; height: 20px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(24,22,30,0.06);
+      color: rgba(24,22,30,0.5);
+      font-size: 1rem; line-height: 1;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .faq-trigger.open .faq-icon {
+      background: rgba(10, 107, 70,0.15);
+      color: #0A6B46;
+      transform: rotate(45deg);
+    }
+    .faq-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-body-inner {
+      padding: 0.75rem 0 1.5rem;
+      font-size: 0.95rem; line-height: 1.75;
+      color: rgba(24,22,30,0.6);
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(24,22,30,0.08), transparent);
+    }
+
+    /* ── Scroll animations ── */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Section spacing ── */
+    .section { padding: clamp(2.25rem, 4.5vw, 3.75rem) clamp(1.5rem, 5vw, 2rem); }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ── Logo SVG inline ── */
+    .logo-mark rect { fill: #18161E; }
+    .logo-mark text { fill: #F5F1EC; }
+
+    /* ── Checkmark list ── */
+    .check-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.95rem; color: rgba(24,22,30,0.75);
+      padding: 0.4rem 0;
+    }
+    .check-icon {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: rgba(10, 107, 70,0.15);
+      border: 1px solid rgba(10, 107, 70,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .check-icon svg { width: 10px; height: 10px; }
+
+    /* ── Trust strip ── */
+    .trust-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.85rem; font-weight: 500;
+      color: rgba(24,22,30,0.4);
+    }
+    .trust-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(24,22,30,0.2); }
+
+    /* ── Mobile nav ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none !important; }
+      .nav-cta-desktop { display: none !important; }
+      .nav-cta-mobile { display: flex !important; }
+    }
+    .nav-cta-mobile { display: none; }
+
+    /* ── Hamburger ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none; cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .hamburger:hover { background: rgba(24,22,30,0.06); }
+    .hamburger span {
+      display: block; height: 2px;
+      background: #18161E; border-radius: 2px;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.2s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) { .hamburger { display: flex; } }
+
+    /* ── Mobile menu overlay ── */
+    #mobile-menu {
+      position: fixed; inset: 0; z-index: 49;
+      background: #F5F1EC;
+      display: flex; flex-direction: column;
+      padding: 6rem 2rem 2.5rem;
+      gap: 0.25rem;
+      transform: translateY(-100%);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+    #mobile-menu.open {
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .mobile-nav-link {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.75rem; font-weight: 700;
+      color: #18161E; text-decoration: none;
+      letter-spacing: -0.03em;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(24,22,30,0.06);
+      transition: color 0.2s;
+    }
+    .mobile-nav-link:hover { color: #0A6B46; }
+    .mobile-menu-cta {
+      margin-top: 1.5rem;
+    }
+
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════════ */
+
+    /* ── Hero entrance ── */
+    .hero-enter { opacity: 0; }
+    .hero-enter.go {
+      animation: heroRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes heroRise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-enter-right { opacity: 0; }
+    .hero-enter-right.go {
+      animation: heroRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes heroRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .hero-pop { opacity: 0; }
+    .hero-pop.go {
+      animation: heroPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes heroPop {
+      from { opacity: 0; transform: scale(0.5) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ── Ambient / looping ── */
+    .glow-float {
+      animation: glowFloat 9s ease-in-out infinite;
+    }
+    .glow-float-2 {
+      animation: glowFloat 12s ease-in-out infinite reverse;
+    }
+    @keyframes glowFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(25px, -22px) scale(1.06); }
+      66%  { transform: translate(-18px, 14px) scale(0.96); }
+    }
+    .badge-bob {
+      animation: badgeBob 3.5s ease-in-out infinite;
+    }
+    @keyframes badgeBob {
+      0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+      50%       { transform: translateY(-9px) rotate(1deg); }
+    }
+    .dot-beat {
+      animation: dotBeat 2.2s ease-in-out infinite;
+    }
+    @keyframes dotBeat {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.6); opacity: 0.4; }
+    }
+    /* Price card top line — static */
+    .price-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(10, 107, 70, 0.6) 50%, transparent 100%);
+    }
+    /* Floating cursor-like blink on hero */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+    .cursor-blink {
+      display: inline-block;
+      width: 3px; height: 0.85em;
+      background: #0A6B46;
+      margin-left: 4px;
+      vertical-align: text-bottom;
+      animation: blink 1.1s step-end infinite;
+      border-radius: 2px;
+    }
+
+    /* ── Scroll reveals ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.94) translateY(18px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1) translateY(0); }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-24px);
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── Timeline ── */
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 1.375rem;
+      top: 2.75rem;
+      bottom: 2rem;
+      width: 1px;
+      background: linear-gradient(to bottom, #0A6B46 60%, rgba(10,107,70,0.1) 100%);
+    }
+    .timeline-step {
+      display: flex;
+      gap: 2rem;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+    .timeline-step:last-child { padding-bottom: 0; }
+    .timeline-node { flex-shrink: 0; }
+    .timeline-dot {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: #0A6B46;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 4px rgba(10,107,70,0.12);
+    }
+    .timeline-dot-final {
+      background: #18161E;
+      box-shadow: 0 0 0 4px rgba(24,22,30,0.1);
+    }
+    .timeline-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #0A6B46;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-content { padding-top: 0.25rem; }
+    .timeline-content h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #18161E;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-content p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(24,22,30,0.55);
+    }
+
+    /* ── Form input placeholders ── */
+    input::placeholder, textarea::placeholder {
+      color: rgba(24,22,30,0.2);
+    }
+    input, textarea, select {
+      color-scheme: light;
+    }
+
+    /* ── Spinner ── */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Contact grid responsive ── */
+    @media (max-width: 800px) {
+      .contact-grid { grid-template-columns: 1fr !important; }
+      .pricing-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* ── Trust items ── */
+    .trust-item-wrap {
+      transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
+    }
+    .trust-item-wrap:hover { transform: translateY(-4px); }
+
+    /* ── Bento cards ── */
+    .bento-card {
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s ease;
+    }
+    .bento-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(24,22,30,0.1), 0 0 0 1px rgba(10,107,70,0.15);
+    }
+
+    /* ── Price card hover (spring pop) ── */
+    .price-card {
+      transition: transform 0.45s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.45s ease;
+    }
+    .price-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 0 1px rgba(10,107,70,0.15), 0 50px 100px rgba(24,22,30,0.12), 0 0 80px rgba(10,107,70,0.12);
+    }
+
+    @media (max-width: 900px) {
+      .trust-grid-main { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; }
+    }
+    @media (max-width: 560px) {
+      .trust-grid-main { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    }
+    @media (max-width: 768px) {
+      .bento-outer-main { grid-template-columns: 1fr !important; }
+      .bento-outer-main > * { grid-column: span 1 !important; grid-row: span 1 !important; }
+      .bento-outer-main .bento-card { min-height: auto !important; }
+    }
+
+    /* ── Mobiloptimeringer ── */
+    @media (max-width: 640px) {
+      /* Nav: strammere padding på små skærme */
+      #nav { padding: 1rem 1.25rem; }
+
+      /* Hero: trust-prikker skjules når items wrapper */
+      .hero-trust-strip .trust-dot { display: none; }
+      .hero-trust-strip { gap: 0.6rem 1rem; }
+
+      /* Hero CTA: stack knapper og giv dem fuld bredde */
+      .hero-cta-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .hero-cta-row .btn-primary,
+      .hero-cta-row .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* Hero overskrift: fjern manuelle linjeskift på meget små skærme */
+      .hero-heading-br { display: none; }
+
+      /* Section padding: lidt tættere på mobil */
+      .section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+
+      /* Priskortet 'Anbefalet': stand-alone margin på mobil */
+      .price-card { margin-left: 0; margin-right: 0; }
+    }
+
+    @media (max-width: 480px) {
+      /* Endnu strammere nav på mini-skærme */
+      #nav { padding: 0.875rem 1rem; }
+
+      /* Hero trust strip: sæt items i column på meget smalle skærme */
+      .hero-trust-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      /* Formular padding */
+      #contact-form { padding: 1.25rem !important; }
+
+      /* Bento-kort: lidt mindre padding */
+      .bento-card { padding: 1.25rem !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║              NAVIGATION                  ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<nav id="nav">
+  <a href="/" style="display:flex;align-items:center;gap:0.65rem;text-decoration:none;">
+    <!-- Logo mark: </> in white rounded square -->
+    <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:34px;height:34px;flex-shrink:0;border-radius:7px;overflow:hidden;">
+      <rect width="36" height="36" fill="#18161E"/>
+      <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="12" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+    </svg>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.15rem;color:#18161E;letter-spacing:-0.02em;">plainsite</span>
+  </a>
+
+  <div class="nav-links" style="display:flex;align-items:center;gap:2rem;">
+    <a href="#how" class="nav-link">Sådan virker det</a>
+    <a href="#pricing" class="nav-link">Pakker</a>
+    <a href="#kontakt" class="nav-link">Kontakt</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="/om-os" class="nav-link">Om os</a>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <a href="#kontakt" class="btn-primary nav-cta-desktop" style="padding:0.65rem 1.25rem;font-size:0.875rem;">
+      Kom i gang
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="#how" class="mobile-nav-link">Sådan virker det</a>
+  <a href="#pricing" class="mobile-nav-link">Pakker</a>
+  <a href="#kontakt" class="mobile-nav-link">Kontakt</a>
+  <a href="#faq" class="mobile-nav-link">FAQ</a>
+  <a href="/om-os" class="mobile-nav-link">Om os</a>
+  <div class="mobile-menu-cta">
+    <a href="#kontakt" class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem;">Kom i gang</a>
+  </div>
+</div>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║                  HERO                    ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section id="hero">
+  <div class="hero-glow hero-glow-1 glow-float"></div>
+  <div class="hero-glow hero-glow-2 glow-float-2"></div>
+
+  <div class="container" style="padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 2rem) clamp(2.25rem, 4.5vw, 3.75rem); width:100%;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="hero-grid">
+
+      <!-- Left: Copy -->
+      <div style="max-width:560px;">
+        <div class="hero-enter" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 0.9rem;background:rgba(10, 107, 70,0.1);border:1px solid rgba(10, 107, 70,0.25);border-radius:100px;margin-bottom:2rem;">
+          <span class="chip-dot dot-beat"></span>
+          <span class="label" style="color:#0A6B46;font-size:0.7rem;">Fra 299 kr/md.</span>
+        </div>
+
+        <h1 class="heading-xl hero-enter" style="color:#18161E;margin-bottom:1.5rem;">
+          Design og udvikling<br class="hero-heading-br">
+          er gratis —<br class="hero-heading-br">
+          <em style="font-style:italic;color:#0A6B46;">du betaler kun driften.</em>
+        </h1>
+
+        <p class="body-lg hero-enter" style="color:rgba(24,22,30,0.6);margin-bottom:2.5rem;max-width:440px;">
+          Vi designer og bygger din hjemmeside uden opstartsgebyr. Du betaler kun et fast månedligt beløb så længe siden kører.
+        </p>
+
+        <!-- Trust signals -->
+        <div class="hero-enter hero-trust-strip" style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5.5H13L9.25 8.25L10.75 13L7 10.25L3.25 13L4.75 8.25L1 5.5H5.5L7 1Z" fill="#0A6B46"/></svg>
+            Klar på 7 dage
+          </div>
+          <div class="trust-dot"></div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#0A6B46" stroke-width="1.5"/><path d="M5 7L6.5 8.5L9 5.5" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Synlig på Google
+          </div>
+          <div class="trust-dot"></div>
+          <div class="trust-item" style="color:rgba(24,22,30,0.55);font-weight:600;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4Z" stroke="#0A6B46" stroke-width="1.5"/><path d="M5 4V3a2 2 0 0 1 4 0v1" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round"/><path d="M5 7.5h4" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Design og dev gratis
+          </div>
+        </div>
+
+        <div class="hero-enter hero-cta-row" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+          <a href="#kontakt" class="btn-primary btn-primary-lg">
+            Få en gratis vurdering
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#how" class="btn-ghost">
+            Se hvordan det virker
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Browser mockup -->
+      <div style="position:relative;" class="hero-mockup hero-enter-right">
+        <!-- Background accent -->
+        <div style="position:absolute;inset:-2rem;background:radial-gradient(circle at 50% 50%, rgba(10, 107, 70,0.08) 0%, transparent 70%);pointer-events:none;"></div>
+
+        <div class="browser-wrap" style="position:relative;">
+          <div class="browser-bar">
+            <div class="browser-dot" style="background:#FF5F57;"></div>
+            <div class="browser-dot" style="background:#FFBD2E;"></div>
+            <div class="browser-dot" style="background:#28C940;"></div>
+            <div class="browser-url">dinpraksis.dk</div>
+          </div>
+          <!-- Mock website content -->
+          <div style="padding:0;background:#EDE8E2;overflow:hidden;">
+            <!-- Mock hero bar -->
+            <div style="background:#F8F5F1;padding:0.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(24,22,30,0.05);">
+              <div style="width:60px;height:8px;background:rgba(24,22,30,0.15);border-radius:4px;"></div>
+              <div style="display:flex;gap:0.5rem;">
+                <div style="width:32px;height:6px;background:rgba(24,22,30,0.08);border-radius:3px;"></div>
+                <div style="width:32px;height:6px;background:rgba(24,22,30,0.08);border-radius:3px;"></div>
+                <div style="width:40px;height:6px;background:rgba(24,22,30,0.08);border-radius:3px;"></div>
+              </div>
+              <div style="width:50px;height:20px;background:#0A6B46;border-radius:4px;opacity:0.9;"></div>
+            </div>
+            <!-- Mock hero image -->
+            <div style="height:160px;background:#EDE8E0;display:flex;flex-direction:column;justify-content:center;padding:1.5rem;border-bottom:1px solid rgba(24,22,30,0.06);">
+              <div style="width:140px;height:12px;background:rgba(24,22,30,0.12);border-radius:4px;margin-bottom:0.75rem;"></div>
+              <div style="width:200px;height:18px;background:rgba(24,22,30,0.18);border-radius:4px;margin-bottom:0.5rem;"></div>
+              <div style="width:170px;height:18px;background:rgba(24,22,30,0.13);border-radius:4px;margin-bottom:1rem;"></div>
+              <div style="width:90px;height:26px;background:#0A6B46;border-radius:5px;opacity:0.9;"></div>
+            </div>
+            <!-- Mock content rows -->
+            <div style="padding:1rem 1.25rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem;">
+              <div style="background:#FFFFFF;border-radius:6px;padding:0.75rem;border:1px solid rgba(24,22,30,0.05);">
+                <div style="width:24px;height:24px;background:rgba(10, 107, 70,0.25);border-radius:4px;margin-bottom:0.5rem;"></div>
+                <div style="width:100%;height:6px;background:rgba(24,22,30,0.12);border-radius:3px;margin-bottom:0.35rem;"></div>
+                <div style="width:70%;height:5px;background:rgba(24,22,30,0.07);border-radius:3px;"></div>
+              </div>
+              <div style="background:#FFFFFF;border-radius:6px;padding:0.75rem;border:1px solid rgba(24,22,30,0.05);">
+                <div style="width:24px;height:24px;background:rgba(10, 107, 70,0.25);border-radius:4px;margin-bottom:0.5rem;"></div>
+                <div style="width:100%;height:6px;background:rgba(24,22,30,0.12);border-radius:3px;margin-bottom:0.35rem;"></div>
+                <div style="width:80%;height:5px;background:rgba(24,22,30,0.07);border-radius:3px;"></div>
+              </div>
+              <div style="background:#FFFFFF;border-radius:6px;padding:0.75rem;border:1px solid rgba(24,22,30,0.05);">
+                <div style="width:24px;height:24px;background:rgba(10, 107, 70,0.25);border-radius:4px;margin-bottom:0.5rem;"></div>
+                <div style="width:100%;height:6px;background:rgba(24,22,30,0.12);border-radius:3px;margin-bottom:0.35rem;"></div>
+                <div style="width:60%;height:5px;background:rgba(24,22,30,0.07);border-radius:3px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating badge -->
+        <a href="#pricing" class="badge-bob" style="
+          position:absolute; bottom:-1.5rem; right:-1rem;
+          background:#0A6B46; color:#fff;
+          padding:0.65rem 1rem;
+          border-radius:8px;
+          font-family:'Bricolage Grotesque',sans-serif;
+          font-weight:800; font-size:1.1rem;
+          box-shadow:0 8px 24px rgba(10, 107, 70,0.3);
+          white-space:nowrap;
+          text-decoration:none; cursor:pointer;
+        ">
+          Fra 299 kr<span style="font-size:0.7rem;font-weight:500;opacity:0.85;">/md.</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║            TRUST / WHY US               ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section style="background:#EDE8E2;padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3.5rem;" class="trust-grid-main reveal">
+
+      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L7 8.5v9c0 6 4.4 11.6 9 12.5 4.6-.9 9-6.5 9-12.5v-9L16 4Z" stroke="#0A6B46" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 16l3 3 5-5" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 class="heading-md" style="color:#18161E;">Etisk &amp; GDPR-sikker</h3>
+        <p style="font-size:0.9rem;line-height:1.8;color:rgba(24,22,30,0.6);">Alle løsninger overholder GDPR-krav, så dine klienters fortrolige data altid er beskyttet.</p>
+      </div>
+
+      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="13" r="6" stroke="#0A6B46" stroke-width="1.4"/><path d="M16 21c-5.5 0-9 2.5-9 4.5" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round"/><path d="M20 10.5c1 .8 2 2.2 2 3.5" stroke="#0A6B46" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/></svg>
+        <h3 class="heading-md" style="color:#18161E;">Vi forstår din praksis</h3>
+        <p style="font-size:0.9rem;line-height:1.8;color:rgba(24,22,30,0.6);">Ingen teknisk jargon. Kun fokus på at skabe den rette atmosfære for de klienter, du vil nå.</p>
+      </div>
+
+      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 6C10.5 6 6 10.5 6 16s4.5 10 10 10 10-4.5 10-10S21.5 6 16 6Z" stroke="#0A6B46" stroke-width="1.4"/><path d="M16 11v5l3.5 3.5" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 class="heading-md" style="color:#18161E;">Ro i sindet</h3>
+        <p style="font-size:0.9rem;line-height:1.8;color:rgba(24,22,30,0.6);">Vi tager os af alt det tekniske, så du kan fokusere på det, du er bedst til: At hjælpe andre.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║            HOW IT WORKS                  ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section id="how" class="section" style="background:#F5F1EC;position:relative;overflow:hidden;scroll-margin-top:80px;">
+  <!-- Background radial -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(10, 107, 70,0.04) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="container" style="position:relative;">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Processen</p>
+      <h2 class="heading-lg" style="color:#18161E;">Fra idé til online<br>på under en uge</h2>
+    </div>
+
+    <div class="timeline">
+
+      <!-- Step 1 -->
+      <div class="timeline-step reveal">
+        <div class="timeline-node">
+          <div class="timeline-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4C2 3.45 2.45 3 3 3H13C13.55 3 14 3.45 14 4V10C14 10.55 13.55 11 13 11H9L6 14V11H3C2.45 11 2 10.55 2 10V4Z" fill="white"/></svg>
+          </div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-tag">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#0A6B46"/></svg>
+            Dag 1 · ca. 30 min
+          </div>
+          <h3>Vi taler sammen</h3>
+          <p>En kort snak om din praksis — farver, sider, hvad du vil fremhæve. Ingen teknisk viden krævet.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="timeline-step reveal">
+        <div class="timeline-node">
+          <div class="timeline-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="white" stroke-width="1.5"/><path d="M5 4V3.5A2.5 2.5 0 0 1 11 3.5V4" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8v2M7 9h2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-tag">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#0A6B46"/></svg>
+            Dag 2–6 · vi bygger
+          </div>
+          <h3>Vi designer og bygger din side</h3>
+          <p>Du sender logo og tekster, eller vi hjælper med dem. Vi sender et udkast og justerer til du er tilfreds.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="timeline-step reveal">
+        <div class="timeline-node">
+          <div class="timeline-dot timeline-dot-final">
+            <span style="width:8px;height:8px;border-radius:50%;background:#0A6B46;display:block;animation:dotBeat 2.2s ease-in-out infinite;"></span>
+          </div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-tag" style="color:#18161E;">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#0A6B46"/></svg>
+            Dag 7 · du er online
+          </div>
+          <h3>Din hjemmeside er live</h3>
+          <p>Din side er live. Klienter kan finde dig på Google og kontakte dig direkte.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║              BENTO GRID                  ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section style="background:#F5F1EC;padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <h2 class="heading-lg" style="color:#18161E;">Hvordan vi hjælper dig</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:1rem;" class="bento-outer-main reveal-scale">
+
+      <!-- Large card: 2×2 -->
+      <div class="bento-card" style="grid-column:span 2;grid-row:span 2;background:#EDE8E2;justify-content:flex-end;min-height:300px;gap:1rem;">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:0.5rem;"><path d="M8 28c2-2 4-2.5 6-1.5l10-14a3 3 0 1 1 4 4L14 26.5c1 2 .5 4-1.5 6-1 1-3 1.5-4.5 1-.5-1.5 0-3.5 0-5.5Z" stroke="#0A6B46" stroke-width="1.4" stroke-linejoin="round"/><path d="M26 10l2-4" stroke="#0A6B46" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/></svg>
+        <h4 class="heading-md" style="color:#18161E;">Skræddersyet design</h4>
+        <p style="font-size:0.88rem;line-height:1.75;color:rgba(24,22,30,0.6);">Hver hjemmeside er unik og afspejler din specifikke tilgang, målgruppe og personlighed.</p>
+      </div>
+
+      <!-- Wide card: 2×1 -->
+      <div class="bento-card" style="grid-column:span 2;background:rgba(10,107,70,0.07);flex-direction:row;align-items:center;gap:1.5rem;">
+        <div style="padding:0.875rem;background:rgba(10,107,70,0.12);border-radius:0.75rem;flex-shrink:0;">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 20a10 10 0 1 1 20 0" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round"/><path d="M16 20l4-7" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round"/><circle cx="16" cy="20" r="1.5" fill="#0A6B46"/></svg>
+        </div>
+        <div>
+          <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;color:#18161E;margin-bottom:0.25rem;">Lynhurtig hosting</h4>
+          <p style="font-size:0.82rem;line-height:1.65;color:rgba(24,22,30,0.55);">Dine klienter skal ikke vente. Vi sikrer hurtig og stabil drift.</p>
+        </div>
+      </div>
+
+      <!-- Bottom right: 2 small cards -->
+      <div class="bento-card" style="background:#F5F1EC;border:1px solid rgba(24,22,30,0.07);align-items:center;text-align:center;gap:0.5rem;">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 8h16M6 13h10M6 18h7" stroke="#0A6B46" stroke-width="1.4" stroke-linecap="round"/><path d="M19 17l3 3-2 2-3-3v-2h2Z" stroke="#0A6B46" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.95rem;color:#18161E;">Blog inkluderet</h4>
+        <p style="font-size:0.78rem;color:rgba(24,22,30,0.55);line-height:1.55;">Skriv faglige artikler, der øger din synlighed</p>
+      </div>
+
+      <div class="bento-card" style="background:rgba(10,107,70,0.1);border:1px solid rgba(10,107,70,0.2);align-items:center;text-align:center;gap:0.5rem;">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3L5 7v8c0 5.25 3.85 10.15 9 11.35C19.15 25.15 23 20.25 23 15V7L14 3Z" stroke="#0A6B46" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 14l3 3 5-5" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:0.95rem;color:#18161E;">GDPR-klar</h4>
+        <p style="font-size:0.78rem;color:rgba(24,22,30,0.55);line-height:1.55;">Fuldt lovlig opsætning fra dag ét</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║         PRICING + CONTACT               ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section id="pricing" style="background:#F5F1EC;padding:1.5rem clamp(1.5rem,5vw,2rem) clamp(2.25rem,4.5vw,3.75rem);position:relative;overflow:hidden;scroll-margin-top:80px;">
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(10, 107, 70,0.06) 0%,transparent 65%);pointer-events:none;"></div>
+
+  <div class="container" style="position:relative;">
+
+    <!-- Section header -->
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Vælg din pakke</p>
+      <h2 class="heading-lg" style="color:#18161E;margin-bottom:0.75rem;">Simpelt. Gennemsigtigt.</h2>
+      <p style="font-size:0.95rem;color:rgba(24,22,30,0.5);max-width:480px;margin:0 auto;line-height:1.6;">Du betaler ikke for at få siden bygget. Kun for at den kører.</p>
+    </div>
+
+    <!-- Three pricing cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(1rem,2.5vw,1.5rem);align-items:stretch;margin-bottom:2rem;" class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="price-card reveal-scale" style="padding:clamp(1rem,2vw,1.5rem);display:flex;flex-direction:column;">
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.7rem;background:rgba(10, 107, 70,0.1);border:1px solid rgba(10, 107, 70,0.2);border-radius:100px;margin-bottom:0.75rem;align-self:flex-start;">
+          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(10, 107, 70,0.8);">Starter</span>
+        </div>
+
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;font-weight:800;color:#18161E;letter-spacing:-0.03em;margin-bottom:0.75rem;">Online</h3>
+
+        <div style="display:flex;align-items:flex-end;gap:0.25rem;margin-bottom:0.25rem;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;color:#18161E;line-height:1;letter-spacing:-0.04em;">299</span>
+          <div style="padding-bottom:0.25rem;">
+            <span style="font-size:1rem;color:rgba(24,22,30,0.6);font-weight:500;">kr</span>
+            <span style="font-size:0.85rem;color:rgba(24,22,30,0.4);font-weight:400;">/md.</span>
+          </div>
+        </div>
+        <p style="font-size:0.85rem;color:rgba(24,22,30,0.55);margin-bottom:1rem;line-height:1.5;">Design og opsætning gratis. Du betaler kun driften.</p>
+
+        <div class="divider" style="margin-bottom:1rem;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.25rem;">
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>1–3 sider</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Standard design</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Basis SEO</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Kontaktformular</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting og drift inkluderet</div>
+        </div>
+
+        <a href="#kontakt" class="btn-ghost" style="text-align:center;justify-content:center;margin-top:auto;">Kom i gang</a>
+      </div>
+
+      <!-- Plus (fremhævet — anbefalet) -->
+      <div class="price-card reveal-scale" style="padding:clamp(1rem,2vw,1.5rem);display:flex;flex-direction:column;background:linear-gradient(135deg,#FFFFFF 0%,#F0F8F4 100%);border:2px solid rgba(10,107,70,0.45);box-shadow:0 0 0 1px rgba(10,107,70,0.1),0 40px 80px rgba(10,107,70,0.12),0 0 60px rgba(10,107,70,0.1);animation-delay:75ms;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(10,107,70,0.7),transparent);border-radius:16px 16px 0 0;"></div>
+
+        <!-- Anbefalet badge -->
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.8rem;background:rgba(10,107,70,0.12);border:1px solid rgba(10,107,70,0.3);border-radius:100px;margin-bottom:0.75rem;align-self:flex-start;">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.12 3.73H9L6.69 5.52L7.56 8.5L5 6.83L2.44 8.5L3.31 5.52L1 3.73H3.88L5 1Z" fill="#0A6B46"/></svg>
+          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#0A6B46;">Anbefalet</span>
+        </div>
+
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;font-weight:800;color:#18161E;letter-spacing:-0.03em;margin-bottom:0.75rem;">Synlig</h3>
+
+        <div style="display:flex;align-items:flex-end;gap:0.25rem;margin-bottom:0.25rem;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;color:#18161E;line-height:1;letter-spacing:-0.04em;">399</span>
+          <div style="padding-bottom:0.25rem;">
+            <span style="font-size:1rem;color:rgba(24,22,30,0.6);font-weight:500;">kr</span>
+            <span style="font-size:0.85rem;color:rgba(24,22,30,0.4);font-weight:400;">/md.</span>
+          </div>
+        </div>
+        <p style="font-size:0.85rem;color:rgba(24,22,30,0.55);margin-bottom:1rem;line-height:1.5;">Tilpasset design og lokal SEO — stadig uden opstartsgebyr.</p>
+
+        <div class="divider" style="margin-bottom:1rem;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.25rem;">
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 5 sider</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Tilpasset design</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Lokal SEO</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Kontaktformular</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Google Business-opsætning</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting og drift inkluderet</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#0A6B46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Ændringer inkluderet</div>
+        </div>
+
+        <a href="#kontakt" class="btn-primary" style="text-align:center;justify-content:center;margin-top:auto;">Kom i gang</a>
+      </div>
+
+      <!-- Vækst (premium) -->
+      <div class="price-card reveal-scale" style="background:linear-gradient(145deg,#0A6B46 0%,#065237 100%);border:1px solid rgba(10,107,70,0.5);border-radius:16px;position:relative;overflow:hidden;padding:clamp(1rem,2vw,1.5rem);display:flex;flex-direction:column;box-shadow:0 0 0 1px rgba(10,107,70,0.2),0 40px 80px rgba(10,107,70,0.2),0 0 60px rgba(10,107,70,0.15);animation-delay:150ms;">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);"></div>
+
+        <!-- Premium badge -->
+        <div style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.35rem 0.8rem;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.25);border-radius:100px;margin-bottom:0.75rem;align-self:flex-start;">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1L6.12 3.73H9L6.69 5.52L7.56 8.5L5 6.83L2.44 8.5L3.31 5.52L1 3.73H3.88L5 1Z" fill="white"/></svg>
+          <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.95);">Premium</span>
+        </div>
+
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:-0.03em;margin-bottom:0.75rem;">Vækst</h3>
+
+        <div style="display:flex;align-items:flex-end;gap:0.25rem;margin-bottom:0.25rem;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;color:#fff;line-height:1;letter-spacing:-0.04em;">599</span>
+          <div style="padding-bottom:0.25rem;">
+            <span style="font-size:1rem;color:rgba(255,255,255,0.7);font-weight:500;">kr</span>
+            <span style="font-size:0.85rem;color:rgba(255,255,255,0.5);font-weight:400;">/md.</span>
+          </div>
+        </div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.65);margin-bottom:1rem;line-height:1.5;">Alt inkluderet — design, SEO og drift. Ingen opstartsgebyr.</p>
+
+        <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);margin-bottom:1rem;"></div>
+
+        <div style="display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.25rem;">
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 10 sider</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Premium tilpasset design</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Avanceret lokal SEO + optimerede tekster</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Blog / indholdssektion</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Google Analytics + Search Console</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Kvartalsvis SEO-rapport</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Ændringer inden for 24 timer</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Løbende optimering</div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.85);padding:0.4rem 0;"><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;"><svg viewBox="0 0 10 10" fill="none" width="10" height="10"><path d="M2 5L4.2 7.2L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting og drift inkluderet</div>
+        </div>
+
+        <a href="#kontakt" class="btn-primary" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;text-align:center;justify-content:center;margin-top:auto;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">Kom i gang</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║              KONTAKT                     ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section style="background:#E8E3DA;padding:clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,2rem);">
+  <div class="container">
+
+    <div id="kontakt" class="reveal" style="text-align:center;margin-bottom:2.5rem;scroll-margin-top:130px;">
+      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">Skriv til os</p>
+      <h2 class="heading-lg" style="color:#18161E;margin-bottom:1rem;">Få din side bygget — gratis.</h2>
+      <p style="font-size:1rem;color:rgba(24,22,30,0.55);max-width:460px;margin:0 auto;line-height:1.7;">Skriv til os. Vi vender tilbage inden for 24 timer.</p>
+    </div>
+
+    <!-- Contact form -->
+    <div class="reveal" style="max-width:580px;margin:0 auto;animation-delay:100ms;">
+      <form
+        action="https://plainsite-forms.tobias-gutkin.workers.dev"
+        method="POST"
+        id="contact-form"
+        style="background:linear-gradient(135deg,#FFFFFF 0%,#F8F5F1 100%);border:1px solid rgba(10, 107, 70,0.2);border-radius:16px;padding:clamp(1.25rem,2.5vw,1.75rem);position:relative;overflow:hidden;display:flex;flex-direction:column;"
+      >
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(10, 107, 70,0.4),transparent);"></div>
+
+        <input type="hidden" name="_token" value="plainsite-main">
+
+        <div id="form-fields" style="display:flex;flex-direction:column;gap:0.85rem;">
+
+          <!-- Name -->
+          <div>
+            <label for="input-name" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Navn</label>
+            <input id="input-name" type="text" name="name" placeholder="Dit fulde navn" required
+              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
+              onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
+              onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="input-email" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Email</label>
+            <input id="input-email" type="email" name="email" placeholder="din@email.dk" required
+              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
+              onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
+              onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'">
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="input-message" style="display:block;font-size:0.8rem;font-weight:600;letter-spacing:0;color:rgba(24,22,30,0.65);margin-bottom:0.5rem;">Besked <span style="font-weight:400;text-transform:none;letter-spacing:0;">(valgfrit)</span></label>
+            <textarea id="input-message" name="message" placeholder="Fortæl os hvad du laver, og hvad du har brug for..." rows="3"
+              style="width:100%;background:rgba(24,22,30,0.04);border:1px solid rgba(24,22,30,0.1);border-radius:8px;padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:#18161E;outline:none;resize:none;min-height:80px;transition:border-color 0.2s ease,box-shadow 0.2s ease;"
+              onfocus="this.style.borderColor='rgba(10, 107, 70,0.5)';this.style.boxShadow='0 0 0 3px rgba(10, 107, 70,0.1)'"
+              onblur="this.style.borderColor='rgba(24,22,30,0.1)';this.style.boxShadow='none'"></textarea>
+          </div>
+
+          <!-- Inline error message (hidden by default) -->
+          <div id="form-error" style="display:none;padding:0.75rem 1rem;background:rgba(180,40,40,0.07);border:1px solid rgba(180,40,40,0.2);border-radius:8px;font-size:0.875rem;color:#8B2020;">
+            Noget gik galt. Prøv igen eller skriv direkte til <a href="mailto:kontakt@plainsite.dk" style="color:#8B2020;font-weight:600;">kontakt@plainsite.dk</a>
+            </div>
+
+            <!-- Pre-submit reassurance -->
+            <p style="font-size:0.8rem;color:rgba(24,22,30,0.55);text-align:center;margin-bottom:-0.25rem;">Helt uforpligtende · Vi svarer inden for 24 timer</p>
+            <!-- Privacy note -->
+            <p style="font-size:0.75rem;color:rgba(24,22,30,0.35);text-align:center;margin-top:0.5rem;margin-bottom:-0.5rem;">Ved indsendelse accepterer du vores <a href="/privacy" style="color:rgba(24,22,30,0.45);text-decoration:underline;text-underline-offset:2px;">privatlivspolitik</a></p>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              id="form-submit-btn"
+              class="btn-primary"
+              style="width:100%;justify-content:center;padding:0.95rem;font-size:1rem;"
+            >
+              Send besked
+              <svg id="form-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg id="form-spinner" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none;animation:spin 0.8s linear infinite;">
+                <path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2Z" stroke="rgba(24,22,30,0.3)" stroke-width="2"/>
+                <path d="M8 2a6 6 0 0 1 6 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+          </div>
+
+          <!-- Success message (hidden by default) -->
+          <div id="form-success" style="display:none;text-align:center;padding:2rem 0;">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(10, 107, 70,0.15);border:1px solid rgba(10, 107, 70,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11L9 16L18 7" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.2rem;color:#18161E;margin-bottom:0.5rem;letter-spacing:-0.02em;">Besked sendt!</h3>
+            <p style="font-size:0.9rem;color:rgba(24,22,30,0.5);">Vi sender dig en mail inden for 24 timer med en konkret plan.</p>
+          </div>
+        </form>
+
+        <!-- Email alternative -->
+        <p style="text-align:center;margin-top:1rem;font-size:0.85rem;color:rgba(24,22,30,0.4);">
+          Foretrækker du mail?
+          <a href="mailto:kontakt@plainsite.dk" style="color:#0A6B46;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(10,107,70,0.3);padding-bottom:1px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(10,107,70,0.8)'" onmouseout="this.style.borderColor='rgba(10,107,70,0.3)'">Skriv til kontakt@plainsite.dk</a>
+        </p>
+      </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║                  FAQ                     ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<section id="faq" class="section" style="background:#EDE8E2;scroll-margin-top:80px;">
+  <div class="container" style="max-width:700px;">
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <p class="label" style="color:rgba(10, 107, 70,0.8);margin-bottom:0.75rem;">FAQ</p>
+      <h2 class="heading-lg" style="color:#18161E;">Ofte stillede spørgsmål</h2>
+    </div>
+
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvad koster det at komme i gang?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Ingenting. Design og udvikling er gratis — du betaler ikke en krone før din side er live og du har godkendt den. Derefter betaler du kun det månedlige abonnement. Ingen opstartsgebyr, ingen skjulte gebyrer.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvad er der inkluderet i pakkerne?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Alle pakker inkluderer design, hosting, domæne, SSL og mobiloptimering. Starter (299 kr/md.): 1–3 sider, basis SEO. Plus (399 kr/md.): op til 5 sider, lokal SEO, Google Business. Vækst (599 kr/md.): op til 10 sider, avanceret SEO, blog, Analytics og kvartalsvise rapporter.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvem hoster min hjemmeside?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Vi gør. Hosting og drift er inkluderet i dit abonnement.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Kan jeg opsige mit abonnement?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Ja. Løbende måned + 30 dages varsel. Ingen oprettelsesgebyr.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvad sker der, hvis jeg vil ændre noget på siden?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Små rettelser (tekst, billeder, åbningstider) er inkluderet — typisk klaret inden for 1–2 hverdage. Større ændringer aftales separat.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Hvad har I brug for fra mig for at komme i gang?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        En kort snak om din praksis. Derefter guider vi dig til at sende logo, billeder og tekster — eller vi hjælper med at lave dem.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal-left">
+      <button class="faq-trigger" aria-expanded="false">
+        Kan jeg se et udkast, inden siden går live?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-body"><div class="faq-body-inner">
+        Ja, altid. Vi justerer til du er fuldt tilfreds. Uden ekstraomkostninger.
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║                FOOTER                    ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<footer style="background:#E5E0D8;border-top:1px solid rgba(24,22,30,0.06);padding:3rem clamp(1.5rem,5vw,2rem) 2rem;">
+  <div class="container">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:3rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+
+      <!-- Brand -->
+      <div>
+        <a href="/" style="display:flex;align-items:center;gap:0.65rem;text-decoration:none;margin-bottom:1rem;">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;flex-shrink:0;border-radius:7px;overflow:hidden;">
+            <rect width="36" height="36" fill="#18161E"/>
+            <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="12" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+          </svg>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;color:#18161E;letter-spacing:-0.02em;">plainsite</span>
+        </a>
+        <p style="font-size:0.85rem;color:rgba(24,22,30,0.35);max-width:220px;line-height:1.6;">Professionelle hjemmesider til terapeuter og behandlere.</p>
+        <p style="font-size:0.8rem;color:rgba(24,22,30,0.25);margin-top:0.4rem;">CVR 46384040</p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(24,22,30,0.35);margin-bottom:1rem;">Kontakt</p>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;">
+          <a href="mailto:kontakt@plainsite.dk" style="font-size:0.875rem;color:rgba(24,22,30,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#0A6B46'" onmouseout="this.style.color='rgba(24,22,30,0.5)'">kontakt@plainsite.dk</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider" style="margin-bottom:1.5rem;"></div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <p style="font-size:0.8rem;color:rgba(24,22,30,0.25);">© 2026 plainsite. Alle rettigheder forbeholdes.</p>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="/privacy" style="font-size:0.8rem;color:rgba(24,22,30,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(24,22,30,0.5)'" onmouseout="this.style.color='rgba(24,22,30,0.25)'">Privatlivspolitik</a>
+        <a href="/vilkaar" style="font-size:0.8rem;color:rgba(24,22,30,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(24,22,30,0.5)'" onmouseout="this.style.color='rgba(24,22,30,0.25)'">Vilkår</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║               JAVASCRIPT                 ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+<script>
+  // ── Anchor links: scroll without changing URL ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── Nav: frosted on scroll ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  // ── Hero entrance: staggered fade-up ──
+  const heroEls = document.querySelectorAll('.hero-enter');
+  heroEls.forEach((el, i) => {
+    el.style.animationDelay = (i * 110) + 'ms';
+    el.classList.add('go');
+  });
+  // Mockup slides in from right, slightly later
+  const mockupEl = document.querySelector('.hero-enter-right');
+  if (mockupEl) {
+    mockupEl.style.animationDelay = '180ms';
+    mockupEl.classList.add('go');
+  }
+
+  // ── Scroll-reveal with staggered children (bidirectional) ──
+  function makeObserver(selector, stagger = false) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        if (entry.isIntersecting) {
+          if (stagger) {
+            const siblings = Array.from(el.parentElement.querySelectorAll('.' + selector.slice(1)));
+            const idx = siblings.indexOf(el);
+            el.style.transitionDelay = (idx * 55) + 'ms';
+          }
+          el.classList.add('visible');
+        } else {
+          el.style.transitionDelay = '0ms';
+          el.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll(selector).forEach(el => obs.observe(el));
+  }
+
+  makeObserver('.reveal', true);
+  makeObserver('.reveal-scale', false);
+  makeObserver('.reveal-left', true);
+
+
+  // ── Contact form: AJAX submit ──
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('form-submit-btn');
+      const arrow = document.getElementById('form-arrow');
+      const spinner = document.getElementById('form-spinner');
+      const success = document.getElementById('form-success');
+
+      // Loading state
+      btn.disabled = true;
+      btn.style.opacity = '0.75';
+      arrow.style.display = 'none';
+      spinner.style.display = 'inline-block';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        const data = await res.json();
+        if (data.ok) {
+          document.getElementById('form-fields').style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        arrow.style.display = 'inline-block';
+        spinner.style.display = 'none';
+        const errEl = document.getElementById('form-error');
+        if (errEl) errEl.style.display = 'block';
+      }
+    });
+  }
+
+  // ── Hamburger menu ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-trigger').forEach(t => {
+        t.classList.remove('open');
+        t.setAttribute('aria-expanded', 'false');
+        t.nextElementSibling.style.maxHeight = '0';
+      });
+      // Open clicked if it was closed
+      if (!isOpen) {
+        trigger.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+        const body = trigger.nextElementSibling;
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ── Hero responsive grid ──
+  function updateHeroGrid() {
+    const grid = document.querySelector('.hero-grid');
+    const mockup = document.querySelector('.hero-mockup');
+    if (!grid || !mockup) return;
+    if (window.innerWidth < 900) {
+      grid.style.gridTemplateColumns = '1fr';
+      mockup.style.display = 'none';
+    } else {
+      grid.style.gridTemplateColumns = '1fr 1fr';
+      mockup.style.display = 'block';
+    }
+  }
+  updateHeroGrid();
+  window.addEventListener('resize', updateHeroGrid);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /testform
+
+Sitemap: https://plainsite.dk/sitemap.xml

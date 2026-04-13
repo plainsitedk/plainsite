@@ -1,1 +1,18 @@
+# macOS
 .DS_Store
+Icon?
+.AppleDouble
+.LSOverride
+
+# Cloudflare / Wrangler
+.wrangler/
+**/.wrangler/
+
+# Temporary files
+temporary screenshots/
+
+# Claude metadata
+.claude/
+
+# Node
+node_modules/

@@ -1,0 +1,7 @@
+name = "plainsite-blog"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "BLOG_POSTS"
+id = "af76b49318a34d1888def32a5d276e95"

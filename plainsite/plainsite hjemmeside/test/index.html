@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hjemmeside til terapeuter og behandlere | plainsite</title>
+  <meta name="description" content="Få en professionel hjemmeside som terapeut, psykolog eller behandler. Vi designer, bygger og driver den for dig. Klar på 7 hverdage. Fra 299 kr/md.">
+  <link rel="canonical" href="https://plainsite.dk/">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface:      '#faf9f5',
+            'surface-low': '#f4f4ef',
+            'surface-mid': '#eeeee9',
+            'surface-high': '#e8e9e3',
+            'surface-highest': '#e1e3dd',
+            brand:        '#465748',
+            'brand-light': '#6b8570',
+            'brand-dim':  '#c6dac6',
+            ink:          '#30332f',
+            'ink-muted':  '#5d605b',
+            'ink-faint':  '#797c76',
+            secondary:    '#506268',
+            'secondary-bg': '#d2e6ed',
+            tertiary:     '#566435',
+            'tertiary-bg': '#ecfec0',
+            outline:      '#b0b3ad',
+          },
+          fontFamily: {
+            serif:  ['"Noto Serif"', 'serif'],
+            sans:   ['Manrope', 'sans-serif'],
+          },
+          borderRadius: {
+            '2xl': '1rem',
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #faf9f5;
+      color: #30332f;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .ms-filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+    /* ── Typography ── */
+    .serif { font-family: 'Noto Serif', serif; }
+    .heading-xl {
+      font-family: 'Noto Serif', serif;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+    .heading-lg {
+      font-family: 'Noto Serif', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      font-weight: 700;
+    }
+    .heading-md {
+      font-family: 'Noto Serif', serif;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      line-height: 1.25;
+      font-weight: 700;
+    }
+    .label-caps {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ── Nav ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(250, 249, 245, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(176, 179, 173, 0.3);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 1.1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-link {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #506268;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover, .nav-link.active { color: #465748; }
+    .nav-link.active { border-bottom: 1.5px solid #465748; padding-bottom: 2px; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #465748; color: #eafeea;
+      padding: 0.875rem 1.75rem; border-radius: 0.75rem;
+      font-family: 'Manrope', sans-serif; font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #374840; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #e1e3dd; color: #30332f;
+      padding: 0.875rem 1.75rem; border-radius: 0.75rem;
+      font-family: 'Manrope', sans-serif; font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-ghost:hover { background: #d9dbd5; }
+
+    /* ── FAQ ── */
+    .faq-item { border-bottom: 1px solid rgba(176,179,173,0.4); }
+    .faq-trigger {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 1.25rem 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-family: 'Noto Serif', serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: #30332f; text-align: left;
+      transition: color 0.2s;
+      user-select: none;
+    }
+    .faq-trigger:hover { color: #465748; }
+    .faq-trigger.open { color: #465748; }
+    .faq-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(176,179,173,0.3);
+      color: #5d605b;
+      font-size: 1rem; line-height: 1;
+      transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .faq-trigger.open .faq-icon {
+      background: rgba(70,87,72,0.15);
+      color: #465748;
+      transform: rotate(45deg);
+    }
+    .faq-body { overflow: hidden; max-height: 0; transition: max-height 0.35s cubic-bezier(0.16,1,0.3,1); }
+    .faq-body-inner {
+      padding: 0.5rem 0 1.5rem;
+      font-size: 0.95rem; line-height: 1.8;
+      color: #5d605b;
+    }
+
+    /* ── Price card ── */
+    .price-card {
+      background: #ffffff;
+      border: 1px solid rgba(176,179,173,0.5);
+      border-radius: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(70,87,72,0.5) 50%, transparent);
+    }
+    .price-card.featured {
+      background: #465748;
+      border-color: #465748;
+    }
+    .price-card.featured::before {
+      background: linear-gradient(90deg, transparent, rgba(234,254,234,0.4) 50%, transparent);
+    }
+
+    /* ── Check item ── */
+    .check-item {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.9rem; color: #5d605b;
+      padding: 0.3rem 0;
+    }
+    .check-icon {
+      width: 17px; height: 17px;
+      border-radius: 50%;
+      background: rgba(70,87,72,0.15);
+      border: 1px solid rgba(70,87,72,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .check-icon svg { width: 9px; height: 9px; }
+    .price-card.featured .check-item { color: rgba(234,254,234,0.75); }
+    .price-card.featured .check-icon {
+      background: rgba(234,254,234,0.15);
+      border-color: rgba(234,254,234,0.4);
+    }
+    .price-card.featured .check-icon svg path { stroke: #eafeea; }
+
+    /* ══ ANIMATION SYSTEM ══ */
+
+    /* Base state — always visible for no-JS / reduced-motion */
+    .reveal, .reveal-scale, .hero-enter { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: no-preference) {
+
+      /* ── Scroll reveals ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        filter: blur(4px);
+        transition:
+          opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1; transform: translateY(0); filter: blur(0);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.92) translateY(28px);
+        filter: blur(5px);
+        transition:
+          opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.85s cubic-bezier(0.34, 1.2, 0.64, 1),
+          filter 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal-scale.visible { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+
+      /* Stagger siblings inside revealed grids */
+      .reveal-scale.visible [data-stagger="1"] { transition-delay: 0ms; }
+      .reveal-scale.visible [data-stagger="2"] { transition-delay: 90ms; }
+      .reveal-scale.visible [data-stagger="3"] { transition-delay: 180ms; }
+
+      /* ── Hero entrance (triggered by JS after 300ms) ── */
+      .hero-enter {
+        opacity: 0;
+        transform: translateY(32px);
+        filter: blur(6px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .hero-enter.go { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+      .hero-enter-right {
+        opacity: 0;
+        transform: translateX(48px) translateY(16px);
+        filter: blur(6px);
+        transition:
+          opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .hero-enter-right.go { opacity: 1; transform: translateX(0) translateY(0); filter: blur(0); }
+
+      /* ── Nav entrance ── */
+      #nav {
+        opacity: 0;
+        transform: translateY(-12px);
+        transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+      }
+      #nav.go { opacity: 1; transform: translateY(0); }
+
+    } /* end prefers-reduced-motion */
+
+    /* ── Nav link hover — sliding underline ── */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0;
+      width: 100%; height: 1.5px;
+      background: #465748;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+    .nav-link.active { border-bottom: none; padding-bottom: 0; }
+
+    /* ── Pricing card hover ── */
+    .price-card {
+      transition:
+        transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
+        box-shadow 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
+      cursor: default;
+    }
+    .price-card:hover {
+      transform: translateY(-10px);
+      box-shadow:
+        0 24px 56px rgba(48,51,47,0.13),
+        0 8px 20px rgba(48,51,47,0.08),
+        0 0 0 1px rgba(70,87,72,0.15);
+    }
+    .price-card.featured:hover {
+      transform: translateY(-14px);
+      box-shadow:
+        0 32px 64px rgba(48,51,47,0.22),
+        0 12px 28px rgba(70,87,72,0.2),
+        0 0 0 1px rgba(70,87,72,0.4);
+    }
+
+    /* ── Bento card hover ── */
+    .bento-card {
+      transition:
+        transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1),
+        box-shadow 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+    .bento-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(48,51,47,0.1), 0 2px 8px rgba(48,51,47,0.06);
+    }
+
+    /* ── Trust item hover ── */
+    .trust-item-wrap {
+      transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+    .trust-item-wrap:hover { transform: translateY(-4px); }
+
+    /* ── FAQ row hover ── */
+    .faq-item { transition: background 0.25s; border-radius: 8px; padding: 0 0.5rem; margin: 0 -0.5rem; }
+    .faq-item:hover { background: rgba(70,87,72,0.04); }
+    .faq-body {
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ── Button active press ── */
+    .btn-primary:active { transform: scale(0.97) translateY(1px); }
+    .btn-ghost:active   { transform: scale(0.97) translateY(1px); }
+
+    /* ── Badge bob — more expressive ── */
+    @keyframes badgeBob {
+      0%,100% { transform: translateY(0) rotate(-1.5deg); }
+      40%      { transform: translateY(-11px) rotate(1.5deg) scale(1.04); }
+      65%      { transform: translateY(-6px) rotate(-0.5deg) scale(1.01); }
+    }
+
+    /* ── Dot beat ── */
+    @keyframes dotBeat {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.7); opacity: 0.35; }
+    }
+
+    /* ── Section ── */
+    .section { padding: clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem); }
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    /* ── Hero image ── */
+    .hero-image-wrap {
+      border-radius: 1.5rem 1.5rem 0 0;
+      overflow: hidden;
+      box-shadow: 0 32px 64px rgba(48,51,47,0.13), 0 8px 20px rgba(48,51,47,0.07);
+    }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; display: flex; flex-direction: column; max-width: 620px; margin: 0 auto; }
+    .timeline::before {
+      content: ''; position: absolute; left: 1.25rem; top: 2.5rem; bottom: 2rem; width: 1px;
+      background: linear-gradient(to bottom, #465748 60%, rgba(70,87,72,0.1) 100%);
+    }
+    .timeline-step { display: flex; gap: 2rem; padding-bottom: 2.75rem; position: relative; }
+    .timeline-step:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%;
+      background: #465748; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; z-index: 1;
+      box-shadow: 0 0 0 4px rgba(70,87,72,0.12);
+    }
+    .timeline-dot-final { background: #30332f; box-shadow: 0 0 0 4px rgba(48,51,47,0.1); }
+    .timeline-tag {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #465748; margin-bottom: 0.4rem;
+    }
+    .timeline-content h3 {
+      font-family: 'Noto Serif', serif; font-size: 1.2rem; font-weight: 700;
+      color: #30332f; margin-bottom: 0.35rem; letter-spacing: -0.01em;
+    }
+    .timeline-content p { font-size: 0.9rem; line-height: 1.75; color: #5d605b; }
+
+    /* ── Form ── */
+    input::placeholder, textarea::placeholder { color: rgba(48,51,47,0.25); }
+    .form-input {
+      width: 100%;
+      background: rgba(48,51,47,0.04);
+      border: 1px solid rgba(176,179,173,0.6);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1rem;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.95rem; color: #30332f;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: rgba(70,87,72,0.6);
+      box-shadow: 0 0 0 3px rgba(70,87,72,0.1);
+    }
+
+    /* ── Hamburger ── */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; background: none; border: none; cursor: pointer;
+      padding: 4px; border-radius: 6px; transition: background 0.2s;
+    }
+    .hamburger:hover { background: rgba(48,51,47,0.06); }
+    .hamburger span {
+      display: block; height: 1.5px; background: #30332f; border-radius: 2px;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.2s;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links, .nav-cta-desktop { display: none !important; }
+    }
+
+    #mobile-menu {
+      position: fixed; inset: 0; z-index: 49;
+      background: #faf9f5;
+      display: flex; flex-direction: column;
+      padding: 6rem 2rem 2.5rem; gap: 0.25rem;
+      transform: translateY(-100%);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+    }
+    #mobile-menu.open { transform: translateY(0); pointer-events: all; }
+    .mobile-nav-link {
+      font-family: 'Noto Serif', serif; font-size: 1.6rem; font-weight: 700;
+      color: #30332f; text-decoration: none; letter-spacing: -0.02em;
+      padding: 0.5rem 0; border-bottom: 1px solid rgba(176,179,173,0.3);
+      transition: color 0.2s;
+    }
+    .mobile-nav-link:hover { color: #465748; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes dotBeat {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.5); opacity: 0.4; }
+    }
+    .dot-beat { animation: dotBeat 2.2s ease-in-out infinite; }
+
+    /* ── Bento grid items ── */
+    .bento-card {
+      border-radius: 1.5rem;
+      padding: 2rem;
+      display: flex; flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" style="display:flex;align-items:center;gap:0.6rem;text-decoration:none;">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px;flex-shrink:0;border-radius:7px;overflow:hidden;">
+        <rect width="36" height="36" fill="#30332f"/>
+        <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="#faf9f5" font-size="12" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+      </svg>
+      <span style="font-family:'Noto Serif',serif;font-weight:700;font-size:1.1rem;color:#30332f;letter-spacing:-0.01em;">plainsite</span>
+    </a>
+
+    <div class="nav-links" style="display:flex;align-items:center;gap:2.5rem;">
+      <a href="#how" class="nav-link">Sådan virker det</a>
+      <a href="#pricing" class="nav-link">Pakker</a>
+      <a href="#kontakt" class="nav-link">Kontakt</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="/om-os" class="nav-link">Om os</a>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <a href="#kontakt" class="btn-primary nav-cta-desktop" style="padding:0.6rem 1.25rem;font-size:0.82rem;">
+        Kom i gang
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div id="mobile-menu" role="dialog" aria-label="Navigation">
+  <a href="#how" class="mobile-nav-link">Sådan virker det</a>
+  <a href="#pricing" class="mobile-nav-link">Pakker</a>
+  <a href="#kontakt" class="mobile-nav-link">Kontakt</a>
+  <a href="#faq" class="mobile-nav-link">FAQ</a>
+  <a href="/om-os" class="mobile-nav-link">Om os</a>
+  <div style="margin-top:1.5rem;">
+    <a href="#kontakt" class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:1rem;">Kom i gang</a>
+  </div>
+</div>
+
+
+<!-- ══ HERO ══ -->
+<section style="min-height:100vh;display:flex;align-items:center;padding-top:6rem;padding-bottom:4rem;background:#faf9f5;overflow:hidden;">
+  <div class="container" style="padding:0 clamp(1.5rem,5vw,2rem);width:100%;">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;" class="hero-grid">
+
+      <!-- Left: Copy -->
+      <div style="max-width:580px;">
+
+        <div class="hero-enter" data-delay="300" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.35rem 0.9rem;background:rgba(70,87,72,0.1);border:1px solid rgba(70,87,72,0.2);border-radius:100px;margin-bottom:2rem;">
+          <span class="dot-beat" style="width:6px;height:6px;border-radius:50%;background:#465748;display:inline-block;"></span>
+          <span class="label-caps" style="color:#465748;font-size:0.68rem;">Fra 299 kr/md.</span>
+        </div>
+
+        <h1 class="heading-xl hero-enter" data-delay="380" style="color:#30332f;margin-bottom:1.5rem;">
+          Design og udvikling<br>
+          er gratis —<br>
+          <em style="font-style:italic;font-weight:400;color:#465748;">du betaler kun driften.</em>
+        </h1>
+
+        <p class="hero-enter" data-delay="480" style="font-size:1.05rem;line-height:1.8;color:#5d605b;margin-bottom:2.5rem;max-width:460px;">
+          Vi designer og bygger din hjemmeside uden opstartsomkostninger. Du betaler et fast månedligt beløb – og bliver synlig for de klienter, der søger din hjælp.
+        </p>
+
+        <!-- Trust signals -->
+        <div class="hero-enter" data-delay="560" style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+          <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:500;color:#797c76;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5.5H13L9.25 8.25L10.75 13L7 10.25L3.25 13L4.75 8.25L1 5.5H5.5L7 1Z" fill="#465748"/></svg>
+            Klar på 7 dage
+          </div>
+          <div style="width:3px;height:3px;border-radius:50%;background:rgba(176,179,173,0.8);"></div>
+          <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:500;color:#797c76;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#465748" stroke-width="1.5"/><path d="M5 7L6.5 8.5L9 5.5" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Synlig på Google
+          </div>
+          <div style="width:3px;height:3px;border-radius:50%;background:rgba(176,179,173,0.8);"></div>
+          <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.82rem;font-weight:500;color:#797c76;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4Z" stroke="#465748" stroke-width="1.5"/><path d="M5 4V3a2 2 0 0 1 4 0v1" stroke="#465748" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Design og dev inkluderet
+          </div>
+        </div>
+
+        <div class="hero-enter" data-delay="630" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+          <a href="#kontakt" class="btn-primary">
+            Få en gratis vurdering
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#how" class="btn-ghost">
+            Se hvordan det virker
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Browser mockup -->
+      <div class="hero-enter-right" data-delay="420" style="position:relative;">
+        <div class="hero-image-wrap" style="aspect-ratio:16/10;background:#e8e9e3;display:flex;flex-direction:column;overflow:visible;">
+
+          <!-- Browser chrome -->
+          <div style="background:#fff;border-radius:2rem 2rem 0 0;overflow:hidden;flex:1;display:flex;flex-direction:column;box-shadow:0 40px 80px rgba(48,51,47,0.15),0 8px 24px rgba(48,51,47,0.08);">
+            <!-- Title bar -->
+            <div style="background:#e8e9e3;padding:0.7rem 1rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid rgba(48,51,47,0.06);flex-shrink:0;">
+              <div style="display:flex;gap:5px;">
+                <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+                <div style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;"></div>
+                <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,0.7);border-radius:5px;padding:0.25rem 0.75rem;font-size:0.65rem;color:#797c76;font-family:'Manrope',sans-serif;text-align:center;border:1px solid rgba(176,179,173,0.4);">dinpraksis.dk</div>
+            </div>
+
+            <!-- Mock website content -->
+            <div style="flex:1;background:#faf9f5;overflow:hidden;display:flex;flex-direction:column;">
+
+              <!-- Mock nav -->
+              <div style="background:#faf9f5;border-bottom:1px solid rgba(176,179,173,0.2);padding:0.6rem 1.1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+                <div style="display:flex;align-items:center;gap:0.4rem;">
+                  <div style="width:18px;height:18px;border-radius:4px;background:#30332f;display:flex;align-items:center;justify-content:center;">
+                    <div style="width:8px;height:1.5px;background:#faf9f5;border-radius:1px;"></div>
+                  </div>
+                  <div style="width:55px;height:6px;background:#30332f;border-radius:3px;opacity:0.7;"></div>
+                </div>
+                <div style="display:flex;gap:0.6rem;">
+                  <div style="width:28px;height:4px;background:#5d605b;border-radius:2px;opacity:0.4;"></div>
+                  <div style="width:28px;height:4px;background:#5d605b;border-radius:2px;opacity:0.4;"></div>
+                  <div style="width:28px;height:4px;background:#5d605b;border-radius:2px;opacity:0.4;"></div>
+                </div>
+                <div style="width:54px;height:20px;background:#465748;border-radius:5px;opacity:0.9;"></div>
+              </div>
+
+              <!-- Mock hero -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:0;">
+                <!-- Left copy -->
+                <div style="padding:1.1rem;display:flex;flex-direction:column;justify-content:center;gap:0.6rem;">
+                  <div style="display:flex;align-items:center;gap:0.35rem;margin-bottom:0.2rem;">
+                    <div style="width:5px;height:5px;border-radius:50%;background:#465748;"></div>
+                    <div style="width:50px;height:4px;background:#465748;border-radius:2px;opacity:0.6;"></div>
+                  </div>
+                  <div style="width:90%;height:11px;background:#30332f;border-radius:3px;opacity:0.75;"></div>
+                  <div style="width:75%;height:11px;background:#30332f;border-radius:3px;opacity:0.55;"></div>
+                  <div style="width:82%;height:11px;background:#30332f;border-radius:3px;opacity:0.35;font-style:italic;"></div>
+                  <div style="width:60%;height:6px;background:#5d605b;border-radius:2px;opacity:0.35;margin-top:0.25rem;"></div>
+                  <div style="width:65%;height:6px;background:#5d605b;border-radius:2px;opacity:0.25;"></div>
+                  <div style="display:flex;gap:0.4rem;margin-top:0.35rem;">
+                    <div style="width:64px;height:20px;background:#465748;border-radius:5px;opacity:0.9;"></div>
+                    <div style="width:56px;height:20px;background:#e1e3dd;border-radius:5px;"></div>
+                  </div>
+                </div>
+                <!-- Right: Illustrative therapy room -->
+                <div style="position:relative;overflow:hidden;">
+                  <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+                    <defs>
+                      <linearGradient id="wallGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#eaf0e8"/>
+                        <stop offset="100%" stop-color="#d8e2d5"/>
+                      </linearGradient>
+                      <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#cdbfa0"/>
+                        <stop offset="100%" stop-color="#b8a888"/>
+                      </linearGradient>
+                      <linearGradient id="chairGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#d8c8ac"/>
+                        <stop offset="100%" stop-color="#bfaa88"/>
+                      </linearGradient>
+                      <radialGradient id="lightGrad" cx="78%" cy="5%" r="55%">
+                        <stop offset="0%" stop-color="#fffef0" stop-opacity="0.55"/>
+                        <stop offset="100%" stop-color="transparent"/>
+                      </radialGradient>
+                      <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+                        <stop offset="55%" stop-color="transparent"/>
+                        <stop offset="100%" stop-color="rgba(40,44,38,0.2)"/>
+                      </radialGradient>
+                    </defs>
+
+                    <!-- Wall -->
+                    <rect width="320" height="138" fill="url(#wallGrad)"/>
+                    <!-- Floor -->
+                    <rect y="133" width="320" height="67" fill="url(#floorGrad)"/>
+                    <!-- Floor/wall shadow join -->
+                    <rect y="131" width="320" height="6" fill="rgba(40,32,20,0.1)"/>
+
+                    <!-- Window right side -->
+                    <rect x="222" y="14" width="72" height="96" rx="2" fill="#dce8e0" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+                    <rect x="224" y="16" width="68" height="92" fill="rgba(205,228,218,0.65)"/>
+                    <line x1="258" y1="16" x2="258" y2="108" stroke="rgba(255,255,255,0.75)" stroke-width="1.2"/>
+                    <line x1="224" y1="62" x2="292" y2="62" stroke="rgba(255,255,255,0.75)" stroke-width="1.2"/>
+                    <!-- Curtain left -->
+                    <path d="M222 14 C216 30 218 60 222 110" stroke="#c8d8c0" stroke-width="6" fill="none" stroke-linecap="round"/>
+                    <!-- Light beam from window -->
+                    <polygon points="222,14 294,14 320,90 320,138 222,110" fill="url(#lightGrad)" opacity="0.45"/>
+
+                    <!-- Side table right -->
+                    <rect x="230" y="114" width="52" height="5" rx="1.5" fill="#8a7560"/>
+                    <rect x="240" y="119" width="4" height="18" rx="1.5" fill="#7a6550"/>
+                    <rect x="268" y="119" width="4" height="18" rx="1.5" fill="#7a6550"/>
+
+                    <!-- Plant on table -->
+                    <rect x="248" y="106" width="14" height="10" rx="2" fill="#7a6a52"/>
+                    <ellipse cx="255" cy="104" rx="9" ry="5" fill="#6b5a44"/>
+                    <path d="M255 104 C248 90 240 84 244 78 C248 73 255 80 255 92Z" fill="#4a7a4e" opacity="0.9"/>
+                    <path d="M255 102 C262 88 270 83 268 77 C266 72 258 79 255 92Z" fill="#3d6b41" opacity="0.85"/>
+                    <path d="M255 100 C255 86 252 76 255 72 C258 76 257 88 255 100Z" fill="#568a5a" opacity="0.8"/>
+
+                    <!-- Armchair — centered left -->
+                    <!-- Chair back -->
+                    <rect x="55" y="72" width="110" height="52" rx="10" fill="#cbb896"/>
+                    <!-- Chair body/seat -->
+                    <rect x="48" y="108" width="124" height="50" rx="10" fill="url(#chairGrad)"/>
+                    <!-- Seat highlight -->
+                    <rect x="54" y="110" width="110" height="14" rx="5" fill="rgba(255,255,255,0.18)"/>
+                    <!-- Arm left -->
+                    <rect x="38" y="98" width="22" height="38" rx="8" fill="#b8a888"/>
+                    <!-- Arm right -->
+                    <rect x="160" y="98" width="22" height="38" rx="8" fill="#b8a888"/>
+                    <!-- Legs -->
+                    <rect x="62" y="156" width="10" height="16" rx="3" fill="#8a7560"/>
+                    <rect x="148" y="156" width="10" height="16" rx="3" fill="#8a7560"/>
+                    <!-- Cushion on seat -->
+                    <rect x="70" y="108" width="80" height="20" rx="6" fill="#d4c4a8" opacity="0.55"/>
+                    <!-- Back pillow -->
+                    <rect x="80" y="78" width="60" height="38" rx="8" fill="#cfc0a0" opacity="0.5"/>
+
+                    <!-- Rug -->
+                    <ellipse cx="110" cy="172" rx="75" ry="14" fill="rgba(130,110,86,0.2)"/>
+
+                    <!-- Small framed art on wall -->
+                    <rect x="30" y="22" width="38" height="50" rx="2" fill="rgba(255,255,255,0.5)" stroke="rgba(180,170,155,0.6)" stroke-width="1"/>
+                    <rect x="34" y="26" width="30" height="42" rx="1" fill="rgba(198,218,198,0.5)"/>
+                    <ellipse cx="49" cy="47" rx="9" ry="9" fill="rgba(70,87,72,0.25)"/>
+
+                    <!-- Ambient + vignette -->
+                    <rect width="320" height="200" fill="url(#lightGrad)" opacity="0.25"/>
+                    <rect width="320" height="200" fill="url(#vig)"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Mock features strip -->
+              <div style="background:#f4f4ef;border-top:1px solid rgba(176,179,173,0.2);padding:0.65rem 1rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;flex-shrink:0;">
+                <div style="text-align:center;">
+                  <div style="width:16px;height:16px;background:rgba(70,87,72,0.2);border-radius:3px;margin:0 auto 0.3rem;"></div>
+                  <div style="width:70%;height:4px;background:#5d605b;border-radius:2px;opacity:0.35;margin:0 auto 0.2rem;"></div>
+                  <div style="width:55%;height:3px;background:#5d605b;border-radius:2px;opacity:0.2;margin:0 auto;"></div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="width:16px;height:16px;background:rgba(70,87,72,0.2);border-radius:3px;margin:0 auto 0.3rem;"></div>
+                  <div style="width:75%;height:4px;background:#5d605b;border-radius:2px;opacity:0.35;margin:0 auto 0.2rem;"></div>
+                  <div style="width:60%;height:3px;background:#5d605b;border-radius:2px;opacity:0.2;margin:0 auto;"></div>
+                </div>
+                <div style="text-align:center;">
+                  <div style="width:16px;height:16px;background:rgba(70,87,72,0.2);border-radius:3px;margin:0 auto 0.3rem;"></div>
+                  <div style="width:65%;height:4px;background:#5d605b;border-radius:2px;opacity:0.35;margin:0 auto 0.2rem;"></div>
+                  <div style="width:50%;height:3px;background:#5d605b;border-radius:2px;opacity:0.2;margin:0 auto;"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Decorative blur -->
+        <div style="position:absolute;top:-3rem;right:-3rem;width:200px;height:200px;background:radial-gradient(circle,rgba(70,87,72,0.15) 0%,transparent 70%);border-radius:50%;pointer-events:none;filter:blur(24px);z-index:-1;"></div>
+        <!-- Floating price badge -->
+        <a href="#pricing" style="
+          position:absolute; bottom:-1.5rem; right:-1rem;
+          background:#465748; color:#eafeea;
+          padding:0.75rem 1.1rem;
+          border-radius:0.875rem;
+          font-family:'Noto Serif',serif;
+          font-weight:700; font-size:1.2rem;
+          box-shadow:0 8px 24px rgba(70,87,72,0.3);
+          white-space:nowrap; text-decoration:none;
+          animation:badgeBob 3.5s ease-in-out infinite;
+        ">
+          Fra 299 kr<span style="font-size:0.75rem;font-weight:400;opacity:0.8;">/md.</span>
+        </a>
+        <style>
+          @keyframes badgeBob {
+            0%,100% { transform:translateY(0) rotate(-1deg); }
+            50% { transform:translateY(-8px) rotate(1deg); }
+          }
+        </style>
+      </div>
+
+    </div>
+
+    <!-- Mobile hero grid fix -->
+    <style>
+      @media (max-width: 900px) {
+        .hero-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+        .hero-image-wrap { transform: none !important; }
+      }
+    </style>
+
+  </div>
+</section>
+
+
+<!-- ══ TRUST FEATURES ══ -->
+<section style="background:#f4f4ef;padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3.5rem;" class="trust-grid reveal">
+
+      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4L7 8.5v9c0 6 4.4 11.6 9 12.5 4.6-.9 9-6.5 9-12.5v-9L16 4Z" stroke="#465748" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 16l3 3 5-5" stroke="#465748" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 class="heading-md" style="color:#30332f;">Etisk &amp; GDPR-sikker</h3>
+        <p style="font-size:0.9rem;line-height:1.8;color:#5d605b;">Alle løsninger overholder GDPR-krav, så dine klienters fortrolige data altid er beskyttet.</p>
+      </div>
+
+      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="13" r="6" stroke="#465748" stroke-width="1.4"/><path d="M16 21c-5.5 0-9 2.5-9 4.5" stroke="#465748" stroke-width="1.4" stroke-linecap="round"/><path d="M20 10.5c1 .8 2 2.2 2 3.5" stroke="#465748" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/></svg>
+        <h3 class="heading-md" style="color:#30332f;">Vi forstår din praksis</h3>
+        <p style="font-size:0.9rem;line-height:1.8;color:#5d605b;">Ingen teknisk jargon. Kun fokus på at skabe den rette atmosfære for de klienter, du vil nå.</p>
+      </div>
+
+      <div class="trust-item-wrap" style="display:flex;flex-direction:column;gap:1rem;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 6C10.5 6 6 10.5 6 16s4.5 10 10 10 10-4.5 10-10S21.5 6 16 6Z" stroke="#465748" stroke-width="1.4"/><path d="M16 11v5l3.5 3.5" stroke="#465748" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 class="heading-md" style="color:#30332f;">Ro i sindet</h3>
+        <p style="font-size:0.9rem;line-height:1.8;color:#5d605b;">Vi tager os af alt det tekniske, så du kan fokusere på det, du er bedst til: At hjælpe andre.</p>
+      </div>
+
+    </div>
+    <style>
+      @media (max-width:768px) { .trust-grid { grid-template-columns:1fr !important; gap:2.5rem !important; } }
+    </style>
+  </div>
+</section>
+
+
+<!-- ══ QUOTE CARD ══ -->
+<section style="padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);">
+  <div class="container">
+    <div style="background:#ffffff;border-radius:2rem;padding:clamp(2rem,4vw,3.5rem);display:flex;flex-direction:column;align-items:center;gap:3rem;box-shadow:0 2px 24px rgba(48,51,47,0.06),0 0 0 1px rgba(176,179,173,0.25);" class="reveal">
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;width:100%;" class="quote-grid">
+
+        <div style="border-radius:1.5rem;overflow:hidden;box-shadow:0 16px 48px rgba(48,51,47,0.12);aspect-ratio:4/3;background:#c8d8c4;">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+            <defs>
+              <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+                <stop offset="0%" stop-color="#d4e8d4"/>
+                <stop offset="100%" stop-color="#8aad8e"/>
+              </radialGradient>
+              <radialGradient id="waterGrad" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#b8d4ba" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#6e9874" stop-opacity="0.2"/>
+              </radialGradient>
+              <filter id="blur2"><feGaussianBlur stdDeviation="2"/></filter>
+              <filter id="blur1"><feGaussianBlur stdDeviation="0.8"/></filter>
+            </defs>
+
+            <!-- Background -->
+            <rect width="400" height="300" fill="url(#bgGrad)"/>
+
+            <!-- Stone basin rim -->
+            <ellipse cx="200" cy="175" rx="145" ry="100" fill="#6b5f4e" opacity="0.7"/>
+            <ellipse cx="200" cy="170" rx="138" ry="94" fill="#7a7060" opacity="0.6"/>
+            <!-- Water surface -->
+            <ellipse cx="200" cy="165" rx="128" ry="86" fill="#9fbfa2" opacity="0.85"/>
+            <ellipse cx="200" cy="165" rx="125" ry="83" fill="#b4d0b8" opacity="0.7"/>
+            <!-- Water sheen -->
+            <ellipse cx="185" cy="148" rx="60" ry="18" fill="#d4e8d4" opacity="0.35" filter="url(#blur2)"/>
+
+            <!-- Ripple circles -->
+            <ellipse cx="200" cy="165" rx="18" ry="11" fill="none" stroke="#8aad8e" stroke-width="1.2" opacity="0.8"/>
+            <ellipse cx="200" cy="165" rx="34" ry="21" fill="none" stroke="#7a9e7e" stroke-width="1" opacity="0.65"/>
+            <ellipse cx="200" cy="165" rx="52" ry="33" fill="none" stroke="#6e9474" stroke-width="0.9" opacity="0.5"/>
+            <ellipse cx="200" cy="165" rx="72" ry="46" fill="none" stroke="#637d68" stroke-width="0.8" opacity="0.38"/>
+            <ellipse cx="200" cy="165" rx="95" ry="61" fill="none" stroke="#5a7060" stroke-width="0.7" opacity="0.25"/>
+            <ellipse cx="200" cy="165" rx="115" ry="74" fill="none" stroke="#506458" stroke-width="0.6" opacity="0.15"/>
+
+            <!-- Floating leaf -->
+            <g transform="translate(200,152) rotate(-18)">
+              <path d="M0,-11 C8,-8 12,0 8,8 C4,14 -4,14 -8,8 C-12,0 -8,-8 0,-11 Z" fill="#4a7a4e" opacity="0.9"/>
+              <!-- Leaf vein -->
+              <line x1="0" y1="-9" x2="0" y2="7" stroke="#3a6040" stroke-width="0.8" opacity="0.6"/>
+              <line x1="0" y1="-3" x2="5" y2="2" stroke="#3a6040" stroke-width="0.5" opacity="0.4"/>
+              <line x1="0" y1="-3" x2="-5" y2="2" stroke="#3a6040" stroke-width="0.5" opacity="0.4"/>
+              <line x1="0" y1="2" x2="4" y2="6" stroke="#3a6040" stroke-width="0.4" opacity="0.3"/>
+              <line x1="0" y1="2" x2="-4" y2="6" stroke="#3a6040" stroke-width="0.4" opacity="0.3"/>
+            </g>
+            <!-- Leaf shadow on water -->
+            <ellipse cx="201" cy="164" rx="11" ry="5" fill="#30332f" opacity="0.12" filter="url(#blur1)"/>
+
+            <!-- Ambient light spots on water -->
+            <ellipse cx="165" cy="145" rx="8" ry="4" fill="#ffffff" opacity="0.18" filter="url(#blur2)"/>
+            <ellipse cx="235" cy="158" rx="5" ry="3" fill="#ffffff" opacity="0.12" filter="url(#blur2)"/>
+            <ellipse cx="172" cy="182" rx="6" ry="3" fill="#ffffff" opacity="0.1" filter="url(#blur2)"/>
+
+            <!-- Stone texture patches -->
+            <ellipse cx="80" cy="200" rx="28" ry="18" fill="#5c5248" opacity="0.4"/>
+            <ellipse cx="320" cy="210" rx="22" ry="14" fill="#5c5248" opacity="0.35"/>
+            <ellipse cx="200" cy="248" rx="35" ry="16" fill="#5c5248" opacity="0.3"/>
+
+            <!-- Soft vignette -->
+            <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+              <stop offset="60%" stop-color="transparent"/>
+              <stop offset="100%" stop-color="#3a4a3c" stop-opacity="0.35"/>
+            </radialGradient>
+            <rect width="400" height="300" fill="url(#vignette)"/>
+          </svg>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <h2 class="heading-md serif" style="font-style:italic;font-weight:400;color:#465748;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.5;">
+            "Din hjemmeside skal føles som at træde ind i dit konsultationsrum — trygt, professionelt og varmt."
+          </h2>
+          <p style="font-size:0.9rem;line-height:1.8;color:#5d605b;font-style:italic;">
+            Vi skaber hjemmesider, der formidler den ro og tillid, dine klienter søger — allerede inden de har mødt dig.
+          </p>
+          <div style="padding-top:0.5rem;">
+            <p style="font-weight:700;color:#30332f;font-size:0.9rem;">plainsite teamet</p>
+            <p class="label-caps" style="color:#797c76;font-size:0.65rem;margin-top:0.2rem;">Webdesignere for terapeuter</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <style>
+      @media (max-width:768px) { .quote-grid { grid-template-columns:1fr !important; } }
+    </style>
+  </div>
+</section>
+
+
+<!-- ══ HOW IT WORKS ══ -->
+<section id="how" style="background:#f4f4ef;padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);scroll-margin-top:80px;">
+  <div class="container" style="position:relative;">
+
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <p class="label-caps" style="color:#465748;margin-bottom:0.75rem;">Processen</p>
+      <h2 class="heading-lg" style="color:#30332f;">Fra idé til online<br>på under en uge</h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-step reveal">
+        <div style="flex-shrink:0;">
+          <div class="timeline-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4C2 3.45 2.45 3 3 3H13C13.55 3 14 3.45 14 4V10C14 10.55 13.55 11 13 11H9L6 14V11H3C2.45 11 2 10.55 2 10V4Z" fill="white"/></svg>
+          </div>
+        </div>
+        <div class="timeline-content" style="padding-top:0.25rem;">
+          <div class="timeline-tag">
+            <svg width="7" height="7" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#465748"/></svg>
+            Dag 1 · ca. 30 min
+          </div>
+          <h3>Vi taler sammen</h3>
+          <p>En kort snak om din praksis — farver, sider, hvad du vil fremhæve. Ingen teknisk viden krævet.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step reveal" style="transition-delay:0.1s;">
+        <div style="flex-shrink:0;">
+          <div class="timeline-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="white" stroke-width="1.5"/><path d="M5 4V3.5A2.5 2.5 0 0 1 11 3.5V4" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8v2M7 9h2" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="timeline-content" style="padding-top:0.25rem;">
+          <div class="timeline-tag">
+            <svg width="7" height="7" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#465748"/></svg>
+            Dag 2–6 · vi bygger
+          </div>
+          <h3>Vi designer og bygger din side</h3>
+          <p>Du sender logo og tekster, eller vi hjælper med dem. Vi sender et udkast og justerer til du er tilfreds.</p>
+        </div>
+      </div>
+
+      <div class="timeline-step reveal" style="transition-delay:0.2s;">
+        <div style="flex-shrink:0;">
+          <div class="timeline-dot timeline-dot-final">
+            <span style="width:8px;height:8px;border-radius:50%;background:#465748;display:block;animation:dotBeat 2.2s ease-in-out infinite;"></span>
+          </div>
+        </div>
+        <div class="timeline-content" style="padding-top:0.25rem;">
+          <div class="timeline-tag" style="color:#30332f;">
+            <svg width="7" height="7" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#465748"/></svg>
+            Dag 7 · du er online
+          </div>
+          <h3>Din hjemmeside er live</h3>
+          <p>Din side er live og klar. Klienter kan finde dig på Google og kontakte dig direkte.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ BENTO: HVAD VI TILBYDER ══ -->
+<section style="padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <h2 class="heading-lg" style="color:#30332f;">Hvordan vi hjælper dig</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:1rem;" class="bento-outer reveal-scale">
+
+      <!-- Large card: left 2×2 -->
+      <div class="bento-card" style="grid-column:span 2;grid-row:span 2;background:#e8e9e3;justify-content:flex-end;min-height:300px;gap:1rem;">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin-bottom:0.5rem;"><path d="M8 28c2-2 4-2.5 6-1.5l10-14a3 3 0 1 1 4 4L14 26.5c1 2 .5 4-1.5 6-1 1-3 1.5-4.5 1-.5-1.5 0-3.5 0-5.5Z" stroke="#465748" stroke-width="1.4" stroke-linejoin="round"/><path d="M26 10l2-4" stroke="#465748" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/></svg>
+        <h4 class="heading-md" style="color:#30332f;">Skræddersyet design</h4>
+        <p style="font-size:0.88rem;line-height:1.75;color:#5d605b;">Hver hjemmeside er unik og afspejler din specifikke tilgang, målgruppe og personlighed.</p>
+      </div>
+
+      <!-- Wide card: right top 2×1 -->
+      <div class="bento-card" style="grid-column:span 2;background:#d2e6ed;flex-direction:row;align-items:center;gap:1.5rem;">
+        <div style="padding:0.875rem;background:rgba(255,255,255,0.5);border-radius:0.75rem;flex-shrink:0;">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M6 20a10 10 0 1 1 20 0" stroke="#465748" stroke-width="1.4" stroke-linecap="round"/><path d="M16 20l4-7" stroke="#465748" stroke-width="1.4" stroke-linecap="round"/><circle cx="16" cy="20" r="1.5" fill="#465748"/></svg>
+        </div>
+        <div>
+          <h4 style="font-family:'Noto Serif',serif;font-weight:700;font-size:1.05rem;color:#30332f;margin-bottom:0.25rem;">Lynhurtig hosting</h4>
+          <p style="font-size:0.82rem;line-height:1.65;color:#506268;">Dine klienter skal ikke vente. Vi sikrer hurtig og stabil drift.</p>
+        </div>
+      </div>
+
+      <!-- Right bottom: 2 small cards -->
+      <div class="bento-card" style="background:#f4f4ef;align-items:center;text-align:center;gap:0.5rem;">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 8h16M6 13h10M6 18h7" stroke="#465748" stroke-width="1.4" stroke-linecap="round"/><path d="M19 17l3 3-2 2-3-3v-2h2Z" stroke="#465748" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        <h4 style="font-family:'Noto Serif',serif;font-weight:700;font-size:0.95rem;color:#30332f;">Blog inkluderet</h4>
+        <p style="font-size:0.78rem;color:#5d605b;line-height:1.55;">Skriv faglige artikler, der øger din synlighed</p>
+      </div>
+
+      <div class="bento-card" style="background:#d4e8d4;align-items:center;text-align:center;gap:0.5rem;">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3L5 7v8c0 5.25 3.85 10.15 9 11.35C19.15 25.15 23 20.25 23 15V7L14 3Z" stroke="#465748" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 14l3 3 5-5" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h4 style="font-family:'Noto Serif',serif;font-weight:700;font-size:0.95rem;color:#30332f;">GDPR-klar</h4>
+        <p style="font-size:0.78rem;color:#5d605b;line-height:1.55;">Fuldt lovlig opsætning fra dag ét</p>
+      </div>
+
+    </div>
+
+    <style>
+      @media (max-width:768px) {
+        .bento-outer { grid-template-columns:1fr !important; }
+        .bento-outer > * { grid-column:span 1 !important; grid-row:span 1 !important; }
+      }
+    </style>
+  </div>
+</section>
+
+
+<!-- ══ PRICING ══ -->
+<section id="pricing" style="background:#f4f4ef;padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);scroll-margin-top:80px;">
+  <div class="container">
+
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <p class="label-caps" style="color:#465748;margin-bottom:0.75rem;">Vælg din pakke</p>
+      <h2 class="heading-lg" style="color:#30332f;margin-bottom:0.75rem;">Simpelt. Gennemsigtigt.</h2>
+      <p style="font-size:0.9rem;color:#5d605b;max-width:420px;margin:0 auto;line-height:1.7;">Du betaler ikke for at få siden bygget. Kun for at den kører.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;align-items:stretch;" class="pricing-grid reveal-scale">
+
+      <!-- Starter -->
+      <div class="price-card" data-stagger="1" style="padding:1.75rem;display:flex;flex-direction:column;">
+        <div style="display:inline-flex;align-items:center;padding:0.3rem 0.75rem;background:rgba(70,87,72,0.1);border-radius:100px;margin-bottom:1rem;align-self:flex-start;">
+          <span class="label-caps" style="color:#465748;font-size:0.63rem;">Starter</span>
+        </div>
+        <h3 style="font-family:'Noto Serif',serif;font-size:1.35rem;font-weight:700;color:#30332f;margin-bottom:0.75rem;">Online</h3>
+        <div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.4rem;">
+          <span style="font-family:'Noto Serif',serif;font-size:2.75rem;font-weight:700;color:#30332f;line-height:1;letter-spacing:-0.03em;">299</span>
+          <div style="padding-bottom:0.3rem;">
+            <span style="font-size:1rem;color:#5d605b;">kr</span>
+            <span style="font-size:0.82rem;color:#797c76;">/md.</span>
+          </div>
+        </div>
+        <p style="font-size:0.83rem;color:#797c76;margin-bottom:1.25rem;line-height:1.6;">Design og opsætning gratis. Du betaler kun driften.</p>
+        <div style="height:1px;background:rgba(176,179,173,0.4);margin-bottom:1.25rem;"></div>
+        <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:1.5rem;flex:1;">
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>1–3 sider</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Basis SEO</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>SSL &amp; mobiloptimering</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Kontaktformular</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Domæne inkluderet</div>
+        </div>
+        <a href="#kontakt" class="btn-ghost" style="justify-content:center;">Vælg Online</a>
+      </div>
+
+      <!-- Plus (featured) -->
+      <div class="price-card featured" data-stagger="2" style="padding:1.75rem;display:flex;flex-direction:column;">
+        <div style="display:inline-flex;align-items:center;padding:0.3rem 0.75rem;background:rgba(234,254,234,0.15);border:1px solid rgba(234,254,234,0.25);border-radius:100px;margin-bottom:1rem;align-self:flex-start;">
+          <span class="label-caps" style="color:rgba(234,254,234,0.8);font-size:0.63rem;">Populær</span>
+        </div>
+        <h3 style="font-family:'Noto Serif',serif;font-size:1.35rem;font-weight:700;color:#eafeea;margin-bottom:0.75rem;">Synlig</h3>
+        <div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.4rem;">
+          <span style="font-family:'Noto Serif',serif;font-size:2.75rem;font-weight:700;color:#eafeea;line-height:1;letter-spacing:-0.03em;">399</span>
+          <div style="padding-bottom:0.3rem;">
+            <span style="font-size:1rem;color:rgba(234,254,234,0.7);">kr</span>
+            <span style="font-size:0.82rem;color:rgba(234,254,234,0.5);">/md.</span>
+          </div>
+        </div>
+        <p style="font-size:0.83rem;color:rgba(234,254,234,0.55);margin-bottom:1.25rem;line-height:1.6;">Mere synlighed lokalt og på Google.</p>
+        <div style="height:1px;background:rgba(234,254,234,0.15);margin-bottom:1.25rem;"></div>
+        <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:1.5rem;flex:1;">
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#eafeea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 5 sider</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#eafeea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Lokal SEO</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#eafeea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Google Business opsætning</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#eafeea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Alt fra Online +</div>
+        </div>
+        <a href="#kontakt" class="btn-primary" style="background:#eafeea;color:#465748;justify-content:center;">Vælg Synlig</a>
+      </div>
+
+      <!-- Vækst -->
+      <div class="price-card" data-stagger="3" style="padding:1.75rem;display:flex;flex-direction:column;">
+        <div style="display:inline-flex;align-items:center;padding:0.3rem 0.75rem;background:rgba(70,87,72,0.1);border-radius:100px;margin-bottom:1rem;align-self:flex-start;">
+          <span class="label-caps" style="color:#465748;font-size:0.63rem;">Vækst</span>
+        </div>
+        <h3 style="font-family:'Noto Serif',serif;font-size:1.35rem;font-weight:700;color:#30332f;margin-bottom:0.75rem;">Vækst</h3>
+        <div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.4rem;">
+          <span style="font-family:'Noto Serif',serif;font-size:2.75rem;font-weight:700;color:#30332f;line-height:1;letter-spacing:-0.03em;">599</span>
+          <div style="padding-bottom:0.3rem;">
+            <span style="font-size:1rem;color:#5d605b;">kr</span>
+            <span style="font-size:0.82rem;color:#797c76;">/md.</span>
+          </div>
+        </div>
+        <p style="font-size:0.83rem;color:#797c76;margin-bottom:1.25rem;line-height:1.6;">Avanceret SEO og løbende rapporter.</p>
+        <div style="height:1px;background:rgba(176,179,173,0.4);margin-bottom:1.25rem;"></div>
+        <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:1.5rem;flex:1;">
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Op til 10 sider</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Avanceret SEO</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Blog-opsætning</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Analytics &amp; kvartalsvise rapporter</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5L4.2 7.2L8 3" stroke="#465748" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Alt fra Synlig +</div>
+        </div>
+        <a href="#kontakt" class="btn-ghost" style="justify-content:center;">Vælg Vækst</a>
+      </div>
+
+    </div>
+
+    <style>
+      @media (max-width:768px) { .pricing-grid { grid-template-columns:1fr !important; } }
+    </style>
+
+  </div>
+</section>
+
+
+<!-- ══ CONTACT ══ -->
+<section id="kontakt" style="padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);scroll-margin-top:80px;">
+  <div class="container">
+
+    <div style="text-align:center;margin-bottom:3rem;">
+      <p class="label-caps" style="color:#465748;margin-bottom:0.75rem;">Kom i gang</p>
+      <h2 class="heading-lg" style="color:#30332f;margin-bottom:0.75rem;">Lad os tage en snak</h2>
+      <p style="font-size:0.9rem;color:#5d605b;max-width:400px;margin:0 auto;line-height:1.7;">Helt uforpligtende. Vi vender tilbage inden for 24 timer med et konkret forslag.</p>
+    </div>
+
+    <div class="reveal" style="max-width:560px;margin:0 auto;">
+      <form
+        action="https://plainsite-forms.tobias-gutkin.workers.dev"
+        method="POST"
+        id="contact-form"
+        style="background:#ffffff;border:1px solid rgba(176,179,173,0.4);border-radius:1.5rem;padding:2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;"
+      >
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(70,87,72,0.4),transparent);"></div>
+        <input type="hidden" name="_token" value="plainsite-main">
+
+        <div id="form-fields" style="display:flex;flex-direction:column;gap:1rem;">
+
+          <div>
+            <label for="input-name" style="display:block;font-size:0.78rem;font-weight:600;letter-spacing:0.04em;color:#5d605b;margin-bottom:0.45rem;">Navn</label>
+            <input id="input-name" type="text" name="name" placeholder="Dit fulde navn" required class="form-input">
+          </div>
+
+          <div>
+            <label for="input-email" style="display:block;font-size:0.78rem;font-weight:600;letter-spacing:0.04em;color:#5d605b;margin-bottom:0.45rem;">Email</label>
+            <input id="input-email" type="email" name="email" placeholder="din@email.dk" required class="form-input">
+          </div>
+
+          <div>
+            <label for="input-message" style="display:block;font-size:0.78rem;font-weight:600;letter-spacing:0.04em;color:#5d605b;margin-bottom:0.45rem;">Besked <span style="font-weight:400;">(valgfrit)</span></label>
+            <textarea id="input-message" name="message" placeholder="Fortæl os hvad du laver, og hvad du har brug for..." rows="3" class="form-input" style="resize:none;min-height:80px;"></textarea>
+          </div>
+
+          <div id="form-error" style="display:none;padding:0.75rem 1rem;background:rgba(168,56,54,0.07);border:1px solid rgba(168,56,54,0.2);border-radius:0.75rem;font-size:0.875rem;color:#a83836;">
+            Noget gik galt. Prøv igen eller skriv til <a href="mailto:kontakt@plainsite.dk" style="color:#a83836;font-weight:600;">kontakt@plainsite.dk</a>
+          </div>
+
+          <p style="font-size:0.78rem;color:#797c76;text-align:center;margin-bottom:-0.25rem;">Helt uforpligtende · Vi svarer inden for 24 timer</p>
+          <p style="font-size:0.72rem;color:#b0b3ad;text-align:center;margin-top:0.25rem;margin-bottom:-0.25rem;">Ved indsendelse accepterer du vores <a href="/privacy" style="color:#797c76;text-decoration:underline;text-underline-offset:2px;">privatlivspolitik</a></p>
+
+          <button type="submit" id="form-submit-btn" class="btn-primary" style="width:100%;justify-content:center;padding:1rem;font-size:0.95rem;">
+            Send besked
+            <svg id="form-arrow" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg id="form-spinner" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none;animation:spin 0.8s linear infinite;">
+              <path d="M8 2a6 6 0 1 1 0 12A6 6 0 0 1 8 2Z" stroke="rgba(234,254,234,0.3)" stroke-width="2"/>
+              <path d="M8 2a6 6 0 0 1 6 6" stroke="#eafeea" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div id="form-success" style="display:none;text-align:center;padding:2.5rem 0;">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(70,87,72,0.12);border:1px solid rgba(70,87,72,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11L9 16L18 7" stroke="#465748" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-family:'Noto Serif',serif;font-weight:700;font-size:1.2rem;color:#30332f;margin-bottom:0.5rem;">Besked sendt!</h3>
+          <p style="font-size:0.9rem;color:#5d605b;">Vi sender dig en mail inden for 24 timer med et konkret forslag.</p>
+        </div>
+      </form>
+
+      <p style="text-align:center;margin-top:1rem;font-size:0.83rem;color:#797c76;">
+        Foretrækker du mail?
+        <a href="mailto:kontakt@plainsite.dk" style="color:#465748;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(70,87,72,0.3);padding-bottom:1px;">Skriv til kontakt@plainsite.dk</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ FAQ ══ -->
+<section id="faq" style="background:#f4f4ef;padding:clamp(2.5rem,4.5vw,4rem) clamp(1.5rem,5vw,2rem);scroll-margin-top:80px;">
+  <div class="container" style="max-width:680px;">
+
+    <div style="text-align:center;margin-bottom:3.5rem;">
+      <p class="label-caps" style="color:#465748;margin-bottom:0.75rem;">FAQ</p>
+      <h2 class="heading-lg" style="color:#30332f;">Ofte stillede spørgsmål</h2>
+    </div>
+
+    <div class="faq-item reveal"><button class="faq-trigger" aria-expanded="false">Hvad koster det at komme i gang?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-body-inner">Ingenting. Design og udvikling er gratis — du betaler ikke en krone før din side er live og du har godkendt den. Derefter betaler du kun det månedlige abonnement. Ingen opstartsgebyr, ingen skjulte gebyrer.</div></div></div>
+
+    <div class="faq-item reveal"><button class="faq-trigger" aria-expanded="false">Hvad er der inkluderet i pakkerne?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-body-inner">Alle pakker inkluderer design, hosting, domæne, SSL og mobiloptimering. Online (299 kr/md.): 1–3 sider, basis SEO. Synlig (399 kr/md.): op til 5 sider, lokal SEO, Google Business. Vækst (599 kr/md.): op til 10 sider, avanceret SEO, blog og kvartalsvise rapporter.</div></div></div>
+
+    <div class="faq-item reveal"><button class="faq-trigger" aria-expanded="false">Hvem hoster min hjemmeside?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-body-inner">Vi gør. Hosting og drift er inkluderet i dit abonnement.</div></div></div>
+
+    <div class="faq-item reveal"><button class="faq-trigger" aria-expanded="false">Kan jeg opsige mit abonnement?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-body-inner">Ja. Løbende måned + 30 dages varsel. Ingen oprettelsesgebyr.</div></div></div>
+
+    <div class="faq-item reveal"><button class="faq-trigger" aria-expanded="false">Hvad sker der, hvis jeg vil ændre noget?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-body-inner">Små rettelser (tekst, billeder, åbningstider) er inkluderet — typisk klaret inden for 1–2 hverdage. Større ændringer aftales separat.</div></div></div>
+
+    <div class="faq-item reveal"><button class="faq-trigger" aria-expanded="false">Hvad har I brug for fra mig for at komme i gang?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-body-inner">En kort snak om din praksis. Derefter guider vi dig til at sende logo, billeder og tekster — eller vi hjælper med at lave dem.</div></div></div>
+
+    <div class="faq-item reveal"><button class="faq-trigger" aria-expanded="false">Kan jeg se et udkast, inden siden går live?<span class="faq-icon">+</span></button><div class="faq-body"><div class="faq-body-inner">Ja, altid. Vi justerer til du er fuldt tilfreds — uden ekstraomkostninger.</div></div></div>
+
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#e8e9e3;border-top:1px solid rgba(176,179,173,0.3);padding:3.5rem clamp(1.5rem,5vw,2rem) 2rem;">
+  <div class="container">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:3rem;flex-wrap:wrap;margin-bottom:3rem;">
+
+      <div>
+        <a href="/" style="display:flex;align-items:center;gap:0.6rem;text-decoration:none;margin-bottom:1rem;">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;flex-shrink:0;border-radius:7px;overflow:hidden;">
+            <rect width="36" height="36" fill="#30332f"/>
+            <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="#faf9f5" font-size="12" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+          </svg>
+          <span style="font-family:'Noto Serif',serif;font-weight:700;font-size:1rem;color:#30332f;letter-spacing:-0.01em;">plainsite</span>
+        </a>
+        <p style="font-size:0.83rem;color:#797c76;max-width:220px;line-height:1.7;">Professionelle hjemmesider til terapeuter og behandlere.</p>
+        <p style="font-size:0.75rem;color:#b0b3ad;margin-top:0.4rem;">CVR 46384040</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;">
+        <div>
+          <p class="label-caps" style="color:#797c76;margin-bottom:1rem;font-size:0.65rem;">Kontakt</p>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;">
+            <a href="mailto:kontakt@plainsite.dk" style="font-size:0.85rem;color:#5d605b;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#465748'" onmouseout="this.style.color='#5d605b'">kontakt@plainsite.dk</a>
+          </div>
+        </div>
+        <div>
+          <p class="label-caps" style="color:#797c76;margin-bottom:1rem;font-size:0.65rem;">Juridisk</p>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;">
+            <a href="/privacy" style="font-size:0.85rem;color:#5d605b;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#465748'" onmouseout="this.style.color='#5d605b'">Privatlivspolitik</a>
+            <a href="/vilkaar" style="font-size:0.85rem;color:#5d605b;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#465748'" onmouseout="this.style.color='#5d605b'">Vilkår</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid rgba(176,179,173,0.3);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+      <p style="font-size:0.72rem;color:#b0b3ad;letter-spacing:0.06em;text-transform:uppercase;">© 2024 plainsite. Hjemmesider til behandlere.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const prefersMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+  // ══ HERO ENTRANCE — 300ms initial pause, then staggered in ══
+  if (prefersMotion) {
+    document.querySelectorAll('.hero-enter, .hero-enter-right').forEach(el => {
+      // already opacity:0 from CSS — just schedule the .go class
+      const delay = parseInt(el.dataset.delay || '300');
+      setTimeout(() => el.classList.add('go'), delay);
+    });
+    // Nav slides down
+    setTimeout(() => document.getElementById('nav').classList.add('go'), 80);
+  }
+
+  // ══ SCROLL REVEAL — with per-item stagger inside grids ══
+  if (prefersMotion) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        el.classList.add('visible');
+
+        // Stagger direct children with data-stagger
+        el.querySelectorAll('[data-stagger]').forEach(child => {
+          const i = parseInt(child.dataset.stagger || '1');
+          child.style.transitionDelay = `${(i - 1) * 100}ms`;
+        });
+
+        revealObserver.unobserve(el);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(el => revealObserver.observe(el));
+  }
+
+  // ══ PRICING CARD TILT on mousemove ══
+  document.querySelectorAll('.price-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      if (!prefersMotion) return;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `translateY(-10px) rotateX(${-y * 4}deg) rotateY(${x * 5}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+    // Featured card gets extra lift
+    if (card.classList.contains('featured')) {
+      card.addEventListener('mouseenter', () => {
+        card.style.setProperty('--lift', '-14px');
+      });
+    }
+  });
+
+  // ══ HAMBURGER MENU ══
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ══ FAQ ACCORDION ══
+  document.querySelectorAll('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.faq-trigger').forEach(b => {
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ══ CONTACT FORM ══
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn    = document.getElementById('form-submit-btn');
+      const arrow  = document.getElementById('form-arrow');
+      const spin   = document.getElementById('form-spinner');
+      const errDiv = document.getElementById('form-error');
+      const okDiv  = document.getElementById('form-success');
+      const fields = document.getElementById('form-fields');
+
+      btn.disabled = true;
+      arrow.style.display = 'none';
+      spin.style.display  = 'block';
+      errDiv.style.display = 'none';
+
+      try {
+        const r = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        if (r.ok) { fields.style.display = 'none'; okDiv.style.display = 'block'; }
+        else throw new Error();
+      } catch {
+        errDiv.style.display = 'block';
+        btn.disabled = false;
+        arrow.style.display = 'block';
+        spin.style.display  = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

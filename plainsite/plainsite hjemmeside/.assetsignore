@@ -1,0 +1,9 @@
+.git
+.git/**
+.wrangler
+.wrangler/**
+.DS_Store
+wrangler.toml
+form-system.md
+noter til plainsite hjemmeside
+testform.html
