@@ -6,13 +6,18 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://plainsite.dk/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://plainsite.dk/vilkaar</loc>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
   <url>
     <loc>https://plainsite.dk/privacy</loc>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.2</priority>
   </url>
 </urlset>
