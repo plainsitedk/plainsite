@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hjemmeside til terapeuter og behandlere | plainsite</title>
+  <meta name="description" content="Vi designer og driver professionelle hjemmesider til zoneterapeuter, akupunktører, healere og coaches. Klar på 7 hverdage. Fra 397 kr/md. Ingen oprettelsesgebyr.">
+  <link rel="canonical" href="https://plainsite.dk/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..400&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas:       '#F5F1EC',
+            'canvas-alt': '#EDE8E0',
+            border:       '#DDD8D0',
+            ink:          '#18161E',
+            'ink-mid':    '#4A4555',
+            'ink-light':  '#9A9694',
+            navy:         '#0A6B46',
+            'navy-mid':   '#085C3D',
+            'navy-pale':  '#E0F0EA',
+            white:        '#FFFFFF',
+          },
+          fontFamily: {
+            sans:    ['"DM Sans"', 'system-ui', 'sans-serif'],
+            display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #F5F1EC;
+      color: #18161E;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #0A6B46; color: #fff;
+      padding: 0.8125rem 1.875rem; border-radius: 5px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; font-weight: 500;
+      letter-spacing: 0.01em; text-decoration: none; border: none; cursor: pointer;
+      transition: background 180ms cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 180ms cubic-bezier(0.16,1,0.3,1),
+                  transform  120ms cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 1px 3px rgba(10,107,70,.18), 0 4px 12px rgba(10,107,70,.10);
+    }
+    .btn-primary:hover  {
+      background: #085C3D;
+      box-shadow: 0 2px 8px rgba(10,107,70,.22), 0 8px 24px rgba(10,107,70,.14);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active {
+      background: #065237;
+      transform: translateY(0) scale(0.97);
+      box-shadow: 0 1px 3px rgba(10,107,70,.18);
+    }
+    .btn-primary:focus-visible { outline: 2px solid #0A6B46; outline-offset: 3px; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: #111;
+      padding: 0.8125rem 1.875rem; border-radius: 5px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; font-weight: 500;
+      letter-spacing: 0.01em; text-decoration: none; cursor: pointer;
+      border: 1.5px solid #C8C8C4;
+      transition: border-color 180ms cubic-bezier(0.16,1,0.3,1),
+                  background  180ms cubic-bezier(0.16,1,0.3,1),
+                  box-shadow  180ms cubic-bezier(0.16,1,0.3,1),
+                  transform   120ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-outline:hover {
+      border-color: #0A6B46;
+      background: #EDE8E0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      transform: translateY(-1px);
+    }
+    .btn-outline:active {
+      transform: translateY(0) scale(0.97);
+      box-shadow: none;
+    }
+    .btn-outline:focus-visible { outline: 2px solid #0A6B46; outline-offset: 3px; }
+
+    .btn-sm {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      background: #0A6B46; color: #fff;
+      padding: 0.5625rem 1.125rem; border-radius: 5px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 500;
+      letter-spacing: 0.01em; text-decoration: none; border: none; cursor: pointer;
+      transition: background 180ms cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 180ms cubic-bezier(0.16,1,0.3,1),
+                  transform  120ms cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 1px 3px rgba(27,50,72,.18);
+    }
+    .btn-sm:hover {
+      background: #085C3D;
+      box-shadow: 0 2px 8px rgba(27,50,72,.20);
+      transform: translateY(-1px);
+    }
+    .btn-sm:active { transform: translateY(0) scale(0.97); }
+    .btn-sm:focus-visible { outline: 2px solid #0A6B46; outline-offset: 3px; }
+
+    /* ── Display font ── */
+    h1, h2 { font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
+
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 520ms cubic-bezier(0.16, 1, 0.3, 1), transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 60ms; }
+    .reveal-d2 { transition-delay: 120ms; }
+    .reveal-d3 { transition-delay: 180ms; }
+    .reveal-d4 { transition-delay: 240ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ── FAQ ── */
+    .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 240ms cubic-bezier(0.16,1,0.3,1); }
+    .faq-body.open { grid-template-rows: 1fr; }
+    .faq-body > div { overflow: hidden; }
+    .faq-chevron { transition: transform 240ms cubic-bezier(0.16,1,0.3,1); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-item { cursor: pointer; transition: background 140ms ease; border-radius: 6px; margin: 0 -12px; padding: 0 12px; }
+    .faq-item:hover { background: #EDE8E0; }
+
+    /* ── Pricing dark card ── */
+    .card-navy { background: #0A6B46; color: #fff; }
+    .card-navy .feat  { color: rgba(255,255,255,.62); }
+    .card-navy .check { color: #8ECFB7; }
+    .card-navy hr     { border-color: rgba(255,255,255,.1); }
+    .card-navy .lbl   { color: rgba(255,255,255,.38); }
+    .card-navy .badge { background: rgba(255,255,255,.12); color: rgba(255,255,255,.8); }
+
+    /* ── Nav ── */
+    .nav-shadow { box-shadow: 0 1px 0 #E2E2DE; }
+
+    /* ── Divider ── */
+    .rule { display: inline-block; width: 32px; height: 2px; background: #0A6B46; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════
+     NAV
+════════════════════════ -->
+<header id="site-nav" class="sticky top-0 z-50 bg-canvas/95 backdrop-blur-sm border-b border-border transition-shadow duration-200">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <a href="/" class="flex items-center gap-2.5 no-underline">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
+        <rect width="36" height="36" rx="6" fill="#0A6B46"/>
+        <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+      </svg>
+      <span class="text-lg font-semibold text-ink tracking-tight">plainsite</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#hvem"    class="text-ink-mid text-sm font-medium hover:text-ink transition-colors no-underline">For hvem?</a>
+      <a href="#priser"  class="text-ink-mid text-sm font-medium hover:text-ink transition-colors no-underline">Priser</a>
+      <a href="#faq"     class="text-ink-mid text-sm font-medium hover:text-ink transition-colors no-underline">FAQ</a>
+      <a href="#kontakt" class="btn-sm">Book gratis snak</a>
+    </div>
+
+    <button id="mob-btn" class="md:hidden p-2 rounded text-ink-mid hover:text-ink transition-colors" aria-label="Menu">
+      <svg id="mob-open"  width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <svg id="mob-close" class="hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </nav>
+
+  <div id="mob-menu" class="hidden md:hidden border-t border-border bg-canvas">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-4">
+      <a href="#hvem"    class="text-ink-mid font-medium no-underline">For hvem?</a>
+      <a href="#priser"  class="text-ink-mid font-medium no-underline">Priser</a>
+      <a href="#faq"     class="text-ink-mid font-medium no-underline">FAQ</a>
+      <a href="#kontakt" class="btn-primary self-start">Book gratis snak</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ════════════════════════
+     HERO + STRIP WRAPPER (fills viewport so strip sits at bottom)
+════════════════════════ -->
+<div class="flex flex-col" style="min-height:calc(100dvh - 64px);">
+
+<section class="flex-1 max-w-6xl mx-auto w-full px-6 pt-14 pb-10 sm:pt-20 sm:pb-14 lg:pt-28 lg:pb-20 flex flex-col justify-center">
+  <div class="grid sm:grid-cols-[1fr_auto] lg:grid-cols-[1fr_420px] gap-12 lg:gap-16 items-center">
+
+    <!-- Copy -->
+    <div>
+      <div class="reveal flex items-center gap-3 mb-7">
+        <span class="rule"></span>
+        <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Professionelt webdesign til terapeuter</span>
+      </div>
+
+      <h1 class="reveal reveal-d1 text-[2.75rem] sm:text-5xl lg:text-[3.5rem] font-semibold text-ink leading-tight mb-5" style="letter-spacing:-0.02em;">
+        Din praksis,<br>
+        <span class="text-navy font-light">synlig på Google.</span>
+      </h1>
+
+      <p class="reveal reveal-d2 text-ink-mid text-lg leading-relaxed mb-8 max-w-[480px]" style="font-weight:300;">
+        Vi designer og driver din hjemmeside, så du kan fokusere på dine klienter. Klar på 7 hverdage — ingen oprettelsesgebyr.
+      </p>
+
+      <div class="reveal reveal-d3 flex flex-wrap gap-3 mb-9">
+        <a href="#priser" class="btn-primary">
+          Se pakker og priser
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#kontakt" class="btn-outline">Book gratis snak</a>
+      </div>
+
+      <div class="reveal reveal-d4 flex flex-col sm:flex-row gap-2.5 sm:gap-6">
+        <span class="flex items-center gap-2 text-sm text-ink-light">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Ingen oprettelsesgebyr
+        </span>
+        <span class="flex items-center gap-2 text-sm text-ink-light">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Klar på 7 hverdage
+        </span>
+        <span class="flex items-center gap-2 text-sm text-ink-light">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Ingen binding efter 3 md.
+        </span>
+      </div>
+    </div>
+
+    <!-- Mockup -->
+    <div class="hidden sm:block sm:w-[300px] lg:w-auto reveal reveal-d2">
+      <div class="rounded-lg border border-border bg-white overflow-hidden" style="box-shadow:0 4px 32px -6px rgba(0,0,0,0.09),0 1px 4px rgba(0,0,0,0.05);">
+
+        <div class="px-4 py-3 border-b border-border bg-canvas flex items-center gap-3">
+          <div class="flex gap-1.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-border"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-border"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-border"></div>
+          </div>
+          <div class="flex-1 bg-canvas-alt rounded-full h-5 px-3 flex items-center">
+            <span class="text-ink-light text-xs">mia-zoneterapi.dk</span>
+          </div>
+        </div>
+
+        <div class="bg-navy-pale px-6 py-6 text-center border-b border-border">
+          <div class="text-navy text-base font-semibold mb-0.5">Mia Hansen</div>
+          <div class="text-navy-mid text-xs font-medium tracking-widest uppercase mb-4" style="letter-spacing:0.07em;">Zoneterapeut · Aarhus</div>
+          <div class="inline-block bg-navy text-white text-xs font-medium px-5 py-1.5 rounded" style="letter-spacing:0.03em;">Book konsultation</div>
+        </div>
+
+        <div class="px-6 py-5 space-y-2">
+          <div class="h-2 bg-canvas-alt rounded-full w-4/5"></div>
+          <div class="h-2 bg-canvas-alt rounded-full w-full"></div>
+          <div class="h-2 bg-canvas-alt rounded-full w-3/4"></div>
+          <div class="pt-2 grid grid-cols-3 gap-2">
+            <div class="h-6 bg-canvas-alt rounded border border-border"></div>
+            <div class="h-6 bg-canvas-alt rounded border border-border"></div>
+            <div class="h-6 bg-canvas-alt rounded border border-border"></div>
+          </div>
+        </div>
+
+        <div class="border-t border-border grid grid-cols-3 divide-x divide-border text-center">
+          <div class="py-3">
+            <div class="text-sm font-semibold text-ink">7</div>
+            <div class="text-ink-light text-xs mt-0.5">dages garanti</div>
+          </div>
+          <div class="py-3">
+            <div class="text-sm font-semibold text-ink">397</div>
+            <div class="text-ink-light text-xs mt-0.5">kr/md fra</div>
+          </div>
+          <div class="py-3">
+            <div class="text-sm font-semibold text-ink">0</div>
+            <div class="text-ink-light text-xs mt-0.5">oprettelsesgebyr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     DISCIPLINE STRIP
+════════════════════════ -->
+<div class="reveal border-y border-border bg-white py-4 px-6">
+  <div class="max-w-6xl mx-auto flex flex-wrap items-center gap-x-5 gap-y-2">
+    <span class="text-ink-light text-xs font-medium tracking-widest uppercase" style="letter-spacing:0.1em;">Til dig der er</span>
+    <div class="flex flex-wrap gap-x-4 gap-y-1.5 text-ink-mid text-sm">
+      <span>Zoneterapeut</span><span class="text-border select-none">·</span>
+      <span>Akupunktør</span><span class="text-border select-none">·</span>
+      <span>Healer</span><span class="text-border select-none">·</span>
+      <span>Coach</span><span class="text-border select-none">·</span>
+      <span>Osteopat</span><span class="text-border select-none">·</span>
+      <span>Psykolog</span><span class="text-border select-none">·</span>
+      <span>Massageterapeut</span><span class="text-border select-none">·</span>
+      <span>Kinesiolog</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /hero+strip wrapper -->
+
+
+<!-- ════════════════════════
+     PROBLEM / SOLUTION
+════════════════════════ -->
+<section id="hvem" class="max-w-6xl mx-auto px-6 py-20 lg:py-28">
+  <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+
+    <!-- Problem -->
+    <div>
+      <div class="reveal flex items-center gap-3 mb-6">
+        <span class="rule" style="background:#9A9A9A;"></span>
+        <span class="text-ink-light text-xs font-semibold tracking-[0.12em] uppercase">Problemet</span>
+      </div>
+      <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-5 leading-tight" style="letter-spacing:-0.02em;">
+        Usynlig på Google —<br>
+        <span class="font-light text-ink-mid">på trods af godt arbejde.</span>
+      </h2>
+      <div class="reveal text-ink-mid leading-relaxed space-y-4 mb-8" style="font-weight:300;">
+        <p>De fleste alternative terapeuter er svære at finde online. Ikke fordi de ikke er dygtige — men fordi de ikke har tid, lyst eller ressourcer til en ordentlig hjemmeside.</p>
+        <p>Nye klienter der googler "zoneterapeut Odense" finder aldrig dig. Du lever af mund-til-mund, og væksten stagnerer.</p>
+      </div>
+      <div class="reveal space-y-2">
+        <div class="flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
+          <div class="w-1.5 h-1.5 rounded-full bg-border flex-shrink-0"></div>
+          <span class="font-medium text-ink">Ingen hjemmeside</span>
+          <span class="text-ink-light">— klienter finder en konkurrent</span>
+        </div>
+        <div class="flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
+          <div class="w-1.5 h-1.5 rounded-full bg-border flex-shrink-0"></div>
+          <span class="font-medium text-ink">En forældet Wix-side</span>
+          <span class="text-ink-light">— som aldrig bliver opdateret</span>
+        </div>
+        <div class="flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
+          <div class="w-1.5 h-1.5 rounded-full bg-border flex-shrink-0"></div>
+          <span class="font-medium text-ink">En dyr bureau-løsning</span>
+          <span class="text-ink-light">— og ingen til at hjælpe dig bagefter</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solution -->
+    <div>
+      <div class="reveal flex items-center gap-3 mb-6">
+        <span class="rule"></span>
+        <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Løsningen</span>
+      </div>
+      <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-5 leading-tight" style="letter-spacing:-0.02em;">
+        Vi bygger og driver<br>
+        <span class="font-light text-navy">den for dig.</span>
+      </h2>
+      <div class="reveal text-ink-mid leading-relaxed mb-8" style="font-weight:300;">
+        <p>plainsite er den eneste hjemmesideservice i Danmark bygget specifikt til alternative terapeuter. Vi designer, bygger og driver din side mod et fast månedligt beløb — du gør ingenting.</p>
+      </div>
+      <div class="reveal space-y-4">
+        <div class="flex items-start gap-3.5">
+          <div class="w-7 h-7 rounded bg-navy-pale flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="font-medium text-ink text-sm">Professionelt design</div>
+            <div class="text-ink-light text-sm mt-0.5" style="font-weight:300;">Tilpasset din praksis — ikke et template</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3.5">
+          <div class="w-7 h-7 rounded bg-navy-pale flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="font-medium text-ink text-sm">Synlig på Google</div>
+            <div class="text-ink-light text-sm mt-0.5" style="font-weight:300;">Optimeret til lokale søgninger. Google Business inkluderet</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3.5">
+          <div class="w-7 h-7 rounded bg-navy-pale flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="font-medium text-ink text-sm">Hosting og vedligehold inkluderet</div>
+            <div class="text-ink-light text-sm mt-0.5" style="font-weight:300;">Opdateringer, support og drift altid inkluderet</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3.5">
+          <div class="w-7 h-7 rounded bg-navy-pale flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="font-medium text-ink text-sm">Fast pris, ingen overraskelser</div>
+            <div class="text-ink-light text-sm mt-0.5" style="font-weight:300;">Ingen oprettelsesgebyr. Ingen binding efter 3 måneder</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     HOW IT WORKS
+════════════════════════ -->
+<section class="border-y border-border bg-canvas-alt py-20 lg:py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal flex items-center gap-3 mb-12">
+      <span class="rule"></span>
+      <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Processen</span>
+    </div>
+    <div class="grid md:grid-cols-3 gap-0 md:divide-x md:divide-border">
+      <div class="reveal reveal-d1 md:pr-10 pb-10 md:pb-0">
+        <div class="text-xs font-semibold text-ink-light tracking-widest mb-5" style="letter-spacing:0.12em;">01</div>
+        <h3 class="text-lg font-semibold text-ink mb-2">Vi taler sammen</h3>
+        <p class="text-ink-light text-sm leading-relaxed" style="font-weight:300;">En gratis 15-minutters snak om din praksis, dine klienter og din stil. Ingen forpligtelse.</p>
+      </div>
+      <div class="reveal reveal-d2 md:px-10 py-10 md:py-0 border-t md:border-t-0 border-border">
+        <div class="text-xs font-semibold text-ink-light tracking-widest mb-5" style="letter-spacing:0.12em;">02</div>
+        <h3 class="text-lg font-semibold text-ink mb-2">Vi bygger siden</h3>
+        <p class="text-ink-light text-sm leading-relaxed" style="font-weight:300;">Du sender tekst og billeder. Vi designer og bygger din side. Klar til godkendelse på 7 hverdage.</p>
+      </div>
+      <div class="reveal reveal-d3 md:pl-10 pt-10 md:pt-0 border-t md:border-t-0 border-border">
+        <div class="text-xs font-semibold text-ink-light tracking-widest mb-5" style="letter-spacing:0.12em;">03</div>
+        <h3 class="text-lg font-semibold text-ink mb-2">Du vokser</h3>
+        <p class="text-ink-light text-sm leading-relaxed" style="font-weight:300;">Vi holder siden kørende og opdateret. Du fokuserer på klienter — vi klarer resten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     PRICING
+════════════════════════ -->
+<section id="priser" class="max-w-6xl mx-auto px-6 py-20 lg:py-28">
+  <div class="reveal flex items-end justify-between gap-6 mb-10 flex-wrap">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <span class="rule"></span>
+        <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Priser</span>
+      </div>
+      <h2 class="text-3xl lg:text-[2.25rem] font-semibold text-ink leading-tight" style="letter-spacing:-0.02em;">Enkle priser, intet skjult</h2>
+    </div>
+    <p class="text-ink-light text-sm max-w-[260px]" style="font-weight:300;">Ingen oprettelsesgebyr. Ingen binding efter 3 måneder.</p>
+  </div>
+
+  <!-- Badge row — giver alle kort samme startpunkt -->
+  <div class="grid md:grid-cols-3 gap-4 mb-1">
+    <div></div>
+    <div class="flex justify-center">
+      <span class="text-xs font-medium px-3 py-0.5 rounded-full" style="background:#E0F0EA;color:#0A6B46;letter-spacing:0.06em;">mest valgt</span>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-4">
+
+    <!-- Start -->
+    <div class="reveal reveal-d1 bg-white border border-border rounded-lg p-7 flex flex-col">
+      <div class="lbl text-xs font-semibold text-ink-light tracking-widest uppercase mb-4" style="letter-spacing:0.1em;">Online</div>
+      <div class="flex items-baseline gap-1.5 mb-1">
+        <span class="text-4xl font-semibold text-ink tracking-tight">299</span>
+        <span class="text-ink-light text-sm font-normal">kr/md</span>
+      </div>
+      <hr class="border-border my-5">
+      <ul class="space-y-2.5 flex-1 mb-7 text-sm text-ink-mid" style="font-weight:300;">
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Én-sides hjemmeside</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Google Business-opsætning</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Kontaktformular</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Mobiloptimeret</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Hosting og drift</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>GDPR-compliant fra dag ét</li>
+      </ul>
+      <a href="#kontakt" class="btn-outline text-sm justify-center">Kom i gang</a>
+    </div>
+
+    <!-- Synlig -->
+    <div class="reveal reveal-d2 bg-white rounded-lg p-7 flex flex-col" style="border:1.5px solid #0A6B46;">
+      <div class="text-xs font-semibold text-ink-light tracking-widest uppercase mb-4" style="letter-spacing:0.1em;">Synlig</div>
+      <div class="flex items-baseline gap-1.5 mb-1">
+        <span class="text-4xl font-semibold text-ink tracking-tight">399</span>
+        <span class="text-ink-light text-sm font-normal">kr/md</span>
+      </div>
+      <hr class="border-border my-5">
+      <ul class="space-y-2.5 flex-1 mb-7 text-sm text-ink-mid" style="font-weight:300;">
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Fuld site — op til 5 sider</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>SEO-tekster skrevet til Google</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Én ændring pr. måned</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Google Business-opsætning</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Kontaktformular</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Hosting, drift og support</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>GDPR-compliant fra dag ét</li>
+      </ul>
+      <a href="#kontakt" class="btn-primary justify-center">Kom i gang</a>
+    </div>
+
+    <!-- Vækst -->
+    <div class="reveal reveal-d3 bg-white border border-border rounded-lg p-7 flex flex-col">
+      <div class="text-xs font-semibold text-ink-light tracking-widest uppercase mb-4" style="letter-spacing:0.1em;">Vækst</div>
+      <div class="flex items-baseline gap-1.5 mb-1">
+        <span class="text-4xl font-semibold text-ink tracking-tight">599</span>
+        <span class="text-ink-light text-sm font-normal">kr/md</span>
+      </div>
+      <hr class="border-border my-5">
+      <ul class="space-y-2.5 flex-1 mb-7 text-sm text-ink-mid" style="font-weight:300;">
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Alt i Synlig</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Blogindlæg pr. måned</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Udvidet lokal SEO</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Ændringer inden for 24 timer</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Op til 10 sider</li>
+        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Prioriteret support</li>
+      </ul>
+      <a href="#kontakt" class="btn-outline text-sm justify-center">Kom i gang</a>
+    </div>
+  </div>
+
+  <p class="reveal text-center text-ink-light text-xs mt-6" style="font-weight:300;">Du betaler kun fra den dag siden går live. Ingen binding efter de første 3 måneder.</p>
+</section>
+
+
+<!-- ════════════════════════
+     GUARANTEE
+════════════════════════ -->
+<div class="bg-navy py-12 px-6">
+  <div class="max-w-4xl mx-auto reveal">
+    <div class="grid md:grid-cols-[1fr_auto] gap-6 items-center">
+      <div>
+        <div class="flex items-center gap-3 mb-3">
+          <span class="inline-block w-8 h-0.5 bg-white opacity-30"></span>
+          <span class="text-xs font-semibold tracking-[0.12em] uppercase text-white opacity-40">Garanti</span>
+        </div>
+        <p class="text-white text-2xl lg:text-3xl font-semibold leading-snug" style="letter-spacing:-0.01em;">
+          Første måned gratis —
+          <span class="font-light opacity-70">hvis siden ikke er live på 7 hverdage.</span>
+        </p>
+      </div>
+      <a href="#kontakt" class="btn-primary whitespace-nowrap self-center" style="background:#fff;color:#0A6B46;">Book gratis snak</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════
+     FAQ
+════════════════════════ -->
+<section id="faq" class="max-w-3xl mx-auto px-6 py-20 lg:py-24">
+  <div class="reveal flex items-center gap-3 mb-3">
+    <span class="rule"></span>
+    <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Spørgsmål</span>
+  </div>
+  <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-10 leading-tight" style="letter-spacing:-0.02em;">Ofte stillede spørgsmål</h2>
+
+  <div class="divide-y divide-border reveal">
+
+    <div class="faq-item py-4" role="button" tabindex="0" aria-expanded="false">
+      <div class="flex items-center justify-between gap-4">
+        <span class="font-medium text-ink text-sm">Hvad koster det at komme i gang?</span>
+        <svg class="faq-chevron flex-shrink-0 text-ink-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-body"><div><p class="text-ink-light text-sm leading-relaxed pt-3" style="font-weight:300;">Ingenting. Ingen oprettelsesgebyr. Du betaler ikke før din side er live og godkendt af dig.</p></div></div>
+    </div>
+
+    <div class="faq-item py-4" role="button" tabindex="0" aria-expanded="false">
+      <div class="flex items-center justify-between gap-4">
+        <span class="font-medium text-ink text-sm">Hvor lang tid tager det at få min side klar?</span>
+        <svg class="faq-chevron flex-shrink-0 text-ink-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-body"><div><p class="text-ink-light text-sm leading-relaxed pt-3" style="font-weight:300;">7 hverdage fra vi modtager dine tekster og billeder. Er den ikke klar til den tid, er første måned gratis.</p></div></div>
+    </div>
+
+    <div class="faq-item py-4" role="button" tabindex="0" aria-expanded="false">
+      <div class="flex items-center justify-between gap-4">
+        <span class="font-medium text-ink text-sm">Er der binding?</span>
+        <svg class="faq-chevron flex-shrink-0 text-ink-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-body"><div><p class="text-ink-light text-sm leading-relaxed pt-3" style="font-weight:300;">De første 3 måneder, mens vi designer og bygger din side. Herefter opsiger du med én måneds varsel.</p></div></div>
+    </div>
+
+    <div class="faq-item py-4" role="button" tabindex="0" aria-expanded="false">
+      <div class="flex items-center justify-between gap-4">
+        <span class="font-medium text-ink text-sm">Hvad skal jeg selv gøre?</span>
+        <svg class="faq-chevron flex-shrink-0 text-ink-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-body"><div><p class="text-ink-light text-sm leading-relaxed pt-3" style="font-weight:300;">Svar på et par spørgsmål og send os lidt tekst og et billede. Vi klarer alt det tekniske og designmæssige.</p></div></div>
+    </div>
+
+    <div class="faq-item py-4" role="button" tabindex="0" aria-expanded="false">
+      <div class="flex items-center justify-between gap-4">
+        <span class="font-medium text-ink text-sm">Kan jeg beholde mit eksisterende domæne?</span>
+        <svg class="faq-chevron flex-shrink-0 text-ink-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-body"><div><p class="text-ink-light text-sm leading-relaxed pt-3" style="font-weight:300;">Ja. Vi hjælper med at pege dit domæne til den nye side. Har du intet domæne, finder vi et til dig.</p></div></div>
+    </div>
+
+    <div class="faq-item py-4" role="button" tabindex="0" aria-expanded="false">
+      <div class="flex items-center justify-between gap-4">
+        <span class="font-medium text-ink text-sm">Hvad hvis jeg vil have ændringer efter siden er live?</span>
+        <svg class="faq-chevron flex-shrink-0 text-ink-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-body"><div><p class="text-ink-light text-sm leading-relaxed pt-3" style="font-weight:300;">Klinik inkluderer én ændring/md. Vækst inkluderer ændringer inden for 24 timer. Start aftaler vi fra gang til gang.</p></div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     CONTACT
+════════════════════════ -->
+<section id="kontakt" class="bg-canvas-alt border-t border-border">
+  <div class="max-w-3xl mx-auto px-6 py-20 lg:py-24">
+
+    <div class="reveal mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="rule"></span>
+        <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Kom i gang</span>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+        <h2 class="text-3xl lg:text-[2.25rem] font-semibold text-ink leading-tight" style="letter-spacing:-0.02em;">
+          Klar til at blive<br>
+          <span class="font-light text-navy">fundet online?</span>
+        </h2>
+        <p class="text-ink-light text-sm" style="font-weight:300;">Gratis 15 min. snak — ingen forpligtelse.</p>
+      </div>
+    </div>
+
+    <form class="reveal bg-white border border-border rounded-lg p-7 space-y-4" onsubmit="handleSubmit(event)">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-ink-mid uppercase tracking-widest mb-1.5" style="letter-spacing:0.08em;" for="name">Dit navn</label>
+          <input id="name" name="name" type="text" required autocomplete="name"
+            class="w-full px-3.5 py-2.5 rounded-md border border-border bg-canvas text-ink text-sm placeholder-ink-light transition-colors focus:outline-none focus:border-navy"
+            style="font-family:'DM Sans',sans-serif;" placeholder="Mia Hansen">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-ink-mid uppercase tracking-widest mb-1.5" style="letter-spacing:0.08em;" for="phone">Telefon <span class="text-ink-light font-normal normal-case" style="letter-spacing:0;">(valgfrit)</span></label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel"
+            class="w-full px-3.5 py-2.5 rounded-md border border-border bg-canvas text-ink text-sm placeholder-ink-light transition-colors focus:outline-none focus:border-navy"
+            style="font-family:'DM Sans',sans-serif;" placeholder="12 34 56 78">
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-ink-mid uppercase tracking-widest mb-1.5" style="letter-spacing:0.08em;" for="email">E-mail</label>
+        <input id="email" name="email" type="email" required autocomplete="email"
+          class="w-full px-3.5 py-2.5 rounded-md border border-border bg-canvas text-ink text-sm placeholder-ink-light transition-colors focus:outline-none focus:border-navy"
+          style="font-family:'DM Sans',sans-serif;" placeholder="mia@eksempel.dk">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-ink-mid uppercase tracking-widest mb-1.5" style="letter-spacing:0.08em;" for="msg">Hvad laver du? <span class="text-ink-light font-normal normal-case" style="letter-spacing:0;">(valgfrit)</span></label>
+        <textarea id="msg" name="message" rows="3"
+          class="w-full px-3.5 py-2.5 rounded-md border border-border bg-canvas text-ink text-sm placeholder-ink-light transition-colors focus:outline-none focus:border-navy resize-none"
+          style="font-family:'DM Sans',sans-serif;" placeholder="Jeg er zoneterapeut i Aarhus..."></textarea>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1">
+        <button type="submit" class="btn-primary">
+          Send besked
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <div class="text-xs text-ink-light" style="font-weight:300;">
+          Svar inden for 1 hverdag · Ingen forpligtelse
+        </div>
+      </div>
+    </form>
+
+    <div id="form-success" class="hidden mt-5 bg-navy-pale border border-navy rounded-lg p-5 reveal">
+      <div class="flex items-start gap-3">
+        <svg class="flex-shrink-0 mt-0.5" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div class="font-semibold text-navy text-sm mb-1">Tak — vi har modtaget din besked.</div>
+          <p class="text-sm text-navy-mid leading-relaxed" style="font-weight:300;">Du hører fra os inden for 1 hverdag med link til en gratis 15 min. samtale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     FOOTER
+════════════════════════ -->
+<footer class="border-t border-border bg-white">
+  <div class="max-w-6xl mx-auto px-6 py-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2.5">
+      <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+        <rect width="36" height="36" rx="6" fill="#0A6B46"/>
+        <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+      </svg>
+      <span class="text-base font-semibold text-ink">plainsite</span>
+    </div>
+    <div class="flex items-center gap-5 text-sm text-ink-light">
+      <a href="mailto:kontakt@plainsite.dk" class="hover:text-ink transition-colors no-underline">kontakt@plainsite.dk</a>
+      <a href="/vilkaar"  class="hover:text-ink transition-colors no-underline">Vilkår</a>
+      <a href="/privacy"  class="hover:text-ink transition-colors no-underline">Privatliv</a>
+    </div>
+    <div class="text-ink-light text-xs">© 2025 plainsite · CVR 46384040</div>
+  </div>
+</footer>
+
+
+<script>
+  const mobBtn   = document.getElementById('mob-btn');
+  const mobMenu  = document.getElementById('mob-menu');
+  const mobOpen  = document.getElementById('mob-open');
+  const mobClose = document.getElementById('mob-close');
+  let open = false;
+  mobBtn.addEventListener('click', () => {
+    open = !open;
+    mobMenu.classList.toggle('hidden', !open);
+    mobOpen.classList.toggle('hidden', open);
+    mobClose.classList.toggle('hidden', !open);
+  });
+  mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    open = false; mobMenu.classList.add('hidden');
+    mobOpen.classList.remove('hidden'); mobClose.classList.add('hidden');
+  }));
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+      } else {
+        // Re-arm: remove .in so element can animate in again when scrolled back to
+        // Small delay prevents flicker on initial load
+        if (e.target.dataset.revealed) e.target.classList.remove('in');
+      }
+      e.target.dataset.revealed = '1';
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  window.addEventListener('scroll', () =>
+    document.getElementById('site-nav').classList.toggle('nav-shadow', scrollY > 6), { passive: true });
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const body = item.querySelector('.faq-body');
+    const toggle = () => {
+      const was = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open'); i.querySelector('.faq-body').classList.remove('open'); i.setAttribute('aria-expanded','false');
+      });
+      if (!was) { item.classList.add('open'); body.classList.add('open'); item.setAttribute('aria-expanded','true'); }
+    };
+    item.addEventListener('click', toggle);
+    item.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }});
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Sender…';
+    setTimeout(() => {
+      e.target.style.display = 'none';
+      document.getElementById('form-success').classList.remove('hidden');
+    }, 650);
+  }
+</script>
+</body>
+</html>
