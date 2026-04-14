@@ -1,7 +1,0 @@
-name = "plainsite-forms"
-main = "worker.js"
-compatibility_date = "2025-01-01"
-
-[[kv_namespaces]]
-binding = "FORM_TOKENS"
-id = "dc774d98c2804e029fe53a67b059cdf6"
