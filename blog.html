@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog – plainsite</title>
+  <meta name="description" content="Tanker og råd om hjemmesider, synlighed på Google og hverdagen som alternativ terapeut.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: {
+          canvas: '#F5F1EC', 'canvas-alt': '#EDE8E0',
+          border: '#DDD8D0', ink: '#18161E',
+          'ink-mid': '#4A4555', 'ink-light': '#9A9694',
+          brand: '#0A6B46', 'brand-mid': '#085C3D', 'brand-pale': '#E0F0EA',
+        },
+        fontFamily: {
+          sans:    ['"DM Sans"', 'system-ui', 'sans-serif'],
+          display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+        },
+      }}
+    }
+  </script>
+  <style>
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: #F5F1EC; color: #18161E; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
+    a { color: inherit; }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- Nav -->
+  <header class="sticky top-0 z-50 bg-canvas/95 backdrop-blur-sm border-b border-border">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 no-underline">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="6" fill="#0A6B46"/>
+          <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+        </svg>
+        <span class="text-lg font-semibold text-ink tracking-tight" style="font-family:'Bricolage Grotesque',sans-serif;">plainsite</span>
+      </a>
+      <a href="/" class="text-ink-mid text-sm font-medium hover:text-ink transition-colors no-underline">← Forsiden</a>
+    </nav>
+  </header>
+
+  <!-- Header -->
+  <section class="max-w-6xl mx-auto px-6 pt-16 pb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="inline-block w-8 h-0.5 bg-brand flex-shrink-0"></span>
+      <span class="text-brand text-xs font-semibold tracking-[0.12em] uppercase">Blog</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-semibold text-ink leading-tight mb-4" style="letter-spacing:-0.02em;">
+      Tanker og indsigt
+    </h1>
+    <p class="text-ink-mid text-lg max-w-xl" style="font-weight:300;">Råd om hjemmesider, synlighed på Google og hverdagen som selvstændig terapeut.</p>
+  </section>
+
+  <div class="border-t border-border"></div>
+
+  <!-- Empty state -->
+  <section class="max-w-6xl mx-auto px-6 py-24 text-center">
+    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-pale mb-6">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="1.8" stroke-linecap="round">
+        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+      </svg>
+    </div>
+    <h2 class="text-xl font-semibold text-ink mb-3">Første indlæg er på vej</h2>
+    <p class="text-ink-mid max-w-sm mx-auto" style="font-weight:300;">Vi skriver om alt det, der hjælper dig som terapeut med at blive fundet online. Kom tilbage snart.</p>
+    <a href="/" class="inline-flex items-center gap-2 mt-8 text-sm font-medium text-brand hover:text-brand-mid transition-colors no-underline">
+      ← Tilbage til forsiden
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-border bg-canvas-alt">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="/" class="flex items-center gap-2 no-underline">
+        <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="6" fill="#0A6B46"/>
+          <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+        </svg>
+        <span class="text-sm font-semibold text-ink" style="font-family:'Bricolage Grotesque',sans-serif;">plainsite</span>
+      </a>
+      <div class="flex items-center gap-6 text-xs text-ink-light" style="font-weight:300;">
+        <a href="/privacy" class="hover:text-ink-mid transition-colors no-underline">Privatlivspolitik</a>
+        <a href="/vilkaar" class="hover:text-ink-mid transition-colors no-underline">Vilkår</a>
+        <span>© 2026 plainsite</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
