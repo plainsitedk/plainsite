@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | plainsite</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: "DM Sans", sans-serif; background: #F5F1EC; color: #18161E; -webkit-font-smoothing: antialiased; margin: 0; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #0A6B46; color: #fff;
+      padding: 0.75rem 1.5rem; border-radius: 6px;
+      font-family: "DM Sans", sans-serif; font-size: 0.95rem; font-weight: 600;
+      border: none; cursor: pointer; transition: background 0.2s;
+    }
+    .btn:hover { background: #085c3d; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: none; color: rgba(24,22,30,0.5);
+      padding: 0.6rem 1rem; border-radius: 6px;
+      font-family: "DM Sans", sans-serif; font-size: 0.875rem; font-weight: 500;
+      border: 1px solid rgba(24,22,30,0.15); cursor: pointer; transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(24,22,30,0.3); color: #18161E; }
+
+    .btn-danger {
+      background: none; color: rgba(220,50,50,0.7);
+      padding: 0.5rem 0.75rem; border-radius: 6px;
+      font-family: "DM Sans", sans-serif; font-size: 0.8rem; font-weight: 500;
+      border: 1px solid rgba(220,50,50,0.2); cursor: pointer; transition: all 0.2s;
+    }
+    .btn-danger:hover { background: rgba(220,50,50,0.06); border-color: rgba(220,50,50,0.4); color: rgb(200,40,40); }
+
+    input, textarea {
+      width: 100%; background: rgba(24,22,30,0.04);
+      border: 1px solid rgba(24,22,30,0.12); border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-family: "DM Sans", sans-serif; font-size: 0.95rem; color: #18161E;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, textarea:focus {
+      border-color: rgba(10,107,70,0.5);
+      box-shadow: 0 0 0 3px rgba(10,107,70,0.1);
+    }
+    textarea { resize: vertical; min-height: 300px; font-size: 0.9rem; line-height: 1.7; }
+    label { display: block; font-size: 0.8rem; font-weight: 600; color: rgba(24,22,30,0.6); margin-bottom: 0.4rem; }
+
+    /* ── Login skærm ── */
+    #screen-login {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .login-box {
+      background: #fff; border: 1px solid rgba(24,22,30,0.08);
+      border-radius: 16px; padding: 2.5rem;
+      width: 100%; max-width: 380px;
+      box-shadow: 0 20px 60px rgba(24,22,30,0.06);
+    }
+
+    /* ── Admin skærm ── */
+    #screen-admin { display: none; min-height: 100vh; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(245,241,236,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(24,22,30,0.08);
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+
+    .admin-body {
+      max-width: 860px; margin: 0 auto;
+      padding: 2.5rem clamp(1.5rem, 5vw, 2rem);
+    }
+
+    /* ── Post liste ── */
+    #view-list { display: block; }
+    #view-editor { display: none; }
+
+    .post-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 1rem 0; border-bottom: 1px solid rgba(24,22,30,0.07);
+      flex-wrap: wrap;
+    }
+    .post-row-info { flex: 1; min-width: 0; }
+    .post-row-title {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700; font-size: 1rem; color: #18161E;
+      letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .post-row-date { font-size: 0.78rem; color: rgba(24,22,30,0.4); margin-top: 0.2rem; }
+    .post-row-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+
+    /* ── Editor ── */
+    .editor-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem; flex-wrap: wrap;
+    }
+    .editor-header h2 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700; font-size: 1.4rem; letter-spacing: -0.03em;
+      color: #18161E; margin: 0; flex: 1;
+    }
+
+    .markdown-hint {
+      font-size: 0.75rem; color: rgba(24,22,30,0.35);
+      margin-top: 0.5rem; line-height: 1.6;
+    }
+    .markdown-hint code {
+      background: rgba(24,22,30,0.06); border-radius: 3px;
+      padding: 0.1em 0.3em; font-size: 0.85em;
+    }
+
+    #save-status {
+      font-size: 0.8rem; color: #0A6B46; font-weight: 500;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    #save-status.show { opacity: 1; }
+
+    #error-msg {
+      font-size: 0.85rem; color: rgb(200,40,40);
+      margin-top: 0.5rem; display: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN ── -->
+<div id="screen-login">
+  <div class="login-box">
+    <div style="display:flex;align-items:center;gap:0.65rem;margin-bottom:2rem;">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px;border-radius:6px;overflow:hidden;flex-shrink:0;">
+        <rect width="36" height="36" fill="#18161E"/>
+        <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="12" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+      </svg>
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.1rem;color:#18161E;letter-spacing:-0.02em;">plainsite</span>
+    </div>
+
+    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-0.03em;margin:0 0 0.4rem;">Log ind</h1>
+    <p style="font-size:0.875rem;color:rgba(24,22,30,0.5);margin:0 0 1.75rem;">Blog administration</p>
+
+    <form id="login-form">
+      <div style="margin-bottom:1.25rem;">
+        <label for="password-input">Adgangskode</label>
+        <input id="password-input" type="password" placeholder="••••••••" autocomplete="current-password" required>
+      </div>
+      <p id="login-error" style="font-size:0.85rem;color:rgb(200,40,40);margin:0 0 1rem;display:none;">Forkert adgangskode.</p>
+      <button type="submit" class="btn" style="width:100%;justify-content:center;" id="login-btn">Log ind</button>
+    </form>
+  </div>
+</div>
+
+<!-- ── ADMIN ── -->
+<div id="screen-admin">
+
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:0.65rem;">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;border-radius:6px;overflow:hidden;flex-shrink:0;">
+        <rect width="36" height="36" fill="#18161E"/>
+        <text x="18" y="18" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="12" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+      </svg>
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;color:#18161E;letter-spacing:-0.02em;">Blog admin</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <a href="/blog" target="_blank" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Se blog
+      </a>
+      <button class="btn-ghost" id="logout-btn">Log ud</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- Liste over opslag -->
+    <div id="view-list">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.75rem;letter-spacing:-0.04em;margin:0;">Opslag</h1>
+        <button class="btn" id="new-post-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Nyt opslag
+        </button>
+      </div>
+
+      <div id="posts-list"></div>
+      <p id="no-posts" style="color:rgba(24,22,30,0.35);font-size:0.9rem;display:none;">Ingen opslag endnu. Klik "Nyt opslag" for at komme i gang.</p>
+    </div>
+
+    <!-- Editor -->
+    <div id="view-editor">
+      <div class="editor-header">
+        <button class="btn-ghost" id="back-to-list">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12 7H2M2 7L6 3M2 7L6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Tilbage
+        </button>
+        <h2 id="editor-heading">Nyt opslag</h2>
+        <span id="save-status">Gemt!</span>
+        <button class="btn" id="save-btn">Gem opslag</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+        <div>
+          <label for="post-title">Titel</label>
+          <input id="post-title" type="text" placeholder="Titel på dit opslag">
+        </div>
+        <div>
+          <label for="post-content">Indhold</label>
+          <textarea id="post-content" placeholder="Skriv dit opslag her...&#10;&#10;Du kan bruge markdown til formatering."></textarea>
+          <p class="markdown-hint">
+            Markdown: <code>**fed**</code> · <code>*kursiv*</code> · <code>## Overskrift</code> · <code>- liste</code>
+          </p>
+        </div>
+        <p id="error-msg">Udfyld venligst både titel og indhold.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const API = 'https://plainsite-blog.tobias-gutkin.workers.dev';
+  let token = localStorage.getItem('blog_token') || '';
+  let editingSlug = null;
+
+  // ── Auto-login hvis token findes ──
+  if (token) showAdmin();
+
+  // ── Login ──
+  document.getElementById('login-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = document.getElementById('login-btn');
+    const errEl = document.getElementById('login-error');
+    btn.disabled = true;
+    btn.textContent = 'Logger ind…';
+    errEl.style.display = 'none';
+
+    const password = document.getElementById('password-input').value;
+    const res = await fetch(`${API}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      token = data.token;
+      localStorage.setItem('blog_token', token);
+      showAdmin();
+    } else {
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Log ind';
+    }
+  });
+
+  // ── Log ud ──
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    localStorage.removeItem('blog_token');
+    token = '';
+    document.getElementById('screen-admin').style.display = 'none';
+    document.getElementById('screen-login').style.display = 'flex';
+    document.getElementById('password-input').value = '';
+  });
+
+  // ── Vis admin ──
+  function showAdmin() {
+    document.getElementById('screen-login').style.display = 'none';
+    document.getElementById('screen-admin').style.display = 'block';
+    loadPosts();
+  }
+
+  // ── Hent opslag ──
+  async function loadPosts() {
+    const res = await fetch(`${API}/posts`);
+    const posts = await res.json();
+
+    const list = document.getElementById('posts-list');
+    const empty = document.getElementById('no-posts');
+    list.innerHTML = '';
+
+    if (!posts.length) {
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    posts.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'post-row';
+      row.innerHTML = `
+        <div class="post-row-info">
+          <div class="post-row-title">${escapeHtml(p.title)}</div>
+          <div class="post-row-date">${formatDate(p.date)}</div>
+        </div>
+        <div class="post-row-actions">
+          <button class="btn-ghost edit-btn" data-slug="${p.slug}">Rediger</button>
+          <button class="btn-danger delete-btn" data-slug="${p.slug}">Slet</button>
+        </div>
+      `;
+      list.appendChild(row);
+    });
+
+    list.querySelectorAll('.edit-btn').forEach(btn => {
+      btn.addEventListener('click', () => openEditor(btn.dataset.slug));
+    });
+    list.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', () => deletePost(btn.dataset.slug));
+    });
+  }
+
+  // ── Nyt opslag ──
+  document.getElementById('new-post-btn').addEventListener('click', () => {
+    editingSlug = null;
+    document.getElementById('editor-heading').textContent = 'Nyt opslag';
+    document.getElementById('post-title').value = '';
+    document.getElementById('post-content').value = '';
+    document.getElementById('error-msg').style.display = 'none';
+    document.getElementById('view-list').style.display = 'none';
+    document.getElementById('view-editor').style.display = 'block';
+    document.getElementById('post-title').focus();
+  });
+
+  // ── Rediger eksisterende ──
+  async function openEditor(slug) {
+    const res = await fetch(`${API}/posts/${slug}`);
+    const post = await res.json();
+    editingSlug = slug;
+    document.getElementById('editor-heading').textContent = 'Rediger opslag';
+    document.getElementById('post-title').value = post.title;
+    document.getElementById('post-content').value = post.content;
+    document.getElementById('error-msg').style.display = 'none';
+    document.getElementById('view-list').style.display = 'none';
+    document.getElementById('view-editor').style.display = 'block';
+    document.getElementById('post-title').focus();
+  }
+
+  // ── Gem ──
+  document.getElementById('save-btn').addEventListener('click', savePost);
+
+  async function savePost() {
+    const title = document.getElementById('post-title').value.trim();
+    const content = document.getElementById('post-content').value.trim();
+    const errEl = document.getElementById('error-msg');
+    const saveBtn = document.getElementById('save-btn');
+
+    if (!title || !content) {
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Gemmer…';
+
+    const url = editingSlug ? `${API}/posts/${editingSlug}` : `${API}/posts`;
+    const method = editingSlug ? 'PUT' : 'POST';
+
+    const res = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ title, content }),
+    });
+
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Gem opslag';
+
+    if (res.ok) {
+      const status = document.getElementById('save-status');
+      status.classList.add('show');
+      setTimeout(() => status.classList.remove('show'), 2000);
+      if (!editingSlug) {
+        // Nyt opslag gemt — tilbage til liste
+        setTimeout(() => {
+          document.getElementById('view-editor').style.display = 'none';
+          document.getElementById('view-list').style.display = 'block';
+          loadPosts();
+        }, 600);
+      } else {
+        loadPosts();
+      }
+    }
+  }
+
+  // ── Slet ──
+  async function deletePost(slug) {
+    if (!confirm('Er du sikker på at du vil slette dette opslag?')) return;
+    await fetch(`${API}/posts/${slug}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` },
+    });
+    loadPosts();
+  }
+
+  // ── Tilbage til liste ──
+  document.getElementById('back-to-list').addEventListener('click', () => {
+    document.getElementById('view-editor').style.display = 'none';
+    document.getElementById('view-list').style.display = 'block';
+  });
+
+  function formatDate(iso) {
+    return new Date(iso).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
+</body>
+</html>
