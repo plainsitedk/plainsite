@@ -1,0 +1,9 @@
+name = "plainsite"
+compatibility_date = "2026-04-12"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "plainsite"
+
+[assets]
+directory = "plainsite hjemmeside"
