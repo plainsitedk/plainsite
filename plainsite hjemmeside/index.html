@@ -257,7 +257,7 @@
 ════════════════════════ -->
 <div class="flex flex-col" style="min-height:calc(100dvh - 64px);">
 
-<section class="flex-1 max-w-6xl mx-auto w-full px-6 pt-14 pb-10 sm:pt-20 sm:pb-14 lg:pt-28 lg:pb-20 flex flex-col justify-center">
+<section class="flex-1 max-w-6xl mx-auto w-full px-6 pt-12 pb-8 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-16 flex flex-col justify-start">
   <div class="grid sm:grid-cols-[1fr_auto] lg:grid-cols-[1fr_420px] gap-12 lg:gap-16 items-center">
 
     <!-- Copy -->
@@ -338,7 +338,7 @@
             <div class="text-ink-light text-xs mt-0.5">dages garanti</div>
           </div>
           <div class="py-3">
-            <div class="text-sm font-semibold text-ink">397</div>
+            <div class="text-sm font-semibold text-ink">299</div>
             <div class="text-ink-light text-xs mt-0.5">kr/md fra</div>
           </div>
           <div class="py-3">
@@ -383,9 +383,8 @@
 
     <!-- Problem -->
     <div>
-      <div class="reveal flex items-center gap-3 mb-6">
-        <span class="rule" style="background:#9A9A9A;"></span>
-        <span class="text-ink-light text-xs font-semibold tracking-[0.12em] uppercase">Problemet</span>
+      <div class="reveal mb-6">
+        <span class="text-xs font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-full bg-canvas-alt text-ink-light border border-border">Problemet</span>
       </div>
       <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-5 leading-tight" style="letter-spacing:-0.02em;">
         Usynlig på Google —<br>
@@ -416,9 +415,8 @@
 
     <!-- Solution -->
     <div>
-      <div class="reveal flex items-center gap-3 mb-6">
-        <span class="rule"></span>
-        <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Løsningen</span>
+      <div class="reveal mb-6">
+        <span class="text-xs font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-full bg-navy-pale text-navy border border-navy/20">Løsningen</span>
       </div>
       <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-5 leading-tight" style="letter-spacing:-0.02em;">
         Vi bygger og driver<br>
@@ -475,10 +473,7 @@
 ════════════════════════ -->
 <section class="border-y border-border bg-canvas-alt py-20 lg:py-24">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="reveal flex items-center gap-3 mb-12">
-      <span class="rule"></span>
-      <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Processen</span>
-    </div>
+    <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-12 leading-tight" style="letter-spacing:-0.02em;">Sådan<br><span class="font-light text-ink-mid">virker det.</span></h2>
     <div class="grid md:grid-cols-3 gap-0 md:divide-x md:divide-border">
       <div class="reveal reveal-d1 md:pr-10 pb-10 md:pb-0">
         <div class="text-xs font-semibold text-ink-light tracking-widest mb-5" style="letter-spacing:0.12em;">01</div>
@@ -505,36 +500,50 @@
 ════════════════════════ -->
 <section id="priser" class="max-w-6xl mx-auto px-6 py-20 lg:py-28">
   <div class="reveal flex items-end justify-between gap-6 mb-10 flex-wrap">
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <span class="rule"></span>
-        <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Priser</span>
+    <h2 class="text-4xl lg:text-[3rem] font-semibold text-ink leading-tight" style="letter-spacing:-0.025em;">Enkle priser,<br><span class="font-light text-ink-mid">intet skjult.</span></h2>
+    <p class="text-ink-light text-sm max-w-[240px]" style="font-weight:300;">Ingen oprettelsesgebyr. Ingen binding efter 3 måneder.</p>
+  </div>
+
+  <!-- Hero plan: Synlig -->
+  <div class="reveal card-navy rounded-xl p-8 lg:p-10 mb-4">
+    <div class="flex flex-wrap items-start justify-between gap-6 mb-6">
+      <div>
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-xs font-semibold tracking-[0.1em] uppercase" style="color:rgba(255,255,255,.45);">Synlig</span>
+          <span class="text-xs font-medium px-2.5 py-0.5 rounded-full" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);letter-spacing:0.05em;">mest valgt</span>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span class="text-[3.25rem] font-semibold leading-none" style="letter-spacing:-0.03em;">399</span>
+          <span class="text-sm" style="color:rgba(255,255,255,.45);font-weight:300;">kr/md</span>
+        </div>
       </div>
-      <h2 class="text-3xl lg:text-[2.25rem] font-semibold text-ink leading-tight" style="letter-spacing:-0.02em;">Enkle priser, intet skjult</h2>
+      <a href="#kontakt" class="btn-primary self-start" style="background:#fff;color:#0A6B46;">Kom i gang
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
-    <p class="text-ink-light text-sm max-w-[260px]" style="font-weight:300;">Ingen oprettelsesgebyr. Ingen binding efter 3 måneder.</p>
+    <hr style="border-color:rgba(255,255,255,.1);margin-bottom:1.5rem;">
+    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2.5 text-sm" style="font-weight:300;color:rgba(255,255,255,.75);">
+      <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8ECFB7" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Fuld site — op til 5 sider</li>
+      <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8ECFB7" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>SEO-tekster skrevet til Google</li>
+      <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8ECFB7" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Én ændring pr. måned</li>
+      <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8ECFB7" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Google Business-opsætning</li>
+      <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8ECFB7" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Kontaktformular</li>
+      <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8ECFB7" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Hosting, drift og support</li>
+      <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8ECFB7" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>GDPR-compliant fra dag ét</li>
+    </ul>
   </div>
 
-  <!-- Badge row — giver alle kort samme startpunkt -->
-  <div class="grid md:grid-cols-3 gap-4 mb-1">
-    <div></div>
-    <div class="flex justify-center">
-      <span class="text-xs font-medium px-3 py-0.5 rounded-full" style="background:#E0F0EA;color:#0A6B46;letter-spacing:0.06em;">mest valgt</span>
-    </div>
-    <div></div>
-  </div>
+  <!-- Supporting plans -->
+  <div class="grid md:grid-cols-2 gap-4">
 
-  <div class="grid md:grid-cols-3 gap-4">
-
-    <!-- Start -->
-    <div class="reveal reveal-d1 bg-white border border-border rounded-lg p-7 flex flex-col">
-      <div class="lbl text-xs font-semibold text-ink-light tracking-widest uppercase mb-4" style="letter-spacing:0.1em;">Online</div>
-      <div class="flex items-baseline gap-1.5 mb-1">
-        <span class="text-4xl font-semibold text-ink tracking-tight">299</span>
+    <!-- Online -->
+    <div class="reveal reveal-d1 bg-white border border-border rounded-xl p-7 flex flex-col">
+      <div class="text-xs font-semibold text-ink-light tracking-widest uppercase mb-3" style="letter-spacing:0.1em;">Online</div>
+      <div class="flex items-baseline gap-1.5 mb-4">
+        <span class="text-3xl font-semibold text-ink tracking-tight">299</span>
         <span class="text-ink-light text-sm font-normal">kr/md</span>
       </div>
-      <hr class="border-border my-5">
-      <ul class="space-y-2.5 flex-1 mb-7 text-sm text-ink-mid" style="font-weight:300;">
+      <ul class="space-y-2 flex-1 mb-6 text-sm text-ink-mid" style="font-weight:300;">
         <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Én-sides hjemmeside</li>
         <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Google Business-opsætning</li>
         <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Kontaktformular</li>
@@ -545,35 +554,14 @@
       <a href="#kontakt" class="btn-outline text-sm justify-center">Kom i gang</a>
     </div>
 
-    <!-- Synlig -->
-    <div class="reveal reveal-d2 bg-white rounded-lg p-7 flex flex-col" style="border:1.5px solid #0A6B46;">
-      <div class="text-xs font-semibold text-ink-light tracking-widest uppercase mb-4" style="letter-spacing:0.1em;">Synlig</div>
-      <div class="flex items-baseline gap-1.5 mb-1">
-        <span class="text-4xl font-semibold text-ink tracking-tight">399</span>
-        <span class="text-ink-light text-sm font-normal">kr/md</span>
-      </div>
-      <hr class="border-border my-5">
-      <ul class="space-y-2.5 flex-1 mb-7 text-sm text-ink-mid" style="font-weight:300;">
-        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Fuld site — op til 5 sider</li>
-        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>SEO-tekster skrevet til Google</li>
-        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Én ændring pr. måned</li>
-        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Google Business-opsætning</li>
-        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Kontaktformular</li>
-        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Hosting, drift og support</li>
-        <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>GDPR-compliant fra dag ét</li>
-      </ul>
-      <a href="#kontakt" class="btn-primary justify-center">Kom i gang</a>
-    </div>
-
     <!-- Vækst -->
-    <div class="reveal reveal-d3 bg-white border border-border rounded-lg p-7 flex flex-col">
-      <div class="text-xs font-semibold text-ink-light tracking-widest uppercase mb-4" style="letter-spacing:0.1em;">Vækst</div>
-      <div class="flex items-baseline gap-1.5 mb-1">
-        <span class="text-4xl font-semibold text-ink tracking-tight">599</span>
+    <div class="reveal reveal-d2 bg-white border border-border rounded-xl p-7 flex flex-col">
+      <div class="text-xs font-semibold text-ink-light tracking-widest uppercase mb-3" style="letter-spacing:0.1em;">Vækst</div>
+      <div class="flex items-baseline gap-1.5 mb-4">
+        <span class="text-3xl font-semibold text-ink tracking-tight">599</span>
         <span class="text-ink-light text-sm font-normal">kr/md</span>
       </div>
-      <hr class="border-border my-5">
-      <ul class="space-y-2.5 flex-1 mb-7 text-sm text-ink-mid" style="font-weight:300;">
+      <ul class="space-y-2 flex-1 mb-6 text-sm text-ink-mid" style="font-weight:300;">
         <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Alt i Synlig</li>
         <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Blogindlæg pr. måned</li>
         <li class="flex gap-2.5"><svg class="mt-0.5 flex-shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Udvidet lokal SEO</li>
@@ -615,11 +603,7 @@
      FAQ
 ════════════════════════ -->
 <section id="faq" class="max-w-3xl mx-auto px-6 py-20 lg:py-24">
-  <div class="reveal flex items-center gap-3 mb-3">
-    <span class="rule"></span>
-    <span class="text-navy text-xs font-semibold tracking-[0.12em] uppercase">Spørgsmål</span>
-  </div>
-  <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-10 leading-tight" style="letter-spacing:-0.02em;">Ofte stillede spørgsmål</h2>
+  <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-10 leading-tight" style="letter-spacing:-0.02em;">Spørgsmål &amp;<br><span class="font-light text-ink-mid">svar.</span></h2>
 
   <div class="divide-y divide-border reveal">
 
@@ -815,14 +799,32 @@
     item.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }});
   });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true; btn.textContent = 'Sender…';
-    setTimeout(() => {
-      e.target.style.display = 'none';
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:    form.name.value,
+          email:   form.email.value,
+          phone:   form.phone.value,
+          message: form.message.value,
+        }),
+      });
+      if (!res.ok) {
+        const { error } = await res.json().catch(() => ({}));
+        throw new Error(error || `HTTP ${res.status}`);
+      }
+      form.style.display = 'none';
       document.getElementById('form-success').classList.remove('hidden');
-    }, 650);
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Send besked';
+      alert('Noget gik galt: ' + err.message + '\nPrøv igen eller skriv til kontakt@plainsite.dk');
+    }
   }
 </script>
 </body>
