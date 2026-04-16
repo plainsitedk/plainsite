@@ -468,21 +468,20 @@
 
 <script>
   const PASSWORD = 'FJDK ii843';
-  const STORE_KEY = 'plainsite_blog_posts';
+  const API = '/api/blog';
   let posts = [];
   let editingId = null;
 
   // ── Auth ──
-  function doLogin() {
+  async function doLogin() {
     const val = document.getElementById('pw').value;
     if (val === PASSWORD) {
       document.getElementById('screen-login').style.display = 'none';
       document.getElementById('screen-admin').style.display = 'flex';
-      loadPosts();
+      await loadPosts();
       renderList();
     } else {
-      const err = document.getElementById('login-error');
-      err.style.display = 'block';
+      document.getElementById('login-error').style.display = 'block';
       document.getElementById('pw').focus();
     }
   }
@@ -498,26 +497,41 @@
     el.type = el.type === 'password' ? 'text' : 'password';
   }
 
-  // ── Storage ──
-  function loadPosts() {
-    try { posts = JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
-    catch { posts = []; }
+  // ── API ──
+  async function loadPosts() {
+    try {
+      const res = await fetch(API);
+      posts = await res.json();
+    } catch { posts = []; }
   }
-  function savePosts() {
-    localStorage.setItem(STORE_KEY, JSON.stringify(posts));
+
+  async function apiSave(method, body) {
+    return fetch(API, {
+      method,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
+      body: JSON.stringify(body),
+    }).then(r => r.json());
+  }
+
+  async function apiDelete(id) {
+    return fetch(API, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
+      body: JSON.stringify({ id }),
+    }).then(r => r.json());
   }
 
   // ── List ──
   function renderList() {
     const el = document.getElementById('posts-list');
-    if (posts.length === 0) {
+    if (!posts.length) {
       el.innerHTML = `<div class="posts-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" style="color:var(--ink-light);margin-bottom:.75rem;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" style="color:var(--ink-light);margin-bottom:.75rem;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         <p>Ingen indlæg endnu. Klik "Nyt indlæg" for at komme i gang.</p>
       </div>`;
       return;
     }
-    el.innerHTML = posts.slice().reverse().map(p => `
+    el.innerHTML = posts.map(p => `
       <div class="post-row">
         <div class="post-info">
           <div class="post-title">${escHtml(p.title || 'Uden titel')}</div>
@@ -530,11 +544,12 @@
       </div>`).join('');
   }
 
-  function showList() {
+  async function showList() {
     document.getElementById('view-list').style.display = 'block';
     document.getElementById('view-editor').style.display = 'none';
     document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a>`;
     editingId = null;
+    await loadPosts();
     renderList();
   }
 
@@ -567,30 +582,32 @@
     document.getElementById('post-title').focus();
   }
 
-  function savePost() {
+  async function savePost() {
     const title = document.getElementById('post-title').value.trim();
     const content = document.getElementById('editor').innerHTML;
-    const now = new Date().toISOString();
+    const btn = document.querySelector('.editor-footer .btn-primary');
+    btn.disabled = true; btn.textContent = 'Gemmer…';
 
-    if (editingId) {
-      const idx = posts.findIndex(x => x.id === editingId);
-      if (idx >= 0) {
-        posts[idx].title = title;
-        posts[idx].content = content;
-        posts[idx].updatedAt = now;
+    try {
+      if (editingId) {
+        const updated = await apiSave('PUT', { id: editingId, title, content });
+        const idx = posts.findIndex(x => x.id === editingId);
+        if (idx >= 0) posts[idx] = updated;
+      } else {
+        const created = await apiSave('POST', { title, content });
+        posts.unshift(created);
+        editingId = created.id;
+        document.getElementById('delete-btn').style.display = '';
       }
-    } else {
-      const id = 'post_' + Date.now();
-      posts.push({ id, title, content, createdAt: now, updatedAt: now });
-      editingId = id;
-      document.getElementById('delete-btn').style.display = '';
+      const ss = document.getElementById('save-status');
+      ss.classList.add('show');
+      setTimeout(() => ss.classList.remove('show'), 2500);
+      document.getElementById('editor-heading').textContent = 'Rediger indlæg';
+      document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--border)">›</span> <span>${escHtml(title || 'Uden titel')}</span>`;
+    } catch {
+      showToast('Fejl ved gemning — prøv igen');
     }
-    savePosts();
-    const ss = document.getElementById('save-status');
-    ss.classList.add('show');
-    setTimeout(() => ss.classList.remove('show'), 2500);
-    document.getElementById('editor-heading').textContent = 'Rediger indlæg';
-    document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--border)">›</span> <span>${escHtml(title || 'Uden titel')}</span>`;
+    btn.disabled = false; btn.textContent = 'Gem indlæg';
   }
 
   // ── Delete ──
@@ -600,10 +617,10 @@
   function showConfirm() { document.getElementById('confirm-overlay').classList.add('show'); }
   function closeConfirm() { document.getElementById('confirm-overlay').classList.remove('show'); deleteTargetId = null; }
 
-  function deletePost() {
+  async function deletePost() {
     if (!deleteTargetId) return;
+    await apiDelete(deleteTargetId);
     posts = posts.filter(p => p.id !== deleteTargetId);
-    savePosts();
     closeConfirm();
     showToast('Indlæg slettet');
     showList();

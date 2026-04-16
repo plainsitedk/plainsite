@@ -32,6 +32,19 @@
     body { font-family: 'DM Sans', system-ui, sans-serif; background: #F5F1EC; color: #18161E; -webkit-font-smoothing: antialiased; }
     h1, h2, h3 { font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
     a { color: inherit; }
+
+    /* Single post prose */
+    .prose h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.75rem; font-weight: 800; letter-spacing: -.02em; margin: 1.25rem 0 .5rem; line-height: 1.2; }
+    .prose h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.3rem; font-weight: 700; margin: 1.1rem 0 .4rem; line-height: 1.3; }
+    .prose h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.05rem; font-weight: 700; margin: .9rem 0 .35rem; }
+    .prose p { margin: .65rem 0; line-height: 1.75; }
+    .prose ul, .prose ol { margin: .5rem 0 .5rem 1.5rem; }
+    .prose li { margin: .25rem 0; line-height: 1.7; }
+    .prose blockquote { border-left: 3px solid #0A6B46; padding-left: 1rem; color: #4A4555; margin: 1rem 0; font-style: italic; }
+    .prose a { color: #0A6B46; text-decoration: underline; }
+    .prose strong { font-weight: 700; }
+    .prose em { font-style: italic; }
+    .prose u { text-decoration: underline; }
   </style>
 </head>
 <body class="min-h-screen">
@@ -50,33 +63,41 @@
     </nav>
   </header>
 
-  <!-- Header -->
-  <section class="max-w-6xl mx-auto px-6 pt-16 pb-12">
-    <div class="flex items-center gap-3 mb-6">
-      <span class="inline-block w-8 h-0.5 bg-brand flex-shrink-0"></span>
-      <span class="text-brand text-xs font-semibold tracking-[0.12em] uppercase">Blog</span>
-    </div>
-    <h1 class="text-4xl md:text-5xl font-semibold text-ink leading-tight mb-4" style="letter-spacing:-0.02em;">
-      Tanker og indsigt
-    </h1>
-    <p class="text-ink-mid text-lg max-w-xl" style="font-weight:300;">Råd om hjemmesider, synlighed på Google og hverdagen som selvstændig terapeut.</p>
-  </section>
+  <!-- LIST VIEW -->
+  <div id="view-list">
+    <section class="max-w-6xl mx-auto px-6 pt-16 pb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="inline-block w-8 h-0.5 bg-brand flex-shrink-0"></span>
+        <span class="text-brand text-xs font-semibold tracking-[0.12em] uppercase">Blog</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-semibold text-ink leading-tight mb-4" style="letter-spacing:-0.02em;">
+        Tanker og indsigt
+      </h1>
+      <p class="text-ink-mid text-lg max-w-xl" style="font-weight:300;">Råd om hjemmesider, synlighed på Google og hverdagen som selvstændig terapeut.</p>
+    </section>
 
-  <div class="border-t border-border"></div>
+    <div class="border-t border-border"></div>
 
-  <!-- Empty state -->
-  <section class="max-w-6xl mx-auto px-6 py-24 text-center">
-    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-pale mb-6">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="1.8" stroke-linecap="round">
-        <path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
-      </svg>
+    <section class="max-w-6xl mx-auto px-6 py-16" id="posts-container">
+      <!-- posts injected here -->
+    </section>
+  </div>
+
+  <!-- SINGLE POST VIEW -->
+  <div id="view-post" style="display:none;">
+    <div class="max-w-2xl mx-auto px-6 py-14">
+      <a onclick="showList()" class="inline-flex items-center gap-1.5 text-sm text-ink-mid hover:text-ink transition-colors no-underline cursor-pointer mb-10">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Alle indlæg
+      </a>
+      <div class="flex items-center gap-3 mb-5">
+        <span class="inline-block w-6 h-0.5 bg-brand flex-shrink-0"></span>
+        <span class="text-brand text-xs font-semibold tracking-[0.12em] uppercase" id="post-date-label"></span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-semibold text-ink mb-8 leading-tight" style="letter-spacing:-.02em;" id="post-title-view"></h1>
+      <div class="prose text-ink-mid text-base" style="font-weight:300;" id="post-content-view"></div>
     </div>
-    <h2 class="text-xl font-semibold text-ink mb-3">Første indlæg er på vej</h2>
-    <p class="text-ink-mid max-w-sm mx-auto" style="font-weight:300;">Vi skriver om alt det, der hjælper dig som terapeut med at blive fundet online. Kom tilbage snart.</p>
-    <a href="/" class="inline-flex items-center gap-2 mt-8 text-sm font-medium text-brand hover:text-brand-mid transition-colors no-underline">
-      ← Tilbage til forsiden
-    </a>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer class="border-t border-border bg-canvas-alt">
@@ -96,5 +117,81 @@
     </div>
   </footer>
 
+<script>
+  let allPosts = [];
+
+  async function loadPosts() {
+    const container = document.getElementById('posts-container');
+    container.innerHTML = '<p class="text-ink-light text-sm">Henter indlæg…</p>';
+    try {
+      const res = await fetch('/api/blog');
+      allPosts = await res.json();
+      renderList();
+    } catch {
+      container.innerHTML = '<p class="text-ink-light text-sm">Kunne ikke hente indlæg.</p>';
+    }
+  }
+
+  function renderList() {
+    const container = document.getElementById('posts-container');
+    if (!allPosts.length) {
+      container.innerHTML = `
+        <div class="text-center py-12">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-pale mb-6">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="1.8" stroke-linecap="round"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h2 class="text-xl font-semibold text-ink mb-3">Første indlæg er på vej</h2>
+          <p class="text-ink-mid max-w-sm mx-auto" style="font-weight:300;">Vi skriver om alt det, der hjælper dig som terapeut med at blive fundet online. Kom tilbage snart.</p>
+          <a href="/" class="inline-flex items-center gap-2 mt-8 text-sm font-medium text-brand hover:text-brand-mid transition-colors no-underline">← Tilbage til forsiden</a>
+        </div>`;
+      return;
+    }
+    container.innerHTML = `<div class="divide-y divide-border">` +
+      allPosts.map(p => `
+        <article class="py-8 cursor-pointer group" onclick="showPost('${p.id}')">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xs text-ink-light font-medium">${formatDate(p.createdAt)}</span>
+          </div>
+          <h2 class="text-xl font-semibold text-ink mb-2 leading-snug group-hover:text-brand transition-colors" style="letter-spacing:-.01em;">${escHtml(p.title || 'Uden titel')}</h2>
+          <p class="text-ink-light text-sm line-clamp-2" style="font-weight:300;">${stripHtml(p.content).slice(0,160)}${stripHtml(p.content).length>160?'…':''}</p>
+          <span class="inline-flex items-center gap-1 mt-3 text-sm font-medium text-brand opacity-0 group-hover:opacity-100 transition-opacity">
+            Læs mere
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </article>`).join('') + `</div>`;
+  }
+
+  function showPost(id) {
+    const p = allPosts.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('post-title-view').textContent = p.title || 'Uden titel';
+    document.getElementById('post-content-view').innerHTML = p.content || '';
+    document.getElementById('post-date-label').textContent = formatDate(p.createdAt);
+    document.getElementById('view-list').style.display = 'none';
+    document.getElementById('view-post').style.display = '';
+    window.scrollTo(0,0);
+  }
+
+  function showList() {
+    document.getElementById('view-list').style.display = '';
+    document.getElementById('view-post').style.display = 'none';
+    window.scrollTo(0,0);
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    return new Date(iso).toLocaleDateString('da-DK', { day:'numeric', month:'long', year:'numeric' });
+  }
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function stripHtml(s) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = s;
+    return tmp.textContent || '';
+  }
+
+  loadPosts();
+</script>
 </body>
 </html>
