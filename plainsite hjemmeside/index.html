@@ -176,34 +176,99 @@
 
     /* ── Reveal ── */
     .reveal {
-      opacity: 0; transform: translateY(18px);
-      transition: opacity 520ms cubic-bezier(0.16, 1, 0.3, 1), transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1);
     }
     .reveal.in { opacity: 1; transform: none; }
+    .reveal-left {
+      opacity: 0; transform: translateX(-28px);
+      transition: opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-left.in { opacity: 1; transform: none; }
+    .reveal-right {
+      opacity: 0; transform: translateX(28px);
+      transition: opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-right.in { opacity: 1; transform: none; }
+    .reveal-scale {
+      opacity: 0; transform: scale(0.94);
+      transition: opacity 550ms cubic-bezier(0.16,1,0.3,1), transform 550ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-scale.in { opacity: 1; transform: none; }
     .reveal-d1 { transition-delay: 60ms; }
-    .reveal-d2 { transition-delay: 120ms; }
-    .reveal-d3 { transition-delay: 180ms; }
-    .reveal-d4 { transition-delay: 240ms; }
+    .reveal-d2 { transition-delay: 130ms; }
+    .reveal-d3 { transition-delay: 200ms; }
+    .reveal-d4 { transition-delay: 270ms; }
     @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; transition: none; }
     }
 
     /* ── FAQ ── */
-    .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 240ms cubic-bezier(0.16,1,0.3,1); }
+    .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 260ms cubic-bezier(0.16,1,0.3,1); }
     .faq-body.open { grid-template-rows: 1fr; }
     .faq-body > div { overflow: hidden; }
-    .faq-chevron { transition: transform 240ms cubic-bezier(0.16,1,0.3,1); }
+    .faq-chevron { transition: transform 260ms cubic-bezier(0.16,1,0.3,1); }
     .faq-item.open .faq-chevron { transform: rotate(180deg); }
-    .faq-item { cursor: pointer; transition: background 140ms ease; border-radius: 6px; margin: 0 -12px; padding: 0 12px; }
-    .faq-item:hover { background: #EDE8E0; }
+    .faq-item { cursor: pointer; transition: background 150ms ease, transform 150ms cubic-bezier(0.16,1,0.3,1); border-radius: 6px; margin: 0 -12px; padding: 0 12px; }
+    .faq-item:hover { background: #EDE8E0; transform: translateX(4px); }
+    .faq-item:active { transform: translateX(4px) scale(0.99); }
 
-    /* ── Pricing dark card ── */
+    /* ── Pricing cards ── */
     .card-navy { background: #0A6B46; color: #fff; }
     .card-navy .feat  { color: rgba(255,255,255,.62); }
     .card-navy .check { color: #8ECFB7; }
     .card-navy hr     { border-color: rgba(255,255,255,.1); }
     .card-navy .lbl   { color: rgba(255,255,255,.38); }
     .card-navy .badge { background: rgba(255,255,255,.12); color: rgba(255,255,255,.8); }
+
+    .price-card {
+      transition: transform 240ms cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 240ms cubic-bezier(0.16,1,0.3,1),
+                  border-color 200ms ease;
+      cursor: default;
+    }
+    .price-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 16px 40px -8px rgba(0,0,0,0.13), 0 4px 12px rgba(0,0,0,0.06);
+      border-color: #C0BAB2;
+    }
+    .price-card.card-navy:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 16px 48px -8px rgba(10,107,70,0.40), 0 4px 16px rgba(10,107,70,0.22);
+    }
+
+    /* ── Problem items ── */
+    .problem-item {
+      transition: transform 180ms cubic-bezier(0.16,1,0.3,1),
+                  border-color 180ms ease,
+                  box-shadow 180ms ease;
+    }
+    .problem-item:hover {
+      transform: translateX(5px);
+      border-color: #B0B8B0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    /* ── Solution features ── */
+    .solution-feat {
+      transition: transform 180ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .solution-feat:hover { transform: translateX(5px); }
+
+    /* ── Process steps ── */
+    .process-step {
+      transition: transform 220ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .process-step:hover { transform: translateY(-4px); }
+
+    /* ── Nav underline ── */
+    nav a[href^="#"] { position: relative; }
+    nav a[href^="#"]::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1.5px; background: #0A6B46;
+      transition: width 220ms cubic-bezier(0.16,1,0.3,1);
+    }
+    nav a[href^="#"]:hover::after { width: 100%; }
 
     /* ── Nav ── */
     .nav-shadow { box-shadow: 0 1px 0 #E2E2DE; }
@@ -334,15 +399,15 @@
 
         <div class="border-t border-border grid grid-cols-3 divide-x divide-border text-center">
           <div class="py-3">
-            <div class="text-sm font-semibold text-ink">7</div>
+            <div class="reveal text-sm font-semibold text-ink" data-count-target="7">7</div>
             <div class="text-ink-light text-xs mt-0.5">dages garanti</div>
           </div>
           <div class="py-3">
-            <div class="text-sm font-semibold text-ink">299</div>
+            <div class="reveal text-sm font-semibold text-ink" data-count-target="299">299</div>
             <div class="text-ink-light text-xs mt-0.5">kr/md fra</div>
           </div>
           <div class="py-3">
-            <div class="text-sm font-semibold text-ink">0</div>
+            <div class="reveal text-sm font-semibold text-ink" data-count-target="0">0</div>
             <div class="text-ink-light text-xs mt-0.5">oprettelsesgebyr</div>
           </div>
         </div>
@@ -382,8 +447,8 @@
   <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
 
     <!-- Problem -->
-    <div>
-      <div class="reveal mb-6">
+    <div class="reveal-left">
+      <div class="mb-6">
         <span class="text-xs font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-full bg-canvas-alt text-ink-light border border-border">Problemet</span>
       </div>
       <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-5 leading-tight" style="letter-spacing:-0.02em;">
@@ -395,17 +460,17 @@
         <p>Nye klienter der googler "zoneterapeut Odense" finder aldrig dig. Du lever af mund-til-mund, og væksten stagnerer.</p>
       </div>
       <div class="reveal space-y-2">
-        <div class="flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
+        <div class="problem-item flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
           <div class="w-1.5 h-1.5 rounded-full bg-border flex-shrink-0"></div>
           <span class="font-medium text-ink">Ingen hjemmeside</span>
           <span class="text-ink-light">— klienter finder en konkurrent</span>
         </div>
-        <div class="flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
+        <div class="problem-item flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
           <div class="w-1.5 h-1.5 rounded-full bg-border flex-shrink-0"></div>
           <span class="font-medium text-ink">En forældet Wix-side</span>
           <span class="text-ink-light">— som aldrig bliver opdateret</span>
         </div>
-        <div class="flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
+        <div class="problem-item flex items-center gap-3 px-4 py-3 bg-white rounded-md border border-border text-sm">
           <div class="w-1.5 h-1.5 rounded-full bg-border flex-shrink-0"></div>
           <span class="font-medium text-ink">En dyr bureau-løsning</span>
           <span class="text-ink-light">— og ingen til at hjælpe dig bagefter</span>
@@ -414,8 +479,8 @@
     </div>
 
     <!-- Solution -->
-    <div>
-      <div class="reveal mb-6">
+    <div class="reveal-right">
+      <div class="mb-6">
         <span class="text-xs font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-full bg-navy-pale text-navy border border-navy/20">Løsningen</span>
       </div>
       <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-5 leading-tight" style="letter-spacing:-0.02em;">
@@ -426,7 +491,7 @@
         <p>plainsite er den eneste hjemmesideservice i Danmark bygget specifikt til alternative terapeuter. Vi designer, bygger og driver din side mod et fast månedligt beløb — du gør ingenting.</p>
       </div>
       <div class="reveal space-y-4">
-        <div class="flex items-start gap-3.5">
+        <div class="solution-feat flex items-start gap-3.5">
           <div class="w-7 h-7 rounded bg-navy-pale flex items-center justify-center flex-shrink-0 mt-0.5">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
@@ -435,7 +500,7 @@
             <div class="text-ink-light text-sm mt-0.5" style="font-weight:300;">Tilpasset din praksis — ikke et template</div>
           </div>
         </div>
-        <div class="flex items-start gap-3.5">
+        <div class="solution-feat flex items-start gap-3.5">
           <div class="w-7 h-7 rounded bg-navy-pale flex items-center justify-center flex-shrink-0 mt-0.5">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
@@ -444,7 +509,7 @@
             <div class="text-ink-light text-sm mt-0.5" style="font-weight:300;">Optimeret til lokale søgninger. Google Business inkluderet</div>
           </div>
         </div>
-        <div class="flex items-start gap-3.5">
+        <div class="solution-feat flex items-start gap-3.5">
           <div class="w-7 h-7 rounded bg-navy-pale flex items-center justify-center flex-shrink-0 mt-0.5">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
@@ -453,7 +518,7 @@
             <div class="text-ink-light text-sm mt-0.5" style="font-weight:300;">Opdateringer, support og drift altid inkluderet</div>
           </div>
         </div>
-        <div class="flex items-start gap-3.5">
+        <div class="solution-feat flex items-start gap-3.5">
           <div class="w-7 h-7 rounded bg-navy-pale flex items-center justify-center flex-shrink-0 mt-0.5">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0A6B46" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
@@ -475,17 +540,17 @@
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="reveal text-3xl lg:text-[2.25rem] font-semibold text-ink mb-12 leading-tight" style="letter-spacing:-0.02em;">Sådan<br><span class="font-light text-ink-mid">virker det.</span></h2>
     <div class="grid md:grid-cols-3 gap-0 md:divide-x md:divide-border">
-      <div class="reveal reveal-d1 md:pr-10 pb-10 md:pb-0">
+      <div class="reveal reveal-d1 process-step md:pr-10 pb-10 md:pb-0">
         <div class="text-xs font-semibold text-ink-light tracking-widest mb-5" style="letter-spacing:0.12em;">01</div>
         <h3 class="text-lg font-semibold text-ink mb-2">Vi taler sammen</h3>
         <p class="text-ink-light text-sm leading-relaxed" style="font-weight:300;">En gratis 15-minutters snak om din praksis, dine klienter og din stil. Ingen forpligtelse.</p>
       </div>
-      <div class="reveal reveal-d2 md:px-10 py-10 md:py-0 border-t md:border-t-0 border-border">
+      <div class="reveal reveal-d2 process-step md:px-10 py-10 md:py-0 border-t md:border-t-0 border-border">
         <div class="text-xs font-semibold text-ink-light tracking-widest mb-5" style="letter-spacing:0.12em;">02</div>
         <h3 class="text-lg font-semibold text-ink mb-2">Vi bygger siden</h3>
         <p class="text-ink-light text-sm leading-relaxed" style="font-weight:300;">Du sender tekst og billeder. Vi designer og bygger din side. Klar til godkendelse på 7 hverdage.</p>
       </div>
-      <div class="reveal reveal-d3 md:pl-10 pt-10 md:pt-0 border-t md:border-t-0 border-border">
+      <div class="reveal reveal-d3 process-step md:pl-10 pt-10 md:pt-0 border-t md:border-t-0 border-border">
         <div class="text-xs font-semibold text-ink-light tracking-widest mb-5" style="letter-spacing:0.12em;">03</div>
         <h3 class="text-lg font-semibold text-ink mb-2">Du vokser</h3>
         <p class="text-ink-light text-sm leading-relaxed" style="font-weight:300;">Vi holder siden kørende og opdateret. Du fokuserer på klienter — vi klarer resten.</p>
@@ -507,7 +572,7 @@
   <div class="grid md:grid-cols-3 gap-4">
 
     <!-- Online -->
-    <div class="reveal reveal-d1 bg-white border border-border rounded-xl p-7 flex flex-col">
+    <div class="reveal reveal-d1 price-card bg-white border border-border rounded-xl p-7 flex flex-col">
       <div class="text-xs font-semibold text-ink-light tracking-widest uppercase mb-3" style="letter-spacing:0.1em;">Online</div>
       <div class="flex items-baseline gap-1.5 mb-4">
         <span class="text-3xl font-semibold text-ink tracking-tight">299</span>
@@ -526,7 +591,7 @@
     </div>
 
     <!-- Synlig -->
-    <div class="reveal reveal-d2 card-navy rounded-xl p-7 flex flex-col">
+    <div class="reveal reveal-d2 price-card card-navy rounded-xl p-7 flex flex-col">
       <div class="flex items-center gap-2.5 mb-3">
         <span class="text-xs font-semibold tracking-widest uppercase" style="color:rgba(255,255,255,.45);letter-spacing:0.1em;">Synlig</span>
         <span class="text-xs font-medium px-2.5 py-0.5 rounded-full" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);letter-spacing:0.05em;">mest valgt</span>
@@ -549,7 +614,7 @@
     </div>
 
     <!-- Vækst -->
-    <div class="reveal reveal-d3 bg-white border border-border rounded-xl p-7 flex flex-col">
+    <div class="reveal reveal-d3 price-card bg-white border border-border rounded-xl p-7 flex flex-col">
       <div class="text-xs font-semibold text-ink-light tracking-widest uppercase mb-3" style="letter-spacing:0.1em;">Vækst</div>
       <div class="flex items-baseline gap-1.5 mb-4">
         <span class="text-3xl font-semibold text-ink tracking-tight">599</span>
@@ -768,15 +833,26 @@
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('in');
+        if (e.target.dataset.countTarget) animateCount(e.target, +e.target.dataset.countTarget);
       } else {
-        // Re-arm: remove .in so element can animate in again when scrolled back to
-        // Small delay prevents flicker on initial load
         if (e.target.dataset.revealed) e.target.classList.remove('in');
       }
       e.target.dataset.revealed = '1';
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => io.observe(el));
+
+  function animateCount(el, target) {
+    const dur = 900;
+    const start = performance.now();
+    const update = now => {
+      const t = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(ease * target);
+      if (t < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
 
   window.addEventListener('scroll', () =>
     document.getElementById('site-nav').classList.toggle('nav-shadow', scrollY > 6), { passive: true });
