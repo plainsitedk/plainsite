@@ -1,147 +1,193 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vilkår – plainsite</title>
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..400&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        colors: {
-          canvas: '#F5F1EC', 'canvas-alt': '#EDE8E0',
-          border: '#DDD8D0', ink: '#18161E',
-          'ink-mid': '#4A4555', 'ink-light': '#9A9694',
-          brand: '#0A6B46', 'brand-mid': '#085C3D', 'brand-pale': '#E0F0EA',
-        },
-        fontFamily: {
-          sans:    ['"DM Sans"', 'system-ui', 'sans-serif'],
-          display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
-        },
-      }}
-    }
-  </script>
-  <style>
-    body { font-family: 'DM Sans', system-ui, sans-serif; background: #F5F1EC; color: #18161E; -webkit-font-smoothing: antialiased; }
-    h1, h2, h3 { font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
-    a { color: inherit; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handelsbetingelser — Plainsite</title>
+<meta name="description" content="Plainsites handelsbetingelser — abonnement, levering, opsigelse og ansvar.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..500&display=swap">
+
+<style>
+:root {
+  --bg: #f4efe6;
+  --bg-soft: #ece5d7;
+  --ink: #201c17;
+  --ink-soft: #5c544a;
+  --ink-mute: #8b8378;
+  --accent: #b25a3d;
+  --line: rgba(32, 28, 23, 0.1);
+  --radius: 10px;
+  --pad-x: clamp(24px, 5vw, 80px);
+  --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-italic: "Geist", ui-sans-serif, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: var(--bg); }
+
+nav.top {
+  position: fixed; top: 0; left: 0; right: 0;
+  padding: 22px var(--pad-x);
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 100;
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 24px; letter-spacing: -0.01em;
+  color: var(--ink); display: inline-flex; gap: 3px;
+}
+.logo em { font-style: italic; color: var(--accent); font-weight: 400; }
+nav.top .back {
+  font-size: 14px; color: var(--ink-soft);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color 200ms;
+}
+nav.top .back:hover { color: var(--accent); }
+
+main.legal {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 180px var(--pad-x) 140px;
+}
+.legal .meta {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.legal .meta::before {
+  content: ""; width: 28px; height: 1px; background: var(--accent);
+}
+.legal h1 {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.4vw, 68px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  max-width: 16ch;
+}
+.legal .lead {
+  font-size: 19px; color: var(--ink-soft);
+  line-height: 1.55; max-width: 58ch;
+  margin-bottom: 72px;
+}
+.legal h2 {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 56px; margin-bottom: 16px;
+}
+.legal h2 .num {
+  font-family: var(--font-display);
+  font-style: italic; color: var(--accent);
+  margin-right: 12px; font-weight: 400;
+}
+.legal p { color: var(--ink-soft); margin-bottom: 14px; max-width: 64ch; }
+.legal ul { margin: 10px 0 14px 24px; color: var(--ink-soft); }
+.legal li { margin-bottom: 6px; }
+.legal strong { color: var(--ink); font-weight: 500; }
+.legal a { color: var(--accent); border-bottom: 1px solid color-mix(in oklab, var(--accent) 30%, transparent); }
+
+.legal .updated {
+  margin-top: 72px; padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--ink-mute);
+  font-style: italic;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 40px var(--pad-x);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+  font-family: var(--font-display); font-style: italic;
+  font-size: 13px; color: var(--ink-soft);
+}
+footer .logo { font-style: normal; font-size: 17px; }
+footer .f-links { display: flex; gap: 28px; }
+footer a:hover { color: var(--ink); }
+</style>
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- Nav -->
-  <header class="sticky top-0 z-50 bg-canvas/95 backdrop-blur-sm border-b border-border">
-    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2.5 no-underline">
-        <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-          <rect width="36" height="36" rx="6" fill="#0A6B46"/>
-          <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
-        </svg>
-        <span class="text-lg font-semibold text-ink tracking-tight" style="font-family:'Bricolage Grotesque',sans-serif;">plainsite</span>
-      </a>
-      <a href="/" class="text-ink-mid text-sm font-medium hover:text-ink transition-colors no-underline">← Tilbage til forsiden</a>
-    </nav>
-  </header>
+<nav class="top">
+  <a href="/" class="logo">Plain<em>site</em></a>
+  <a href="/" class="back">← Tilbage</a>
+</nav>
 
-  <!-- Content -->
-  <main class="max-w-2xl mx-auto px-6 py-16 md:py-24">
+<main class="legal">
+  <div class="meta">vilkår</div>
+  <h1>Handelsbetingelser</h1>
+  <p class="lead">De vilkår der gælder, når du køber en hjemmeside gennem Plainsite. Kort, konkret og på almindeligt dansk.</p>
 
-    <h1 class="text-3xl md:text-4xl font-bold text-ink leading-tight mb-3" style="letter-spacing:-0.02em;">Vilkår for hjemmeside &amp; abonnement</h1>
-    <p class="text-ink-mid leading-relaxed mb-2" style="font-weight:300;">Her finder du betingelserne for dit abonnement hos plainsite. Spørgsmål? Skriv til <a href="mailto:kontakt@plainsite.dk" class="text-brand hover:text-brand-mid underline underline-offset-2 transition-colors">kontakt@plainsite.dk</a>.</p>
-    <p class="text-ink-light text-sm mb-12">Gælder fra 1. april 2026</p>
+  <h2><span class="num">i.</span>Udbyder</h2>
+  <p><strong>Plainsite</strong> tilbyder design, opsætning og drift af hjemmesider til behandlere og terapeuter. Kontakt: <a href="mailto:kontakt@plainsite.dk">kontakt@plainsite.dk</a>.</p>
 
-    <div class="space-y-8 text-ink-mid leading-relaxed" style="font-weight:300;">
+  <h2><span class="num">ii.</span>Abonnement</h2>
+  <p>Vores ydelse leveres som et månedligt abonnement. Der er ingen binding, og du kan opsige med udløb af løbende måned. Abonnementet dækker:</p>
+  <ul>
+    <li>Design og opsætning af hjemmeside.</li>
+    <li>Hosting, SSL-certifikat og domænedrift.</li>
+    <li>Løbende vedligehold i det omfang pakken tillader.</li>
+    <li>Teknisk support inden for åbningstid.</li>
+  </ul>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Aftale</h2>
-        <p>Ved betaling accepterer kunden disse vilkår og indgår en løbende abonnementsaftale.</p>
-      </section>
+  <h2><span class="num">iii.</span>Pris og betaling</h2>
+  <p>Priser fremgår af prisoversigten på plainsite.dk og faktureres månedligt forud. Betaling sker via faktura eller betalingskort. Alle priser er i DKK og eksklusive moms.</p>
+  <p>Første faktura udstedes, når hjemmesiden går live og du har godkendt den endelige version.</p>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Abonnement</h2>
-        <p class="mb-3">Abonnementet faktureres månedligt forud og fornyes automatisk. Vi tilbyder tre pakker:</p>
-        <ul class="space-y-2 pl-4 border-l-2 border-brand-pale">
-          <li><strong class="text-ink font-medium">Online – 299 kr/md:</strong> Én-sides hjemmeside, Google Business-opsætning, kontaktformular, hosting og drift.</li>
-          <li><strong class="text-ink font-medium">Synlig – 399 kr/md:</strong> Fuld site op til 5 sider, SEO-tekster, én ændring pr. måned, Google Business-opsætning, kontaktformular, hosting og drift.</li>
-          <li><strong class="text-ink font-medium">Vækst – 599 kr/md:</strong> Alt i Synlig + blogindlæg pr. måned, udvidet lokal SEO, ændringer inden for 24 timer, op til 10 sider, prioriteret support.</li>
-        </ul>
-        <p class="mt-3">Hosting og drift er inkluderet i alle pakker, så længe abonnementet er aktivt.</p>
-      </section>
+  <h2><span class="num">iv.</span>Udkast og godkendelse</h2>
+  <p>Vi leverer et gratis udkast efter den indledende samtale. Du betaler intet, før udkastet er godkendt og siden er sat i produktion. Siger du nej til udkastet, koster det ingenting.</p>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Levering</h2>
-        <p class="mb-3">Inkluderet i alle pakker:</p>
-        <ul class="space-y-1.5 pl-4 border-l-2 border-brand-pale">
-          <li>Hjemmeside (design + opsætning)</li>
-          <li>Hosting og drift</li>
-          <li>SSL-certifikat og mobiloptimering</li>
-          <li>Løbende teknisk vedligeholdelse</li>
-        </ul>
-        <p class="mt-3">Siden er klar inden for 7 hverdage efter modtagelse af materialer. Er den ikke — er første måned gratis.</p>
-      </section>
+  <h2><span class="num">v.</span>Ændringer og omfang</h2>
+  <p>Antallet af inkluderede ændringer fremgår af din valgte pakke. Ændringer ud over pakkens omfang aftales separat og afregnes særskilt.</p>
+  <p>Større redesigns eller nye funktioner er ikke omfattet af abonnementet og tilbydes på projektbasis.</p>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Ændringer</h2>
-        <p>Mindre ændringer vil sige tekst, billeder og små rettelser. I Online-pakken håndteres dette inden for normal svartid. I Synlig-pakken er ændringer inkluderet og håndteres inden for 1–2 hverdage. I Vækst-pakken prioriteres ændringer og håndteres inden for 24 timer. Større strukturelle opgaver aftales og faktureres separat.</p>
-      </section>
+  <h2><span class="num">vi.</span>Opsigelse</h2>
+  <p>Du kan til enhver tid opsige abonnementet ved at skrive til <a href="mailto:kontakt@plainsite.dk">kontakt@plainsite.dk</a>. Opsigelsen træder i kraft ved udløb af indeværende måned.</p>
+  <p>Ved opsigelse stopper hosting, drift og vedligehold. Du beholder rettighederne til dit domæne samt til det indhold du selv har leveret (tekster, billeder).</p>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Opsigelse</h2>
-        <ul class="space-y-1.5 pl-4 border-l-2 border-brand-pale">
-          <li>Abonnementet kan opsiges når som helst</li>
-          <li>Opsigelsesvarslet er løbende måned + 30 dage</li>
-          <li>Ingen binding efter de første 3 måneder</li>
-          <li>Ingen refundering af allerede faktureret periode</li>
-          <li>Ved opsigelse kan siden lukkes eller overdrages mod særskilt betaling</li>
-        </ul>
-      </section>
+  <h2><span class="num">vii.</span>Ejendomsret</h2>
+  <p>Du ejer <strong>indhold, tekster og billeder</strong>, du har leveret. Plainsite bevarer rettighederne til selve opsætningen og det tekniske setup, der er bygget på vores eget system.</p>
+  <p>Ved opsigelse kan du få dit indhold eksporteret i et almindeligt læsbart format uden ekstra omkostning.</p>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Prisregulering</h2>
-        <p>Plainsite forbeholder sig retten til at justere abonnementspriser. Ændringer varsles med mindst 30 dages skriftligt varsel via e-mail. Fortsætter abonnementet efter varslingsperiodens udløb, accepteres den nye pris.</p>
-      </section>
+  <h2><span class="num">viii.</span>Ansvar</h2>
+  <p>Plainsite tilstræber maksimal oppetid, men kan ikke holdes ansvarlig for indirekte tab som følge af nedetid, driftsafbrydelser eller tredjepartssystemer. Vores ansvar er begrænset til det beløb, du har betalt for de seneste tre måneder.</p>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Manglende betaling</h2>
-        <p>Ved manglende betaling kan siden lukkes uden varsel. Genåbning kræver fuld betaling af udestående beløb.</p>
-      </section>
+  <h2><span class="num">ix.</span>Fortrolighed</h2>
+  <p>Alt materiale, du deler med os i forbindelse med dit projekt, behandles fortroligt. Se også vores <a href="/privacy.html">privatlivspolitik</a>.</p>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Ejerskab</h2>
-        <p>Plainsite ejer hjemmesiden og koden bag den. Kunden har fuld brugsret, så længe abonnementet er aktivt. Ved opsigelse kan siden overdrages til kunden mod en særskilt overdragelsesaftale og betaling.</p>
-      </section>
+  <h2><span class="num">x.</span>Lovvalg og tvister</h2>
+  <p>Aftalen er underlagt dansk ret. Eventuelle tvister søges løst i mindelighed, og kan derefter indbringes for de danske domstole.</p>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Ansvar</h2>
-        <p>Plainsite er ikke ansvarlig for tab, driftstab eller indirekte tab som følge af nedetid eller andre forhold.</p>
-      </section>
+  <p class="updated">Senest opdateret: april 2026.</p>
+</main>
 
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Ændringer i vilkår</h2>
-        <p>Vilkårene kan ændres med 30 dages varsel. Du vil blive orienteret per e-mail.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-ink mb-3">Kontakt</h2>
-        <p>plainsite · CVR 46384040</p>
-        <p class="mt-2">Spørgsmål? Skriv til <a href="mailto:kontakt@plainsite.dk" class="text-brand hover:text-brand-mid underline underline-offset-2 transition-colors">kontakt@plainsite.dk</a> — vi svarer inden for en hverdag.</p>
-      </section>
-
-    </div>
-
-    <div class="mt-12 pt-8 border-t border-border flex items-center justify-between flex-wrap gap-4">
-      <p class="text-ink-light text-sm" style="font-weight:300;">Ved betaling accepterer du disse vilkår.</p>
-      <a href="/privacy" class="text-ink-light text-sm hover:text-ink-mid transition-colors">Privatlivspolitik →</a>
-    </div>
-
-  </main>
+<footer>
+  <a href="/" class="logo">Plain<em>site</em></a>
+  <div class="f-links">
+    <a href="/privacy.html">Privatliv</a>
+    <a href="/vilkaar.html">Handelsbetingelser</a>
+    <a href="/#contact">Kontakt</a>
+  </div>
+  <div>&copy; 2026 Plainsite</div>
+</footer>
 
 </body>
 </html>
