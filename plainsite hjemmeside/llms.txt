@@ -41,7 +41,7 @@ Alle pakker inkluderer design, hosting, domæne og mobiloptimering. Ingen opstar
 Ingenting. Design og udvikling er gratis — du betaler ikke en krone før din side er live og du har godkendt den. Derefter betaler du kun det månedlige abonnement.
 
 **Kan jeg opsige?**
-Ja. Løbende måned + 30 dages varsel. Ingen bindingsperiode og ingen oprettelsesgebyr.
+Ja. Ingen bindingsperiode. Du opsiger med udløb af løbende måned. Ingen oprettelsesgebyr.
 
 **Hvad hvis jeg vil ændre noget?**
 Små rettelser som tekst, billeder og åbningstider er inkluderet og klares typisk inden for 1–2 hverdage.
@@ -61,6 +61,5 @@ Det gør vi. Hosting, sikkerhed og drift er inkluderet i abonnementet. Du skal i
 ## Sider
 
 - [Forside](https://plainsite.dk/)
-- [Om os](https://plainsite.dk/om-os)
 - [Privatlivspolitik](https://plainsite.dk/privacy)
 - [Vilkår](https://plainsite.dk/vilkaar)

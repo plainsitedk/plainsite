@@ -16,3 +16,12 @@ temporary screenshots/
 
 # Node
 node_modules/
+
+# Secrets
+.env
+.env.*
+!.env.example
+.mcp.json
+
+# Handoff bundles
+*handoff*.zip
