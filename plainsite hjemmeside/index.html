@@ -596,10 +596,12 @@
       grid-template-columns: none;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      scroll-padding-left: var(--pad-x);
       scrollbar-width: none;
       margin: 0 calc(-1 * var(--pad-x));
       padding: 0 var(--pad-x);
       border-top: 1px solid var(--line);
+      gap: 12px;
     }
     .process-steps::-webkit-scrollbar { display: none; }
     .process-steps .step {
@@ -658,6 +660,44 @@
     color: var(--ink-mute);
   }
 
+  /* ===== CAROUSEL INDICATOR ===== */
+  .carousel-nav {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .carousel-nav .arrow-btn {
+    width: 38px; height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--bg-card);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink-soft);
+    font-size: 16px;
+    transition: color 200ms, border-color 200ms, transform 200ms;
+  }
+  .carousel-nav .arrow-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .carousel-nav .arrow-btn:active { transform: scale(0.92); }
+  .carousel-nav .arrow-btn:disabled { opacity: 0.35; cursor: default; }
+  .carousel-nav .dots {
+    display: inline-flex; gap: 8px;
+  }
+  .carousel-nav .dots button {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--line);
+    transition: background 200ms, transform 200ms, width 260ms;
+    padding: 0;
+  }
+  .carousel-nav .dots button.active {
+    background: var(--accent);
+    width: 22px; border-radius: 4px;
+  }
+  @media (max-width: 900px) { .carousel-nav.for-plans { display: flex; } }
+  @media (max-width: 680px) { .carousel-nav.for-steps { display: flex; } }
+
   /* ===== PRICING ===== */
   .pricing { border-top: 1px solid var(--line); }
   .pricing .label { margin-bottom: 44px; }
@@ -694,6 +734,7 @@
       grid-template-columns: none;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      scroll-padding-left: var(--pad-x);
       scrollbar-width: none;
       border: none;
       border-radius: 0;
@@ -1358,6 +1399,11 @@
       <div class="day">Dag 7</div>
     </div>
   </div>
+  <div class="carousel-nav for-steps" data-carousel-nav="process-steps" aria-hidden="true">
+    <button class="arrow-btn" data-dir="-1" aria-label="Forrige skridt">←</button>
+    <div class="dots"></div>
+    <button class="arrow-btn" data-dir="1" aria-label="Næste skridt">→</button>
+  </div>
 </section>
 
 <!-- ============ PRICING ============ -->
@@ -1437,6 +1483,11 @@
         <span class="arrow">→</span>
       </a>
     </div>
+  </div>
+  <div class="carousel-nav for-plans" data-carousel-nav="plans" aria-hidden="true">
+    <button class="arrow-btn" data-dir="-1" aria-label="Forrige plan">←</button>
+    <div class="dots"></div>
+    <button class="arrow-btn" data-dir="1" aria-label="Næste plan">→</button>
   </div>
 </section>
 
@@ -1636,6 +1687,57 @@
     drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
   });
   drawer.querySelectorAll('[data-drawer-close]').forEach(a => a.addEventListener('click', closeDrawer));
+
+  /* Carousel indicators */
+  document.querySelectorAll('[data-carousel-nav]').forEach(nav => {
+    const target = document.querySelector('.' + nav.dataset.carouselNav);
+    if (!target) return;
+    const dotsWrap = nav.querySelector('.dots');
+    const cards = target.children;
+    const prev = nav.querySelector('[data-dir="-1"]');
+    const next = nav.querySelector('[data-dir="1"]');
+
+    [...cards].forEach((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', `Gå til ${i + 1}`);
+      d.addEventListener('click', () => cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }));
+      dotsWrap.appendChild(d);
+    });
+    const dots = dotsWrap.children;
+
+    const currentIndex = () => {
+      const scrollL = target.scrollLeft;
+      let closest = 0, min = Infinity;
+      [...cards].forEach((c, i) => {
+        const d = Math.abs(c.offsetLeft - target.offsetLeft - scrollL);
+        if (d < min) { min = d; closest = i; }
+      });
+      return closest;
+    };
+
+    const update = () => {
+      const i = currentIndex();
+      [...dots].forEach((d, idx) => d.classList.toggle('active', idx === i));
+      prev.disabled = i === 0;
+      next.disabled = i === cards.length - 1;
+    };
+
+    prev.addEventListener('click', () => {
+      const i = currentIndex();
+      if (i > 0) cards[i - 1].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+    next.addEventListener('click', () => {
+      const i = currentIndex();
+      if (i < cards.length - 1) cards[i + 1].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+
+    target.addEventListener('scroll', () => {
+      clearTimeout(target._t);
+      target._t = setTimeout(update, 60);
+    }, { passive: true });
+    update();
+  });
 
   /* Reveal on scroll */
   const io = new IntersectionObserver((entries) => {
