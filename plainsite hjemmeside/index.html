@@ -7,7 +7,6 @@
   <meta name="description" content="Vi designer og driver professionelle hjemmesider til zoneterapeuter, akupunktører, healere og coaches. Klar på 7 hverdage. Fra 299 kr/md. Ingen oprettelsesgebyr.">
   <link rel="canonical" href="https://plainsite.dk/">
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/favicon-192.png">
 
@@ -175,7 +174,7 @@
   /* ===== NAV ===== */
   nav.top {
     position: fixed; top: 0; left: 0; right: 0;
-    padding: 22px var(--pad-x);
+    padding: 18px clamp(20px, 3vw, 40px);
     display: flex; align-items: center; justify-content: space-between;
     z-index: 100;
     background: color-mix(in oklab, var(--bg) 82%, transparent);
