@@ -320,7 +320,16 @@
     margin-bottom: 64px;
   }
   .hero-meta .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-  .hero-meta .line { flex: 1; height: 1px; background: var(--line); max-width: 88px; }
+  .hero-meta .line { flex: 0 0 auto; width: 44px; height: 1px; background: var(--line); }
+  .hero-meta .hero-logo {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .hero-meta .hero-logo em { font-style: italic; color: var(--accent); }
 
   .hero h1 {
     font-size: clamp(42px, 7.6vw, 118px);
@@ -695,7 +704,10 @@
     background: var(--accent);
     width: 22px; border-radius: 4px;
   }
-  @media (max-width: 900px) { .carousel-nav.for-plans { display: flex; } }
+  @media (max-width: 900px) {
+    .carousel-nav.for-plans,
+    .carousel-nav.for-cases { display: flex; }
+  }
   @media (max-width: 680px) { .carousel-nav.for-steps { display: flex; } }
 
   /* ===== PRICING ===== */
@@ -900,7 +912,31 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
   }
-  @media (max-width: 900px) { .cases { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) {
+    .cases {
+      display: flex;
+      grid-template-columns: none;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: var(--pad-x);
+      scrollbar-width: none;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      margin: 0 calc(-1 * var(--pad-x));
+      padding: 0 var(--pad-x);
+      gap: 16px;
+    }
+    .cases::-webkit-scrollbar { display: none; }
+    .cases .case {
+      flex: 0 0 82%;
+      scroll-snap-align: start;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+  }
 
   .case {
     background: var(--bg);
@@ -1282,10 +1318,9 @@
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="hero-meta">
-    <span class="dot"></span>
-    <span>Plainsite — for alternative behandlere &amp; terapeuter</span>
+    <a href="#" class="hero-logo">Plain<em>site</em></a>
     <span class="line"></span>
-    <span>April 2026</span>
+    <span>for alternative behandlere &amp; terapeuter</span>
   </div>
 
   <h1>Hjemmesider der føles som <em>din praksis</em> — ikke som alle andres</h1>
@@ -1400,9 +1435,7 @@
     </div>
   </div>
   <div class="carousel-nav for-steps" data-carousel-nav="process-steps" aria-hidden="true">
-    <button class="arrow-btn" data-dir="-1" aria-label="Forrige skridt">←</button>
     <div class="dots"></div>
-    <button class="arrow-btn" data-dir="1" aria-label="Næste skridt">→</button>
   </div>
 </section>
 
@@ -1485,9 +1518,7 @@
     </div>
   </div>
   <div class="carousel-nav for-plans" data-carousel-nav="plans" aria-hidden="true">
-    <button class="arrow-btn" data-dir="-1" aria-label="Forrige plan">←</button>
     <div class="dots"></div>
-    <button class="arrow-btn" data-dir="1" aria-label="Næste plan">→</button>
   </div>
 </section>
 
@@ -1526,6 +1557,9 @@
       <h4>Reference 03</h4>
       <p>Healer · Odense</p>
     </a>
+  </div>
+  <div class="carousel-nav for-cases" data-carousel-nav="cases" aria-hidden="true">
+    <div class="dots"></div>
   </div>
 </section>
 
@@ -1614,10 +1648,6 @@
         Udfyld formularen — så designer vi et færdigt forslag inden for 3 hverdage. Du betaler intet, før du siger ja.
       </p>
 
-      <div class="cta-meta" data-reveal>
-        <div>Svar senest<strong>3 hverdage</strong></div>
-        <div>Forpligtelse<strong>Nul kroner</strong></div>
-      </div>
     </div>
 
     <form class="form-card" id="contact-form" novalidate>
@@ -1694,8 +1724,6 @@
     if (!target) return;
     const dotsWrap = nav.querySelector('.dots');
     const cards = target.children;
-    const prev = nav.querySelector('[data-dir="-1"]');
-    const next = nav.querySelector('[data-dir="1"]');
 
     [...cards].forEach((_, i) => {
       const d = document.createElement('button');
@@ -1706,36 +1734,17 @@
     });
     const dots = dotsWrap.children;
 
-    const currentIndex = () => {
+    const update = () => {
       const scrollL = target.scrollLeft;
       let closest = 0, min = Infinity;
       [...cards].forEach((c, i) => {
         const d = Math.abs(c.offsetLeft - target.offsetLeft - scrollL);
         if (d < min) { min = d; closest = i; }
       });
-      return closest;
+      [...dots].forEach((d, idx) => d.classList.toggle('active', idx === closest));
     };
 
-    const update = () => {
-      const i = currentIndex();
-      [...dots].forEach((d, idx) => d.classList.toggle('active', idx === i));
-      prev.disabled = i === 0;
-      next.disabled = i === cards.length - 1;
-    };
-
-    prev.addEventListener('click', () => {
-      const i = currentIndex();
-      if (i > 0) cards[i - 1].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    });
-    next.addEventListener('click', () => {
-      const i = currentIndex();
-      if (i < cards.length - 1) cards[i + 1].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    });
-
-    target.addEventListener('scroll', () => {
-      clearTimeout(target._t);
-      target._t = setTimeout(update, 60);
-    }, { passive: true });
+    target.addEventListener('scroll', update, { passive: true });
     update();
   });
 
