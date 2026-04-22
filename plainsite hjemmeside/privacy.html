@@ -46,9 +46,10 @@ nav.top {
 }
 .logo {
   font-family: var(--font-display);
-  font-size: 24px; letter-spacing: -0.01em;
-  color: var(--ink); display: inline-flex; gap: 3px;
+  font-size: 22px; letter-spacing: -0.01em; line-height: 1;
+  color: var(--ink); display: inline-flex; align-items: center; gap: 10px;
 }
+.logo .logo-mark { flex-shrink: 0; }
 .logo em { font-style: italic; color: var(--accent); font-weight: 400; }
 nav.top .back {
   font-size: 14px; color: var(--ink-soft);
@@ -128,7 +129,13 @@ footer a:hover { color: var(--ink); }
 <body>
 
 <nav class="top">
-  <a href="/" class="logo">Plain<em>site</em></a>
+  <a href="/" class="logo">
+    <svg class="logo-mark" width="24" height="24" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <rect width="36" height="36" rx="7" fill="#18161E"/>
+      <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+    </svg>
+    <span>Plain<em>site</em></span>
+  </a>
   <a href="/" class="back">← Tilbage</a>
 </nav>
 
@@ -138,7 +145,7 @@ footer a:hover { color: var(--ink); }
   <p class="lead">Plainsite behandler dine personoplysninger med respekt. Her står præcis hvad vi indsamler, hvorfor, og hvad du har ret til.</p>
 
   <h2><span class="num">i.</span>Dataansvarlig</h2>
-  <p>Plainsite er dataansvarlig for behandlingen af de personoplysninger, vi modtager gennem vores hjemmeside og kontaktformular.</p>
+  <p>Plainsite (CVR 46384040) er dataansvarlig for behandlingen af de personoplysninger, vi modtager gennem vores hjemmeside og kontaktformular.</p>
   <p>Kontakt: <a href="mailto:kontakt@plainsite.dk">kontakt@plainsite.dk</a></p>
 
   <h2><span class="num">ii.</span>Hvilke oplysninger indsamler vi?</h2>
@@ -187,13 +194,19 @@ footer a:hover { color: var(--ink); }
 </main>
 
 <footer>
-  <a href="/" class="logo">Plain<em>site</em></a>
+  <a href="/" class="logo">
+    <svg class="logo-mark" width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <rect width="36" height="36" rx="7" fill="#18161E"/>
+      <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
+    </svg>
+    <span>Plain<em>site</em></span>
+  </a>
   <div class="f-links">
     <a href="/privacy.html">Privatliv</a>
     <a href="/vilkaar.html">Handelsbetingelser</a>
     <a href="/#contact">Kontakt</a>
   </div>
-  <div>&copy; 2026 Plainsite</div>
+  <div>&copy; 2026 Plainsite · CVR 46384040</div>
 </footer>
 
 </body>
