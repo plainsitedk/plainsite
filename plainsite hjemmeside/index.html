@@ -1959,6 +1959,8 @@ void main(){
     col = mix(col, INK, smoothstep(0.9,1.6,length(p))*0.15);
   }
 
+  float radial = smoothstep(1.1, 0.0, mdist);
+  col = mix(col, RUST, radial * 0.28 * inten);
   col += RUST * pull * 0.04 * inten;
 
   float gn = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898,78.233)) + uTime*60.0) * 43758.5453);
@@ -2020,7 +2022,7 @@ void main(){
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const r = canvas.getBoundingClientRect();
     const a = accentEl.getBoundingClientRect();
-    const cx = (a.left + a.width / 2) - r.left;
+    const cx = (a.left + a.width / 2) - r.left + r.width * 0.55;
     const cy = (a.top + a.height / 2) - r.top;
     state.mouseX = cx * dpr;
     state.mouseY = (r.height - cy) * dpr;
