@@ -1919,10 +1919,13 @@ void main() {
 
   float f = flow(pw * 1.6 + vec2(t * 0.1), t);
 
-  // silky folds — smooth wide gradients, no hard lines
+  // silk base folds (soft shading, kept subtle)
   float foldA = smoothstep(0.30, 0.70, f);
-  float foldB = smoothstep(0.55, 0.80, f);
-  float foldC = smoothstep(0.72, 0.92, f);
+  float foldB = smoothstep(0.60, 0.85, f);
+
+  // thin hard ink strokes — only one narrow ridge
+  float ink = smoothstep(0.498, 0.504, f) - smoothstep(0.508, 0.516, f);
+  ink *= (0.55 + 0.45 * mInfluence);
 
   float rustMask = smoothstep(0.55, 0.80, f) * (0.30 + 0.70 * mInfluence);
   rustMask += smoothstep(0.75, 0.95, f) * 0.35 * mInfluence;
@@ -1931,14 +1934,13 @@ void main() {
   float vign = smoothstep(1.4, 0.2, length(uv - 0.5));
   vec3 col = mix(CREAM_DEEP, CREAM, vign);
 
-  // soft silk shading — stacked darker cream layers
-  col = mix(col, CREAM_DEEP * 0.94, foldA * 0.55);
-  col = mix(col, CREAM_DEEP * 0.86, foldB * 0.35);
-  col = mix(col, CREAM_DEEP * 0.78, foldC * 0.18);
+  col = mix(col, CREAM_DEEP * 0.94, foldA * 0.45);
+  col = mix(col, CREAM_DEEP * 0.86, foldB * 0.28);
 
-  // warm rust bloom near cursor only
   float bloom = mInfluence * (0.5 + 0.5 * velMag);
   col = mix(col, mix(RUST_SOFT, RUST, 0.4), rustMask * (0.20 + 0.45 * bloom));
+
+  col = mix(col, INK, ink * 0.35);
 
   float grain = (hash(gl_FragCoord.xy + u_time) - 0.5) * 0.025;
   col += grain;
