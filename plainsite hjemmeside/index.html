@@ -512,54 +512,103 @@
     color: var(--accent);
   }
 
-  .problem-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--gap-lg);
-    align-items: start;
-  }
-  @media (max-width: 900px) {
-    .problem-grid { grid-template-columns: 1fr; gap: 48px; }
-  }
-
-  .issues {
+  .compare-rows {
     display: flex; flex-direction: column;
-    border-top: 1px solid var(--line);
+    gap: 14px;
+    margin-bottom: 72px;
   }
-  .issue {
-    padding: 26px 0;
-    border-bottom: 1px solid var(--line);
+  .compare-row {
     display: grid;
-    grid-template-columns: 36px 1fr auto;
-    gap: 24px;
-    align-items: baseline;
-    transition: padding-left 400ms cubic-bezier(.2,.8,.2,1);
-    cursor: default;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 28px;
+    padding: 24px 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    transition: border-color 300ms, transform 400ms cubic-bezier(.2,.8,.2,1);
   }
-  .issue:hover { padding-left: 12px; }
-  .issue:hover .tag { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-  .issue .num {
+  .compare-row:hover { border-color: color-mix(in oklab, var(--accent) 40%, var(--line)); }
+  .compare-row .before {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    color: var(--ink-mute);
+  }
+  .compare-row .before .num {
     font-family: var(--font-display);
     font-style: italic;
     color: var(--ink-mute);
     font-size: 16px;
+    opacity: .7;
   }
-  .issue .title {
-    font-size: 18px;
+  .compare-row .before .txt {
+    font-size: 17px;
     line-height: 1.4;
     font-weight: 400;
-    color: var(--ink);
+    text-decoration: line-through;
+    text-decoration-color: color-mix(in oklab, var(--ink-mute) 50%, transparent);
+    text-decoration-thickness: 1px;
   }
-  .issue .tag {
+  .compare-row .before .tag {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 13px;
-    color: var(--accent);
-    padding: 3px 12px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    padding: 4px 10px;
     border: 1px solid var(--line);
-    border-radius: 100px;
-    transition: all 280ms;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
   }
+  .compare-row .arrow {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .compare-row .after {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    align-items: center;
+    gap: 14px;
+  }
+  .compare-row .after .check {
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .compare-row .after .txt {
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  @media (max-width: 820px) {
+    .compare-row {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 22px 22px;
+    }
+    .compare-row .arrow {
+      transform: rotate(90deg);
+      justify-self: start;
+      margin-left: 2px;
+      font-size: 18px;
+      opacity: .8;
+    }
+    .compare-row .before .txt { font-size: 15.5px; }
+    .compare-row .after .txt { font-size: 16.5px; }
+  }
+
+  .solution-note { margin-top: 0; }
 
   /* Editorial solution note — replaces bulleted panel */
   .solution-note {
@@ -1383,41 +1432,74 @@
   </h2>
   <p class="problem-sub" data-reveal>Hvis bare ét punkt lyder bekendt, mister du sandsynligvis klienter — stille og roligt, hver måned.</p>
 
-  <div class="problem-grid">
-    <div class="issues" data-reveal-stagger>
-      <div class="issue">
+  <div class="compare-rows" data-reveal-stagger>
+    <div class="compare-row">
+      <div class="before">
         <span class="num">i</span>
-        <span class="title">Nuværende side ser hjemmelavet ud</span>
+        <span class="txt">Nuværende side ser hjemmelavet ud</span>
         <span class="tag">Tillid</span>
       </div>
-      <div class="issue">
-        <span class="num">ii</span>
-        <span class="title">Usynlig i lokale Google-søgninger</span>
-        <span class="tag">SEO</span>
-      </div>
-      <div class="issue">
-        <span class="num">iii</span>
-        <span class="title">Ingen tid til at rode med opdateringer</span>
-        <span class="tag">Tid</span>
-      </div>
-      <div class="issue">
-        <span class="num">iv</span>
-        <span class="title">Bureauer koster 20–40.000 kr. forud</span>
-        <span class="tag">Økonomi</span>
-      </div>
-      <div class="issue">
-        <span class="num">v</span>
-        <span class="title">Potentielle klienter finder konkurrenten først</span>
-        <span class="tag">Vækst</span>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="after">
+        <span class="check" aria-hidden="true">✓</span>
+        <span class="txt">En ren, professionel side — der matcher dit niveau</span>
       </div>
     </div>
-
-    <aside class="solution-note" data-reveal>
-      <span class="tag-line">vores løsning</span>
-      <h3>Vi bygger hele din hjemmeside — gratis. Du betaler først, hvis du siger ja.</h3>
-      <p>Du fortæller os om din praksis. Vi designer, skriver og bygger den færdige hjemmeside — ikke bare et udkast, men hele siden. Du ser den, <em>før</em> du beslutter dig. Siger du ja, går den live og vi passer den. Siger du nej, koster det ingenting.</p>
-    </aside>
+    <div class="compare-row">
+      <div class="before">
+        <span class="num">ii</span>
+        <span class="txt">Usynlig i lokale Google-søgninger</span>
+        <span class="tag">SEO</span>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="after">
+        <span class="check" aria-hidden="true">✓</span>
+        <span class="txt">SEO-optimeret fra dag ét — klienter finder dig</span>
+      </div>
+    </div>
+    <div class="compare-row">
+      <div class="before">
+        <span class="num">iii</span>
+        <span class="txt">Ingen tid til at rode med opdateringer</span>
+        <span class="tag">Tid</span>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="after">
+        <span class="check" aria-hidden="true">✓</span>
+        <span class="txt">Vi passer siden — du skal ingenting</span>
+      </div>
+    </div>
+    <div class="compare-row">
+      <div class="before">
+        <span class="num">iv</span>
+        <span class="txt">Bureauer koster 20–40.000 kr. forud</span>
+        <span class="tag">Økonomi</span>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="after">
+        <span class="check" aria-hidden="true">✓</span>
+        <span class="txt">0 kr. i opstart. Kun fast månedspris</span>
+      </div>
+    </div>
+    <div class="compare-row">
+      <div class="before">
+        <span class="num">v</span>
+        <span class="txt">Potentielle klienter finder konkurrenten først</span>
+        <span class="tag">Vækst</span>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="after">
+        <span class="check" aria-hidden="true">✓</span>
+        <span class="txt">Synlig der hvor klienterne leder</span>
+      </div>
+    </div>
   </div>
+
+  <aside class="solution-note" data-reveal>
+    <span class="tag-line">vores løsning</span>
+    <h3>Vi bygger hele din hjemmeside — gratis. Du betaler først, hvis du siger ja.</h3>
+    <p>Du fortæller os om din praksis. Vi designer, skriver og bygger den færdige hjemmeside — ikke bare et udkast, men hele siden. Du ser den, <em>før</em> du beslutter dig. Siger du ja, går den live og vi passer den. Siger du nej, koster det ingenting.</p>
+  </aside>
 </section>
 
 <!-- ============ PROCES ============ -->
