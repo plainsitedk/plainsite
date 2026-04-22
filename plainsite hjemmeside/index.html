@@ -160,9 +160,10 @@
   .label {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 15px;
-    color: var(--ink-mute);
-    letter-spacing: 0.005em;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.005em;
     display: inline-flex; align-items: center; gap: 14px;
   }
   .label::before {
@@ -571,13 +572,15 @@
   .solution-note .tag-line {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 14px;
+    font-size: 20px;
+    font-weight: 500;
     color: var(--accent);
+    letter-spacing: -0.005em;
     margin-bottom: 20px;
-    display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; gap: 14px;
   }
   .solution-note .tag-line::before {
-    content: ""; width: 20px; height: 1px; background: var(--accent);
+    content: ""; width: 28px; height: 1px; background: var(--accent);
   }
   .solution-note h3 {
     font-size: 30px; line-height: 1.15;
@@ -1373,10 +1376,10 @@
 
 <!-- ============ PROBLEM ============ -->
 <section class="problem" id="problem">
-  <div class="label" data-reveal>situationen</div>
+  <div class="label" data-reveal>problemet</div>
 
   <h2 data-reveal>
-    Genkender du <em>nogle af de her ting?</em>
+    Genkender du <em>nogle af de her trælse ting?</em>
   </h2>
   <p class="problem-sub" data-reveal>Hvis bare ét punkt lyder bekendt, mister du sandsynligvis klienter — stille og roligt, hver måned.</p>
 
