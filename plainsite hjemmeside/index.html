@@ -1911,7 +1911,7 @@ void main(){
 
   vec3 col = BG;
   float mdist = distance(p, m);
-  float pull  = exp(-mdist*1.6);
+  float pull  = exp(-mdist*0.75);
   float inten = 0.35 + uIntensity*0.9;
 
   if(uStyle == 0){
