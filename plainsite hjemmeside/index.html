@@ -1355,7 +1355,7 @@
 <!-- ============ HERO ============ -->
 <section class="hero">
   <canvas class="hero-shader" id="heroShader" aria-hidden="true"></canvas>
-  <h1>Hjemmesider der føles som <em>din praksis</em> — ikke som alle andres</h1>
+  <h1>Hjemmesider der føles som <em id="heroAccent">din praksis</em> — ikke som alle andres</h1>
 
   <div class="hero-grid">
     <p class="hero-lead">
@@ -2012,7 +2012,19 @@ void main(){
   const uHue   = gl.getUniformLocation(prog,'uHue');
   const uStyle = gl.getUniformLocation(prog,'uStyle');
 
-  const state = { mouseX: 0, mouseY: 0, smX: 0, smY: 0, ...TWEAKS };
+  const state = { mouseX: 0, mouseY: 0, smX: 0, smY: 0, hasMouse: false, ...TWEAKS };
+  const accentEl = document.getElementById('heroAccent');
+
+  const anchorToAccent = () => {
+    if (!accentEl) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = canvas.getBoundingClientRect();
+    const a = accentEl.getBoundingClientRect();
+    const cx = (a.left + a.width / 2) - r.left;
+    const cy = (a.top + a.height / 2) - r.top;
+    state.mouseX = cx * dpr;
+    state.mouseY = (r.height - cy) * dpr;
+  };
 
   const resize = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -2020,13 +2032,17 @@ void main(){
     canvas.width  = Math.max(1, Math.floor(r.width  * dpr));
     canvas.height = Math.max(1, Math.floor(r.height * dpr));
     gl.viewport(0, 0, canvas.width, canvas.height);
-    state.smX = canvas.width/2; state.smY = canvas.height/2;
-    state.mouseX = state.smX; state.mouseY = state.smY;
+    if (!state.hasMouse) {
+      anchorToAccent();
+      state.smX = state.mouseX; state.smY = state.mouseY;
+    }
   };
   window.addEventListener('resize', resize);
+  window.addEventListener('scroll', () => { if (!state.hasMouse) anchorToAccent(); }, { passive: true });
   resize();
 
   const onMove = (e) => {
+    state.hasMouse = true;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const r = canvas.getBoundingClientRect();
     state.mouseX = (e.clientX - r.left) * dpr;
