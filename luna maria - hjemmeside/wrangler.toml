@@ -1,0 +1,8 @@
+name = "luna-maria"
+compatibility_date = "2026-04-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "."
+
+[[kv_namespaces]]
+binding = "BLOG_KV"
+id = "96a4fbb30bff47b59ed5b0f8ce89e660"

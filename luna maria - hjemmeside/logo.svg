@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 280" width="520" height="280">
+  <defs>
+    
+  </defs>
+  <g transform="translate(260 110)">
+    <circle cx="14" cy="0" r="58" fill="#B98A6E" opacity="0.35"></circle>
+    <path d="M -6 -56 C -36 -56, -60 -32, -60 0 C -60 32, -36 56, -6 56 C -26 46, -38 26, -38 0 C -38 -26, -26 -46, -6 -56 Z" fill="#2C3242"></path>
+  </g>
+  <text x="260" y="240" text-anchor="middle" font-family="&#39;Cormorant Garamond&#39;, serif" font-weight="400" font-size="44" letter-spacing="4" fill="#2C3242">Luna Maria</text>
+</svg>
