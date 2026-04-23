@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <title>Feminin energi — Luna Maria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Om den feminine energi i parterapi — åbenhed, flow, følsomhed. Hvordan den ser ud, når den er i balance, og når den er kørt af sporet." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+:root {
+  --paper: #F4EFE6;
+  --bone:  #E8DFD1;
+  --ink:   #2C3242;
+  --ink-soft: #4A5068;
+  --clay:  #B98A6E;
+  --sage:  #8FA48C;
+  --line:  rgba(44, 50, 66, 0.12);
+  --line-strong: rgba(44, 50, 66, 0.25);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { opacity: 0; transition: opacity 600ms cubic-bezier(.2,.7,.2,1), transform 600ms cubic-bezier(.2,.7,.2,1); }
+body.page-ready { opacity: 1; }
+body.page-leaving { opacity: 0; transform: translateY(-8px); transition-duration: 380ms; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 900ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1); transition-delay: var(--reveal-delay, 0ms); will-change: opacity, transform; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; border-radius: 4px; }
+.nav-links a { position: relative; transition: color 200ms; }
+.nav-links a:not(.nav-cta)::after { content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px; background: var(--ink); transform: scaleX(0); transform-origin: left center; transition: transform 360ms cubic-bezier(.2,.7,.2,1); }
+.nav-links a:not(.nav-cta):hover::after { transform: scaleX(1); }
+.btn { will-change: transform; }
+.btn:hover { transform: translateY(-2px); }
+.btn .arrow { transition: transform 280ms cubic-bezier(.2,.7,.2,1); }
+.btn:hover .arrow { transform: translateX(6px); }
+@media (prefers-reduced-motion: reduce) { body, body.page-leaving { opacity: 1 !important; transform: none !important; transition: none !important; } .reveal { opacity: 1 !important; transform: none !important; transition: none !important; } }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: 0; background: none; cursor: pointer; color: inherit; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 56px; }
+.narrow    { max-width: 960px;  margin: 0 auto; padding: 0 56px; }
+.eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--ink-soft);
+}
+.eyebrow.on-dark { color: rgba(244, 239, 230, 0.55); }
+.serif { font-family: 'Cormorant Garamond', serif; font-weight: 300; letter-spacing: -0.02em; }
+.italic { font-style: italic; }
+
+/* nav */
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(244, 239, 230, 0.85);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: 1280px; margin: 0 auto; padding: 20px 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 1px; color: var(--ink); }
+.nav-links { display: flex; gap: 40px; align-items: center; font-size: 13px; color: var(--ink-soft); }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500;
+  color: var(--ink); border: 1px solid var(--line-strong);
+  padding: 10px 20px; border-radius: 999px;
+}
+.nav-cta:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 16px 28px; font-size: 12px; letter-spacing: 2.5px;
+  text-transform: uppercase; font-weight: 500;
+  border-radius: 999px; transition: transform 200ms ease, background 200ms, color 200ms;
+  border: 1px solid transparent;
+}
+.btn .arrow { font-size: 14px; }
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { transform: translateY(-1px); }
+.btn-ghost { color: var(--ink); border-color: var(--line-strong); }
+.btn-ghost:hover { background: rgba(44, 50, 66, 0.04); }
+
+/* sub-page hero */
+.page-hero { padding: 120px 56px 80px; position: relative; overflow: hidden; background: var(--paper); }
+.page-hero .inner { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+.page-hero h1 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 88px; line-height: 1.0; letter-spacing: -0.025em;
+  color: var(--ink); margin: 24px 0 0; text-wrap: pretty;
+}
+.page-hero p.lede {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+  font-size: 26px; line-height: 1.45; color: var(--ink-soft);
+  margin: 28px 0 0; max-width: 640px; text-wrap: pretty;
+}
+.page-hero .orb {
+  position: absolute; pointer-events: none; z-index: 0;
+}
+
+/* prose sections */
+.prose-section { padding: 80px 56px; }
+.prose-section.bone { background: var(--bone); }
+.prose-section .inner { max-width: 760px; margin: 0 auto; }
+.prose-section h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 48px; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--ink); margin: 16px 0 32px; text-wrap: pretty;
+}
+.prose-section p {
+  font-size: 17px; line-height: 1.8; color: var(--ink-soft);
+  margin: 0 0 20px; max-width: 660px;
+}
+.prose-section p strong { color: var(--ink); font-weight: 500; }
+.prose-section ul {
+  list-style: none; padding: 0; margin: 0 0 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.prose-section li {
+  font-size: 17px; line-height: 1.7; color: var(--ink-soft);
+  padding-left: 24px; position: relative;
+}
+.prose-section li::before {
+  content: ""; position: absolute; left: 0; top: 12px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--clay);
+}
+.pullquote {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+  font-size: 34px; line-height: 1.35; color: var(--ink);
+  border-left: 2px solid var(--clay); padding: 8px 0 8px 28px;
+  margin: 40px 0; text-wrap: pretty;
+}
+
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  max-width: 1080px; margin: 0 auto;
+}
+.two-col .card {
+  background: var(--paper); border: 1px solid var(--line); padding: 40px; border-radius: 2px;
+}
+.two-col .card h3 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 400;
+  font-size: 26px; color: var(--ink); margin: 0 0 16px;
+}
+.two-col .card p { font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin: 0; }
+
+.cross-link {
+  background: var(--ink); color: var(--paper);
+  padding: 80px 56px; text-align: center;
+}
+.cross-link h3 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic;
+  font-size: 38px; line-height: 1.2; margin: 0 0 24px;
+}
+.cross-link .btn-primary { background: var(--paper); color: var(--ink); }
+
+/* footer */
+footer { background: var(--paper); padding: 56px; border-top: 1px solid var(--line); }
+.footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;
+}
+.footer-meta {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-soft);
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.footer-meta a:hover { color: var(--ink); }
+
+@media (max-width: 960px) {
+  .nav-inner { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .page-hero { padding: 72px 24px 56px; }
+  .page-hero h1 { font-size: 52px; }
+  .page-hero p.lede { font-size: 20px; }
+  .prose-section { padding: 56px 24px; }
+  .prose-section h2 { font-size: 34px; }
+  .prose-section p, .prose-section li { font-size: 16px; }
+  .pullquote { font-size: 24px; }
+  .two-col { grid-template-columns: 1fr; gap: 16px; }
+  .cross-link { padding: 56px 24px; }
+  .cross-link h3 { font-size: 28px; }
+  footer { padding: 40px 24px; }
+}
+
+/* ===== homepage ===== */
+.hero { position: relative; overflow: hidden; background: var(--paper); }
+.hero-grid {
+  max-width: 1280px; margin: 0 auto; padding: 140px 56px 120px;
+  display: grid; grid-template-columns: 1.25fr 1fr; gap: 80px; align-items: center;
+  position: relative; z-index: 1;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 108px; line-height: 0.95; letter-spacing: -0.025em;
+  color: var(--ink); margin: 24px 0 0; text-wrap: pretty;
+}
+.hero-lede {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+  font-size: 24px; line-height: 1.45; color: var(--ink-soft);
+  margin: 32px 0 0; max-width: 520px; text-wrap: pretty;
+}
+.hero-cta { display: flex; gap: 16px; margin-top: 48px; flex-wrap: wrap; }
+.hero-anim { position: relative; display: flex; justify-content: center; }
+.hero-anim svg { width: 100%; max-width: 520px; aspect-ratio: 1/1; display: block; overflow: visible; }
+
+.trust {
+  max-width: 1280px; margin: 0 auto; padding: 0 56px 64px;
+  display: flex; gap: 48px; align-items: center; flex-wrap: wrap;
+  font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--ink-soft); position: relative; z-index: 1;
+}
+.trust > div { display: flex; align-items: center; gap: 10px; }
+.trust .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); display: inline-block; }
+
+.invitation { background: var(--paper); padding: 140px 56px; border-top: 1px solid var(--line); }
+.invitation .serif {
+  font-size: 54px; line-height: 1.25; letter-spacing: -0.01em;
+  color: var(--ink); margin: 24px 0 0; text-wrap: pretty;
+}
+.invitation .italic-soft { font-style: italic; color: var(--ink-soft); }
+
+.work { background: var(--bone); padding: 140px 56px; }
+.work-head {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  align-items: end; margin-bottom: 72px;
+}
+.work-head h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 72px; line-height: 1.0; letter-spacing: -0.02em;
+  color: var(--ink); margin: 20px 0 0;
+}
+.work-head p {
+  font-size: 16px; line-height: 1.75; color: var(--ink-soft);
+  max-width: 440px; margin: 0;
+}
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pillar {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 2px;
+  padding: 44px; display: flex; flex-direction: column; gap: 24px; min-height: 380px;
+}
+.pillar-icon { height: 72px; display: flex; align-items: center; }
+.pillar-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 30px; line-height: 1.2; color: var(--ink); }
+.pillar-body  { font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+.pillar-links { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 12px; }
+.pillar-links a { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; color: var(--ink); }
+.pillar-links a:hover { color: var(--clay); }
+
+.about { background: var(--paper); padding: 140px 56px; }
+.about-grid {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 96px; align-items: center;
+}
+.portrait-wrap { position: relative; display: flex; justify-content: center; }
+.portrait-moon {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 110%; aspect-ratio: 1/1; border-radius: 50%;
+  background: var(--clay); opacity: 0.22; z-index: 0;
+}
+.portrait-frame {
+  position: relative; z-index: 1; width: 100%; aspect-ratio: 4/5;
+  border-radius: 2px; overflow: hidden; background: var(--bone);
+}
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.about h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 64px; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--ink); margin: 20px 0 0; text-wrap: pretty;
+}
+.about-body {
+  font-size: 16px; line-height: 1.8; color: var(--ink-soft);
+  margin-top: 36px; max-width: 540px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.about-body p { margin: 0; }
+.stats { margin-top: 44px; display: flex; gap: 48px; flex-wrap: wrap; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-style: italic; font-weight: 300; color: var(--ink); }
+.stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-soft); }
+
+.how { background: var(--paper); padding: 140px 56px; border-top: 1px solid var(--line); }
+.how h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 64px; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--ink); margin: 20px 0 72px;
+}
+.step { display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start; padding-bottom: 56px; }
+.step-n { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 56px; color: var(--clay); line-height: 1; }
+.step-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; color: var(--ink); }
+.step-body  { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin-top: 12px; max-width: 580px; }
+.divider { height: 1px; background: var(--line); margin-bottom: 56px; }
+
+.testimonial { background: var(--ink); padding: 140px 56px; position: relative; overflow: hidden; }
+.testimonial-moon {
+  position: absolute; right: -8%; top: 50%; transform: translateY(-50%);
+  width: 40%; height: auto; opacity: 0.25;
+}
+.testimonial .inner { max-width: 1000px; margin: 0 auto; position: relative; }
+.testimonial blockquote {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+  font-size: 54px; line-height: 1.25; letter-spacing: -0.01em;
+  color: var(--paper); margin: 32px 0 0; text-wrap: pretty;
+}
+.attribution { margin-top: 40px; display: flex; align-items: center; gap: 16px; }
+.attribution .rule { width: 40px; height: 1px; background: rgba(244,239,230,0.4); }
+.attribution .who {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(244,239,230,0.7);
+}
+
+.journal { background: var(--paper); padding: 140px 56px; }
+.journal-head {
+  max-width: 1280px; margin: 0 auto 56px;
+  display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+}
+.journal-head h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 56px; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--ink); margin: 20px 0 0;
+}
+.journal-link { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; color: var(--ink); }
+.journal-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.jcard { border-top: 1px solid var(--line); padding-top: 28px; cursor: pointer; }
+.jcard:hover .jcard-title { color: var(--clay); }
+.jcard-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--clay); }
+.jcard-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--ink); line-height: 1.25; margin-top: 12px; transition: color 200ms; text-wrap: pretty; }
+.jcard-date  { font-size: 12px; color: var(--ink-soft); margin-top: 24px; letter-spacing: 1px; }
+
+.contact { background: var(--bone); padding: 140px 56px; position: relative; overflow: hidden; }
+.contact-moon {
+  position: absolute; left: -10%; top: -30%; width: 45%; height: auto; opacity: 0.35;
+  pointer-events: none;
+}
+.contact-grid {
+  max-width: 1000px; margin: 0 auto; position: relative;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.contact h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 72px; line-height: 1.0; letter-spacing: -0.02em;
+  color: var(--ink); margin: 20px 0 0; text-wrap: pretty;
+}
+.contact .lede {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+  font-size: 22px; line-height: 1.5; color: var(--ink-soft);
+  max-width: 440px; margin: 32px 0 0;
+}
+.form {
+  background: var(--paper); border-radius: 2px; padding: 44px; border: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 24px;
+}
+.field-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+.field input, .field textarea {
+  width: 100%; border: 0; border-bottom: 1px solid var(--line);
+  background: transparent; padding: 8px 0; font: inherit; color: var(--ink);
+  outline: none; resize: none;
+}
+.field textarea { min-height: 72px; }
+.field input:focus, .field textarea:focus { border-bottom-color: var(--ink); }
+.form-note { font-size: 11px; color: var(--ink-soft); line-height: 1.6; }
+.form-note .email { color: var(--ink); border-bottom: 1px solid var(--line); }
+
+@media (max-width: 960px) {
+  .hero-grid, .trust, .invitation, .work, .about, .how, .testimonial, .journal, .contact { padding-left: 24px; padding-right: 24px; }
+  .hero-grid { grid-template-columns: 1fr; padding: 80px 24px 64px; gap: 48px; }
+  .hero h1 { font-size: 64px; }
+  .invitation .serif, .contact h2, .work-head h2 { font-size: 42px; }
+  .about h2, .how h2 { font-size: 40px; }
+  .testimonial blockquote { font-size: 32px; }
+  .work-head, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .pillars, .journal-grid { grid-template-columns: 1fr; gap: 20px; }
+  .invitation, .work, .about, .how, .testimonial, .journal, .contact { padding-top: 80px; padding-bottom: 80px; }
+  .step { grid-template-columns: 48px 1fr; gap: 20px; }
+  .step-n { font-size: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blob-clay, .blob-ink { animation: none !important; }
+}
+
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <svg viewBox="-80 -70 160 140" width="32" height="28" aria-hidden="true">
+          <circle cx="14" cy="0" r="58" fill="#B98A6E" opacity="0.35"/>
+          <path d="M -6 -56 C -36 -56, -60 -32, -60 0 C -60 32, -36 56, -6 56 C -26 46, -38 26, -38 0 C -38 -26, -26 -46, -6 -56 Z" fill="#2C3242"/>
+        </svg>
+        <span class="brand-name">Luna Maria</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#arbejdet">Arbejdet</a>
+        <a href="maskulin.html">Maskulin</a>
+        <a href="feminin.html">Feminin</a>
+        <a href="index.html#om">Om Luna</a>
+        <a href="blog.html">Skriverier</a>
+        <a href="index.html#kontakt" class="nav-cta">Book samtale</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <svg class="orb" viewBox="-80 -80 160 160" style="left:-8%; top:-20%; width:55%; opacity:0.35;" aria-hidden="true">
+      <circle cx="0" cy="0" r="70" fill="#B98A6E"/>
+    </svg>
+    <div class="inner">
+      <div class="eyebrow">Polaritet · 02</div>
+      <h1>Feminin <span class="italic">energi.</span></h1>
+      <p class="lede">Den del af os, der mærker, åbner, og tager imod. Den, der bringer følelse, farve og bevægelse ind i et rum. Ikke et køn — en måde at møde verden på. Vi bærer den alle, i forskellige doser.</p>
+    </div>
+  </section>
+
+  <section class="prose-section">
+    <div class="inner">
+      <div class="eyebrow">Hvad det er</div>
+      <h2>Åbenhed, flow,<br/><span class="italic">følsomhed.</span></h2>
+      <p>Feminin energi handler ikke om at gøre, men om at være. Den mærker, før den forklarer. Den lader sig bevæge af det, der er i rummet, og giver plads til, at noget nyt kan opstå. Den er ikke svag — den er <strong>levende</strong>.</p>
+      <p>Når den er i balance, mærkes den som varme. En partner, der er til at røre ved. Latter, der kommer nemt. En krop, der ikke er låst. Den skaber nærhed, fordi den tør være i kontakten.</p>
+
+      <ul>
+        <li><strong>Mærken.</strong> Evnen til at registrere, hvad der egentlig foregår — i en selv og i den anden.</li>
+        <li><strong>Åbenhed.</strong> At turde vise det, der er sårbart, uden at pakke det ind først.</li>
+        <li><strong>Flow.</strong> At kunne slippe planen, når noget andet er vigtigere lige nu.</li>
+        <li><strong>Modtagelighed.</strong> At lade sig påvirke — af partnerens ord, af sin egen krop, af det uventede.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="prose-section bone">
+    <div class="inner">
+      <div class="eyebrow">Når den er af sporet</div>
+      <h2>Kaos, bebrejdelse,<br/><span class="italic">lukkethed.</span></h2>
+      <p>Feminin energi ude af balance viser sig også som for meget, eller for lidt.</p>
+      <p><strong>For meget</strong> bliver til overvældelse. Alle følelser kommer på én gang, og ingen af dem bliver holdt. Kritik og bebrejdelse fylder rummet. Partneren mærker ikke længere varme — kun storm.</p>
+      <p><strong>For lidt</strong> bliver til afskærmning. Kroppen lukker. Følelserne forsvinder ind, eller bliver rationaliseret væk. Sex, berøring og sårbarhed bliver for risikabelt. Over tid forsvinder det levende mellem jer.</p>
+
+      <div class="pullquote">
+        Det er ikke for meget følelse, der slider på et parforhold. Det er følelser, der ikke bliver hørt.
+      </div>
+    </div>
+  </section>
+
+  <section class="prose-section">
+    <div class="inner">
+      <div class="eyebrow">I parforholdet</div>
+      <h2>Hvad vi arbejder med.</h2>
+      <p>I terapi kigger vi på, hvor den feminine energi bor hos jer — og især, hvor den er gået i stå. Det er ikke nødvendigvis kvinden, der bærer den. Mange par kommer, fordi den ene har mistet kontakten til sin egen krop, sine egne følelser, eller sin lyst, og ikke ved, hvordan den findes igen.</p>
+      <p>Vi arbejder langsomt. Femininet vender ikke tilbage via en plan — den vender tilbage, når der er tryghed nok til, at den tør. Det kræver ofte, at den maskuline side hos partneren bliver mere nærværende først.</p>
+
+      <div class="two-col">
+        <div class="card">
+          <h3>For hende</h3>
+          <p>Ofte handler det om at turde vise, hvad man mærker, før man har sorteret det pænt. Mindre forklaring, mere udtryk. At give slip på at skulle have styr på alt, også for partneren.</p>
+        </div>
+        <div class="card">
+          <h3>For ham</h3>
+          <p>Ofte handler det om at lade sig bevæge — lytte uden at skulle løse, mærke uden at skulle forklare. At give plads til følelser, uden at de skal være rationelle først.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cross-link">
+    <h3>Læs også om<br/>den maskuline energi.</h3>
+    <a href="maskulin.html" class="btn btn-primary">Maskulin energi <span class="arrow">→</span></a>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="brand">
+        <svg viewBox="-80 -70 160 140" width="32" height="28" aria-hidden="true">
+          <circle cx="14" cy="0" r="58" fill="#B98A6E" opacity="0.35"/>
+          <path d="M -6 -56 C -36 -56, -60 -32, -60 0 C -60 32, -36 56, -6 56 C -26 46, -38 26, -38 0 C -38 -26, -26 -46, -6 -56 Z" fill="#2C3242"/>
+        </svg>
+        <span class="brand-name" style="font-size:20px;">Luna Maria</span>
+      </a>
+      <div class="footer-meta">
+        <a href="maskulin.html">Maskulin energi</a>
+        <a href="feminin.html">Feminin energi</a>
+        <span>Aarhus · Djursland · online</span>
+        <a href="mailto:hej@lunamaria.dk">hej@lunamaria.dk</a>
+        <span>© 2026</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function(){
+      requestAnimationFrame(function(){ document.body.classList.add('page-ready'); });
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced) {
+        var sel = 'h1, h2, h3, .prose-section p, .prose-section li, .page-hero .lede, .pullquote, blockquote';
+        var els = document.querySelectorAll(sel);
+        els.forEach(function(el, i){ el.classList.add('reveal'); el.style.setProperty('--reveal-delay', Math.min(i*50, 400) + 'ms'); });
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if (e.isIntersecting) e.target.classList.add('is-visible');
+            else e.target.classList.remove('is-visible');
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+        els.forEach(function(el){ io.observe(el); });
+      }
+      document.addEventListener('click', function(e){
+        var a = e.target.closest('a'); if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (a.target === '_blank' || a.hasAttribute('download')) return;
+        try { var u = new URL(a.href, location.href); if (u.origin !== location.origin) return; } catch(_) { return; }
+        if (reduced) return;
+        e.preventDefault();
+        document.body.classList.add('page-leaving');
+        setTimeout(function(){ location.href = a.href; }, 360);
+      });
+      window.addEventListener('pageshow', function(ev){ if (ev.persisted) document.body.classList.remove('page-leaving'); });
+    })();
+  </script>
+</body>
+</html>
