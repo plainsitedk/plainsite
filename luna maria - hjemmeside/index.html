@@ -21,11 +21,13 @@
   --line-strong: rgba(44, 50, 66, 0.25);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 200ms; animation-timing-function: cubic-bezier(.2,.7,.2,1); }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; background: #F4EFE6; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { opacity: 0; transition: opacity 600ms cubic-bezier(.2,.7,.2,1), transform 600ms cubic-bezier(.2,.7,.2,1); }
+body { opacity: 0; transition: opacity 140ms cubic-bezier(.2,.7,.2,1), transform 140ms cubic-bezier(.2,.7,.2,1); background: #F4EFE6; }
 body.page-ready { opacity: 1; }
-body.page-leaving { opacity: 0; transform: translateY(-8px); transition-duration: 380ms; }
+body.page-leaving { opacity: 0; transform: translateY(-4px); transition-duration: 160ms; }
 @media (prefers-reduced-motion: reduce) { body, body.page-leaving { opacity: 1 !important; transform: none !important; transition: none !important; } }
 html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; }
 img { display: block; max-width: 100%; }
@@ -655,32 +657,38 @@ a:focus-visible, button:focus-visible {
     </div>
   </section>
 
-  <section class="journal" id="skriverier">
+  <section class="journal" id="skriverier" hidden>
     <div class="journal-head">
       <div>
         <div class="eyebrow">Skriverier</div>
         <h2>Noter fra<br/><span class="italic">klinikken.</span></h2>
       </div>
-      <a class="journal-link" href="#">Læs alle →</a>
+      <a class="journal-link" href="blog.html">Læs alle →</a>
     </div>
-    <div class="journal-grid">
-      <a class="jcard" href="#">
-        <div class="jcard-label">Polaritet</div>
-        <div class="jcard-title">Når den ene bærer alt ansvaret.</div>
-        <div class="jcard-date">Marts · 2026</div>
-      </a>
-      <a class="jcard" href="#">
-        <div class="jcard-label">Konflikt</div>
-        <div class="jcard-title">Det, skænderiet i virkeligheden handler om.</div>
-        <div class="jcard-date">Februar · 2026</div>
-      </a>
-      <a class="jcard" href="#">
-        <div class="jcard-label">Begyndelser</div>
-        <div class="jcard-title">Sådan ved I, om parterapi er noget for jer.</div>
-        <div class="jcard-date">Januar · 2026</div>
-      </a>
-    </div>
+    <div class="journal-grid" id="journalGrid"></div>
   </section>
+  <script>
+    (function(){
+      var sec = document.getElementById('skriverier');
+      var grid = document.getElementById('journalGrid');
+      if (!sec || !grid) return;
+      fetch('/api/blog').then(function(r){ return r.ok ? r.json() : {posts:[]}; }).then(function(d){
+        var posts = (d && d.posts) || [];
+        if (!posts.length) return;
+        sec.hidden = false;
+        var months = ['Januar','Februar','Marts','April','Maj','Juni','Juli','August','September','Oktober','November','December'];
+        grid.innerHTML = posts.slice(0,3).map(function(p){
+          var d = new Date(p.date || p.createdAt || Date.now());
+          var date = months[d.getMonth()] + ' · ' + d.getFullYear();
+          var label = p.label || p.category || 'Noter';
+          return '<a class="jcard" href="blog.html#'+encodeURIComponent(p.id||p.slug||'')+'">'
+               + '<div class="jcard-label">'+label+'</div>'
+               + '<div class="jcard-title">'+(p.title||'')+'</div>'
+               + '<div class="jcard-date">'+date+'</div></a>';
+        }).join('');
+      }).catch(function(){});
+    })();
+  </script>
 
   <section class="contact" id="kontakt">
     <svg class="contact-moon" viewBox="-80 -80 160 160" aria-hidden="true">
@@ -803,7 +811,7 @@ a:focus-visible, button:focus-visible {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       e.preventDefault();
       document.body.classList.add('page-leaving');
-      setTimeout(function(){ location.href = a.href; }, 360);
+      setTimeout(function(){ location.href = a.href; }, 160);
     });
     window.addEventListener('pageshow', function(ev){
       if (ev.persisted) document.body.classList.remove('page-leaving');

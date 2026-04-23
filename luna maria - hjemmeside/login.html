@@ -74,19 +74,23 @@
     .editor label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
     .editor input[type=text] { width: 100%; border: 0; border-bottom: 1px solid var(--line-strong); background: transparent; padding: 14px 2px; font-family: 'Cormorant Garamond', serif; font-size: 32px; outline: none; transition: border-color 200ms; }
     .editor input[type=text]:focus { border-bottom-color: var(--ink); }
-    .toolbar { display: flex; gap: 6px; flex-wrap: wrap; padding: 8px; background: var(--paper-soft); border: 1px solid var(--line); border-bottom: 0; border-radius: 4px 4px 0 0; }
-    .toolbar button { padding: 6px 10px; font-size: 12px; background: transparent; border: 1px solid transparent; border-radius: 3px; color: var(--ink-soft); }
+    .toolbar { display: flex; gap: 4px; flex-wrap: wrap; padding: 10px; background: var(--paper-soft); border: 1px solid var(--line); border-bottom: 0; border-radius: 4px 4px 0 0; position: sticky; top: 58px; z-index: 5; }
+    .toolbar button { padding: 8px 12px; font-size: 13px; background: transparent; border: 1px solid transparent; border-radius: 3px; color: var(--ink-soft); min-width: 36px; }
     .toolbar button:hover { background: var(--paper); color: var(--ink); border-color: var(--line); }
-    .editor textarea { width: 100%; min-height: 420px; border: 1px solid var(--line); background: var(--paper-soft); padding: 20px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.7; outline: none; border-radius: 0 0 4px 4px; resize: vertical; }
-    .editor textarea:focus { border-color: var(--ink); }
+    .toolbar button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .toolbar .sep { width: 1px; background: var(--line); margin: 2px 4px; }
+    .rte { min-height: 480px; border: 1px solid var(--line); background: #fff; padding: 40px 48px; font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; outline: none; border-radius: 0 0 4px 4px; color: var(--ink); }
+    .rte:focus { border-color: var(--ink); }
+    .rte:empty::before { content: attr(data-placeholder); color: var(--ink-soft); opacity: 0.6; }
+    .rte h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 30px; margin: 1.4em 0 0.4em; letter-spacing: -0.01em; }
+    .rte h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 23px; margin: 1.1em 0 0.3em; }
+    .rte p { margin: 0 0 1em; }
+    .rte blockquote { border-left: 2px solid var(--clay); padding: 4px 0 4px 18px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; margin: 1.2em 0; color: var(--ink); }
+    .rte a { color: var(--clay); border-bottom: 1px solid var(--clay); }
+    .rte ul, .rte ol { margin: 0 0 1em; padding-left: 24px; }
+    .rte li { margin-bottom: 6px; }
     .editor .actions { display: flex; gap: 12px; justify-content: flex-end; }
     .editor .hint { font-size: 12px; color: var(--ink-soft); }
-    .preview { border: 1px solid var(--line); background: var(--paper-soft); padding: 32px; border-radius: 4px; }
-    .preview h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 28px; margin: 1.2em 0 0.4em; }
-    .preview h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 22px; margin: 1em 0 0.3em; }
-    .preview p { margin: 0 0 1em; line-height: 1.75; }
-    .preview blockquote { border-left: 2px solid var(--clay); padding-left: 16px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; margin: 1em 0; }
-    .preview a { color: var(--clay); border-bottom: 1px solid var(--clay); }
 
     .toast { position: fixed; bottom: 24px; right: 24px; background: var(--ink); color: var(--paper); padding: 14px 22px; border-radius: 999px; font-size: 13px; letter-spacing: 0.04em; opacity: 0; transform: translateY(10px); transition: opacity 260ms, transform 260ms; pointer-events: none; z-index: 100; }
     .toast.show { opacity: 1; transform: translateY(0); }
@@ -148,20 +152,22 @@
           <div>
             <label>Indhold</label>
             <div class="toolbar">
-              <button type="button" data-wrap="<strong>|</strong>">B</button>
-              <button type="button" data-wrap="<em>|</em>"><i>I</i></button>
-              <button type="button" data-prefix="## ">H2</button>
-              <button type="button" data-prefix="### ">H3</button>
-              <button type="button" data-wrap="<blockquote>|</blockquote>">❝</button>
-              <button type="button" data-link="1">Link</button>
-              <button type="button" data-prefix="- ">Liste</button>
+              <button type="button" data-cmd="bold" title="Fed (⌘B)"><strong>B</strong></button>
+              <button type="button" data-cmd="italic" title="Kursiv (⌘I)"><em>I</em></button>
+              <div class="sep"></div>
+              <button type="button" data-block="h2" title="Overskrift">H2</button>
+              <button type="button" data-block="h3" title="Underoverskrift">H3</button>
+              <button type="button" data-block="p" title="Normal tekst">¶</button>
+              <div class="sep"></div>
+              <button type="button" data-block="blockquote" title="Citat">❝</button>
+              <button type="button" data-cmd="insertUnorderedList" title="Punktliste">• Liste</button>
+              <div class="sep"></div>
+              <button type="button" data-link="1" title="Link">Link</button>
+              <button type="button" data-cmd="unlink" title="Fjern link">Fjern link</button>
+              <div class="sep"></div>
+              <button type="button" data-cmd="removeFormat" title="Ryd formatering">Ryd</button>
             </div>
-            <textarea id="contentInput" placeholder="Skriv i markdown eller HTML. Tomme linjer bliver til afsnit."></textarea>
-            <p class="hint">Tomme linjer = nyt afsnit. ## for overskrift. - for liste. HTML er også tilladt.</p>
-          </div>
-          <div>
-            <label>Forhåndsvisning</label>
-            <div class="preview" id="preview"></div>
+            <div id="contentInput" class="rte" contenteditable="true" data-placeholder="Skriv her…"></div>
           </div>
           <div class="actions">
             <button class="btn danger" id="deleteBtn" style="display:none;">Slet</button>
@@ -192,32 +198,16 @@
       return d.getDate() + '. ' + months[d.getMonth()] + ' ' + d.getFullYear();
     }
 
-    function renderMarkdown(src) {
-      var lines = src.split('\n');
-      var html = '';
-      var inList = false;
-      var paragraph = [];
-      function flushParagraph() {
-        if (paragraph.length) {
-          var txt = paragraph.join(' ');
-          txt = txt.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-          txt = txt.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-          txt = txt.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
-          html += '<p>' + txt + '</p>';
-          paragraph = [];
-        }
-      }
-      for (var i = 0; i < lines.length; i++) {
-        var l = lines[i];
-        if (/^### /.test(l)) { flushParagraph(); if (inList) { html += '</ul>'; inList = false; } html += '<h3>' + l.slice(4) + '</h3>'; }
-        else if (/^## /.test(l)) { flushParagraph(); if (inList) { html += '</ul>'; inList = false; } html += '<h2>' + l.slice(3) + '</h2>'; }
-        else if (/^- /.test(l)) { flushParagraph(); if (!inList) { html += '<ul>'; inList = true; } html += '<li>' + l.slice(2) + '</li>'; }
-        else if (/^\s*$/.test(l)) { flushParagraph(); if (inList) { html += '</ul>'; inList = false; } }
-        else { paragraph.push(l); }
-      }
-      flushParagraph();
-      if (inList) html += '</ul>';
-      return html;
+    function sanitizePasted(html) {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      tmp.querySelectorAll('script,style,meta,link').forEach(function(n){ n.remove(); });
+      tmp.querySelectorAll('*').forEach(function(n){
+        [].slice.call(n.attributes).forEach(function(a){
+          if (a.name !== 'href') n.removeAttribute(a.name);
+        });
+      });
+      return tmp.innerHTML;
     }
 
     // gate
@@ -285,6 +275,7 @@
       loadPosts();
     });
 
+    var rte = null;
     function openEdit(post) {
       editing = post;
       document.getElementById('viewList').style.display = 'none';
@@ -292,54 +283,57 @@
       document.getElementById('editTitle').textContent = post ? 'Rediger' : 'Nyt opslag';
       document.getElementById('editMeta').textContent = post ? 'Oprettet ' + fmtDate(post.createdAt) : '';
       document.getElementById('titleInput').value = post ? post.title : '';
-      document.getElementById('contentInput').value = post ? htmlToSource(post.content) : '';
+      rte = document.getElementById('contentInput');
+      rte.innerHTML = post ? post.content : '';
       document.getElementById('deleteBtn').style.display = post ? '' : 'none';
-      updatePreview();
+      try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch(_){}
     }
 
-    function htmlToSource(html) {
-      // best-effort reverse of renderMarkdown; keeps HTML as-is if mixed
-      return html.replace(/<\/(p|h2|h3|ul|ol|li|blockquote)>/g, '\n').replace(/<p>/g, '').replace(/<h2>/g, '## ').replace(/<h3>/g, '### ').replace(/<li>/g, '- ').replace(/<\/?(ul|ol)>/g, '').replace(/\n{3,}/g, '\n\n').trim();
-    }
-
-    function updatePreview() {
-      var src = document.getElementById('contentInput').value;
-      document.getElementById('preview').innerHTML = renderMarkdown(src);
-    }
-
-    document.getElementById('contentInput').addEventListener('input', updatePreview);
+    document.addEventListener('paste', function(e){
+      if (!rte || document.activeElement !== rte) return;
+      e.preventDefault();
+      var html = (e.clipboardData || window.clipboardData).getData('text/html');
+      var text = (e.clipboardData || window.clipboardData).getData('text/plain');
+      var out = html ? sanitizePasted(html) : (text || '').split(/\n\n+/).map(function(p){ return '<p>'+p.replace(/\n/g,'<br>')+'</p>'; }).join('');
+      document.execCommand('insertHTML', false, out);
+    });
 
     document.querySelectorAll('.toolbar button').forEach(function(b){
+      b.addEventListener('mousedown', function(e){ e.preventDefault(); });
       b.addEventListener('click', function(){
-        var ta = document.getElementById('contentInput');
-        var s = ta.selectionStart, e = ta.selectionEnd;
-        var sel = ta.value.slice(s, e);
-        if (b.dataset.wrap) {
-          var parts = b.dataset.wrap.split('|');
-          ta.value = ta.value.slice(0, s) + parts[0] + sel + parts[1] + ta.value.slice(e);
-          ta.selectionStart = s + parts[0].length;
-          ta.selectionEnd = s + parts[0].length + sel.length;
-        } else if (b.dataset.prefix) {
-          var lineStart = ta.value.lastIndexOf('\n', s - 1) + 1;
-          ta.value = ta.value.slice(0, lineStart) + b.dataset.prefix + ta.value.slice(lineStart);
-          ta.selectionStart = ta.selectionEnd = s + b.dataset.prefix.length;
+        if (!rte) return;
+        rte.focus();
+        if (b.dataset.cmd) {
+          document.execCommand(b.dataset.cmd, false, null);
+        } else if (b.dataset.block) {
+          document.execCommand('formatBlock', false, b.dataset.block);
         } else if (b.dataset.link) {
-          var url = prompt('Link URL:');
-          if (url) {
-            var text = sel || 'link';
-            ta.value = ta.value.slice(0, s) + '[' + text + '](' + url + ')' + ta.value.slice(e);
-          }
+          var url = prompt('Link URL:', 'https://');
+          if (url) document.execCommand('createLink', false, url);
         }
-        ta.focus();
-        updatePreview();
+        updateToolbarState();
       });
+    });
+
+    function updateToolbarState() {
+      document.querySelectorAll('.toolbar button[data-cmd]').forEach(function(b){
+        try { b.classList.toggle('active', document.queryCommandState(b.dataset.cmd)); } catch(_) {}
+      });
+      document.querySelectorAll('.toolbar button[data-block]').forEach(function(b){
+        try {
+          var block = (document.queryCommandValue('formatBlock') || '').toLowerCase();
+          b.classList.toggle('active', block === b.dataset.block);
+        } catch(_) {}
+      });
+    }
+    document.addEventListener('selectionchange', function(){
+      if (document.activeElement && document.activeElement.id === 'contentInput') updateToolbarState();
     });
 
     document.getElementById('saveBtn').addEventListener('click', function(){
       var title = document.getElementById('titleInput').value.trim();
-      var src = document.getElementById('contentInput').value;
+      var content = document.getElementById('contentInput').innerHTML.trim();
       if (!title) { toast('Giv opslaget en titel.'); return; }
-      var content = renderMarkdown(src);
       var body = editing ? { id: editing.id, title: title, content: content } : { title: title, content: content };
       var method = editing ? 'PUT' : 'POST';
       fetch('/api/blog', { method: method, headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }, body: JSON.stringify(body) })

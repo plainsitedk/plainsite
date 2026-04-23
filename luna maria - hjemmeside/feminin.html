@@ -21,11 +21,13 @@
   --line-strong: rgba(44, 50, 66, 0.25);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 200ms; animation-timing-function: cubic-bezier(.2,.7,.2,1); }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; background: #F4EFE6; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { opacity: 0; transition: opacity 600ms cubic-bezier(.2,.7,.2,1), transform 600ms cubic-bezier(.2,.7,.2,1); }
+body { opacity: 0; transition: opacity 140ms cubic-bezier(.2,.7,.2,1), transform 140ms cubic-bezier(.2,.7,.2,1); background: #F4EFE6; }
 body.page-ready { opacity: 1; }
-body.page-leaving { opacity: 0; transform: translateY(-8px); transition-duration: 380ms; }
+body.page-leaving { opacity: 0; transform: translateY(-4px); transition-duration: 160ms; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 900ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1); transition-delay: var(--reveal-delay, 0ms); will-change: opacity, transform; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; border-radius: 4px; }
@@ -515,7 +517,7 @@ footer { background: var(--paper); padding: 56px; border-top: 1px solid var(--li
         if (reduced) return;
         e.preventDefault();
         document.body.classList.add('page-leaving');
-        setTimeout(function(){ location.href = a.href; }, 360);
+        setTimeout(function(){ location.href = a.href; }, 160);
       });
       window.addEventListener('pageshow', function(ev){ if (ev.persisted) document.body.classList.remove('page-leaving'); });
     })();

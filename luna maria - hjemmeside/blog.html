@@ -20,16 +20,18 @@
       --line-strong: #CFC6B4;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 200ms; animation-timing-function: cubic-bezier(.2,.7,.2,1); }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; background: #F4EFE6; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
       margin: 0; background: var(--paper); color: var(--ink);
       font-family: 'Inter', system-ui, sans-serif; font-weight: 300;
       font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
-      opacity: 0; transition: opacity 600ms cubic-bezier(.2,.7,.2,1), transform 600ms cubic-bezier(.2,.7,.2,1);
+      opacity: 0; transition: opacity 140ms cubic-bezier(.2,.7,.2,1), transform 140ms cubic-bezier(.2,.7,.2,1); background: #F4EFE6;
     }
     body.page-ready { opacity: 1; }
-    body.page-leaving { opacity: 0; transform: translateY(-8px); transition-duration: 380ms; }
+    body.page-leaving { opacity: 0; transform: translateY(-4px); transition-duration: 160ms; }
     a { color: inherit; text-decoration: none; }
     .serif { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
     .italic { font-style: italic; }
@@ -242,7 +244,7 @@
         if (reduced) return;
         e.preventDefault();
         document.body.classList.add('page-leaving');
-        setTimeout(function(){ location.href = a.href; }, 360);
+        setTimeout(function(){ location.href = a.href; }, 160);
       });
       window.addEventListener('pageshow', function(ev){ if (ev.persisted) document.body.classList.remove('page-leaving'); });
     })();
