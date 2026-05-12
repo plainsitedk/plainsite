@@ -54,6 +54,15 @@ export async function onRequestPost({ request, env }) {
     });
   }
 
+  // Track lead in kundeportal (fire-and-forget)
+  try {
+    await fetch('https://kunde.plainsite.dk/api/track-form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ host: 'plainsite.dk' }),
+    });
+  } catch {}
+
   return new Response(JSON.stringify({ ok: true }), {
     status: 200, headers: { ...CORS, 'Content-Type': 'application/json' },
   });
