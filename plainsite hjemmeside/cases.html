@@ -86,7 +86,7 @@
         <a class="nav-link" href="/">Forside</a>
         <a class="nav-link" href="/#ydelser">Pakker</a>
         <a class="nav-link active" href="/cases.html">Cases</a>
-        <a class="nav-link" href="/#faq">FAQ</a>
+        <a class="nav-link" href="/#kontakt" data-open-contact>Kontakt</a>
       </div>
       <a class="btn-primary nav-cta-desktop" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
       <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span class="burger-bars"></span></button>
@@ -101,7 +101,7 @@
   </aside>
 
   <section class="cases-hero">
-    <div class="container">
+    <div class="container reveal">
       <div class="eyebrow eye">Cases · Arkiv</div>
       <h1>Udvalgte<br>projekter — <span class="italic">fyldes løbende.</span></h1>
       <p>Et site ad gangen, bygget for små virksomheder i hele Danmark. Pladser markeret med tal venter på næste kunde.</p>
@@ -111,7 +111,7 @@
   <section class="cases-body">
     <div class="container">
       <div class="cases-grid">
-        <a class="case-card" href="#">
+        <a class="case-card reveal" data-delay="1" href="#">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">01</span></div></div>
           <div class="case-meta">
             <div>
@@ -121,7 +121,7 @@
             <div class="case-year">2025</div>
           </div>
         </a>
-        <a class="case-card" href="#">
+        <a class="case-card reveal" data-delay="2" href="#">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">02</span></div></div>
           <div class="case-meta">
             <div>
@@ -131,7 +131,7 @@
             <div class="case-year">2025</div>
           </div>
         </a>
-        <a class="case-card" href="#">
+        <a class="case-card reveal" data-delay="3" href="#">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">03</span></div></div>
           <div class="case-meta">
             <div>
@@ -141,7 +141,7 @@
             <div class="case-year">2025</div>
           </div>
         </a>
-        <a class="case-card" href="#">
+        <a class="case-card reveal" data-delay="4" href="#">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">04</span></div></div>
           <div class="case-meta">
             <div>
@@ -151,7 +151,7 @@
             <div class="case-year">2024</div>
           </div>
         </a>
-        <a class="case-card" href="#">
+        <a class="case-card reveal" data-delay="5" href="#">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">05</span></div></div>
           <div class="case-meta">
             <div>
@@ -161,7 +161,7 @@
             <div class="case-year">2024</div>
           </div>
         </a>
-        <a class="case-card" href="#">
+        <a class="case-card reveal" data-delay="5" href="#">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">06</span></div></div>
           <div class="case-meta">
             <div>
@@ -176,7 +176,7 @@
   </section>
 
   <section class="cases-cta-band">
-    <div class="cases-cta-inner">
+    <div class="cases-cta-inner reveal">
       <h2 class="cases-cta-title">Måske bliver dit<br><span class="italic">det næste.</span></h2>
       <a class="cases-cta-btn" href="/#kontakt">Start dit site <span class="italic">→</span></a>
     </div>
@@ -184,7 +184,7 @@
 
   <footer class="ps-footer">
     <div class="container">
-      <div class="footer-top">
+      <div class="footer-top reveal">
         <h2 class="footer-title">Tænker du på en<br>ny <span class="italic">hjemmeside?</span></h2>
         <a class="footer-cta" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
       </div>
@@ -229,6 +229,16 @@
       var open = document.body.classList.toggle('menu-open');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+    }
   </script>
 </body>
 </html>

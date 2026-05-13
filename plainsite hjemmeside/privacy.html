@@ -69,7 +69,7 @@
         <a class="nav-link" href="/">Forside</a>
         <a class="nav-link" href="/#ydelser">Pakker</a>
         <a class="nav-link" href="/cases.html">Cases</a>
-        <a class="nav-link" href="/#faq">FAQ</a>
+        <a class="nav-link" href="/#kontakt" data-open-contact>Kontakt</a>
       </div>
       <a class="btn-primary nav-cta-desktop" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
       <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span class="burger-bars"></span></button>
@@ -85,7 +85,7 @@
 
   <section class="legal-hero">
     <div class="container">
-      <div class="eyebrow eye">Juridisk · Privatliv</div>
+      <div class="eyebrow eye reveal">Juridisk · Privatliv</div>
       <h1>Privatlivs­politik.</h1>
       <p>Plainsite behandler dine personoplysninger med respekt. Her står præcis hvad jeg indsamler, hvorfor, og hvad du har ret til.</p>
     </div>
@@ -93,13 +93,13 @@
 
   <section class="legal-body">
     <div class="container">
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="1">
         <h2><span class="n">i.</span> Dataansvarlig</h2>
         <p>Plainsite (CVR 46384040) er dataansvarlig for behandlingen af de personoplysninger, jeg modtager gennem hjemmesiden og kontaktformularen.</p>
         <p>Kontakt: tobias@plainsite.dk</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="2">
         <h2><span class="n">ii.</span> Hvilke oplysninger indsamler jeg?</h2>
         <p>Når du udfylder kontaktformularen, beder jeg om:</p>
         <ul>
@@ -111,22 +111,22 @@
         <p>Hvis du er kunde og har en hjemmeside hostet hos mig, har dine besøgendes data sin egen privatlivspolitik som er linket fra dit site.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="3">
         <h2><span class="n">iii.</span> Formål</h2>
         <p>Oplysningerne bruges udelukkende til at besvare din henvendelse og bygge din hjemmeside. Jeg bruger dem ikke til markedsføring uden dit samtykke.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">iv.</span> Retsgrundlag</h2>
         <p>Behandlingen sker på baggrund af Databeskyttelses­forordningens artikel 6, stk. 1, litra b — opfyldelse af en aftale eller forespørgsel du har indgivet.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">v.</span> Opbevaring</h2>
         <p>Jeg gemmer dine oplysninger så længe vi har et aktivt samarbejde — og i op til 3 år efter, så jeg kan dokumentere aftaler og opfylde regnskabsmæssige krav. Derefter slettes de.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">vi.</span> Deling med andre</h2>
         <p>Jeg videregiver ikke dine personoplysninger til tredjepart, medmindre:</p>
         <ul>
@@ -136,7 +136,7 @@
         <p>Tekniske leverandører (Cloudflare, Resend) behandler data som databehandlere under min instruks.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">vii.</span> Dine rettigheder</h2>
         <p>Du har ret til:</p>
         <ul>
@@ -150,7 +150,7 @@
         <p>Skriv til tobias@plainsite.dk, så behandler jeg din forespørgsel inden for 30 dage.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">viii.</span> Sikkerhed</h2>
         <p>Al kommunikation med plainsite.dk er krypteret via HTTPS. Data opbevares på servere i EU, og intern adgang er begrænset til de personer der har brug for den.</p>
       </article>
@@ -161,7 +161,7 @@
 
   <footer class="ps-footer">
     <div class="container">
-      <div class="footer-top">
+      <div class="footer-top reveal">
         <h2 class="footer-title">Tænker du på en<br>ny <span class="italic">hjemmeside?</span></h2>
         <a class="footer-cta" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
       </div>
@@ -206,6 +206,16 @@
       var open = document.body.classList.toggle('menu-open');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+    }
   </script>
 </body>
 </html>

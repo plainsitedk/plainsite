@@ -69,7 +69,7 @@
         <a class="nav-link" href="/">Forside</a>
         <a class="nav-link" href="/#ydelser">Pakker</a>
         <a class="nav-link" href="/cases.html">Cases</a>
-        <a class="nav-link" href="/#faq">FAQ</a>
+        <a class="nav-link" href="/#kontakt" data-open-contact>Kontakt</a>
       </div>
       <a class="btn-primary nav-cta-desktop" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
       <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span class="burger-bars"></span></button>
@@ -85,7 +85,7 @@
 
   <section class="legal-hero">
     <div class="container">
-      <div class="eyebrow eye">Juridisk · Vilkår</div>
+      <div class="eyebrow eye reveal">Juridisk · Vilkår</div>
       <h1>Handels­betingelser.</h1>
       <p>De vilkår der gælder, når du køber en hjemmeside gennem Plainsite. Kort, konkret og på almindeligt dansk.</p>
     </div>
@@ -93,12 +93,12 @@
 
   <section class="legal-body">
     <div class="container">
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="1">
         <h2><span class="n">i.</span> Udbyder</h2>
         <p>Plainsite (CVR 46384040) tilbyder design, opsætning og drift af hjemmesider til små virksomheder. Kontakt: tobias@plainsite.dk.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="2">
         <h2><span class="n">ii.</span> Abonnement</h2>
         <p>Ydelsen leveres som et månedligt abonnement. Der er ingen binding, og du kan opsige med udløb af løbende måned. Abonnementet dækker:</p>
         <ul>
@@ -109,46 +109,46 @@
         </ul>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="3">
         <h2><span class="n">iii.</span> Pris og betaling</h2>
         <p>Priser fremgår af prisoversigten på plainsite.dk og faktureres månedligt forud. Betaling sker via faktura eller betalingskort. Alle priser er i DKK og eksklusive moms.</p>
         <p>Første faktura udstedes når hjemmesiden går live og du har godkendt den endelige version.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">iv.</span> Udkast og godkendelse</h2>
         <p>Efter den indledende samtale bygger jeg hele din hjemmeside gratis — ikke bare et udkast, men den færdige side. Du betaler intet før du har godkendt den og den er sat i produktion. Siger du nej, koster det ingenting.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">v.</span> Ændringer og omfang</h2>
         <p>Antallet af inkluderede ændringer fremgår af din valgte pakke. Ændringer ud over pakkens omfang aftales separat og afregnes særskilt.</p>
         <p>Større redesigns eller nye funktioner er ikke omfattet af abonnementet og tilbydes på projektbasis.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">vi.</span> Opsigelse</h2>
         <p>Du kan til enhver tid opsige abonnementet ved at skrive til tobias@plainsite.dk. Opsigelsen træder i kraft ved udløb af indeværende måned.</p>
         <p>Ved opsigelse stopper hosting, drift og vedligehold. Du beholder rettighederne til dit domæne samt det indhold du selv har leveret (tekster, billeder).</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">vii.</span> Ejendomsret</h2>
         <p>Du ejer indhold, tekster og billeder du har leveret. Plainsite bevarer rettighederne til selve opsætningen og det tekniske setup der er bygget på Plainsites eget system.</p>
         <p>Ved opsigelse kan du få dit indhold eksporteret i et almindeligt læsbart format uden ekstra omkostning.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">viii.</span> Ansvar</h2>
         <p>Plainsite tilstræber maksimal oppetid, men kan ikke holdes ansvarlig for indirekte tab som følge af nedetid, driftsafbrydelser eller tredjepartssystemer. Ansvar er begrænset til det beløb du har betalt for de seneste tre måneder.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">ix.</span> Fortrolighed</h2>
         <p>Alt materiale du deler med mig i forbindelse med dit projekt behandles fortroligt. Se også <a href="/privacy.html" style="border-bottom: 1px solid currentColor;">privatlivspolitikken</a>.</p>
       </article>
 
-      <article class="legal-section">
+      <article class="legal-section reveal" data-delay="4">
         <h2><span class="n">x.</span> Lovvalg og tvister</h2>
         <p>Aftalen er underlagt dansk ret. Eventuelle tvister søges løst i mindelighed og kan derefter indbringes for de danske domstole.</p>
       </article>
@@ -159,7 +159,7 @@
 
   <footer class="ps-footer">
     <div class="container">
-      <div class="footer-top">
+      <div class="footer-top reveal">
         <h2 class="footer-title">Tænker du på en<br>ny <span class="italic">hjemmeside?</span></h2>
         <a class="footer-cta" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
       </div>
@@ -204,6 +204,16 @@
       var open = document.body.classList.toggle('menu-open');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+    }
   </script>
 </body>
 </html>
