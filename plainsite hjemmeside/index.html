@@ -223,27 +223,17 @@
       font-variation-settings: "opsz" 96;
     }
 
-    /* ── Pakker (carousel cards) ────── */
+    /* ── Pakker — grid desktop, carousel mobil ── */
     .plans-carousel {
-      display: flex; gap: 20px;
-      overflow-x: auto; overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-padding-left: 40px;
-      padding: 8px 40px 24px;
-      margin: 0 -40px;
-      scrollbar-width: thin; scrollbar-color: var(--ps-stone-300) transparent;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
-    .plans-carousel::-webkit-scrollbar { height: 6px; }
-    .plans-carousel::-webkit-scrollbar-thumb { background: var(--ps-stone-300); border-radius: 999px; }
-    .plan-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+    .plan-dots { display: none; }
     .plan-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ps-stone-300); transition: background 180ms, transform 220ms var(--ps-ease-out); }
     .plan-dot.active { background: var(--ps-ink); transform: scaleX(2.5); border-radius: 4px; }
-    .plans-grid-legacy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .plan-card {
-      flex: 0 0 340px;
       scroll-snap-align: start;
       border: 1px solid var(--ps-border); border-radius: 7px;
-      padding: 24px 22px; background: var(--ps-paper);
+      padding: 28px 26px; background: var(--ps-paper);
       display: flex; flex-direction: column;
       transition: border-color 180ms var(--ps-ease-out), transform 220ms var(--ps-ease-out), box-shadow 220ms var(--ps-ease-out);
     }
@@ -290,12 +280,54 @@
 
     /* ── Proces ──────────────────────── */
     section.proces { background: var(--ps-stone-50); }
-    .proces-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-    .proces-cell { border-top: 1px solid var(--ps-ink); padding-top: 24px; }
-    .proces-num { font-family: var(--ps-font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ps-fg-subtle); }
-    .proces-uger { font-family: var(--ps-font-mono); font-size: 11px; color: var(--ps-accent); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 8px; }
-    .proces-step { font-family: var(--ps-font-serif); font-size: 26px; font-weight: 400; letter-spacing: -0.015em; margin: 12px 0 8px; line-height: 1.15; }
-    .proces-body { font-family: var(--ps-font-sans); font-size: 14.5px; line-height: 1.6; color: var(--ps-fg-muted); margin: 0; }
+    .proces-timeline {
+      position: relative;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .proces-timeline::before {
+      content: ""; position: absolute;
+      top: 5px; left: 0; right: 0;
+      height: 1px; background: var(--ps-stone-300);
+    }
+    .proces-cell { position: relative; padding-top: 36px; }
+    .proces-cell::before {
+      content: ""; position: absolute;
+      top: 0; left: 0;
+      width: 11px; height: 11px;
+      background: var(--ps-paper);
+      border: 1px solid var(--ps-ink);
+      border-radius: 999px;
+    }
+    .proces-cell:first-child::before { background: var(--ps-ink); }
+    .proces-uger {
+      font-family: var(--ps-font-mono); font-size: 11px;
+      color: var(--ps-accent); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .proces-num {
+      font-family: var(--ps-font-serif); font-weight: 360;
+      font-size: clamp(56px, 6vw, 88px); line-height: 0.9;
+      letter-spacing: -0.04em; color: var(--ps-ink);
+      margin: 0; font-variation-settings: "opsz" 144;
+    }
+    .proces-step {
+      font-family: var(--ps-font-serif); font-size: 22px; font-weight: 400;
+      letter-spacing: -0.015em; line-height: 1.2;
+      margin: 24px 0 12px;
+    }
+    .proces-step .italic { font-style: italic; }
+    .proces-body {
+      font-family: var(--ps-font-sans); font-size: 14.5px; line-height: 1.6;
+      color: var(--ps-fg-muted); margin: 0; max-width: 28ch;
+    }
+    @media (max-width: 960px) {
+      .proces-timeline { grid-template-columns: 1fr; gap: 56px; }
+      .proces-timeline::before { left: 5px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+      .proces-cell { padding-top: 0; padding-left: 28px; }
+      .proces-cell::before { top: 4px; left: 0; }
+      .proces-body { max-width: 100%; }
+    }
 
     /* ── Cases asymmetric ─────────────── */
     .cases-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; row-gap: 64px; }
@@ -504,8 +536,18 @@
       .archive-eye, .archive-title, .archive-link,
       .case-card { grid-column: 1 / -1 !important; }
       .hero-page-num { text-align: left; }
-      .plans-carousel { scroll-padding-left: 20px; padding: 8px 20px 24px; margin: 0 -20px; }
-      .plan-card { flex: 0 0 86vw; }
+      .plans-carousel {
+        display: flex; grid-template-columns: none;
+        gap: 16px; overflow-x: auto; overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 20px;
+        padding: 8px 20px 16px;
+        margin: 0 -20px;
+        scrollbar-width: none;
+      }
+      .plans-carousel::-webkit-scrollbar { display: none; }
+      .plan-card { flex: 0 0 86vw; scroll-snap-align: start; }
+      .plan-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
       .proces-grid { grid-template-columns: 1fr; gap: 24px; }
       .archive-callout { padding: 32px 24px; }
       .footer-cta { justify-self: start; }
@@ -642,31 +684,31 @@
     <div class="container">
       <div class="section-header">
         <div class="eyebrow section-eye">03 — Proces</div>
-        <h2 class="section-title">Sådan ser et samarbejde <span class="italic">typisk ud.</span></h2>
+        <h2 class="section-title">Sådan ser et samarbejde ud.</h2>
       </div>
-      <div class="proces-grid">
+      <div class="proces-timeline">
         <div class="proces-cell">
-          <div class="proces-num">01</div>
           <div class="proces-uger">Uge 0</div>
-          <h3 class="proces-step">Vi tales ved</h3>
+          <h3 class="proces-num">01</h3>
+          <div class="proces-step">Vi tales ved.</div>
           <p class="proces-body">En times samtale, gratis. Vi finder ud af hvad du har brug for, hvad jeg kan, og om kemien passer.</p>
         </div>
         <div class="proces-cell">
-          <div class="proces-num">02</div>
           <div class="proces-uger">Uge 1</div>
-          <h3 class="proces-step">Skriv & skitser</h3>
+          <h3 class="proces-num">02</h3>
+          <div class="proces-step">Skriv &amp; skitser.</div>
           <p class="proces-body">Jeg skriver et kort oplæg på en side — hvad sitet skal, hvor mange sider, og hvad det koster. Du skriver under, jeg går i gang.</p>
         </div>
         <div class="proces-cell">
-          <div class="proces-num">03</div>
           <div class="proces-uger">Uge 2–6</div>
-          <h3 class="proces-step">Bygges i hånden</h3>
+          <h3 class="proces-num">03</h3>
+          <div class="proces-step">Bygges i hånden.</div>
           <p class="proces-body">Tre til seks uger. Jeg sender dig links til kig undervejs. Du retter til, jeg justerer — og vi snakker over telefonen, ikke gennem et projektværktøj.</p>
         </div>
         <div class="proces-cell">
-          <div class="proces-num">04</div>
           <div class="proces-uger">Uge 7 →</div>
-          <h3 class="proces-step">Sat i drift</h3>
+          <h3 class="proces-num">04</h3>
+          <div class="proces-step">Sat i drift.</div>
           <p class="proces-body">Sitet flytter ind på min server. Jeg passer det. Når noget skal rettes, skriver du. Som regel er det rettet samme dag.</p>
         </div>
       </div>
@@ -756,7 +798,7 @@
     <div class="container">
       <div class="section-header">
         <div class="eyebrow section-eye">06 — FAQ</div>
-        <h2 class="section-title">Det jeg oftest bliver <span class="italic">spurgt om.</span></h2>
+        <h2 class="section-title">Det jeg oftest bliver spurgt om.</h2>
       </div>
       <div class="faq-grid">
         <div class="faq-list">
