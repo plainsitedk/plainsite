@@ -368,7 +368,17 @@
 
     /* ── Om mig ──────────────────────── */
     .ommig-inner { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; row-gap: 56px; }
-    .ommig-body { grid-column: 4 / span 7; }
+    .ommig-portrait {
+      grid-column: 1 / span 5; aspect-ratio: 4/5;
+      border-radius: 7px; overflow: hidden;
+      background: var(--ps-stone-100);
+      box-shadow: 0 1px 2px rgba(24,22,30,0.04), 0 20px 40px -16px rgba(194,85,56,0.12);
+    }
+    .ommig-portrait img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(0.95);
+    }
+    .ommig-body { grid-column: 7 / span 5; }
     .ommig-p { margin: 0 0 18px; font-family: var(--ps-font-sans); font-size: 17px; line-height: 1.65; }
     .ommig-quote { margin: 24px 0 0; font-family: var(--ps-font-serif); font-size: 19px; font-style: italic; line-height: 1.5; color: var(--ps-fg-muted); }
     .ommig-facts { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border-top: 1px solid var(--ps-border); padding-top: 28px; }
@@ -531,7 +541,7 @@
       .grid-12, .section-header, .footer-top, .footer-mid, .cases-grid, .ommig-inner { grid-template-columns: 1fr !important; }
       .hero-eye, .hero-title, .hero-lede, .hero-ctas, .hero-page-num,
       .section-eye, .section-title,
-      .ommig-body,
+      .ommig-portrait, .ommig-body,
       .footer-title, .footer-cta, .footer-col,
       .archive-eye, .archive-title, .archive-link,
       .case-card { grid-column: 1 / -1 !important; }
@@ -718,6 +728,9 @@
     <div class="container ommig-inner">
       <div class="eyebrow section-eye">04 — Om mig</div>
       <h2 class="section-title">Én person, et lille værksted i Aarhus, <span class="italic">bygget langsomt.</span></h2>
+      <div class="ommig-portrait">
+        <img src="/assets/tobias.jpg" alt="Portræt af Tobias Gutkin, Plainsite" loading="lazy" width="1086" height="1448">
+      </div>
       <div class="ommig-body">
         <p class="ommig-p">Jeg hedder Tobias Gutkin. Jeg har siddet med hjemmesider og kode siden gymnasiet — først for andre, så for mig selv. I dag er det Plainsite: et værksted på én person, hvor jeg laver hjemmesider, hoster dem og passer på dem bagefter.</p>
         <p class="ommig-p">Jeg arbejder med én kunde ad gangen. En til to uger fra ja til live. Bagefter ligger sitet hos mig, og du har en at skrive til når noget skal rettes.</p>
