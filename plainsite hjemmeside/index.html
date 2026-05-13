@@ -223,41 +223,57 @@
       font-variation-settings: "opsz" 96;
     }
 
-    /* ── Pakker (cards) ─────────────── */
-    .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    /* ── Pakker (carousel cards) ────── */
+    .plans-carousel {
+      display: flex; gap: 20px;
+      overflow-x: auto; overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 40px;
+      padding: 8px 40px 24px;
+      margin: 0 -40px;
+      scrollbar-width: thin; scrollbar-color: var(--ps-stone-300) transparent;
+    }
+    .plans-carousel::-webkit-scrollbar { height: 6px; }
+    .plans-carousel::-webkit-scrollbar-thumb { background: var(--ps-stone-300); border-radius: 999px; }
+    .plan-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+    .plan-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ps-stone-300); transition: background 180ms, transform 220ms var(--ps-ease-out); }
+    .plan-dot.active { background: var(--ps-ink); transform: scaleX(2.5); border-radius: 4px; }
+    .plans-grid-legacy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .plan-card {
+      flex: 0 0 340px;
+      scroll-snap-align: start;
       border: 1px solid var(--ps-border); border-radius: 7px;
-      padding: 32px 28px; background: var(--ps-paper);
+      padding: 24px 22px; background: var(--ps-paper);
       display: flex; flex-direction: column;
       transition: border-color 180ms var(--ps-ease-out), transform 220ms var(--ps-ease-out), box-shadow 220ms var(--ps-ease-out);
     }
     .plan-card:hover { border-color: var(--ps-border-strong); transform: translateY(-2px); box-shadow: 0 1px 0 rgba(24,22,30,0.04), 0 1px 2px rgba(24,22,30,0.06); }
     .plan-card.featured { border: 1px solid var(--ps-ink); background: var(--ps-stone-50); }
-    .plan-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
-    .plan-num { font-family: var(--ps-font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ps-fg-subtle); }
+    .plan-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+    .plan-num { font-family: var(--ps-font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ps-fg-subtle); }
     .plan-badge {
-      font-family: var(--ps-font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 999px;
+      font-family: var(--ps-font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 999px;
       background: var(--ps-accent); color: var(--ps-paper);
     }
-    .plan-name { font-family: var(--ps-font-serif); font-size: 38px; font-weight: 400; letter-spacing: -0.02em; margin: 0; line-height: 1.05; }
-    .plan-price { display: flex; align-items: baseline; gap: 8px; margin-top: 18px; padding-bottom: 24px; border-bottom: 1px solid var(--ps-border); }
-    .plan-price .num { font-family: var(--ps-font-serif); font-size: 56px; font-weight: 400; letter-spacing: -0.025em; line-height: 1; }
-    .plan-price .unit { font-family: var(--ps-font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ps-fg-subtle); }
-    .plan-sub { font-family: var(--ps-font-serif); font-style: italic; font-size: 16px; line-height: 1.45; color: var(--ps-fg-muted); margin: 20px 0 0; }
-    .plan-list { list-style: none; padding: 0; margin: 24px 0 0; flex: 1; }
+    .plan-name { font-family: var(--ps-font-serif); font-size: 30px; font-weight: 400; letter-spacing: -0.02em; margin: 0; line-height: 1.05; }
+    .plan-price { display: flex; align-items: baseline; gap: 6px; margin-top: 12px; padding-bottom: 18px; border-bottom: 1px solid var(--ps-border); }
+    .plan-price .num { font-family: var(--ps-font-serif); font-size: 42px; font-weight: 400; letter-spacing: -0.025em; line-height: 1; }
+    .plan-price .unit { font-family: var(--ps-font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--ps-fg-subtle); }
+    .plan-sub { font-family: var(--ps-font-serif); font-style: italic; font-size: 14.5px; line-height: 1.45; color: var(--ps-fg-muted); margin: 16px 0 0; }
+    .plan-list { list-style: none; padding: 0; margin: 18px 0 0; flex: 1; }
     .plan-list li {
-      font-family: var(--ps-font-sans); font-size: 14.5px; line-height: 1.5; color: var(--ps-fg);
-      padding: 10px 0 10px 22px; border-bottom: 1px solid var(--ps-border); position: relative;
+      font-family: var(--ps-font-sans); font-size: 13.5px; line-height: 1.45; color: var(--ps-fg);
+      padding: 8px 0 8px 20px; border-bottom: 1px solid var(--ps-border); position: relative;
     }
     .plan-list li::before {
-      content: ""; position: absolute; left: 0; top: 18px;
+      content: ""; position: absolute; left: 0; top: 15px;
       width: 10px; height: 1px; background: var(--ps-accent);
     }
     .plan-cta {
-      margin-top: 28px;
-      font-family: var(--ps-font-sans); font-size: 14px; font-weight: 500;
-      padding: 13px 18px; border-radius: 7px;
+      margin-top: 22px;
+      font-family: var(--ps-font-sans); font-size: 13px; font-weight: 500;
+      padding: 11px 16px; border-radius: 7px;
       background: transparent; color: var(--ps-fg);
       border: 1px solid var(--ps-ink); cursor: pointer;
       display: inline-flex; align-items: center; justify-content: space-between; gap: 10px;
@@ -267,7 +283,7 @@
     .plan-card.featured .plan-cta { background: var(--ps-ink); color: var(--ps-paper); }
     .plan-card.featured .plan-cta:hover { background: var(--ps-stone-800); }
     .plan-note {
-      margin-top: 32px; font-family: var(--ps-font-mono); font-size: 11px;
+      margin-top: 28px; font-family: var(--ps-font-mono); font-size: 11px;
       letter-spacing: 0.08em; text-transform: uppercase; color: var(--ps-fg-subtle);
       text-align: center;
     }
@@ -488,7 +504,8 @@
       .archive-eye, .archive-title, .archive-link,
       .case-card { grid-column: 1 / -1 !important; }
       .hero-page-num { text-align: left; }
-      .plans-grid { grid-template-columns: 1fr; }
+      .plans-carousel { scroll-padding-left: 20px; padding: 8px 20px 24px; margin: 0 -20px; }
+      .plan-card { flex: 0 0 86vw; }
       .proces-grid { grid-template-columns: 1fr; gap: 24px; }
       .archive-callout { padding: 32px 24px; }
       .footer-cta { justify-self: start; }
@@ -506,7 +523,7 @@
       <div class="nav-links">
         <a class="nav-link active" href="#">Forside</a>
         <a class="nav-link" href="#ydelser">Pakker</a>
-        <a class="nav-link" href="#cases">Cases</a>
+        <a class="nav-link" href="/cases.html">Cases</a>
         <a class="nav-link" href="#" data-open-contact>Kontakt</a>
       </div>
       <button class="btn-primary nav-cta-desktop" data-open-contact>Skriv til mig <span class="italic">→</span></button>
@@ -517,7 +534,7 @@
   <aside class="drawer" id="drawer" aria-hidden="true">
     <a class="drawer-link" href="#" data-drawer-close>Forside</a>
     <a class="drawer-link" href="#ydelser" data-drawer-close>Pakker</a>
-    <a class="drawer-link" href="#cases" data-drawer-close>Cases</a>
+    <a class="drawer-link" href="/cases.html" data-drawer-close>Cases</a>
     <a class="drawer-link" href="#faq" data-drawer-close>FAQ</a>
     <a class="drawer-link" data-open-contact data-drawer-close>Kontakt</a>
     <button class="btn-primary btn-lg drawer-cta" data-open-contact data-drawer-close>Skriv til mig <span class="italic">→</span></button>
@@ -547,7 +564,7 @@
         <div class="eyebrow section-eye">02 — Pakker</div>
         <h2 class="section-title">Én fast pris om måneden. <span class="italic">Alt er med.</span></h2>
       </div>
-      <div class="plans-grid">
+      <div class="plans-carousel" id="plansCarousel">
         <article class="plan-card">
           <div class="plan-top">
             <span class="plan-num">Pakke I</span>
@@ -611,6 +628,11 @@
           </ul>
           <button class="plan-cta" data-open-contact data-plan="Vækst"><span>Spørg om Vækst</span><span class="italic">→</span></button>
         </article>
+      </div>
+      <div class="plan-dots" id="planDots" aria-hidden="true">
+        <span class="plan-dot active"></span>
+        <span class="plan-dot"></span>
+        <span class="plan-dot"></span>
       </div>
       <p class="plan-note">Ingen opstart · Ingen binding · Opsig løbende måned</p>
     </div>
@@ -702,7 +724,7 @@
         <div class="archive-callout">
           <div class="archive-eye">Arkiv</div>
           <h3 class="archive-title">Flere cases på vej. Måske bliver dit det næste.</h3>
-          <a class="archive-link" href="#cases">Se alle cases <span class="italic">→</span></a>
+          <a class="archive-link" href="/cases.html">Se alle cases <span class="italic">→</span></a>
         </div>
       </div>
     </div>
@@ -778,7 +800,7 @@
           <div class="footer-head">Site</div>
           <a class="footer-link" href="#">Forside</a>
           <a class="footer-link" href="#ydelser">Pakker</a>
-          <a class="footer-link" href="#cases">Cases</a>
+          <a class="footer-link" href="/cases.html">Cases</a>
           <a class="footer-link" data-open-contact>Kontakt</a>
         </div>
         <div class="footer-col">
@@ -882,6 +904,21 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') { closeModal(); closeMenu(); }
       });
+
+      var carousel = document.getElementById('plansCarousel');
+      var dots = document.querySelectorAll('#planDots .plan-dot');
+      if (carousel && dots.length) {
+        carousel.addEventListener('scroll', function () {
+          var cards = carousel.children;
+          var carRect = carousel.getBoundingClientRect();
+          var nearest = 0, minDist = Infinity;
+          for (var i = 0; i < cards.length; i++) {
+            var dist = Math.abs(cards[i].getBoundingClientRect().left - carRect.left);
+            if (dist < minDist) { minDist = dist; nearest = i; }
+          }
+          dots.forEach(function (d, i) { d.classList.toggle('active', i === nearest); });
+        }, { passive: true });
+      }
 
       var form = document.getElementById('contactForm');
       var submitBtn = document.getElementById('contactSubmit');

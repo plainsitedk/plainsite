@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="da" data-bg="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cases — Plainsite</title>
+  <meta name="description" content="Udvalgte projekter fra Plainsite — håndkodede hjemmesider for små virksomheder.">
+  <link rel="canonical" href="https://plainsite.dk/cases.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/ps-base.css">
+  <style>
+    .cases-hero { padding: 96px 40px 72px; border-bottom: 1px solid var(--ps-border); }
+    .cases-hero .container { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .cases-hero .eye { grid-column: 1 / span 3; padding-top: 8px; }
+    .cases-hero h1 {
+      grid-column: 4 / span 9; margin: 0;
+      font-family: var(--ps-font-serif); font-weight: 360;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 1.04; letter-spacing: -0.025em;
+      font-variation-settings: "opsz" 144;
+    }
+    .cases-hero p {
+      grid-column: 4 / span 6; margin: 32px 0 0;
+      font-family: var(--ps-font-sans); font-size: 19px; line-height: 1.55;
+      letter-spacing: -0.005em; color: var(--ps-fg-muted);
+    }
+
+    .cases-body { padding: 96px 40px; }
+    .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; row-gap: 64px; }
+    .case-card { cursor: pointer; display: block; }
+    .case-thumb-wrap { border-radius: 7px; overflow: hidden; border: 1px solid var(--ps-border); aspect-ratio: 5/4; }
+    .case-thumb {
+      width: 100%; height: 100%; background: var(--ps-stone-100);
+      display: flex; align-items: flex-end; padding: 28px;
+      transition: transform 420ms var(--ps-ease-out);
+    }
+    .case-card:hover .case-thumb { transform: scale(1.02); }
+    .case-numeral {
+      font-family: var(--ps-font-serif); font-size: 140px; font-weight: 360;
+      color: var(--ps-stone-300); letter-spacing: -0.04em; line-height: 0.7; margin-left: -8px;
+    }
+    .case-meta { margin-top: 16px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .case-name { margin: 0; font-family: var(--ps-font-serif); font-size: 22px; font-weight: 400; letter-spacing: -0.012em; transition: color 180ms var(--ps-ease-out); }
+    .case-card:hover .case-name { color: var(--ps-accent); }
+    .case-tag { font-family: var(--ps-font-sans); font-size: 13px; color: var(--ps-fg-muted); margin-top: 4px; }
+    .case-year { font-family: var(--ps-font-mono); font-size: 11px; color: var(--ps-fg-subtle); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .cases-cta-band {
+      background: var(--ps-ink); color: var(--ps-paper);
+      padding: 96px 40px;
+    }
+    .cases-cta-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; align-items: center; }
+    .cases-cta-title {
+      grid-column: 1 / span 8; margin: 0;
+      font-family: var(--ps-font-serif); font-weight: 360;
+      font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.025em;
+      font-variation-settings: "opsz" 144;
+    }
+    .cases-cta-btn {
+      grid-column: 10 / span 3; justify-self: end;
+      font-family: var(--ps-font-sans); font-size: 15px; font-weight: 500;
+      padding: 14px 22px; border-radius: 7px;
+      background: var(--ps-paper); color: var(--ps-ink);
+      border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+
+    @media (max-width: 960px) {
+      .cases-hero, .cases-body, .cases-cta-band { padding-left: 20px; padding-right: 20px; }
+      .cases-hero .container, .cases-cta-inner { grid-template-columns: 1fr; }
+      .cases-hero .eye, .cases-hero h1, .cases-hero p, .cases-cta-title, .cases-cta-btn { grid-column: 1 / -1; }
+      .cases-cta-btn { justify-self: start; }
+      .cases-grid { grid-template-columns: 1fr; row-gap: 48px; }
+      .case-numeral { font-size: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ps-nav">
+    <div class="nav-inner">
+      <a class="logo" href="/">
+        <span class="logo-mark">&lt;/&gt;</span>
+        <span class="logo-word">Plainsite</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="/">Forside</a>
+        <a class="nav-link" href="/#ydelser">Pakker</a>
+        <a class="nav-link active" href="/cases.html">Cases</a>
+        <a class="nav-link" href="/#faq">FAQ</a>
+      </div>
+      <a class="btn-primary nav-cta-desktop" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
+      <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span class="burger-bars"></span></button>
+    </div>
+  </nav>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <a class="drawer-link" href="/">Forside</a>
+    <a class="drawer-link" href="/#ydelser">Pakker</a>
+    <a class="drawer-link" href="/cases.html">Cases</a>
+    <a class="drawer-link" href="/#faq">FAQ</a>
+    <a class="drawer-link" href="/#kontakt">Kontakt</a>
+  </aside>
+
+  <section class="cases-hero">
+    <div class="container">
+      <div class="eyebrow eye">Cases · Arkiv</div>
+      <h1>Udvalgte<br>projekter — <span class="italic">fyldes løbende.</span></h1>
+      <p>Et håndkodet site ad gangen, bygget for små virksomheder i hele Danmark. Pladser markeret med tal venter på næste klient.</p>
+    </div>
+  </section>
+
+  <section class="cases-body">
+    <div class="container">
+      <div class="cases-grid">
+        <a class="case-card" href="#">
+          <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">01</span></div></div>
+          <div class="case-meta">
+            <div>
+              <h3 class="case-name">Case 01 — Klientnavn</h3>
+              <div class="case-tag">Branche · ydelser brugt</div>
+            </div>
+            <div class="case-year">2025</div>
+          </div>
+        </a>
+        <a class="case-card" href="#">
+          <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">02</span></div></div>
+          <div class="case-meta">
+            <div>
+              <h3 class="case-name">Case 02 — Klientnavn</h3>
+              <div class="case-tag">Branche · ydelser brugt</div>
+            </div>
+            <div class="case-year">2025</div>
+          </div>
+        </a>
+        <a class="case-card" href="#">
+          <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">03</span></div></div>
+          <div class="case-meta">
+            <div>
+              <h3 class="case-name">Case 03 — Klientnavn</h3>
+              <div class="case-tag">Branche · ydelser brugt</div>
+            </div>
+            <div class="case-year">2025</div>
+          </div>
+        </a>
+        <a class="case-card" href="#">
+          <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">04</span></div></div>
+          <div class="case-meta">
+            <div>
+              <h3 class="case-name">Case 04 — Klientnavn</h3>
+              <div class="case-tag">Branche · ydelser brugt</div>
+            </div>
+            <div class="case-year">2024</div>
+          </div>
+        </a>
+        <a class="case-card" href="#">
+          <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">05</span></div></div>
+          <div class="case-meta">
+            <div>
+              <h3 class="case-name">Case 05 — Klientnavn</h3>
+              <div class="case-tag">Branche · ydelser brugt</div>
+            </div>
+            <div class="case-year">2024</div>
+          </div>
+        </a>
+        <a class="case-card" href="#">
+          <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">06</span></div></div>
+          <div class="case-meta">
+            <div>
+              <h3 class="case-name">Case 06 — Klientnavn</h3>
+              <div class="case-tag">Branche · ydelser brugt</div>
+            </div>
+            <div class="case-year">2023</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cases-cta-band">
+    <div class="cases-cta-inner">
+      <h2 class="cases-cta-title">Måske bliver dit<br><span class="italic">det næste.</span></h2>
+      <a class="cases-cta-btn" href="/#kontakt">Start et projekt <span class="italic">→</span></a>
+    </div>
+  </section>
+
+  <footer class="ps-footer">
+    <div class="container">
+      <div class="footer-top">
+        <h2 class="footer-title">Har du et projekt<br>i <span class="italic">tankerne?</span></h2>
+        <a class="footer-cta" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
+      </div>
+      <div class="footer-mid">
+        <div class="footer-col">
+          <div class="footer-head">Site</div>
+          <a class="footer-link" href="/">Forside</a>
+          <a class="footer-link" href="/#ydelser">Pakker</a>
+          <a class="footer-link" href="/cases.html">Cases</a>
+          <a class="footer-link" href="/#kontakt">Kontakt</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-head">Mere</div>
+          <a class="footer-link" href="/#faq">FAQ</a>
+          <a class="footer-link" href="/blog.html">Blog</a>
+          <a class="footer-link" href="/privacy.html">Privatlivspolitik</a>
+          <a class="footer-link" href="/vilkaar.html">Vilkår</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-head">Kontakt</div>
+          <div class="footer-contact">
+            <div>tobias@plainsite.dk</div>
+            <div class="sub">Aarhus, Danmark</div>
+            <div class="sub">Svar inden for to hverdage.</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-brand">
+          <span class="footer-brand-mark">&lt;/&gt;</span>
+          <span class="footer-brand-word">Plainsite</span>
+        </div>
+        <div>© 2024–2026 · TOBIAS GUTKIN · CVR 46384040</div>
+        <div>SAT I FRAUNCES, INTER TIGHT, JETBRAINS MONO</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var burger = document.getElementById('burgerBtn');
+    if (burger) burger.addEventListener('click', function () {
+      var open = document.body.classList.toggle('menu-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  </script>
+</body>
+</html>

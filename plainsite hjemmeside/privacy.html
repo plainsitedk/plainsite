@@ -1,213 +1,210 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" data-bg="paper">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privatlivspolitik — Plainsite</title>
-<meta name="description" content="Plainsites privatlivspolitik — hvordan vi behandler dine personoplysninger.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,300..600;1,14..32,300..500&display=swap">
-
-<style>
-:root {
-  --bg: #f4efe6;
-  --bg-soft: #ece5d7;
-  --ink: #201c17;
-  --ink-soft: #5c544a;
-  --ink-mute: #8b8378;
-  --accent: #b25a3d;
-  --line: rgba(32, 28, 23, 0.1);
-  --radius: 10px;
-  --pad-x: clamp(24px, 5vw, 80px);
-  --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-italic: "Geist", ui-sans-serif, sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg); color: var(--ink);
-  font-family: var(--font-body); font-size: 17px; line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; text-decoration: none; }
-::selection { background: var(--accent); color: var(--bg); }
-
-nav.top {
-  position: fixed; top: 0; left: 0; right: 0;
-  padding: 22px var(--pad-x);
-  display: flex; align-items: center; justify-content: space-between;
-  z-index: 100;
-  background: color-mix(in oklab, var(--bg) 82%, transparent);
-  backdrop-filter: blur(10px) saturate(140%);
-  border-bottom: 1px solid var(--line);
-}
-.logo {
-  font-family: var(--font-display);
-  font-size: 22px; letter-spacing: -0.01em; line-height: 1;
-  color: var(--ink); display: inline-flex; align-items: center; gap: 10px;
-}
-.logo .logo-mark { flex-shrink: 0; }
-.logo em { font-style: italic; color: var(--accent); font-weight: 400; }
-nav.top .back {
-  font-size: 14px; color: var(--ink-soft);
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: color 200ms;
-}
-nav.top .back:hover { color: var(--accent); }
-
-main.legal {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 180px var(--pad-x) 140px;
-}
-.legal .meta {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 13px;
-  color: var(--accent);
-  margin-bottom: 20px;
-  display: inline-flex; align-items: center; gap: 12px;
-}
-.legal .meta::before {
-  content: ""; width: 28px; height: 1px; background: var(--accent);
-}
-.legal h1 {
-  font-family: var(--font-display);
-  font-size: clamp(38px, 5.4vw, 68px);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  margin-bottom: 32px;
-  max-width: 16ch;
-}
-.legal .lead {
-  font-size: 19px; color: var(--ink-soft);
-  line-height: 1.55; max-width: 58ch;
-  margin-bottom: 72px;
-}
-.legal h2 {
-  font-family: var(--font-display);
-  font-size: 22px; font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-top: 56px; margin-bottom: 16px;
-}
-.legal h2 .num {
-  font-family: var(--font-display);
-  font-style: italic; color: var(--accent);
-  margin-right: 12px; font-weight: 400;
-}
-.legal p { color: var(--ink-soft); margin-bottom: 14px; max-width: 64ch; }
-.legal ul { margin: 10px 0 14px 24px; color: var(--ink-soft); }
-.legal li { margin-bottom: 6px; }
-.legal strong { color: var(--ink); font-weight: 500; }
-.legal a { color: var(--accent); border-bottom: 1px solid color-mix(in oklab, var(--accent) 30%, transparent); }
-.legal a:hover { border-bottom-color: var(--accent); }
-
-.legal .updated {
-  margin-top: 72px; padding-top: 24px;
-  border-top: 1px solid var(--line);
-  font-size: 13px; color: var(--ink-mute);
-  font-style: italic;
-}
-
-footer {
-  border-top: 1px solid var(--line);
-  padding: 40px var(--pad-x);
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 20px;
-  font-family: var(--font-display); font-style: italic;
-  font-size: 13px; color: var(--ink-soft);
-}
-footer .logo { font-style: normal; font-size: 17px; }
-footer .f-links { display: flex; gap: 28px; }
-footer a:hover { color: var(--ink); }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privatlivspolitik — Plainsite</title>
+  <meta name="description" content="Sådan behandler Plainsite dine personoplysninger.">
+  <link rel="canonical" href="https://plainsite.dk/privacy.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/ps-base.css">
+  <style>
+    .legal-hero { padding: 96px 40px 56px; border-bottom: 1px solid var(--ps-border); }
+    .legal-hero .container { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .legal-hero .eye { grid-column: 1 / span 3; padding-top: 8px; }
+    .legal-hero h1 {
+      grid-column: 4 / span 9; margin: 0;
+      font-family: var(--ps-font-serif); font-weight: 360;
+      font-size: clamp(48px, 6vw, 88px);
+      line-height: 1.05; letter-spacing: -0.025em;
+      font-variation-settings: "opsz" 144;
+    }
+    .legal-hero p {
+      grid-column: 4 / span 7; margin: 32px 0 0;
+      font-family: var(--ps-font-sans); font-size: 19px; line-height: 1.55;
+      letter-spacing: -0.005em; color: var(--ps-fg-muted);
+    }
+    .legal-body { padding: 80px 40px 96px; }
+    .legal-body .container { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; row-gap: 48px; }
+    .legal-section { grid-column: 4 / span 8; }
+    .legal-section h2 {
+      font-family: var(--ps-font-serif); font-size: 28px; font-weight: 400;
+      letter-spacing: -0.018em; line-height: 1.15;
+      margin: 0 0 16px; display: flex; align-items: baseline; gap: 16px;
+    }
+    .legal-section h2 .n {
+      font-family: var(--ps-font-mono); font-size: 12px; color: var(--ps-fg-subtle);
+      letter-spacing: 0.06em; font-weight: 500;
+    }
+    .legal-section p, .legal-section li {
+      font-family: var(--ps-font-sans); font-size: 16px; line-height: 1.65;
+      color: var(--ps-fg); margin: 0 0 14px;
+    }
+    .legal-section ul { padding-left: 0; list-style: none; }
+    .legal-section li { padding-left: 20px; position: relative; }
+    .legal-section li::before {
+      content: ""; position: absolute; left: 0; top: 12px;
+      width: 10px; height: 1px; background: var(--ps-accent);
+    }
+    .legal-updated {
+      grid-column: 4 / span 8; margin-top: 16px;
+      font-family: var(--ps-font-mono); font-size: 11px;
+      letter-spacing: 0.06em; color: var(--ps-fg-subtle); text-transform: uppercase;
+    }
+    @media (max-width: 960px) {
+      .legal-hero, .legal-body { padding-left: 20px; padding-right: 20px; }
+      .legal-hero .container, .legal-body .container { grid-template-columns: 1fr; }
+      .legal-hero .eye, .legal-hero h1, .legal-hero p, .legal-section, .legal-updated { grid-column: 1 / -1; }
+    }
+  </style>
 </head>
 <body>
+  <nav class="ps-nav">
+    <div class="nav-inner">
+      <a class="logo" href="/">
+        <span class="logo-mark">&lt;/&gt;</span>
+        <span class="logo-word">Plainsite</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="/">Forside</a>
+        <a class="nav-link" href="/#ydelser">Pakker</a>
+        <a class="nav-link" href="/cases.html">Cases</a>
+        <a class="nav-link" href="/#faq">FAQ</a>
+      </div>
+      <a class="btn-primary nav-cta-desktop" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
+      <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span class="burger-bars"></span></button>
+    </div>
+  </nav>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <a class="drawer-link" href="/">Forside</a>
+    <a class="drawer-link" href="/#ydelser">Pakker</a>
+    <a class="drawer-link" href="/cases.html">Cases</a>
+    <a class="drawer-link" href="/#faq">FAQ</a>
+    <a class="drawer-link" href="/#kontakt">Kontakt</a>
+  </aside>
 
-<nav class="top">
-  <a href="/" class="logo">
-    <svg class="logo-mark" width="24" height="24" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-      <rect width="36" height="36" rx="7" fill="#18161E"/>
-      <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
-    </svg>
-    <span>Plain<em>site</em></span>
-  </a>
-  <a href="/" class="back">← Tilbage</a>
-</nav>
+  <section class="legal-hero">
+    <div class="container">
+      <div class="eyebrow eye">Juridisk · Privatliv</div>
+      <h1>Privatlivs­politik.</h1>
+      <p>Plainsite behandler dine personoplysninger med respekt. Her står præcis hvad jeg indsamler, hvorfor, og hvad du har ret til.</p>
+    </div>
+  </section>
 
-<main class="legal">
-  <div class="meta">privatliv</div>
-  <h1>Privatlivspolitik</h1>
-  <p class="lead">Plainsite behandler dine personoplysninger med respekt. Her står præcis hvad vi indsamler, hvorfor, og hvad du har ret til.</p>
+  <section class="legal-body">
+    <div class="container">
+      <article class="legal-section">
+        <h2><span class="n">i.</span> Dataansvarlig</h2>
+        <p>Plainsite (CVR 46384040) er dataansvarlig for behandlingen af de personoplysninger, jeg modtager gennem hjemmesiden og kontaktformularen.</p>
+        <p>Kontakt: tobias@plainsite.dk</p>
+      </article>
 
-  <h2><span class="num">i.</span>Dataansvarlig</h2>
-  <p>Plainsite (CVR 46384040) er dataansvarlig for behandlingen af de personoplysninger, vi modtager gennem vores hjemmeside og kontaktformular.</p>
-  <p>Kontakt: <a href="mailto:kontakt@plainsite.dk">kontakt@plainsite.dk</a></p>
+      <article class="legal-section">
+        <h2><span class="n">ii.</span> Hvilke oplysninger indsamler jeg?</h2>
+        <p>Når du udfylder kontaktformularen, beder jeg om:</p>
+        <ul>
+          <li>Navn — så jeg ved hvem jeg skriver til.</li>
+          <li>Email — så jeg kan svare.</li>
+          <li>Besked — for at give kontekst.</li>
+        </ul>
+        <p>Jeg indsamler ikke cookies til sporing, tredjeparts­analyse eller reklame.</p>
+      </article>
 
-  <h2><span class="num">ii.</span>Hvilke oplysninger indsamler vi?</h2>
-  <p>Når du udfylder kontaktformularen, beder vi om:</p>
-  <ul>
-    <li><strong>Navn</strong> — så vi ved, hvem vi skriver til.</li>
-    <li><strong>Email</strong> — så vi kan svare.</li>
-    <li><strong>Telefon</strong> (valgfri) — hvis du foretrækker at blive ringet op.</li>
-    <li><strong>Besked</strong> (valgfri) — for at give os kontekst.</li>
-  </ul>
-  <p>Vi indsamler <strong>ikke</strong> cookies til sporing, tredjepartsanalyse eller reklame.</p>
+      <article class="legal-section">
+        <h2><span class="n">iii.</span> Formål</h2>
+        <p>Oplysningerne bruges udelukkende til at besvare din henvendelse og bygge din hjemmeside. Jeg bruger dem ikke til markedsføring uden dit samtykke.</p>
+      </article>
 
-  <h2><span class="num">iii.</span>Formål</h2>
-  <p>Oplysningerne bruges udelukkende til at besvare din henvendelse og bygge din hjemmeside. Vi bruger dem ikke til markedsføring uden dit samtykke.</p>
+      <article class="legal-section">
+        <h2><span class="n">iv.</span> Retsgrundlag</h2>
+        <p>Behandlingen sker på baggrund af Databeskyttelses­forordningens artikel 6, stk. 1, litra b — opfyldelse af en aftale eller forespørgsel du har indgivet.</p>
+      </article>
 
-  <h2><span class="num">iv.</span>Retsgrundlag</h2>
-  <p>Behandlingen sker på baggrund af Databeskyttelsesforordningens artikel 6, stk. 1, litra b — opfyldelse af en aftale eller forespørgsel du har indgivet.</p>
+      <article class="legal-section">
+        <h2><span class="n">v.</span> Opbevaring</h2>
+        <p>Jeg gemmer dine oplysninger så længe vi har et aktivt samarbejde — og i op til 3 år efter, så jeg kan dokumentere aftaler og opfylde regnskabsmæssige krav. Derefter slettes de.</p>
+      </article>
 
-  <h2><span class="num">v.</span>Opbevaring</h2>
-  <p>Vi gemmer dine oplysninger, så længe vi har et aktivt samarbejde — og i op til 3 år efter, så vi kan dokumentere aftaler og opfylde regnskabsmæssige krav. Derefter slettes de.</p>
+      <article class="legal-section">
+        <h2><span class="n">vi.</span> Deling med andre</h2>
+        <p>Jeg videregiver ikke dine personoplysninger til tredjepart, medmindre:</p>
+        <ul>
+          <li>Det er nødvendigt for at levere ydelsen (fx hostingudbyder).</li>
+          <li>Jeg er lovmæssigt forpligtet til det.</li>
+        </ul>
+        <p>Tekniske leverandører (Cloudflare, Resend) behandler data som databehandlere under min instruks.</p>
+      </article>
 
-  <h2><span class="num">vi.</span>Deling med andre</h2>
-  <p>Vi videregiver ikke dine personoplysninger til tredjepart, medmindre:</p>
-  <ul>
-    <li>Det er nødvendigt for at levere vores tjeneste (fx hostingudbyder).</li>
-    <li>Vi er lovmæssigt forpligtet til det.</li>
-  </ul>
-  <p>Vores tekniske leverandører (Cloudflare, Resend) behandler data som databehandlere under vores instruks.</p>
+      <article class="legal-section">
+        <h2><span class="n">vii.</span> Dine rettigheder</h2>
+        <p>Du har ret til:</p>
+        <ul>
+          <li>At få indsigt i de oplysninger jeg har om dig.</li>
+          <li>At få rettet forkerte oplysninger.</li>
+          <li>At få slettet dine oplysninger.</li>
+          <li>At få dataportabilitet.</li>
+          <li>At trække et samtykke tilbage.</li>
+          <li>At klage til Datatilsynet.</li>
+        </ul>
+        <p>Skriv til tobias@plainsite.dk, så behandler jeg din forespørgsel inden for 30 dage.</p>
+      </article>
 
-  <h2><span class="num">vii.</span>Dine rettigheder</h2>
-  <p>Du har ret til:</p>
-  <ul>
-    <li>At få indsigt i de oplysninger vi har om dig.</li>
-    <li>At få rettet forkerte oplysninger.</li>
-    <li>At få slettet dine oplysninger.</li>
-    <li>At få dataportabilitet.</li>
-    <li>At trække et samtykke tilbage.</li>
-    <li>At klage til <a href="https://www.datatilsynet.dk" target="_blank" rel="noopener">Datatilsynet</a>.</li>
-  </ul>
-  <p>Skriv til <a href="mailto:kontakt@plainsite.dk">kontakt@plainsite.dk</a>, så behandler vi din forespørgsel inden for 30 dage.</p>
+      <article class="legal-section">
+        <h2><span class="n">viii.</span> Sikkerhed</h2>
+        <p>Al kommunikation med plainsite.dk er krypteret via HTTPS. Data opbevares på servere i EU, og intern adgang er begrænset til de personer der har brug for den.</p>
+      </article>
 
-  <h2><span class="num">viii.</span>Sikkerhed</h2>
-  <p>Al kommunikation med plainsite.dk er krypteret via HTTPS. Vi opbevarer data på servere i EU og begrænser intern adgang til de personer, der har brug for den.</p>
+      <div class="legal-updated">Senest opdateret · April 2026</div>
+    </div>
+  </section>
 
-  <p class="updated">Senest opdateret: april 2026.</p>
-</main>
+  <footer class="ps-footer">
+    <div class="container">
+      <div class="footer-top">
+        <h2 class="footer-title">Har du et projekt<br>i <span class="italic">tankerne?</span></h2>
+        <a class="footer-cta" href="/#kontakt">Skriv til mig <span class="italic">→</span></a>
+      </div>
+      <div class="footer-mid">
+        <div class="footer-col">
+          <div class="footer-head">Site</div>
+          <a class="footer-link" href="/">Forside</a>
+          <a class="footer-link" href="/#ydelser">Pakker</a>
+          <a class="footer-link" href="/cases.html">Cases</a>
+          <a class="footer-link" href="/#kontakt">Kontakt</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-head">Mere</div>
+          <a class="footer-link" href="/#faq">FAQ</a>
+          <a class="footer-link" href="/blog.html">Blog</a>
+          <a class="footer-link" href="/privacy.html">Privatlivspolitik</a>
+          <a class="footer-link" href="/vilkaar.html">Vilkår</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-head">Kontakt</div>
+          <div class="footer-contact">
+            <div>tobias@plainsite.dk</div>
+            <div class="sub">Aarhus, Danmark</div>
+            <div class="sub">Svar inden for to hverdage.</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-brand">
+          <span class="footer-brand-mark">&lt;/&gt;</span>
+          <span class="footer-brand-word">Plainsite</span>
+        </div>
+        <div>© 2024–2026 · TOBIAS GUTKIN · CVR 46384040</div>
+        <div>SAT I FRAUNCES, INTER TIGHT, JETBRAINS MONO</div>
+      </div>
+    </div>
+  </footer>
 
-<footer>
-  <a href="/" class="logo">
-    <svg class="logo-mark" width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-      <rect width="36" height="36" rx="7" fill="#18161E"/>
-      <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#F5F1EC" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
-    </svg>
-    <span>Plain<em>site</em></span>
-  </a>
-  <div class="f-links">
-    <a href="/privacy.html">Privatliv</a>
-    <a href="/vilkaar.html">Handelsbetingelser</a>
-    <a href="/#contact">Kontakt</a>
-  </div>
-  <div>&copy; 2026 Plainsite · CVR 46384040</div>
-</footer>
-
+  <script>
+    var burger = document.getElementById('burgerBtn');
+    if (burger) burger.addEventListener('click', function () {
+      var open = document.body.classList.toggle('menu-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  </script>
 </body>
 </html>
