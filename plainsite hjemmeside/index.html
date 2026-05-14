@@ -605,7 +605,7 @@
         Du passer din virksomhed.<br>
         <span class="italic">Jeg passer din hjemmeside.</span>
       </h1>
-      <p class="hero-lede">
+      <p class="hero-lede" data-editable="hero-lede">
         Jeg bygger hjemmesider til små virksomheder — og driver dem bagefter. Én fast pris om måneden dækker alt du skal bruge: design, hosting og ændringer. Du betaler intet før siden er klar og du siger ja.
       </p>
       <div class="hero-ctas">
@@ -740,9 +740,9 @@
         <img src="/assets/tobias.jpg" alt="Portræt af Tobias Gutkin, Plainsite" loading="lazy" width="1086" height="1448">
       </div>
       <div class="ommig-body reveal" data-delay="1">
-        <p class="ommig-p">Jeg hedder Tobias Gutkin. Jeg har siddet med hjemmesider og kode siden gymnasiet — først for andre, så for mig selv. I dag er det Plainsite: et værksted på én person, hvor jeg laver hjemmesider, hoster dem og passer på dem bagefter.</p>
-        <p class="ommig-p">Jeg arbejder med én kunde ad gangen. En til to uger fra ja til live. Bagefter ligger sitet hos mig, og du har en at skrive til når noget skal rettes.</p>
-        <p class="ommig-quote">"Plain" er nøgleordet. Ingen pynt for pyntens skyld.</p>
+        <p class="ommig-p" data-editable="about-p1">Jeg hedder Tobias Gutkin. Jeg har siddet med hjemmesider og kode siden gymnasiet — først for andre, så for mig selv. I dag er det Plainsite: et værksted på én person, hvor jeg laver hjemmesider, hoster dem og passer på dem bagefter.</p>
+        <p class="ommig-p" data-editable="about-p2">Jeg arbejder med én kunde ad gangen. En til to uger fra ja til live. Bagefter ligger sitet hos mig, og du har en at skrive til når noget skal rettes.</p>
+        <p class="ommig-quote" data-editable="about-quote">"Plain" er nøgleordet. Ingen pynt for pyntens skyld.</p>
         <div class="ommig-facts">
           <div>
             <div class="ommig-fact-label">Beliggenhed</div>
@@ -970,6 +970,76 @@
       window.addEventListener('scroll', updateSpy, { passive: true });
       window.addEventListener('resize', updateSpy, { passive: true });
     })();
+  </script>
+
+  <script>
+  (function () {
+    var SITE = 's_plainsite';
+    var FIELDS = [
+      { id: 'hero-lede',    label: 'Hero tekst',          type: 'textarea' },
+      { id: 'about-p1',    label: 'Om mig — afsnit 1',   type: 'textarea' },
+      { id: 'about-p2',    label: 'Om mig — afsnit 2',   type: 'textarea' },
+      { id: 'about-quote', label: 'Om mig — citat',      type: 'text' },
+    ];
+    var BASE = 'https://kunde.plainsite.dk/api/content';
+    var TOKEN_API = 'https://kunde.plainsite.dk/api/edit-token';
+
+    fetch(BASE + '?site=' + SITE)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        document.querySelectorAll('[data-editable]').forEach(function (el) {
+          var k = el.dataset.editable;
+          if (data[k] !== undefined) el.innerHTML = data[k];
+        });
+        initEditMode();
+      }).catch(function () { initEditMode(); });
+
+    fetch(BASE, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ site_id: SITE, schema: FIELDS })
+    }).catch(function () {});
+
+    function initEditMode() {
+      var params = new URLSearchParams(location.search);
+      var token = params.get('edit');
+      if (!token) return;
+      fetch(TOKEN_API + '?token=' + token)
+        .then(function (r) { return r.json(); })
+        .then(function (d) { if (d.valid) enableEditMode(token); })
+        .catch(function () {});
+    }
+
+    function enableEditMode(token) {
+      var changed = {};
+      document.querySelectorAll('[data-editable]').forEach(function (el) {
+        el.contentEditable = 'true';
+        el.style.outline = '2px dashed rgba(194,85,56,0.4)';
+        el.style.borderRadius = '3px';
+        el.style.minHeight = '1em';
+        el.addEventListener('input', function () { changed[el.dataset.editable] = el.innerHTML; });
+      });
+      var bar = document.createElement('div');
+      bar.innerHTML = '<span style="font-family:system-ui,sans-serif;font-size:14px;color:#FAFAF8;">Redigeringstilstand</span><button id="ps-save" style="font-family:system-ui,sans-serif;font-size:13px;font-weight:600;padding:8px 18px;border-radius:7px;background:#C25538;color:#fff;border:none;cursor:pointer;">Gem ændringer</button><button id="ps-cancel" style="font-family:system-ui,sans-serif;font-size:13px;padding:8px 14px;border-radius:7px;background:transparent;color:#FAFAF8;border:1px solid rgba(250,250,248,.3);cursor:pointer;">Annuller</button>';
+      bar.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#18161E;padding:12px 20px;border-radius:12px;display:flex;align-items:center;gap:12px;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.35);';
+      document.body.appendChild(bar);
+      document.getElementById('ps-cancel').onclick = function () { location.href = location.pathname; };
+      document.getElementById('ps-save').onclick = function () {
+        var btn = document.getElementById('ps-save');
+        btn.textContent = 'Gemmer…'; btn.disabled = true;
+        var keys = Object.keys(changed);
+        if (!keys.length) { location.href = location.pathname; return; }
+        Promise.all(keys.map(function (k) {
+          return fetch(BASE, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: token, field_id: k, value: changed[k] })
+          });
+        })).then(function () { location.href = location.pathname; })
+          .catch(function () { btn.textContent = 'Fejl – prøv igen'; btn.disabled = false; });
+      };
+    }
+  })();
   </script>
 </body>
 </html>
