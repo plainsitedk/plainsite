@@ -146,6 +146,24 @@
     .ob-prev:hover { color: var(--ps-fg); }
     .ob-prev[hidden] { visibility: hidden; pointer-events: none; }
 
+    .ob-direct {
+      margin-top: 32px; padding-top: 28px;
+      border-top: 1px solid var(--ps-border);
+      display: flex; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .ob-direct-label {
+      font-family: var(--ps-font-sans); font-size: 13px;
+      color: var(--ps-fg-subtle);
+    }
+    .ob-direct-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .ob-direct-link {
+      font-family: var(--ps-font-sans); font-size: 13px;
+      color: var(--ps-fg-muted); text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 180ms var(--ps-ease-out);
+    }
+    .ob-direct-link:hover { color: var(--ps-fg); }
+
     .ob-error {
       margin-top: 12px; font-family: var(--ps-font-sans);
       font-size: 14px; color: var(--ps-clay-500); display: none;
@@ -217,6 +235,14 @@
       <div class="ob-nav-row">
         <button class="ob-prev" hidden>← Tilbage</button>
         <button class="btn-primary btn-lg" onclick="goTo(2)">Næste <span class="italic">→</span></button>
+      </div>
+
+      <div class="ob-direct">
+        <span class="ob-direct-label">Foretrækker du direkte kontakt?</span>
+        <div class="ob-direct-links">
+          <a href="mailto:kontakt@plainsite.dk" class="ob-direct-link">kontakt@plainsite.dk</a>
+          <a href="tel:+4530119089" class="ob-direct-link">30 11 90 89</a>
+        </div>
       </div>
     </div>
 
@@ -408,7 +434,7 @@
       goTo(5);
     } catch {
       errEl.style.display = 'block';
-      errEl.textContent = 'Noget gik galt. Prøv igen eller skriv direkte til tobias@plainsite.dk.';
+      errEl.textContent = 'Noget gik galt. Prøv igen eller skriv direkte til kontakt@plainsite.dk.';
       btn.disabled = false;
       btn.innerHTML = 'Send og få demo <span class="italic">→</span>';
     }
