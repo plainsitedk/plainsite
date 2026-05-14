@@ -3,108 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin | plainsite</title>
+  <title>Blog-editor — Plainsite</title>
   <meta name="robots" content="noindex,nofollow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/ps-base.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --canvas:     #F5F1EC;
-      --canvas-alt: #EDE8E0;
-      --border:     #DDD8D0;
-      --ink:        #18161E;
-      --ink-mid:    #4A4555;
-      --ink-light:  #9A9694;
-      --navy:       #0A6B46;
-      --navy-mid:   #085C3D;
-      --navy-pale:  #E0F0EA;
-      --white:      #FFFFFF;
-      --danger:     #C0392B;
-      --danger-pale:#FDECEA;
+      --danger:      #C0392B;
+      --danger-pale: #FDECEA;
     }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--canvas);
-      color: var(--ink);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100dvh;
-    }
-
-    /* ── Buttons ── */
-    .btn {
-      display: inline-flex; align-items: center; gap: .45rem;
-      padding: .7rem 1.5rem; border-radius: 5px;
-      font-family: 'DM Sans', sans-serif; font-size: .875rem; font-weight: 500;
-      border: none; cursor: pointer; text-decoration: none;
-      transition: background 160ms ease, box-shadow 160ms ease, transform 100ms ease;
-    }
-    .btn-primary {
-      background: var(--navy); color: #fff;
-      box-shadow: 0 1px 3px rgba(10,107,70,.18), 0 4px 12px rgba(10,107,70,.10);
-    }
-    .btn-primary:hover  { background: var(--navy-mid); box-shadow: 0 2px 8px rgba(10,107,70,.22), 0 8px 24px rgba(10,107,70,.14); transform: translateY(-1px); }
-    .btn-primary:active { transform: translateY(0) scale(.97); box-shadow: 0 1px 3px rgba(10,107,70,.18); }
-    .btn-outline {
-      background: transparent; color: var(--ink);
-      border: 1.5px solid var(--border);
-    }
-    .btn-outline:hover { border-color: var(--navy); background: var(--canvas-alt); transform: translateY(-1px); }
-    .btn-outline:active { transform: translateY(0) scale(.97); }
-    .btn-ghost {
-      background: transparent; color: var(--ink-mid);
-      border: 1px solid transparent; padding: .5rem .9rem;
-    }
-    .btn-ghost:hover { background: var(--canvas-alt); border-color: var(--border); }
-    .btn-danger {
-      background: transparent; color: var(--danger);
-      border: 1px solid rgba(192,57,43,.2); padding: .5rem .9rem;
-    }
-    .btn-danger:hover { background: var(--danger-pale); border-color: rgba(192,57,43,.4); }
-    .btn-sm { padding: .45rem 1rem; font-size: .8rem; }
 
     /* ── LOGIN SCREEN ── */
     #screen-login {
       min-height: 100dvh;
       display: flex; align-items: center; justify-content: center;
       padding: 2rem;
+      background: var(--ps-stone-50);
     }
     .login-box {
-      background: var(--white);
-      border: 1px solid var(--border);
+      background: var(--ps-paper);
+      border: 1px solid var(--ps-border);
       border-radius: 12px;
       padding: 2.5rem;
       width: 100%; max-width: 380px;
-      box-shadow: 0 20px 60px rgba(24,22,30,.07), 0 4px 16px rgba(24,22,30,.04);
+      box-shadow: 0 20px 60px rgba(24,22,30,.06), 0 4px 16px rgba(24,22,30,.04);
     }
     .login-logo {
       display: flex; align-items: center; gap: .65rem;
       margin-bottom: 2rem;
     }
-    .login-logo span {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 700; font-size: 1.1rem; letter-spacing: -.02em;
+    .login-logo-mark {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: var(--ps-ink); color: var(--ps-paper);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--ps-font-mono); font-size: 11px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .login-logo-word {
+      font-family: var(--ps-font-serif); font-size: 19px;
+      font-weight: 400; letter-spacing: -0.012em; line-height: 1;
     }
     .login-box h1 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.5rem; font-weight: 800; letter-spacing: -.03em;
-      margin-bottom: .35rem;
+      font-family: var(--ps-font-serif); font-size: 1.5rem; font-weight: 400;
+      letter-spacing: -0.025em; margin-bottom: .35rem;
+      font-variation-settings: "opsz" 48;
     }
-    .login-box p { font-size: .875rem; color: var(--ink-light); margin-bottom: 1.75rem; }
+    .login-box p {
+      font-size: .875rem; color: var(--ps-fg-muted); margin-bottom: 1.75rem;
+    }
 
-    label { display: block; font-size: .75rem; font-weight: 600; color: var(--ink-mid); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .4rem; }
+    label {
+      display: block; font-family: var(--ps-font-mono); font-size: .7rem;
+      font-weight: 500; color: var(--ps-fg-muted); letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: .4rem;
+    }
     input[type="password"], input[type="text"], input[type="email"], textarea, select {
-      width: 100%; background: var(--canvas);
-      border: 1px solid var(--border); border-radius: 7px;
+      width: 100%; background: var(--ps-stone-50);
+      border: 1px solid var(--ps-border); border-radius: 7px;
       padding: .75rem 1rem;
-      font-family: 'DM Sans', sans-serif; font-size: .9375rem; color: var(--ink);
+      font-family: var(--ps-font-sans); font-size: .9375rem; color: var(--ps-fg);
       outline: none; transition: border-color .18s, box-shadow .18s;
     }
     input:focus, textarea:focus, select:focus {
-      border-color: var(--navy);
-      box-shadow: 0 0 0 3px rgba(10,107,70,.10);
+      border-color: var(--ps-accent);
+      box-shadow: 0 0 0 3px rgba(194,85,56,.12);
     }
     #login-error {
       font-size: .8rem; color: var(--danger);
@@ -113,37 +75,79 @@
     .pw-wrap { position: relative; }
     .pw-toggle {
       position: absolute; right: .75rem; top: 50%; transform: translateY(-50%);
-      background: none; border: none; cursor: pointer; color: var(--ink-light);
+      background: none; border: none; cursor: pointer; color: var(--ps-fg-subtle);
       padding: .25rem; display: flex; align-items: center;
     }
-    .pw-toggle:hover { color: var(--ink); }
+    .pw-toggle:hover { color: var(--ps-fg); }
 
     /* ── ADMIN SHELL ── */
-    #screen-admin { display: none; min-height: 100dvh; flex-direction: column; }
+    #screen-admin { display: none; min-height: 100dvh; flex-direction: column; background: var(--ps-stone-50); }
 
     .topbar {
       position: sticky; top: 0; z-index: 40;
-      background: rgba(245,241,236,.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(250,250,248,.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--ps-border);
       padding: .875rem 1.75rem;
       display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
     .topbar-logo {
       display: flex; align-items: center; gap: .6rem; text-decoration: none;
     }
-    .topbar-logo span {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 700; font-size: 1rem; color: var(--ink); letter-spacing: -.02em;
+    .topbar-logo-mark {
+      width: 26px; height: 26px; border-radius: 6px;
+      background: var(--ps-ink); color: var(--ps-paper);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--ps-font-mono); font-size: 10px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .topbar-logo-word {
+      font-family: var(--ps-font-serif); font-size: 17px;
+      font-weight: 400; letter-spacing: -0.012em; color: var(--ps-fg);
     }
     .topbar-right { display: flex; align-items: center; gap: .75rem; }
     .breadcrumb {
-      font-size: .8rem; color: var(--ink-light);
+      font-size: .8rem; color: var(--ps-fg-subtle);
       display: flex; align-items: center; gap: .4rem;
     }
-    .breadcrumb a { color: var(--ink-mid); text-decoration: none; cursor: pointer; }
-    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb a {
+      color: var(--ps-fg-muted); text-decoration: none; cursor: pointer;
+      transition: color 140ms;
+    }
+    .breadcrumb a:hover { color: var(--ps-fg); }
 
     .admin-body { max-width: 860px; margin: 0 auto; padding: 2.5rem clamp(1.25rem,5vw,2rem); flex: 1; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .7rem 1.5rem; border-radius: 7px;
+      font-family: var(--ps-font-sans); font-size: .875rem; font-weight: 500;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 160ms var(--ps-ease-out), box-shadow 160ms var(--ps-ease-out), transform 100ms;
+      letter-spacing: -0.005em;
+    }
+    .btn-primary {
+      background: var(--ps-ink); color: var(--ps-paper);
+      box-shadow: 0 1px 3px rgba(24,22,30,.14);
+    }
+    .btn-primary:hover  { background: var(--ps-stone-800); }
+    .btn-primary:active { transform: translateY(1px) scale(.99); }
+    .btn-outline {
+      background: transparent; color: var(--ps-fg);
+      border: 1px solid var(--ps-border-strong);
+    }
+    .btn-outline:hover { background: var(--ps-stone-100); border-color: var(--ps-stone-300); }
+    .btn-ghost {
+      background: transparent; color: var(--ps-fg-muted);
+      border: 1px solid transparent; padding: .5rem .9rem;
+    }
+    .btn-ghost:hover { background: var(--ps-stone-100); border-color: var(--ps-border); }
+    .btn-danger {
+      background: transparent; color: var(--danger);
+      border: 1px solid rgba(192,57,43,.2); padding: .5rem .9rem;
+    }
+    .btn-danger:hover { background: var(--danger-pale); border-color: rgba(192,57,43,.4); }
+    .btn-sm { padding: .45rem 1rem; font-size: .8rem; }
 
     /* ── POST LIST ── */
     #view-list { display: block; }
@@ -154,31 +158,34 @@
       margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
     }
     .list-header h2 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 1.6rem; font-weight: 800; letter-spacing: -.03em;
+      font-family: var(--ps-font-serif); font-size: 1.6rem; font-weight: 400;
+      letter-spacing: -0.025em; font-variation-settings: "opsz" 48;
     }
 
     .posts-empty {
       text-align: center; padding: 4rem 2rem;
-      border: 1.5px dashed var(--border); border-radius: 10px;
-      color: var(--ink-light);
+      border: 1.5px dashed var(--ps-border); border-radius: 10px;
+      color: var(--ps-fg-subtle);
     }
     .posts-empty p { font-size: .9rem; margin-top: .5rem; }
 
     .post-row {
       display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 0; border-bottom: 1px solid var(--border);
+      padding: 1rem 0; border-bottom: 1px solid var(--ps-border);
       flex-wrap: wrap;
     }
-    .post-row:first-child { border-top: 1px solid var(--border); }
+    .post-row:first-child { border-top: 1px solid var(--ps-border); }
     .post-info { flex: 1; min-width: 0; }
     .post-title {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 700; font-size: 1rem; letter-spacing: -.02em;
+      font-family: var(--ps-font-sans); font-weight: 600; font-size: .9375rem;
+      letter-spacing: -0.01em;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      color: var(--ink);
+      color: var(--ps-fg);
     }
-    .post-meta { font-size: .75rem; color: var(--ink-light); margin-top: .2rem; }
+    .post-meta {
+      font-family: var(--ps-font-mono); font-size: .7rem; color: var(--ps-fg-subtle);
+      margin-top: .25rem; letter-spacing: 0.03em;
+    }
     .post-actions { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
 
     /* ── RICH TEXT EDITOR ── */
@@ -187,9 +194,9 @@
       margin-bottom: 1.5rem; flex-wrap: wrap;
     }
     .editor-header h2 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800; font-size: 1.4rem; letter-spacing: -.03em;
-      flex: 1;
+      font-family: var(--ps-font-serif); font-weight: 400; font-size: 1.4rem;
+      letter-spacing: -0.025em; flex: 1;
+      font-variation-settings: "opsz" 48;
     }
 
     .field-group { margin-bottom: 1.25rem; }
@@ -198,53 +205,54 @@
     .toolbar {
       display: flex; flex-wrap: wrap; gap: .25rem;
       padding: .5rem;
-      background: var(--canvas-alt);
-      border: 1px solid var(--border);
+      background: var(--ps-stone-100);
+      border: 1px solid var(--ps-border);
       border-bottom: none;
       border-radius: 7px 7px 0 0;
     }
     .toolbar-sep {
-      width: 1px; background: var(--border);
+      width: 1px; background: var(--ps-border);
       margin: .1rem .25rem; align-self: stretch;
     }
     .tb-btn {
       display: inline-flex; align-items: center; justify-content: center;
       padding: .35rem .55rem; border-radius: 4px; border: none;
-      background: none; cursor: pointer; color: var(--ink-mid);
-      font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 500;
+      background: none; cursor: pointer; color: var(--ps-fg-muted);
+      font-family: var(--ps-font-mono); font-size: .7rem; font-weight: 500;
+      letter-spacing: .04em;
       min-width: 30px; height: 30px;
       transition: background .12s, color .12s;
     }
-    .tb-btn:hover { background: var(--border); color: var(--ink); }
-    .tb-btn.active { background: var(--navy-pale); color: var(--navy); }
+    .tb-btn:hover { background: var(--ps-stone-200); color: var(--ps-fg); }
+    .tb-btn.active { background: var(--ps-clay-100); color: var(--ps-accent); }
     .tb-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-    .tb-btn-label { font-size: .75rem; font-weight: 600; }
 
     /* Editor area */
     #editor {
       min-height: 340px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--ps-border);
       border-radius: 0 0 7px 7px;
       padding: 1.25rem 1.5rem;
-      background: var(--white);
-      font-family: 'DM Sans', sans-serif;
+      background: var(--ps-paper);
+      font-family: var(--ps-font-sans);
       font-size: .9375rem; line-height: 1.75;
-      color: var(--ink);
+      color: var(--ps-fg);
       outline: none;
       overflow-y: auto;
     }
-    #editor:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(10,107,70,.10); }
-    #editor h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.75rem; font-weight: 800; letter-spacing: -.02em; margin: 1rem 0 .5rem; line-height: 1.2; }
-    #editor h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: -.02em; margin: .875rem 0 .4rem; line-height: 1.3; }
-    #editor h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.05rem; font-weight: 700; margin: .75rem 0 .35rem; }
+    #editor:focus { border-color: var(--ps-accent); box-shadow: 0 0 0 3px rgba(194,85,56,.10); }
+    #editor h1 { font-family: var(--ps-font-serif); font-size: 1.75rem; font-weight: 400; letter-spacing: -0.025em; margin: 1rem 0 .5rem; line-height: 1.15; font-variation-settings: "opsz" 48; }
+    #editor h2 { font-family: var(--ps-font-serif); font-size: 1.3rem; font-weight: 400; letter-spacing: -0.02em; margin: .875rem 0 .4rem; line-height: 1.2; }
+    #editor h3 { font-family: var(--ps-font-sans); font-size: 1rem; font-weight: 600; margin: .75rem 0 .35rem; }
     #editor p { margin: .4rem 0; }
     #editor ul, #editor ol { margin: .4rem 0 .4rem 1.5rem; }
     #editor li { margin: .2rem 0; }
     #editor blockquote {
-      border-left: 3px solid var(--navy); padding-left: 1rem;
-      color: var(--ink-mid); margin: .75rem 0; font-style: italic;
+      border-left: 3px solid var(--ps-accent); padding-left: 1rem;
+      color: var(--ps-fg-muted); margin: .75rem 0; font-style: italic;
+      font-family: var(--ps-font-serif);
     }
-    #editor a { color: var(--navy); text-decoration: underline; }
+    #editor a { color: var(--ps-accent); text-decoration: underline; }
     #editor strong { font-weight: 700; }
     #editor em { font-style: italic; }
     #editor u { text-decoration: underline; }
@@ -256,7 +264,8 @@
     .editor-footer-left { display: flex; align-items: center; gap: .75rem; }
 
     #save-status {
-      font-size: .78rem; color: var(--navy); font-weight: 500;
+      font-family: var(--ps-font-mono); font-size: .72rem; color: var(--ps-accent);
+      font-weight: 500; letter-spacing: .04em;
       opacity: 0; transition: opacity .3s;
       display: flex; align-items: center; gap: .35rem;
     }
@@ -265,35 +274,37 @@
     /* Delete confirm */
     .confirm-overlay {
       display: none; position: fixed; inset: 0; z-index: 100;
-      background: rgba(24,22,30,.45); backdrop-filter: blur(4px);
+      background: rgba(24,22,30,.4); backdrop-filter: blur(4px);
       align-items: center; justify-content: center; padding: 1.5rem;
     }
     .confirm-overlay.show { display: flex; }
     .confirm-box {
-      background: var(--white); border-radius: 12px;
+      background: var(--ps-paper); border-radius: 12px;
+      border: 1px solid var(--ps-border);
       padding: 2rem; max-width: 380px; width: 100%;
-      box-shadow: 0 24px 64px rgba(24,22,30,.15);
+      box-shadow: 0 24px 64px rgba(24,22,30,.14);
     }
     .confirm-box h3 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800; font-size: 1.1rem; margin-bottom: .5rem;
+      font-family: var(--ps-font-serif); font-weight: 400; font-size: 1.1rem;
+      letter-spacing: -0.02em; margin-bottom: .5rem;
     }
-    .confirm-box p { font-size: .875rem; color: var(--ink-mid); margin-bottom: 1.5rem; }
+    .confirm-box p { font-size: .875rem; color: var(--ps-fg-muted); margin-bottom: 1.5rem; }
     .confirm-actions { display: flex; gap: .75rem; justify-content: flex-end; }
     .btn-confirm-delete {
       background: var(--danger); color: #fff;
-      border: none; border-radius: 5px; padding: .65rem 1.25rem;
-      font-family: 'DM Sans', sans-serif; font-size: .875rem; font-weight: 500;
-      cursor: pointer; transition: background .16s;
+      border: none; border-radius: 7px; padding: .65rem 1.25rem;
+      font-family: var(--ps-font-sans); font-size: .875rem; font-weight: 500;
+      cursor: pointer; transition: background .16s; letter-spacing: -0.005em;
     }
     .btn-confirm-delete:hover { background: #a93226; }
 
     /* Toast */
     .toast {
       position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(8px);
-      background: var(--ink); color: #fff;
-      padding: .65rem 1.25rem; border-radius: 6px;
-      font-size: .8rem; font-weight: 500;
+      background: var(--ps-ink); color: var(--ps-paper);
+      padding: .65rem 1.25rem; border-radius: 7px;
+      font-family: var(--ps-font-mono); font-size: .72rem; font-weight: 500;
+      letter-spacing: .04em;
       opacity: 0; transition: opacity .22s, transform .22s;
       pointer-events: none; white-space: nowrap; z-index: 200;
     }
@@ -306,11 +317,8 @@
 <div id="screen-login">
   <div class="login-box">
     <div class="login-logo">
-      <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px;flex-shrink:0;">
-        <rect width="36" height="36" rx="6" fill="#0A6B46"/>
-        <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
-      </svg>
-      <span>plainsite</span>
+      <span class="login-logo-mark">&lt;/&gt;</span>
+      <span class="login-logo-word">Plainsite</span>
     </div>
     <h1>Log ind</h1>
     <p>Blog administration</p>
@@ -340,11 +348,8 @@
   <header class="topbar">
     <div style="display:flex;align-items:center;gap:1rem;">
       <a href="/" class="topbar-logo">
-        <svg viewBox="0 0 36 36" fill="none" style="width:24px;height:24px;flex-shrink:0;">
-          <rect width="36" height="36" rx="6" fill="#0A6B46"/>
-          <text x="18" y="19" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="11" font-weight="700" font-family="monospace">&lt;/&gt;</text>
-        </svg>
-        <span>plainsite</span>
+        <span class="topbar-logo-mark">&lt;/&gt;</span>
+        <span class="topbar-logo-word">Plainsite</span>
       </a>
       <div class="breadcrumb" id="breadcrumb">
         <a onclick="showList()">Blog</a>
@@ -377,16 +382,16 @@
 
       <div class="field-group">
         <label for="post-title">Titel</label>
-        <input type="text" id="post-title" placeholder="Titel på indlæget…">
+        <input type="text" id="post-title" placeholder="Titel på indlægget…">
       </div>
 
       <div class="field-group">
         <label>Indhold</label>
         <div class="toolbar" id="toolbar">
           <!-- Headings -->
-          <button class="tb-btn" onclick="fmt('formatBlock','H1')" title="Overskrift 1"><span class="tb-btn-label">H1</span></button>
-          <button class="tb-btn" onclick="fmt('formatBlock','H2')" title="Overskrift 2"><span class="tb-btn-label">H2</span></button>
-          <button class="tb-btn" onclick="fmt('formatBlock','H3')" title="Overskrift 3"><span class="tb-btn-label">H3</span></button>
+          <button class="tb-btn" onclick="fmt('formatBlock','H1')" title="Overskrift 1">H1</button>
+          <button class="tb-btn" onclick="fmt('formatBlock','H2')" title="Overskrift 2">H2</button>
+          <button class="tb-btn" onclick="fmt('formatBlock','H3')" title="Overskrift 3">H3</button>
           <div class="toolbar-sep"></div>
           <!-- Format -->
           <button class="tb-btn" id="tb-bold" onclick="fmt('bold')" title="Fed">
@@ -529,7 +534,7 @@
     const el = document.getElementById('posts-list');
     if (!posts.length) {
       el.innerHTML = `<div class="posts-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" style="color:var(--ink-light);margin-bottom:.75rem;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" style="color:var(--ps-fg-subtle);margin-bottom:.75rem;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         <p>Ingen indlæg endnu. Klik "Nyt indlæg" for at komme i gang.</p>
       </div>`;
       return;
@@ -564,7 +569,7 @@
     document.getElementById('editor-heading').textContent = 'Nyt indlæg';
     document.getElementById('delete-btn').style.display = 'none';
     document.getElementById('save-status').classList.remove('show');
-    document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--border)">›</span> <span>Nyt indlæg</span>`;
+    document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--ps-border)">›</span> <span>Nyt indlæg</span>`;
     document.getElementById('view-list').style.display = 'none';
     document.getElementById('view-editor').style.display = 'block';
     document.getElementById('post-title').focus();
@@ -579,7 +584,7 @@
     document.getElementById('editor-heading').textContent = 'Rediger indlæg';
     document.getElementById('delete-btn').style.display = '';
     document.getElementById('save-status').classList.remove('show');
-    document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--border)">›</span> <span>${escHtml(p.title || 'Uden titel')}</span>`;
+    document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--ps-border)">›</span> <span>${escHtml(p.title || 'Uden titel')}</span>`;
     document.getElementById('view-list').style.display = 'none';
     document.getElementById('view-editor').style.display = 'block';
     document.getElementById('post-title').focus();
@@ -606,7 +611,7 @@
       ss.classList.add('show');
       setTimeout(() => ss.classList.remove('show'), 2500);
       document.getElementById('editor-heading').textContent = 'Rediger indlæg';
-      document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--border)">›</span> <span>${escHtml(title || 'Uden titel')}</span>`;
+      document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--ps-border)">›</span> <span>${escHtml(title || 'Uden titel')}</span>`;
     } catch(e) {
       showToast('Fejl: ' + e.message);
     }
@@ -669,7 +674,6 @@
     toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
   }
 
-  // Placeholder for editor
   document.addEventListener('DOMContentLoaded', () => {
     const ed = document.getElementById('editor');
     ed.addEventListener('focus', () => { if (!ed.textContent.trim()) ed.classList.remove('empty'); });
