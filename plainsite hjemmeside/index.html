@@ -538,10 +538,15 @@
     .modal-backdrop {
       position: fixed; inset: 0; background: rgba(24,22,30,0.55);
       backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      display: none; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       z-index: 100; padding: 24px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 220ms cubic-bezier(0.22,1,0.36,1), visibility 0ms 220ms;
     }
-    .modal-backdrop.open { display: flex; }
+    .modal-backdrop.open {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transition: opacity 220ms cubic-bezier(0.22,1,0.36,1), visibility 0ms;
+    }
     .modal {
       background: var(--ps-paper); color: var(--ps-fg);
       max-width: 560px; width: 100%; border-radius: 10px;
@@ -628,6 +633,7 @@
     <button class="btn-primary btn-lg drawer-cta" data-open-contact data-drawer-close>Skriv til mig <span class="italic">→</span></button>
   </aside>
 
+  <main id="main-content">
   <section class="hero" id="top">
     <div class="container grid-12">
       <div class="eyebrow hero-eye">Plainsite · Aarhus</div>
@@ -723,7 +729,6 @@
           <ul class="plan-list">
             <li>Alt i Online</li>
             <li>Fuldt site op til 5 sider</li>
-            <li>Blog du selv kan opdatere</li>
             <li>SEO-optimerede tekster</li>
             <li>3 ændringer pr. måned</li>
             <li>Løbende teknisk vedligehold</li>
@@ -880,6 +885,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <footer class="ps-footer">
     <div class="container">
@@ -893,7 +899,7 @@
           <a class="footer-link" href="#">Forside</a>
           <a class="footer-link" href="#pakker-anchor">Pakker</a>
           <a class="footer-link" href="/cases.html">Cases</a>
-          <a class="footer-link" data-open-contact>Kontakt</a>
+          <button class="footer-link" data-open-contact style="background:none;border:none;padding:0;text-align:left;cursor:pointer;color:inherit;">Kontakt</button>
         </div>
         <div class="footer-col">
           <div class="footer-head">Pakker</div>

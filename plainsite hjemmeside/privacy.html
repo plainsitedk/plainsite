@@ -87,6 +87,7 @@
     <a class="drawer-link" data-open-contact style="cursor:pointer;">Kontakt</a>
   </aside>
 
+  <main id="main-content">
   <section class="legal-hero">
     <div class="container">
       <div class="eyebrow eye reveal">Juridisk · Privatliv</div>
@@ -162,6 +163,7 @@
       <div class="legal-updated">Senest opdateret · April 2026</div>
     </div>
   </section>
+  </main>
 
   <footer class="ps-footer">
     <div class="container">
@@ -175,7 +177,7 @@
           <a class="footer-link" href="/">Forside</a>
           <a class="footer-link" href="/#ydelser">Pakker</a>
           <a class="footer-link" href="/cases.html">Cases</a>
-          <a class="footer-link" href="/#kontakt">Kontakt</a>
+          <button class="footer-link" data-open-contact style="background:none;border:none;padding:0;text-align:left;cursor:pointer;color:inherit;">Kontakt</button>
         </div>
         <div class="footer-col">
           <div class="footer-head">Mere</div>
@@ -222,8 +224,8 @@
     </div>
   </div>
   <style>
-    .modal-backdrop { position:fixed;inset:0;background:rgba(24,22,30,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:100;padding:24px; }
-    .modal-backdrop.open { display:flex; }
+    .modal-backdrop { position:fixed;inset:0;background:rgba(24,22,30,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:100;padding:24px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 220ms cubic-bezier(0.22,1,0.36,1),visibility 0ms 220ms; }
+    .modal-backdrop.open { opacity:1;visibility:visible;pointer-events:auto;transition:opacity 220ms cubic-bezier(0.22,1,0.36,1),visibility 0ms; }
     .modal { background:var(--ps-paper);color:var(--ps-fg);max-width:560px;width:100%;border-radius:10px;padding:40px;border:1px solid var(--ps-border);max-height:90vh;overflow-y:auto; }
     .modal h2 { font-family:var(--ps-font-serif);font-weight:400;font-size:32px;letter-spacing:-.018em;line-height:1.1;margin:0 0 8px; }
     .modal p { font-family:var(--ps-font-sans);font-size:15px;color:var(--ps-fg-muted);line-height:1.55;margin:0 0 24px; }

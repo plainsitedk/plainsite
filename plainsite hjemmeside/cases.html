@@ -90,10 +90,15 @@
     .modal-backdrop {
       position: fixed; inset: 0; background: rgba(24,22,30,0.55);
       backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      display: none; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       z-index: 100; padding: 24px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 220ms cubic-bezier(0.22,1,0.36,1), visibility 0ms 220ms;
     }
-    .modal-backdrop.open { display: flex; }
+    .modal-backdrop.open {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transition: opacity 220ms cubic-bezier(0.22,1,0.36,1), visibility 0ms;
+    }
     .modal {
       background: var(--ps-paper); color: var(--ps-fg);
       max-width: 560px; width: 100%; border-radius: 10px;
@@ -148,6 +153,7 @@
     <a class="drawer-link" data-open-contact style="cursor:pointer;">Kontakt</a>
   </aside>
 
+  <main id="main-content">
   <section class="cases-hero">
     <div class="container reveal">
       <div class="eyebrow eye">Cases · Arkiv</div>
@@ -229,6 +235,7 @@
       <button class="cases-cta-btn" data-open-contact>Start dit site <span class="italic">→</span></button>
     </div>
   </section>
+  </main>
 
   <footer class="ps-footer">
     <div class="container">
@@ -242,7 +249,7 @@
           <a class="footer-link" href="/">Forside</a>
           <a class="footer-link" href="/#ydelser">Pakker</a>
           <a class="footer-link" href="/cases.html">Cases</a>
-          <a class="footer-link" data-open-contact style="cursor:pointer;">Kontakt</a>
+          <button class="footer-link" data-open-contact style="background:none;border:none;padding:0;text-align:left;cursor:pointer;color:inherit;">Kontakt</button>
         </div>
         <div class="footer-col">
           <div class="footer-head">Mere</div>
