@@ -16,6 +16,9 @@
   <meta property="og:description" content="Design, hosting og drift i én månedlig pris. Fra 199 kr/md + moms. Ingen opstart, ingen binding.">
   <meta property="og:locale" content="da_DK">
   <meta property="og:site_name" content="Plainsite">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Plainsite — Hjemmesider til små virksomheder i Aarhus">
+  <meta name="twitter:description" content="Design, hosting og drift i én månedlig pris. Fra 199 kr/md + moms. Ingen opstart, ingen binding.">
 
   <script type="application/ld+json">
   {
@@ -25,7 +28,7 @@
     "url": "https://plainsite.dk",
     "description": "Hjemmesider til små virksomheder — design, hosting og drift i én fast månedlig pris. Tobias Gutkin, Aarhus.",
     "priceRange": "199-399 kr/md",
-    "areaServed": "DK",
+    "areaServed": [{"@type": "City", "name": "Aarhus", "addressCountry": "DK"}, {"@type": "Country", "name": "Danmark"}],
     "availableLanguage": "da",
     "email": "tobias@plainsite.dk",
     "founder": { "@type": "Person", "name": "Tobias Gutkin" },
@@ -692,7 +695,7 @@
             <span class="num">199</span>
             <span class="unit">KR/MD + MOMS</span>
           </div>
-          <p class="plan-sub">Til den lille virksomhed der bare skal være synlig.</p>
+          <p class="plan-sub">Til dig der vil være online og let at finde.</p>
           <ul class="plan-list">
             <li>Én-sides hjemmeside</li>
             <li>Google Business-opsætning</li>
@@ -700,7 +703,7 @@
             <li>Hosting &amp; drift</li>
             <li>SSL + mobiloptimering</li>
           </ul>
-          <button class="plan-cta" data-open-contact data-plan="Online"><span>Spørg om Online</span><span class="italic">→</span></button>
+          <button class="plan-cta" data-open-contact data-plan="Online"><span>Vælg Online</span><span class="italic">→</span></button>
         </article>
 
         <article class="plan-card featured reveal" data-delay="2">
@@ -722,7 +725,7 @@
             <li>Én ændring pr. måned</li>
             <li>Løbende teknisk vedligehold</li>
           </ul>
-          <button class="plan-cta" data-open-contact data-plan="Synlig"><span>Spørg om Synlig</span><span class="italic">→</span></button>
+          <button class="plan-cta" data-open-contact data-plan="Synlig"><span>Vælg Synlig</span><span class="italic">→</span></button>
         </article>
 
         <article class="plan-card reveal" data-delay="3">
@@ -744,7 +747,7 @@
             <li>Ændringer inden for 24 timer</li>
             <li>Prioriteret support</li>
           </ul>
-          <button class="plan-cta" data-open-contact data-plan="Vækst"><span>Spørg om Vækst</span><span class="italic">→</span></button>
+          <button class="plan-cta" data-open-contact data-plan="Vækst"><span>Vælg Vækst</span><span class="italic">→</span></button>
         </article>
       </div>
       <div class="plan-dots" id="planDots" aria-hidden="true">
@@ -759,7 +762,7 @@
   <section class="ps-section">
     <div class="container ommig-inner">
       <div class="eyebrow section-eye">04 — Om mig</div>
-      <h2 class="section-title">Én person, et lille værksted i Aarhus, <span class="italic">bygget langsomt.</span></h2>
+      <h2 class="section-title">Én person, et lille værksted <span class="italic">i Aarhus.</span></h2>
       <div class="ommig-portrait reveal">
         <img src="/assets/tobias.jpg" alt="Portræt af Tobias Gutkin, Plainsite" loading="lazy" width="1086" height="1448">
       </div>
@@ -788,7 +791,7 @@
         <h2 class="section-title">Udvalgte projekter — <span class="italic">fyldes løbende.</span></h2>
       </div>
       <div class="cases-grid">
-        <a class="case-card reveal" data-delay="1" style="grid-column: 1 / span 7;">
+        <a class="case-card reveal" href="/cases.html" data-delay="1" style="grid-column: 1 / span 7;">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">01</span></div></div>
           <div class="case-meta">
             <div>
@@ -798,7 +801,7 @@
             <div class="case-year">2025</div>
           </div>
         </a>
-        <a class="case-card reveal" data-delay="2" style="grid-column: 8 / span 5;">
+        <a class="case-card reveal" href="/cases.html" data-delay="2" style="grid-column: 8 / span 5;">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">02</span></div></div>
           <div class="case-meta">
             <div>
@@ -808,7 +811,7 @@
             <div class="case-year">2025</div>
           </div>
         </a>
-        <a class="case-card reveal" data-delay="3" style="grid-column: 1 / span 5;">
+        <a class="case-card reveal" href="/cases.html" data-delay="3" style="grid-column: 1 / span 5;">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">03</span></div></div>
           <div class="case-meta">
             <div>
@@ -818,7 +821,7 @@
             <div class="case-year">2025</div>
           </div>
         </a>
-        <a class="case-card reveal" data-delay="4" style="grid-column: 6 / span 7;">
+        <a class="case-card reveal" href="/cases.html" data-delay="4" style="grid-column: 6 / span 7;">
           <div class="case-thumb-wrap"><div class="case-thumb"><span class="case-numeral">04</span></div></div>
           <div class="case-meta">
             <div>
@@ -905,7 +908,7 @@
         <div class="footer-col">
           <div class="footer-head">Kontakt</div>
           <div class="footer-contact">
-            <div>tobias@plainsite.dk</div>
+            <a href="mailto:tobias@plainsite.dk" class="footer-link" style="display:inline;">tobias@plainsite.dk</a>
             <div class="sub">Aarhus, Danmark</div>
             <div class="sub">Svar inden for to hverdage.</div>
           </div>
@@ -1085,6 +1088,7 @@
               status.className = 'form-status show success';
               status.textContent = 'Tak — beskeden er sendt. Jeg vender tilbage inden for to hverdage.';
               form.reset();
+              submitBtn.disabled = false;
               submitBtn.innerHTML = 'Sendt <span class="italic">✓</span>';
             })
             .catch(function () {
