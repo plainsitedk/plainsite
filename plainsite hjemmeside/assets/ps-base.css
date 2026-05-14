@@ -13,6 +13,8 @@
   .reveal[data-delay="2"] { transition-delay: 160ms; }
   .reveal[data-delay="3"] { transition-delay: 240ms; }
   .reveal[data-delay="4"] { transition-delay: 320ms; }
+  .reveal[data-delay="5"] { transition-delay: 400ms; }
+  .reveal[data-delay="6"] { transition-delay: 480ms; }
 }
 button, .btn-primary, .btn-secondary, a.btn-primary, a.btn-secondary,
 .plan-cta, .case-card, .nav-link, .footer-link, .drawer-link,

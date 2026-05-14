@@ -281,10 +281,28 @@
     (function () {
       var modal = document.getElementById('contactModal');
       var burger = document.getElementById('burgerBtn');
+      var drawer = document.getElementById('drawer');
+      var lastFocus = null;
+      var FOCUSABLE = 'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
 
-      function closeMenu() { document.body.classList.remove('menu-open'); if (burger) burger.setAttribute('aria-expanded', 'false'); }
-      function openModal() { modal.classList.add('open'); closeMenu(); }
-      function closeModal() { modal.classList.remove('open'); }
+      function closeMenu() {
+        document.body.classList.remove('menu-open');
+        if (burger) burger.setAttribute('aria-expanded', 'false');
+        if (drawer) drawer.setAttribute('aria-hidden', 'true');
+      }
+      function openModal() {
+        lastFocus = document.activeElement;
+        modal.classList.add('open');
+        modal.removeAttribute('aria-hidden');
+        closeMenu();
+        var first = modal.querySelector(FOCUSABLE);
+        if (first) first.focus();
+      }
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        if (lastFocus) { lastFocus.focus(); lastFocus = null; }
+      }
 
       document.querySelectorAll('[data-open-contact]').forEach(function (el) {
         el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
@@ -294,14 +312,24 @@
       });
       modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
 
+      // Focus trap
+      modal.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var focusable = Array.prototype.slice.call(modal.querySelectorAll(FOCUSABLE));
+        if (!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+        else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
+      });
+
       if (burger) {
         burger.addEventListener('click', function () {
-          var open = document.body.classList.toggle('menu-open');
-          burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+          if (document.body.classList.contains('menu-open')) { closeMenu(); }
+          else { document.body.classList.add('menu-open'); burger.setAttribute('aria-expanded', 'true'); if (drawer) drawer.setAttribute('aria-hidden', 'false'); }
         });
       }
 
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeModal(); closeMenu(); } });
 
       var form = document.getElementById('contactForm');
       var submitBtn = document.getElementById('contactSubmit');

@@ -916,7 +916,7 @@
           <span class="footer-brand-mark">&lt;/&gt;</span>
           <span class="footer-brand-word">Plainsite</span>
         </div>
-        <div>© 2024–2026 · TOBIAS GUTKIN · CVR 44 88 12 70</div>
+        <div>© 2024–2026 · TOBIAS GUTKIN · CVR 46384040</div>
         <div>SAT I FRAUNCES, INTER TIGHT, JETBRAINS MONO</div>
       </div>
     </div>
@@ -952,7 +952,21 @@
         return 'Jeg er interesseret i ' + plan + ' (' + PLAN_PRICES[plan] + ' + moms).';
       }
 
-      function closeMenu() { document.body.classList.remove('menu-open'); if (burger) burger.setAttribute('aria-expanded', 'false'); }
+      var drawer = document.getElementById('drawer');
+      var lastFocus = null;
+      var FOCUSABLE = 'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
+
+      function closeMenu() {
+        document.body.classList.remove('menu-open');
+        if (burger) burger.setAttribute('aria-expanded', 'false');
+        if (drawer) drawer.setAttribute('aria-hidden', 'true');
+      }
+      function openMenu() {
+        document.body.classList.add('menu-open');
+        if (burger) burger.setAttribute('aria-expanded', 'true');
+        if (drawer) { drawer.setAttribute('aria-hidden', 'false'); var f = drawer.querySelector(FOCUSABLE); if (f) f.focus(); }
+      }
+
       function openModal(plan) {
         if (plan && msgField) {
           var current = msgField.value.trim();
@@ -961,10 +975,18 @@
             msgField.value = lastPrefill;
           }
         }
+        lastFocus = document.activeElement;
         modal.classList.add('open');
+        modal.removeAttribute('aria-hidden');
         closeMenu();
+        var first = modal.querySelector(FOCUSABLE);
+        if (first) first.focus();
       }
-      function closeModal() { modal.classList.remove('open'); }
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        if (lastFocus) { lastFocus.focus(); lastFocus = null; }
+      }
 
       document.querySelectorAll('[data-open-contact]').forEach(function (el) {
         el.addEventListener('click', function (e) {
@@ -977,10 +999,19 @@
       });
       modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
 
+      // Focus trap inside modal
+      modal.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var focusable = Array.prototype.slice.call(modal.querySelectorAll(FOCUSABLE));
+        if (!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+        else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
+      });
+
       if (burger) {
         burger.addEventListener('click', function () {
-          var open = document.body.classList.toggle('menu-open');
-          burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+          if (document.body.classList.contains('menu-open')) { closeMenu(); } else { openMenu(); }
         });
       }
       document.querySelectorAll('[data-drawer-close]').forEach(function (el) {
