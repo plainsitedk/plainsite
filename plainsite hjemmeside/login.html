@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog-editor — Plainsite</title>
+  <title>Admin — Plainsite</title>
   <meta name="robots" content="noindex,nofollow">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/ps-base.css">
@@ -57,12 +57,13 @@
       font-weight: 500; color: var(--ps-fg-muted); letter-spacing: .1em;
       text-transform: uppercase; margin-bottom: .4rem;
     }
-    input[type="password"], input[type="text"], input[type="email"], textarea, select {
+    input[type="password"], input[type="text"], input[type="email"], input[type="url"], textarea, select {
       width: 100%; background: var(--ps-stone-50);
       border: 1px solid var(--ps-border); border-radius: 7px;
       padding: .75rem 1rem;
       font-family: var(--ps-font-sans); font-size: .9375rem; color: var(--ps-fg);
       outline: none; transition: border-color .18s, box-shadow .18s;
+      box-sizing: border-box;
     }
     input:focus, textarea:focus, select:focus {
       border-color: var(--ps-accent);
@@ -105,17 +106,31 @@
       font-weight: 400; letter-spacing: -0.012em; color: var(--ps-fg);
     }
     .topbar-right { display: flex; align-items: center; gap: .75rem; }
-    .breadcrumb {
-      font-size: .8rem; color: var(--ps-fg-subtle);
-      display: flex; align-items: center; gap: .4rem;
-    }
-    .breadcrumb a {
-      color: var(--ps-fg-muted); text-decoration: none; cursor: pointer;
-      transition: color 140ms;
-    }
-    .breadcrumb a:hover { color: var(--ps-fg); }
 
-    .admin-body { max-width: 860px; margin: 0 auto; padding: 2.5rem clamp(1.25rem,5vw,2rem); flex: 1; }
+    /* Tab nav */
+    .topbar-nav {
+      display: flex; gap: 4px;
+    }
+    .tab-btn {
+      font-family: var(--ps-font-sans); font-size: 13px; font-weight: 500;
+      padding: 8px 16px; border-radius: 7px; border: none; cursor: pointer;
+      transition: background .14s, color .14s;
+    }
+    .tab-btn.active {
+      background: var(--ps-stone-100); color: var(--ps-ink);
+    }
+    .tab-btn:not(.active) {
+      color: var(--ps-fg-muted); background: transparent;
+    }
+    .tab-btn:not(.active):hover {
+      background: var(--ps-stone-100); color: var(--ps-fg);
+    }
+
+    #admin-body { max-width: 900px; margin: 0 auto; padding: 2.5rem clamp(1.25rem, 5vw, 2rem); flex: 1; }
+
+    /* Tab panels */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
     /* ── Buttons ── */
     .btn {
@@ -149,7 +164,7 @@
     .btn-danger:hover { background: var(--danger-pale); border-color: rgba(192,57,43,.4); }
     .btn-sm { padding: .45rem 1rem; font-size: .8rem; }
 
-    /* ── POST LIST ── */
+    /* ── BLOG: POST LIST ── */
     #view-list { display: block; }
     #view-editor { display: none; }
 
@@ -176,7 +191,7 @@
     }
     .post-row:first-child { border-top: 1px solid var(--ps-border); }
     .post-info { flex: 1; min-width: 0; }
-    .post-title {
+    .post-title-text {
       font-family: var(--ps-font-sans); font-weight: 600; font-size: .9375rem;
       letter-spacing: -0.01em;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -188,7 +203,7 @@
     }
     .post-actions { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
 
-    /* ── RICH TEXT EDITOR ── */
+    /* ── BLOG: RICH TEXT EDITOR ── */
     .editor-header {
       display: flex; align-items: center; gap: 1rem;
       margin-bottom: 1.5rem; flex-wrap: wrap;
@@ -201,7 +216,6 @@
 
     .field-group { margin-bottom: 1.25rem; }
 
-    /* Toolbar */
     .toolbar {
       display: flex; flex-wrap: wrap; gap: .25rem;
       padding: .5rem;
@@ -227,7 +241,6 @@
     .tb-btn.active { background: var(--ps-clay-100); color: var(--ps-accent); }
     .tb-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    /* Editor area */
     #editor {
       min-height: 340px;
       border: 1px solid var(--ps-border);
@@ -271,7 +284,177 @@
     }
     #save-status.show { opacity: 1; }
 
-    /* Delete confirm */
+    /* ── TEKSTER TAB ── */
+    .tekster-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0;
+      background: var(--ps-paper);
+      border: 1px solid var(--ps-border);
+      border-radius: 10px;
+      overflow: hidden;
+      min-height: 500px;
+    }
+    @media (max-width: 600px) {
+      .tekster-layout { grid-template-columns: 1fr; }
+      .tekster-right { border-left: none !important; border-top: 1px solid var(--ps-border); }
+    }
+    .tekster-sidebar {
+      padding: .75rem;
+      background: var(--ps-stone-50);
+      border-right: 1px solid var(--ps-border);
+    }
+    .tekster-sidebar-title {
+      font-family: var(--ps-font-mono); font-size: .68rem; font-weight: 500;
+      color: var(--ps-fg-subtle); letter-spacing: .1em; text-transform: uppercase;
+      padding: .5rem .5rem .75rem;
+    }
+    .site-row {
+      padding: 10px 16px; cursor: pointer; border-radius: 7px;
+      font-family: var(--ps-font-sans); font-size: .875rem; color: var(--ps-fg-muted);
+      transition: background .12s, color .12s;
+    }
+    .site-row:hover { background: var(--ps-stone-100); color: var(--ps-fg); }
+    .site-row.active { background: var(--ps-clay-100); color: var(--ps-accent); font-weight: 500; }
+    .site-row-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sidebar-add-link {
+      display: block; padding: 10px 16px;
+      font-family: var(--ps-font-mono); font-size: .72rem; color: var(--ps-fg-subtle);
+      text-decoration: none; cursor: pointer; border-top: 1px solid var(--ps-border);
+      margin-top: .5rem; padding-top: 10px; letter-spacing: .04em;
+      transition: color .12s;
+    }
+    .sidebar-add-link:hover { color: var(--ps-accent); }
+
+    .tekster-right {
+      padding: 1.75rem;
+      border-left: 1px solid var(--ps-border);
+    }
+    .tekster-empty-state {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 100%; min-height: 300px;
+      color: var(--ps-fg-subtle); text-align: center; gap: .75rem;
+    }
+    .tekster-empty-state p { font-size: .9rem; max-width: 260px; }
+
+    .tekster-site-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem; flex-wrap: wrap; gap: .75rem;
+    }
+    .tekster-site-header h3 {
+      font-family: var(--ps-font-serif); font-size: 1.3rem; font-weight: 400;
+      letter-spacing: -0.02em; font-variation-settings: "opsz" 48;
+    }
+
+    .content-field {
+      margin-bottom: 1.25rem;
+      padding: 1rem;
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      background: var(--ps-paper);
+      transition: border-color .15s;
+    }
+    .content-field.dirty { border-color: var(--ps-accent); }
+    .content-field-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: .5rem;
+    }
+    .content-field-label {
+      font-family: var(--ps-font-mono); font-size: .7rem; font-weight: 500;
+      color: var(--ps-fg-muted); letter-spacing: .08em; text-transform: uppercase;
+    }
+    .field-delete-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--ps-fg-subtle); padding: .15rem .3rem; border-radius: 4px;
+      font-size: .8rem; line-height: 1; transition: background .12s, color .12s;
+    }
+    .field-delete-btn:hover { background: var(--danger-pale); color: var(--danger); }
+
+    .content-field input[type="text"],
+    .content-field textarea {
+      width: 100%; box-sizing: border-box;
+    }
+    .content-field textarea { resize: vertical; min-height: 80px; }
+
+    .tekster-footer {
+      display: flex; align-items: center; gap: .75rem;
+      margin-top: 1.5rem; padding-top: 1rem;
+      border-top: 1px solid var(--ps-border);
+      flex-wrap: wrap;
+    }
+
+    /* Add-field inline form */
+    .add-field-form {
+      display: none;
+      margin-top: 1rem; padding: 1rem;
+      background: var(--ps-stone-50); border: 1px solid var(--ps-border);
+      border-radius: 8px;
+    }
+    .add-field-form.open { display: block; }
+    .add-field-row {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: .75rem; margin-bottom: .75rem;
+    }
+    @media (max-width: 600px) {
+      .add-field-row { grid-template-columns: 1fr; }
+    }
+    .add-field-actions {
+      display: flex; gap: .5rem; justify-content: flex-end;
+    }
+
+    /* ── KUNDER TAB ── */
+    .kunder-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .kunder-header h2 {
+      font-family: var(--ps-font-serif); font-size: 1.6rem; font-weight: 400;
+      letter-spacing: -0.025em; font-variation-settings: "opsz" 48;
+    }
+
+    .kunde-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--ps-border);
+      flex-wrap: wrap;
+    }
+    .kunde-row:first-child { border-top: 1px solid var(--ps-border); }
+    .kunde-info { flex: 1; min-width: 0; }
+    .kunde-name {
+      font-family: var(--ps-font-sans); font-weight: 600; font-size: .9375rem;
+      letter-spacing: -0.01em; color: var(--ps-fg);
+    }
+    .kunde-meta {
+      font-family: var(--ps-font-mono); font-size: .7rem; color: var(--ps-fg-subtle);
+      margin-top: .25rem; letter-spacing: 0.03em;
+    }
+    .kunde-actions { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
+
+    .kunder-empty {
+      text-align: center; padding: 4rem 2rem;
+      border: 1.5px dashed var(--ps-border); border-radius: 10px;
+      color: var(--ps-fg-subtle);
+    }
+    .kunder-empty p { font-size: .9rem; margin-top: .5rem; }
+
+    .add-kunde-section {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      background: var(--ps-paper); border: 1px solid var(--ps-border);
+      border-radius: 10px;
+    }
+    .add-kunde-section h3 {
+      font-family: var(--ps-font-serif); font-size: 1.1rem; font-weight: 400;
+      letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+    .add-kunde-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: .75rem; margin-bottom: 1rem;
+    }
+    @media (max-width: 600px) {
+      .add-kunde-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Confirm overlay ── */
     .confirm-overlay {
       display: none; position: fixed; inset: 0; z-index: 100;
       background: rgba(24,22,30,.4); backdrop-filter: blur(4px);
@@ -321,7 +504,7 @@
       <span class="login-logo-word">Plainsite</span>
     </div>
     <h1>Log ind</h1>
-    <p>Blog administration</p>
+    <p>Administration</p>
     <div class="field-group">
       <label for="pw">Adgangskode</label>
       <div class="pw-wrap">
@@ -351,118 +534,220 @@
         <span class="topbar-logo-mark">&lt;/&gt;</span>
         <span class="topbar-logo-word">Plainsite</span>
       </a>
-      <div class="breadcrumb" id="breadcrumb">
-        <a onclick="showList()">Blog</a>
-      </div>
+      <nav class="topbar-nav">
+        <button class="tab-btn active" id="tab-btn-blog" onclick="switchTab('blog')">Blog</button>
+        <button class="tab-btn" id="tab-btn-tekster" onclick="switchTab('tekster')">Tekster</button>
+        <button class="tab-btn" id="tab-btn-kunder" onclick="switchTab('kunder')">Kunder</button>
+      </nav>
     </div>
     <div class="topbar-right">
       <button class="btn btn-ghost btn-sm" onclick="doLogout()">Log ud</button>
     </div>
   </header>
 
-  <div class="admin-body">
+  <div id="admin-body">
 
-    <!-- POST LIST -->
-    <div id="view-list">
-      <div class="list-header">
-        <h2>Blogindlæg</h2>
-        <button class="btn btn-primary btn-sm" onclick="newPost()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Nyt indlæg
-        </button>
-      </div>
-      <div id="posts-list"></div>
-    </div>
+    <!-- ══ TAB: BLOG ══ -->
+    <div id="tab-blog" class="tab-panel active">
 
-    <!-- EDITOR -->
-    <div id="view-editor">
-      <div class="editor-header">
-        <h2 id="editor-heading">Nyt indlæg</h2>
-      </div>
-
-      <div class="field-group">
-        <label for="post-title">Titel</label>
-        <input type="text" id="post-title" placeholder="Titel på indlægget…">
-      </div>
-
-      <div class="field-group">
-        <label>Indhold</label>
-        <div class="toolbar" id="toolbar">
-          <!-- Headings -->
-          <button class="tb-btn" onclick="fmt('formatBlock','H1')" title="Overskrift 1">H1</button>
-          <button class="tb-btn" onclick="fmt('formatBlock','H2')" title="Overskrift 2">H2</button>
-          <button class="tb-btn" onclick="fmt('formatBlock','H3')" title="Overskrift 3">H3</button>
-          <div class="toolbar-sep"></div>
-          <!-- Format -->
-          <button class="tb-btn" id="tb-bold" onclick="fmt('bold')" title="Fed">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>
-          </button>
-          <button class="tb-btn" id="tb-italic" onclick="fmt('italic')" title="Kursiv">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg>
-          </button>
-          <button class="tb-btn" id="tb-underline" onclick="fmt('underline')" title="Understreget">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><line x1="4" y1="21" x2="20" y2="21"/></svg>
-          </button>
-          <div class="toolbar-sep"></div>
-          <!-- Lists -->
-          <button class="tb-btn" onclick="fmt('insertUnorderedList')" title="Punktliste">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4" cy="6" r="1.5" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1.5" fill="currentColor" stroke="none"/></svg>
-          </button>
-          <button class="tb-btn" onclick="fmt('insertOrderedList')" title="Nummereret liste">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><text x="2" y="7" font-size="5" font-weight="700" fill="currentColor" stroke="none">1.</text><text x="2" y="13" font-size="5" font-weight="700" fill="currentColor" stroke="none">2.</text><text x="2" y="19" font-size="5" font-weight="700" fill="currentColor" stroke="none">3.</text></svg>
-          </button>
-          <div class="toolbar-sep"></div>
-          <!-- Block -->
-          <button class="tb-btn" onclick="fmt('formatBlock','BLOCKQUOTE')" title="Citat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-          </button>
-          <button class="tb-btn" onclick="fmt('formatBlock','P')" title="Normal tekst">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 4H6a4 4 0 0 0 0 8h3v8"/><line x1="13" y1="4" x2="13" y2="20"/><line x1="10" y1="20" x2="16" y2="20"/></svg>
-          </button>
-          <div class="toolbar-sep"></div>
-          <!-- Link -->
-          <button class="tb-btn" onclick="insertLink()" title="Indsæt link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          </button>
-          <!-- Clear -->
-          <button class="tb-btn" onclick="fmt('removeFormat')" title="Fjern formatering">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/><line x1="2" y1="2" x2="22" y2="22" stroke-width="1.5"/></svg>
+      <!-- POST LIST -->
+      <div id="view-list">
+        <div class="list-header">
+          <h2>Blogindlæg</h2>
+          <button class="btn btn-primary btn-sm" onclick="newPost()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nyt indlæg
           </button>
         </div>
-        <div id="editor" contenteditable="true" spellcheck="true"
-          data-placeholder="Begynd at skrive her…"
-          onkeyup="updateToolbarState()" onmouseup="updateToolbarState()"
-          onfocus="updateToolbarState()"></div>
+        <div id="posts-list"></div>
       </div>
 
-      <div class="editor-footer">
-        <div class="editor-footer-left">
-          <button class="btn btn-primary btn-sm" onclick="savePost()">Gem indlæg</button>
-          <button class="btn btn-outline btn-sm" onclick="showList()">Annuller</button>
-          <div id="save-status">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>
-            Gemt
+      <!-- EDITOR -->
+      <div id="view-editor">
+        <div class="editor-header">
+          <h2 id="editor-heading">Nyt indlæg</h2>
+        </div>
+
+        <div class="field-group">
+          <label for="post-title">Titel</label>
+          <input type="text" id="post-title" placeholder="Titel på indlægget…">
+        </div>
+
+        <div class="field-group">
+          <label>Indhold</label>
+          <div class="toolbar" id="toolbar">
+            <button class="tb-btn" onclick="fmt('formatBlock','H1')" title="Overskrift 1">H1</button>
+            <button class="tb-btn" onclick="fmt('formatBlock','H2')" title="Overskrift 2">H2</button>
+            <button class="tb-btn" onclick="fmt('formatBlock','H3')" title="Overskrift 3">H3</button>
+            <div class="toolbar-sep"></div>
+            <button class="tb-btn" id="tb-bold" onclick="fmt('bold')" title="Fed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>
+            </button>
+            <button class="tb-btn" id="tb-italic" onclick="fmt('italic')" title="Kursiv">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg>
+            </button>
+            <button class="tb-btn" id="tb-underline" onclick="fmt('underline')" title="Understreget">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><line x1="4" y1="21" x2="20" y2="21"/></svg>
+            </button>
+            <div class="toolbar-sep"></div>
+            <button class="tb-btn" onclick="fmt('insertUnorderedList')" title="Punktliste">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><circle cx="4" cy="6" r="1.5" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </button>
+            <button class="tb-btn" onclick="fmt('insertOrderedList')" title="Nummereret liste">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><text x="2" y="7" font-size="5" font-weight="700" fill="currentColor" stroke="none">1.</text><text x="2" y="13" font-size="5" font-weight="700" fill="currentColor" stroke="none">2.</text><text x="2" y="19" font-size="5" font-weight="700" fill="currentColor" stroke="none">3.</text></svg>
+            </button>
+            <div class="toolbar-sep"></div>
+            <button class="tb-btn" onclick="fmt('formatBlock','BLOCKQUOTE')" title="Citat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+            </button>
+            <button class="tb-btn" onclick="fmt('formatBlock','P')" title="Normal tekst">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 4H6a4 4 0 0 0 0 8h3v8"/><line x1="13" y1="4" x2="13" y2="20"/><line x1="10" y1="20" x2="16" y2="20"/></svg>
+            </button>
+            <div class="toolbar-sep"></div>
+            <button class="tb-btn" onclick="insertLink()" title="Indsæt link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </button>
+            <button class="tb-btn" onclick="fmt('removeFormat')" title="Fjern formatering">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/><line x1="2" y1="2" x2="22" y2="22" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <div id="editor" contenteditable="true" spellcheck="true"
+            data-placeholder="Begynd at skrive her…"
+            onkeyup="updateToolbarState()" onmouseup="updateToolbarState()"
+            onfocus="updateToolbarState()"></div>
+        </div>
+
+        <div class="editor-footer">
+          <div class="editor-footer-left">
+            <button class="btn btn-primary btn-sm" onclick="savePost()">Gem indlæg</button>
+            <button class="btn btn-outline btn-sm" onclick="showList()">Annuller</button>
+            <div id="save-status">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>
+              Gemt
+            </div>
+          </div>
+          <button class="btn btn-danger btn-sm" id="delete-btn" onclick="confirmDelete()" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+            Slet indlæg
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /tab-blog -->
+
+
+    <!-- ══ TAB: TEKSTER ══ -->
+    <div id="tab-tekster" class="tab-panel">
+
+      <div class="list-header">
+        <h2>Tekster</h2>
+      </div>
+
+      <div class="tekster-layout">
+        <div class="tekster-sidebar">
+          <div class="tekster-sidebar-title">Kunder</div>
+          <div id="tekster-sites-list"></div>
+          <a class="sidebar-add-link" onclick="switchTab('kunder')">+ Tilføj kunde</a>
+        </div>
+        <div class="tekster-right" id="tekster-right">
+          <div class="tekster-empty-state" id="tekster-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" style="color:var(--ps-fg-subtle)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <p>Vælg en kunde i listen til venstre for at redigere tekster.</p>
+          </div>
+          <div id="tekster-editor" style="display:none;">
+            <div class="tekster-site-header">
+              <h3 id="tekster-site-name">—</h3>
+              <div style="display:flex;gap:.5rem;">
+                <button class="btn btn-primary btn-sm" onclick="saveTekster()">Gem ændringer</button>
+              </div>
+            </div>
+            <div id="tekster-fields"></div>
+            <div class="tekster-footer">
+              <button class="btn btn-outline btn-sm" onclick="toggleAddField()">+ Tilføj felt</button>
+            </div>
+            <div class="add-field-form" id="add-field-form">
+              <div class="add-field-row">
+                <div>
+                  <label for="af-id">Felt-id (slug)</label>
+                  <input type="text" id="af-id" placeholder="f.eks. hero_titel">
+                </div>
+                <div>
+                  <label for="af-label">Label</label>
+                  <input type="text" id="af-label" placeholder="f.eks. Hero-titel">
+                </div>
+                <div>
+                  <label for="af-type">Type</label>
+                  <select id="af-type">
+                    <option value="text">Tekst (enkeltlinje)</option>
+                    <option value="textarea">Textarea (flerlinjet)</option>
+                  </select>
+                </div>
+              </div>
+              <div style="margin-bottom:.75rem;">
+                <label for="af-placeholder">Placeholder (valgfrit)</label>
+                <input type="text" id="af-placeholder" placeholder="Vejledende tekst…">
+              </div>
+              <div class="add-field-actions">
+                <button class="btn btn-outline btn-sm" onclick="toggleAddField()">Annuller</button>
+                <button class="btn btn-primary btn-sm" onclick="saveNewField()">Tilføj felt</button>
+              </div>
+            </div>
           </div>
         </div>
-        <button class="btn btn-danger btn-sm" id="delete-btn" onclick="confirmDelete()" style="display:none;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-          Slet indlæg
+      </div>
+
+    </div><!-- /tab-tekster -->
+
+
+    <!-- ══ TAB: KUNDER ══ -->
+    <div id="tab-kunder" class="tab-panel">
+
+      <div class="kunder-header">
+        <h2>Kunder</h2>
+      </div>
+
+      <div id="kunder-list"></div>
+
+      <div class="add-kunde-section">
+        <h3>Tilføj kunde</h3>
+        <div class="add-kunde-grid">
+          <div>
+            <label for="ak-name">Navn</label>
+            <input type="text" id="ak-name" placeholder="Luna Maria" oninput="autoSlug()">
+          </div>
+          <div>
+            <label for="ak-id">ID (slug)</label>
+            <input type="text" id="ak-id" placeholder="luna-maria">
+          </div>
+          <div>
+            <label for="ak-domain">Domæne</label>
+            <input type="text" id="ak-domain" placeholder="lunamaria.dk">
+          </div>
+          <div>
+            <label for="ak-dashboard">Dashboard URL (valgfrit)</label>
+            <input type="text" id="ak-dashboard" placeholder="https://kunde.plainsite.dk">
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="addKunde()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Tilføj kunde
         </button>
       </div>
-    </div>
 
-  </div>
-</div>
+    </div><!-- /tab-kunder -->
+
+  </div><!-- /admin-body -->
+</div><!-- /screen-admin -->
 
 
-<!-- ══ DELETE CONFIRM ══ -->
+<!-- ══ CONFIRM OVERLAY ══ -->
 <div class="confirm-overlay" id="confirm-overlay">
   <div class="confirm-box">
-    <h3>Slet indlæg?</h3>
-    <p>Dette kan ikke fortrydes. Indlægget slettes permanent.</p>
+    <h3 id="confirm-title">Slet?</h3>
+    <p id="confirm-msg">Dette kan ikke fortrydes.</p>
     <div class="confirm-actions">
       <button class="btn btn-outline btn-sm" onclick="closeConfirm()">Annuller</button>
-      <button class="btn-confirm-delete" onclick="deletePost()">Ja, slet</button>
+      <button class="btn-confirm-delete" id="confirm-ok-btn" onclick="confirmOk()">Ja, slet</button>
     </div>
   </div>
 </div>
@@ -473,11 +758,12 @@
 
 <script>
   const PASSWORD = 'FJDK ii843';
-  const API = '/api/blog';
-  let posts = [];
-  let editingId = null;
+  const BLOG_API = '/api/blog';
+  const CONTENT_API = '/api/content';
 
-  // ── Auth ──
+  // ════════════════════════════════
+  // AUTH
+  // ════════════════════════════════
   async function doLogin() {
     const val = document.getElementById('pw').value;
     if (val === PASSWORD) {
@@ -485,6 +771,7 @@
       document.getElementById('screen-admin').style.display = 'flex';
       await loadPosts();
       renderList();
+      loadKunder();
     } else {
       document.getElementById('login-error').style.display = 'block';
       document.getElementById('pw').focus();
@@ -502,16 +789,36 @@
     el.type = el.type === 'password' ? 'text' : 'password';
   }
 
-  // ── API ──
+  // ════════════════════════════════
+  // TABS
+  // ════════════════════════════════
+  let activeTab = 'blog';
+
+  function switchTab(tab) {
+    ['blog','tekster','kunder'].forEach(t => {
+      document.getElementById('tab-' + t).classList.toggle('active', t === tab);
+      document.getElementById('tab-btn-' + t).classList.toggle('active', t === tab);
+    });
+    activeTab = tab;
+    if (tab === 'tekster') loadTeksterSites();
+    if (tab === 'kunder') loadKunder();
+  }
+
+  // ════════════════════════════════
+  // BLOG
+  // ════════════════════════════════
+  let posts = [];
+  let editingId = null;
+
   async function loadPosts() {
     try {
-      const res = await fetch(API);
+      const res = await fetch(BLOG_API);
       posts = await res.json();
     } catch { posts = []; }
   }
 
   async function apiSave(method, body) {
-    const r = await fetch(API, {
+    const r = await fetch(BLOG_API, {
       method,
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
       body: JSON.stringify(body),
@@ -522,14 +829,13 @@
   }
 
   async function apiDelete(id) {
-    return fetch(API, {
+    return fetch(BLOG_API, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
       body: JSON.stringify({ id }),
     }).then(r => r.json());
   }
 
-  // ── List ──
   function renderList() {
     const el = document.getElementById('posts-list');
     if (!posts.length) {
@@ -542,12 +848,12 @@
     el.innerHTML = posts.map(p => `
       <div class="post-row">
         <div class="post-info">
-          <div class="post-title">${escHtml(p.title || 'Uden titel')}</div>
+          <div class="post-title-text">${escHtml(p.title || 'Uden titel')}</div>
           <div class="post-meta">${formatDate(p.updatedAt)}</div>
         </div>
         <div class="post-actions">
           <button class="btn btn-ghost btn-sm" onclick="editPost('${p.id}')">Rediger</button>
-          <button class="btn btn-danger btn-sm" onclick="confirmDeleteId('${p.id}')">Slet</button>
+          <button class="btn btn-danger btn-sm" onclick="confirmDeletePost('${p.id}')">Slet</button>
         </div>
       </div>`).join('');
   }
@@ -555,13 +861,11 @@
   async function showList() {
     document.getElementById('view-list').style.display = 'block';
     document.getElementById('view-editor').style.display = 'none';
-    document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a>`;
     editingId = null;
     await loadPosts();
     renderList();
   }
 
-  // ── Editor ──
   function newPost() {
     editingId = null;
     document.getElementById('post-title').value = '';
@@ -569,7 +873,6 @@
     document.getElementById('editor-heading').textContent = 'Nyt indlæg';
     document.getElementById('delete-btn').style.display = 'none';
     document.getElementById('save-status').classList.remove('show');
-    document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--ps-border)">›</span> <span>Nyt indlæg</span>`;
     document.getElementById('view-list').style.display = 'none';
     document.getElementById('view-editor').style.display = 'block';
     document.getElementById('post-title').focus();
@@ -584,7 +887,6 @@
     document.getElementById('editor-heading').textContent = 'Rediger indlæg';
     document.getElementById('delete-btn').style.display = '';
     document.getElementById('save-status').classList.remove('show');
-    document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--ps-border)">›</span> <span>${escHtml(p.title || 'Uden titel')}</span>`;
     document.getElementById('view-list').style.display = 'none';
     document.getElementById('view-editor').style.display = 'block';
     document.getElementById('post-title').focus();
@@ -593,9 +895,8 @@
   async function savePost() {
     const title = document.getElementById('post-title').value.trim();
     const content = document.getElementById('editor').innerHTML;
-    const btn = document.querySelector('.editor-footer .btn-primary');
+    const btn = document.querySelector('#tab-blog .editor-footer .btn-primary');
     btn.disabled = true; btn.textContent = 'Gemmer…';
-
     try {
       if (editingId) {
         const updated = await apiSave('PUT', { id: editingId, title, content });
@@ -611,30 +912,12 @@
       ss.classList.add('show');
       setTimeout(() => ss.classList.remove('show'), 2500);
       document.getElementById('editor-heading').textContent = 'Rediger indlæg';
-      document.getElementById('breadcrumb').innerHTML = `<a onclick="showList()">Blog</a> <span style="color:var(--ps-border)">›</span> <span>${escHtml(title || 'Uden titel')}</span>`;
     } catch(e) {
       showToast('Fejl: ' + e.message);
     }
     btn.disabled = false; btn.textContent = 'Gem indlæg';
   }
 
-  // ── Delete ──
-  let deleteTargetId = null;
-  function confirmDelete() { deleteTargetId = editingId; showConfirm(); }
-  function confirmDeleteId(id) { deleteTargetId = id; showConfirm(); }
-  function showConfirm() { document.getElementById('confirm-overlay').classList.add('show'); }
-  function closeConfirm() { document.getElementById('confirm-overlay').classList.remove('show'); deleteTargetId = null; }
-
-  async function deletePost() {
-    if (!deleteTargetId) return;
-    await apiDelete(deleteTargetId);
-    posts = posts.filter(p => p.id !== deleteTargetId);
-    closeConfirm();
-    showToast('Indlæg slettet');
-    showList();
-  }
-
-  // ── Toolbar ──
   function fmt(cmd, val) {
     document.getElementById('editor').focus();
     document.execCommand(cmd, false, val || null);
@@ -655,12 +938,340 @@
     document.getElementById('tb-underline').classList.toggle('active', document.queryCommandState('underline'));
   }
 
-  // ── Helpers ──
+  // ════════════════════════════════
+  // TEKSTER
+  // ════════════════════════════════
+  let teksterSites = [];
+  let activeSiteId = null;
+  let siteSchema = [];
+  let siteValues = {};
+  let dirtyFields = new Set();
+
+  async function loadTeksterSites() {
+    try {
+      const res = await fetch(`${CONTENT_API}?meta=sites`, {
+        headers: { 'Authorization': `Bearer ${PASSWORD}` }
+      });
+      teksterSites = await res.json();
+    } catch { teksterSites = []; }
+    renderTeksterSidebar();
+  }
+
+  function renderTeksterSidebar() {
+    const el = document.getElementById('tekster-sites-list');
+    if (!teksterSites.length) {
+      el.innerHTML = `<div style="padding:10px 16px;font-size:.8rem;color:var(--ps-fg-subtle);">Ingen kunder endnu.</div>`;
+      return;
+    }
+    el.innerHTML = teksterSites.map(s => `
+      <div class="site-row${activeSiteId === s.id ? ' active' : ''}" onclick="selectTeksterSite('${escHtml(s.id)}')">
+        <div class="site-row-name">${escHtml(s.name)}</div>
+      </div>`).join('');
+  }
+
+  async function selectTeksterSite(id) {
+    activeSiteId = id;
+    dirtyFields = new Set();
+    renderTeksterSidebar();
+
+    try {
+      const [schemaRes, valRes] = await Promise.all([
+        fetch(`${CONTENT_API}?site=${id}&meta=schema`, { headers: { 'Authorization': `Bearer ${PASSWORD}` } }),
+        fetch(`${CONTENT_API}?site=${id}`, { headers: { 'Authorization': `Bearer ${PASSWORD}` } }),
+      ]);
+      siteSchema = await schemaRes.json();
+      siteValues = await valRes.json();
+    } catch {
+      siteSchema = []; siteValues = {};
+    }
+
+    const site = teksterSites.find(s => s.id === id);
+    document.getElementById('tekster-site-name').textContent = site ? site.name : id;
+    document.getElementById('tekster-empty').style.display = 'none';
+    document.getElementById('tekster-editor').style.display = 'block';
+
+    // close add-field form if open
+    document.getElementById('add-field-form').classList.remove('open');
+
+    renderTeksterFields();
+  }
+
+  function renderTeksterFields() {
+    const el = document.getElementById('tekster-fields');
+    if (!siteSchema.length) {
+      el.innerHTML = `<div style="padding:2rem 0;text-align:center;color:var(--ps-fg-subtle);font-size:.875rem;">Ingen felter endnu. Klik "Tilføj felt" for at starte.</div>`;
+      return;
+    }
+    el.innerHTML = siteSchema.map(field => {
+      const val = escHtml(siteValues[field.id] || '');
+      const isDirty = dirtyFields.has(field.id);
+      if (field.type === 'textarea') {
+        return `<div class="content-field${isDirty ? ' dirty' : ''}" id="cf-${field.id}">
+          <div class="content-field-header">
+            <span class="content-field-label">${escHtml(field.label || field.id)}</span>
+            <button class="field-delete-btn" onclick="confirmDeleteField('${escHtml(field.id)}')" title="Slet felt">×</button>
+          </div>
+          <textarea rows="4" placeholder="${escHtml(field.placeholder || '')}"
+            oninput="markDirty('${escHtml(field.id)}')"
+            id="fv-${field.id}">${val}</textarea>
+        </div>`;
+      } else {
+        return `<div class="content-field${isDirty ? ' dirty' : ''}" id="cf-${field.id}">
+          <div class="content-field-header">
+            <span class="content-field-label">${escHtml(field.label || field.id)}</span>
+            <button class="field-delete-btn" onclick="confirmDeleteField('${escHtml(field.id)}')" title="Slet felt">×</button>
+          </div>
+          <input type="text" value="${val}" placeholder="${escHtml(field.placeholder || '')}"
+            oninput="markDirty('${escHtml(field.id)}')"
+            id="fv-${field.id}">
+        </div>`;
+      }
+    }).join('');
+  }
+
+  function markDirty(fieldId) {
+    dirtyFields.add(fieldId);
+    const el = document.getElementById('cf-' + fieldId);
+    if (el) el.classList.add('dirty');
+  }
+
+  async function saveTekster() {
+    if (!activeSiteId || !dirtyFields.size) { showToast('Ingen ændringer at gemme'); return; }
+    const btn = document.querySelector('#tab-tekster .btn-primary');
+    btn.disabled = true; btn.textContent = 'Gemmer…';
+    try {
+      const puts = [...dirtyFields].map(key => {
+        const el = document.getElementById('fv-' + key);
+        const value = el ? el.value : '';
+        return fetch(CONTENT_API, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
+          body: JSON.stringify({ site: activeSiteId, key, value }),
+        });
+      });
+      await Promise.all(puts);
+      dirtyFields.forEach(id => {
+        const cf = document.getElementById('cf-' + id);
+        if (cf) cf.classList.remove('dirty');
+        const el = document.getElementById('fv-' + id);
+        if (el) siteValues[id] = el.value;
+      });
+      dirtyFields = new Set();
+      showToast('Gemt');
+    } catch(e) {
+      showToast('Fejl: ' + e.message);
+    }
+    btn.disabled = false; btn.textContent = 'Gem ændringer';
+  }
+
+  function toggleAddField() {
+    document.getElementById('add-field-form').classList.toggle('open');
+  }
+
+  async function saveNewField() {
+    const id = document.getElementById('af-id').value.trim().replace(/\s+/g, '_');
+    const label = document.getElementById('af-label').value.trim();
+    const type = document.getElementById('af-type').value;
+    const placeholder = document.getElementById('af-placeholder').value.trim();
+    if (!id || !label) { showToast('Udfyld felt-id og label'); return; }
+    const newSchema = [...siteSchema, { id, label, type, placeholder }];
+    try {
+      await fetch(CONTENT_API, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
+        body: JSON.stringify({ site: activeSiteId, schema: newSchema }),
+      });
+      siteSchema = newSchema;
+      document.getElementById('af-id').value = '';
+      document.getElementById('af-label').value = '';
+      document.getElementById('af-placeholder').value = '';
+      document.getElementById('af-type').value = 'text';
+      document.getElementById('add-field-form').classList.remove('open');
+      renderTeksterFields();
+      showToast('Felt tilføjet');
+    } catch(e) {
+      showToast('Fejl: ' + e.message);
+    }
+  }
+
+  async function deleteField(fieldId) {
+    const newSchema = siteSchema.filter(f => f.id !== fieldId);
+    try {
+      await fetch(CONTENT_API, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
+        body: JSON.stringify({ site: activeSiteId, schema: newSchema }),
+      });
+      siteSchema = newSchema;
+      dirtyFields.delete(fieldId);
+      renderTeksterFields();
+      showToast('Felt slettet');
+    } catch(e) {
+      showToast('Fejl: ' + e.message);
+    }
+  }
+
+  // ════════════════════════════════
+  // KUNDER
+  // ════════════════════════════════
+  let kunder = [];
+
+  async function loadKunder() {
+    try {
+      const res = await fetch(`${CONTENT_API}?meta=sites`, {
+        headers: { 'Authorization': `Bearer ${PASSWORD}` }
+      });
+      kunder = await res.json();
+    } catch { kunder = []; }
+    renderKunder();
+    // sync tekster list too if loaded
+    if (activeTab === 'tekster' || teksterSites.length) {
+      teksterSites = [...kunder];
+      renderTeksterSidebar();
+    }
+  }
+
+  function renderKunder() {
+    const el = document.getElementById('kunder-list');
+    if (!kunder.length) {
+      el.innerHTML = `<div class="kunder-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" style="color:var(--ps-fg-subtle);margin-bottom:.75rem;"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <p>Ingen kunder endnu. Tilføj din første herunder.</p>
+      </div>`;
+      return;
+    }
+    el.innerHTML = kunder.map(k => `
+      <div class="kunde-row">
+        <div class="kunde-info">
+          <div class="kunde-name">${escHtml(k.name)}</div>
+          <div class="kunde-meta">${escHtml(k.domain || '')}${k.id ? ' · ' + escHtml(k.id) : ''}</div>
+        </div>
+        <div class="kunde-actions">
+          ${k.dashboardUrl ? `<a class="btn btn-ghost btn-sm" href="${escHtml(k.dashboardUrl)}" target="_blank" rel="noopener">Dashboard ↗</a>` : ''}
+          <button class="btn btn-danger btn-sm" onclick="confirmDeleteKunde('${escHtml(k.id)}')">Slet</button>
+        </div>
+      </div>`).join('');
+  }
+
+  function autoSlug() {
+    const name = document.getElementById('ak-name').value;
+    const slug = name.toLowerCase()
+      .replace(/æ/g,'ae').replace(/ø/g,'oe').replace(/å/g,'aa')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    document.getElementById('ak-id').value = slug;
+  }
+
+  async function addKunde() {
+    const name = document.getElementById('ak-name').value.trim();
+    const id = document.getElementById('ak-id').value.trim();
+    const domain = document.getElementById('ak-domain').value.trim();
+    const dashboardUrl = document.getElementById('ak-dashboard').value.trim() || 'https://kunde.plainsite.dk';
+    if (!name || !id) { showToast('Udfyld navn og ID'); return; }
+    const updated = [...kunder, { name, id, domain, dashboardUrl }];
+    try {
+      await fetch(CONTENT_API, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
+        body: JSON.stringify({ sites: updated }),
+      });
+      kunder = updated;
+      renderKunder();
+      teksterSites = [...kunder];
+      renderTeksterSidebar();
+      document.getElementById('ak-name').value = '';
+      document.getElementById('ak-id').value = '';
+      document.getElementById('ak-domain').value = '';
+      document.getElementById('ak-dashboard').value = '';
+      showToast('Kunde tilføjet');
+    } catch(e) {
+      showToast('Fejl: ' + e.message);
+    }
+  }
+
+  async function deleteKunde(id) {
+    const updated = kunder.filter(k => k.id !== id);
+    try {
+      await fetch(CONTENT_API, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASSWORD}` },
+        body: JSON.stringify({ sites: updated }),
+      });
+      kunder = updated;
+      renderKunder();
+      teksterSites = [...kunder];
+      if (activeSiteId === id) {
+        activeSiteId = null;
+        document.getElementById('tekster-empty').style.display = '';
+        document.getElementById('tekster-editor').style.display = 'none';
+      }
+      renderTeksterSidebar();
+      showToast('Kunde slettet');
+    } catch(e) {
+      showToast('Fejl: ' + e.message);
+    }
+  }
+
+  // ════════════════════════════════
+  // CONFIRM OVERLAY (shared)
+  // ════════════════════════════════
+  let confirmCallback = null;
+
+  function showConfirmDialog(title, msg, cb) {
+    document.getElementById('confirm-title').textContent = title;
+    document.getElementById('confirm-msg').textContent = msg;
+    confirmCallback = cb;
+    document.getElementById('confirm-overlay').classList.add('show');
+  }
+
+  function closeConfirm() {
+    document.getElementById('confirm-overlay').classList.remove('show');
+    confirmCallback = null;
+  }
+
+  function confirmOk() {
+    if (confirmCallback) confirmCallback();
+    closeConfirm();
+  }
+
+  // Blog delete
+  let deleteTargetId = null;
+  function confirmDelete() { deleteTargetId = editingId; showConfirmBlogDelete(); }
+  function confirmDeletePost(id) { deleteTargetId = id; showConfirmBlogDelete(); }
+  function showConfirmBlogDelete() {
+    showConfirmDialog('Slet indlæg?', 'Dette kan ikke fortrydes. Indlægget slettes permanent.', async () => {
+      if (!deleteTargetId) return;
+      await apiDelete(deleteTargetId);
+      posts = posts.filter(p => p.id !== deleteTargetId);
+      deleteTargetId = null;
+      showToast('Indlæg slettet');
+      showList();
+    });
+  }
+
+  // Tekster field delete
+  function confirmDeleteField(fieldId) {
+    showConfirmDialog('Slet felt?', `Feltet "${fieldId}" slettes fra skemaet. Værdien bevares i databasen.`, () => {
+      deleteField(fieldId);
+    });
+  }
+
+  // Kunder delete
+  function confirmDeleteKunde(id) {
+    const k = kunder.find(x => x.id === id);
+    showConfirmDialog('Slet kunde?', `"${k ? k.name : id}" slettes permanent.`, () => {
+      deleteKunde(id);
+    });
+  }
+
+  // ════════════════════════════════
+  // HELPERS
+  // ════════════════════════════════
   function formatDate(iso) {
     if (!iso) return '';
     const d = new Date(iso);
     return d.toLocaleDateString('da-DK', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' });
   }
+
   function escHtml(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
