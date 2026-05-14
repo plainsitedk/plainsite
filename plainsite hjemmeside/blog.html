@@ -184,9 +184,9 @@
         <a class="nav-link" href="/#pakker-anchor" role="listitem">Pakker</a>
         <a class="nav-link" href="/cases.html" role="listitem">Cases</a>
         <a class="nav-link active" href="/blog.html" role="listitem">Blog</a>
-        <a class="nav-link" data-open-contact style="cursor:pointer;" role="listitem">Kontakt</a>
+        <a class="nav-link" href="/start.html" role="listitem">Kontakt</a>
       </div>
-      <button class="btn-primary nav-cta-desktop" data-open-contact>Skriv til mig <span class="italic">→</span></button>
+      <a class="btn-primary nav-cta-desktop" href="/start.html">Skriv til mig <span class="italic">→</span></a>
       <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span class="burger-bars"></span></button>
     </div>
   </nav>
@@ -197,8 +197,8 @@
     <a class="drawer-link" href="/cases.html" data-drawer-close>Cases</a>
     <a class="drawer-link" href="/blog.html" data-drawer-close>Blog</a>
     <a class="drawer-link" href="/#faq" data-drawer-close>FAQ</a>
-    <a class="drawer-link" data-open-contact data-drawer-close style="cursor:pointer;">Kontakt</a>
-    <button class="btn-primary btn-lg drawer-cta" data-open-contact data-drawer-close>Skriv til mig <span class="italic">→</span></button>
+    <a class="drawer-link" href="/start.html">Kontakt</a>
+    <a class="btn-primary btn-lg drawer-cta" href="/start.html">Skriv til mig <span class="italic">→</span></a>
   </aside>
 
   <main id="main-content">
@@ -238,7 +238,7 @@
     <div class="container">
       <div class="footer-top reveal">
         <h2 class="footer-title">Tænker du på en<br>ny <span class="italic">hjemmeside?</span></h2>
-        <button class="footer-cta" data-open-contact>Skriv til mig <span class="italic">→</span></button>
+        <a class="footer-cta" href="/start.html">Skriv til mig <span class="italic">→</span></a>
       </div>
       <div class="footer-mid">
         <div class="footer-col">
@@ -246,7 +246,7 @@
           <a class="footer-link" href="/">Forside</a>
           <a class="footer-link" href="/#pakker-anchor">Pakker</a>
           <a class="footer-link" href="/cases.html">Cases</a>
-          <button class="footer-link" data-open-contact style="background:none;border:none;padding:0;text-align:left;cursor:pointer;color:inherit;">Kontakt</button>
+          <a class="footer-link" href="/start.html">Kontakt</a>
         </div>
         <div class="footer-col">
           <div class="footer-head">Pakker</div>
@@ -278,77 +278,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Contact Modal -->
-  <div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-hidden="true">
-    <div class="modal">
-      <button class="modal-close" id="modalClose" aria-label="Luk">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </button>
-      <h2 id="contactTitle">Skriv til mig</h2>
-      <p>Fortæl mig lidt om din virksomhed, hvad du mangler, og hvad der er vigtigt for dig. Jeg vender tilbage inden for 24 timer.</p>
-      <form id="contactForm" novalidate>
-        <div style="margin-bottom:16px;">
-          <label for="name">Navn</label>
-          <input type="text" id="name" name="name" placeholder="Dit navn" required autocomplete="name">
-        </div>
-        <div style="margin-bottom:16px;">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="din@email.dk" required autocomplete="email">
-        </div>
-        <div style="margin-bottom:16px;">
-          <label for="plan">Pakke (valgfri)</label>
-          <input type="text" id="plan" name="plan" placeholder="Online / Synlig / Vækst">
-        </div>
-        <div style="margin-bottom:24px;">
-          <label for="message">Besked</label>
-          <textarea id="message" name="message" placeholder="Fortæl mig om din virksomhed…" required></textarea>
-        </div>
-        <button type="submit" class="btn-primary btn-lg" id="submitBtn" style="width:100%;justify-content:center;">Send besked <span class="italic">→</span></button>
-        <div id="formMsg" style="margin-top:12px;font-size:14px;display:none;"></div>
-      </form>
-    </div>
-  </div>
-
-  <style>
-    .modal-backdrop {
-      position: fixed; inset: 0; background: rgba(24,22,30,0.55);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 100; padding: 24px;
-      opacity: 0; visibility: hidden; pointer-events: none;
-      transition: opacity 220ms cubic-bezier(0.22,1,0.36,1), visibility 0ms 220ms;
-    }
-    .modal-backdrop.open {
-      opacity: 1; visibility: visible; pointer-events: auto;
-      transition: opacity 220ms cubic-bezier(0.22,1,0.36,1), visibility 0ms;
-    }
-    .modal {
-      background: var(--ps-paper); color: var(--ps-fg);
-      max-width: 560px; width: 100%; border-radius: 10px;
-      padding: 40px; border: 1px solid var(--ps-border);
-      max-height: 90vh; overflow-y: auto; position: relative;
-    }
-    .modal h2 { font-family: var(--ps-font-serif); font-weight: 400; font-size: 32px; letter-spacing: -0.018em; line-height: 1.1; margin: 0 0 8px; }
-    .modal p { font-family: var(--ps-font-sans); font-size: 15px; color: var(--ps-fg-muted); line-height: 1.55; margin: 0 0 24px; }
-    .modal label { display: block; font-family: var(--ps-font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ps-fg-subtle); margin-bottom: 6px; }
-    .modal input, .modal textarea {
-      width: 100%; padding: 10px 14px; border-radius: 7px;
-      border: 1px solid var(--ps-border); background: var(--ps-stone-50);
-      font-family: var(--ps-font-sans); font-size: 15px; color: var(--ps-fg);
-    }
-    .modal input:focus, .modal textarea:focus { outline: none; border-color: var(--ps-accent); }
-    .modal textarea { resize: vertical; min-height: 110px; }
-    .modal-close {
-      position: absolute; top: 16px; right: 16px;
-      width: 32px; height: 32px; border-radius: 6px;
-      border: 1px solid var(--ps-border); background: transparent;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      color: var(--ps-fg-muted);
-    }
-    .modal-close:hover { background: var(--ps-stone-100); }
-    @media (max-width: 600px) { .modal { padding: 28px 20px; } }
-  </style>
 
 <script>
   /* ── Blog data ── */
@@ -434,88 +363,7 @@
       drawer.setAttribute('aria-hidden', 'true');
     });
   });
-
-  /* ── Contact modal ── */
-  var modal = document.getElementById('contactModal');
-  var modalClose = document.getElementById('modalClose');
-  var lastFocus = null;
-  var FOCUSABLE = 'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
-
-  function openModal(plan) {
-    lastFocus = document.activeElement;
-    modal.classList.add('open');
-    modal.removeAttribute('aria-hidden');
-    if (document.body.classList.contains('menu-open')) {
-      document.body.classList.remove('menu-open');
-      burger.setAttribute('aria-expanded', 'false');
-      drawer.setAttribute('aria-hidden', 'true');
-    }
-    if (plan) { var planInput = document.getElementById('plan'); if (planInput) planInput.value = plan; }
-    var first = modal.querySelector(FOCUSABLE);
-    if (first) first.focus();
-  }
-  function closeModal() {
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    if (lastFocus) { lastFocus.focus(); lastFocus = null; }
-  }
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
-  modal.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeModal(); return; }
-    if (e.key !== 'Tab') return;
-    var focusable = Array.from(modal.querySelectorAll(FOCUSABLE));
-    var first = focusable[0]; var last = focusable[focusable.length - 1];
-    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
-    else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
-  });
-  document.querySelectorAll('[data-open-contact]').forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      openModal(el.dataset.plan || '');
-    });
-  });
-
-  /* ── Contact form submit ── */
-  var contactForm = document.getElementById('contactForm');
-  var submitBtn = document.getElementById('submitBtn');
-  var formMsg = document.getElementById('formMsg');
-  contactForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sender…';
-    formMsg.style.display = 'none';
-    var data = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      plan: document.getElementById('plan').value,
-      message: document.getElementById('message').value,
-      source: 'blog'
-    };
-    try {
-      var res = await fetch('https://forms.plainsite.dk/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (res.ok) {
-        formMsg.style.display = 'block';
-        formMsg.style.color = 'var(--ps-moss-500)';
-        formMsg.textContent = 'Tak! Jeg vender tilbage inden for 24 timer.';
-        contactForm.reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Send besked <span class="italic">→</span>';
-      } else {
-        throw new Error();
-      }
-    } catch {
-      formMsg.style.display = 'block';
-      formMsg.style.color = 'var(--ps-clay-500)';
-      formMsg.textContent = 'Noget gik galt. Prøv igen eller skriv direkte til tobias@plainsite.dk.';
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Send besked <span class="italic">→</span>';
-    }
-  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { document.body.classList.remove('menu-open'); burger.setAttribute('aria-expanded', 'false'); drawer.setAttribute('aria-hidden', 'true'); } });
 
   /* ── Reveal on scroll ── */
   if ('IntersectionObserver' in window) {

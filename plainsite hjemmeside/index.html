@@ -534,42 +534,6 @@
       max-width: 720px;
     }
 
-    /* ── Contact modal ──────────────── */
-    .modal-backdrop {
-      position: fixed; inset: 0; background: rgba(24,22,30,0.55);
-      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 100; padding: 24px;
-      opacity: 0; visibility: hidden; pointer-events: none;
-      transition: opacity 220ms cubic-bezier(0.22,1,0.36,1), visibility 0ms 220ms;
-    }
-    .modal-backdrop.open {
-      opacity: 1; visibility: visible; pointer-events: auto;
-      transition: opacity 220ms cubic-bezier(0.22,1,0.36,1), visibility 0ms;
-    }
-    .modal {
-      background: var(--ps-paper); color: var(--ps-fg);
-      max-width: 560px; width: 100%; border-radius: 10px;
-      padding: 40px; border: 1px solid var(--ps-border);
-      max-height: 90vh; overflow-y: auto;
-    }
-    .modal h2 { font-family: var(--ps-font-serif); font-weight: 400; font-size: 32px; letter-spacing: -0.018em; line-height: 1.1; margin: 0 0 8px; }
-    .modal p { font-family: var(--ps-font-sans); font-size: 15px; color: var(--ps-fg-muted); line-height: 1.55; margin: 0 0 24px; }
-    .modal label { display: block; font-family: var(--ps-font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ps-fg-subtle); margin-bottom: 6px; }
-    .modal input, .modal textarea {
-      width: 100%; font-family: var(--ps-font-sans); font-size: 15px;
-      padding: 12px 14px; border: 1px solid var(--ps-border-strong);
-      border-radius: 7px; background: var(--ps-paper); color: var(--ps-fg);
-      margin-bottom: 18px; transition: border-color 180ms var(--ps-ease-out);
-    }
-    .modal input:focus, .modal textarea:focus { outline: none; border-color: var(--ps-accent); }
-    .modal textarea { resize: vertical; min-height: 110px; }
-    .modal-close {
-      background: transparent; border: none; cursor: pointer; font-family: var(--ps-font-mono);
-      font-size: 12px; letter-spacing: 0.1em; color: var(--ps-fg-subtle); padding: 0;
-      margin-bottom: 20px;
-    }
-
     /* ── Responsive ─────────────────── */
     @media (max-width: 960px) {
       :root { --ps-pad-section: 72px; --ps-pad-hero: 72px 24px 56px; }
@@ -617,9 +581,9 @@
         <a class="nav-link" href="#top" data-spy="top">Forside</a>
         <a class="nav-link" href="#pakker-anchor" data-spy="ydelser">Pakker</a>
         <a class="nav-link" href="/cases.html">Cases</a>
-        <a class="nav-link" data-open-contact style="cursor:pointer;">Kontakt</a>
+        <a class="nav-link" href="/start.html">Kontakt</a>
       </div>
-      <button class="btn-primary nav-cta-desktop" data-open-contact>Skriv til mig <span class="italic">→</span></button>
+      <a class="btn-primary nav-cta-desktop" href="/start.html">Skriv til mig <span class="italic">→</span></a>
       <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false"><span class="burger-bars"></span></button>
     </div>
   </nav>
@@ -629,8 +593,8 @@
     <a class="drawer-link" href="#pakker-anchor" data-drawer-close>Pakker</a>
     <a class="drawer-link" href="/cases.html" data-drawer-close>Cases</a>
     <a class="drawer-link" href="#faq" data-drawer-close>FAQ</a>
-    <a class="drawer-link" data-open-contact data-drawer-close>Kontakt</a>
-    <button class="btn-primary btn-lg drawer-cta" data-open-contact data-drawer-close>Skriv til mig <span class="italic">→</span></button>
+    <a class="drawer-link" href="/start.html">Kontakt</a>
+    <a class="btn-primary btn-lg drawer-cta" href="/start.html">Skriv til mig <span class="italic">→</span></a>
   </aside>
 
   <main id="main-content">
@@ -645,7 +609,7 @@
         Jeg bygger hjemmesider til små virksomheder — og driver dem bagefter. Én fast pris om måneden dækker alt du skal bruge: design, hosting og ændringer. Du betaler intet før siden er klar og du siger ja.
       </p>
       <div class="hero-ctas">
-        <button class="btn-primary btn-lg" data-open-contact>Start dit site <span class="italic">→</span></button>
+        <a class="btn-primary btn-lg" href="/start.html">Start dit site <span class="italic">→</span></a>
         <a href="#pakker-anchor" class="btn-secondary">Se pakker</a>
       </div>
     </div>
@@ -713,7 +677,7 @@
             <li>Dashboard med trafik og synlighed</li>
             <li>1 ændring pr. måned</li>
           </ul>
-          <button class="plan-cta" data-open-contact data-plan="Online"><span>Vælg Online</span><span class="italic">→</span></button>
+          <a class="plan-cta" href="/start.html?plan=Online"><span>Vælg Online</span><span class="italic">→</span></a>
         </article>
 
         <article class="plan-card featured reveal" data-delay="2">
@@ -734,7 +698,7 @@
             <li>3 ændringer pr. måned</li>
             <li>Løbende teknisk vedligehold</li>
           </ul>
-          <button class="plan-cta" data-open-contact data-plan="Synlig"><span>Vælg Synlig</span><span class="italic">→</span></button>
+          <a class="plan-cta" href="/start.html?plan=Synlig"><span>Vælg Synlig</span><span class="italic">→</span></a>
         </article>
 
         <article class="plan-card reveal" data-delay="3">
@@ -756,7 +720,7 @@
             <li>Ubegrænsede ændringer inden for 24 timer</li>
             <li>Prioriteret support</li>
           </ul>
-          <button class="plan-cta" data-open-contact data-plan="Vækst"><span>Vælg Vækst</span><span class="italic">→</span></button>
+          <a class="plan-cta" href="/start.html?plan=Vækst"><span>Vælg Vækst</span><span class="italic">→</span></a>
         </article>
       </div>
       <div class="plan-dots" id="planDots" aria-hidden="true">
@@ -892,7 +856,7 @@
     <div class="container">
       <div class="footer-top reveal">
         <h2 class="footer-title">Tænker du på en<br>ny <span class="italic">hjemmeside?</span></h2>
-        <button class="footer-cta" data-open-contact>Skriv til mig <span class="italic">→</span></button>
+        <a class="footer-cta" href="/start.html">Skriv til mig <span class="italic">→</span></a>
       </div>
       <div class="footer-mid">
         <div class="footer-col">
@@ -900,7 +864,7 @@
           <a class="footer-link" href="#">Forside</a>
           <a class="footer-link" href="#pakker-anchor">Pakker</a>
           <a class="footer-link" href="/cases.html">Cases</a>
-          <button class="footer-link" data-open-contact style="background:none;border:none;padding:0;text-align:left;cursor:pointer;color:inherit;">Kontakt</button>
+          <a class="footer-link" href="/start.html">Kontakt</a>
         </div>
         <div class="footer-col">
           <div class="footer-head">Pakker</div>
@@ -935,39 +899,12 @@
     </div>
   </footer>
 
-  <div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
-    <div class="modal">
-      <button class="modal-close" data-close-contact>← LUK</button>
-      <h2 id="contactTitle">Skriv til mig</h2>
-      <p>Beskriv kort dit projekt, og jeg vender tilbage inden for to hverdage.</p>
-      <form id="contactForm" action="/api/contact" method="POST" novalidate>
-        <label for="name">Navn</label>
-        <input id="name" name="name" type="text" required autocomplete="name" placeholder=" ">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" required autocomplete="email" placeholder=" ">
-        <label for="message">Besked</label>
-        <textarea id="message" name="message" required placeholder=" "></textarea>
-        <button class="btn-primary btn-lg" type="submit" id="contactSubmit" style="width: 100%; justify-content: center;">Send <span class="italic">→</span></button>
-        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-      </form>
-    </div>
-  </div>
+
 
   <script>
     (function () {
-      var modal = document.getElementById('contactModal');
       var burger = document.getElementById('burgerBtn');
-
-      var msgField = document.getElementById('message');
-      var PLAN_PRICES = { 'Online': '199 kr/md', 'Synlig': '299 kr/md', 'Vækst': '399 kr/md' };
-      var lastPrefill = '';
-      function buildPrefill(plan) {
-        return 'Jeg er interesseret i ' + plan + ' (' + PLAN_PRICES[plan] + ' + moms).';
-      }
-
       var drawer = document.getElementById('drawer');
-      var lastFocus = null;
-      var FOCUSABLE = 'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
 
       function closeMenu() {
         document.body.classList.remove('menu-open');
@@ -977,62 +914,19 @@
       function openMenu() {
         document.body.classList.add('menu-open');
         if (burger) burger.setAttribute('aria-expanded', 'true');
-        if (drawer) { drawer.setAttribute('aria-hidden', 'false'); var f = drawer.querySelector(FOCUSABLE); if (f) f.focus(); }
+        if (drawer) drawer.setAttribute('aria-hidden', 'false');
       }
-
-      function openModal(plan) {
-        if (plan && msgField) {
-          var current = msgField.value.trim();
-          if (!current || current === lastPrefill) {
-            lastPrefill = buildPrefill(plan);
-            msgField.value = lastPrefill;
-          }
-        }
-        lastFocus = document.activeElement;
-        modal.classList.add('open');
-        modal.removeAttribute('aria-hidden');
-        closeMenu();
-        var first = modal.querySelector(FOCUSABLE);
-        if (first) first.focus();
-      }
-      function closeModal() {
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden', 'true');
-        if (lastFocus) { lastFocus.focus(); lastFocus = null; }
-      }
-
-      document.querySelectorAll('[data-open-contact]').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-          e.preventDefault();
-          openModal(el.getAttribute('data-plan'));
-        });
-      });
-      document.querySelectorAll('[data-close-contact]').forEach(function (el) {
-        el.addEventListener('click', closeModal);
-      });
-      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
-
-      // Focus trap inside modal
-      modal.addEventListener('keydown', function (e) {
-        if (e.key !== 'Tab') return;
-        var focusable = Array.prototype.slice.call(modal.querySelectorAll(FOCUSABLE));
-        if (!focusable.length) return;
-        var first = focusable[0], last = focusable[focusable.length - 1];
-        if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
-        else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
-      });
 
       if (burger) {
         burger.addEventListener('click', function () {
-          if (document.body.classList.contains('menu-open')) { closeMenu(); } else { openMenu(); }
+          document.body.classList.contains('menu-open') ? closeMenu() : openMenu();
         });
       }
       document.querySelectorAll('[data-drawer-close]').forEach(function (el) {
         el.addEventListener('click', closeMenu);
       });
-
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') { closeModal(); closeMenu(); }
+        if (e.key === 'Escape') closeMenu();
       });
 
       var carousel = document.getElementById('plansCarousel');
@@ -1050,14 +944,10 @@
         }, { passive: true });
       }
 
-      // Reveal-on-scroll
       if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              e.target.classList.add('in-view');
-              io.unobserve(e.target);
-            }
+            if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
           });
         }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
         document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
@@ -1065,7 +955,6 @@
         document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
       }
 
-      // Scroll-spy nav (Forside / Pakker)
       var spyLinks = document.querySelectorAll('.nav-link[data-spy]');
       var pakkerSec = document.getElementById('ydelser');
       function updateSpy() {
@@ -1073,42 +962,13 @@
         var y = window.scrollY + window.innerHeight * 0.35;
         var inPakker = y >= pakkerSec.offsetTop && y < pakkerSec.offsetTop + pakkerSec.offsetHeight;
         spyLinks.forEach(function (l) {
-          var target = l.getAttribute('data-spy');
-          l.classList.toggle('active', (target === 'ydelser' && inPakker) || (target === 'top' && !inPakker));
+          var t = l.getAttribute('data-spy');
+          l.classList.toggle('active', (t === 'ydelser' && inPakker) || (t === 'top' && !inPakker));
         });
       }
       updateSpy();
       window.addEventListener('scroll', updateSpy, { passive: true });
       window.addEventListener('resize', updateSpy, { passive: true });
-
-      var form = document.getElementById('contactForm');
-      var submitBtn = document.getElementById('contactSubmit');
-      var status = document.getElementById('formStatus');
-      if (form) {
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          if (!form.checkValidity()) { form.reportValidity(); return; }
-          var data = new FormData(form);
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = 'Sender…';
-          status.className = 'form-status';
-          fetch(form.action, { method: 'POST', body: data })
-            .then(function (r) {
-              if (!r.ok) throw new Error('http ' + r.status);
-              status.className = 'form-status show success';
-              status.textContent = 'Tak — beskeden er sendt. Jeg vender tilbage inden for to hverdage.';
-              form.reset();
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = 'Sendt <span class="italic">✓</span>';
-            })
-            .catch(function () {
-              status.className = 'form-status show error';
-              status.textContent = 'Noget gik galt. Prøv igen, eller skriv direkte til tobias@plainsite.dk.';
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = 'Send igen <span class="italic">→</span>';
-            });
-        });
-      }
     })();
   </script>
 </body>
