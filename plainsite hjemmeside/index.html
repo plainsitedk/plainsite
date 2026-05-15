@@ -237,8 +237,8 @@
     }
     .hero-lede {
       grid-column: 4 / span 5; margin: 40px 0 0;
-      font-family: var(--ps-font-sans); font-size: 19px; line-height: 1.55;
-      letter-spacing: -0.005em;
+      font-family: var(--ps-font-sans); font-size: 25px; line-height: 1.5;
+      letter-spacing: -0.01em;
     }
     .hero-ctas { grid-column: 4 / span 6; margin-top: 32px;
       display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
@@ -342,7 +342,7 @@
     }
     .proces-num {
       font-family: var(--ps-font-serif); font-weight: 360;
-      font-size: clamp(40px, 4vw, 56px); line-height: 0.95;
+      font-size: clamp(27px, 2.7vw, 37px); line-height: 0.95;
       letter-spacing: -0.03em; color: var(--ps-ink);
       margin: 0; font-variation-settings: "opsz" 96;
     }
@@ -526,8 +526,15 @@
     .faq-q::-webkit-details-marker { display: none; }
     .faq-q::marker { content: ""; }
     .faq-num { font-family: var(--ps-font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ps-fg-subtle); }
-    .faq-plus { font-family: var(--ps-font-serif); font-style: italic; font-size: 22px; color: var(--ps-fg-subtle); transition: transform 220ms var(--ps-ease-out); justify-self: end; }
-    .faq-item[open] .faq-plus { transform: rotate(45deg); color: var(--ps-accent); }
+    .faq-plus { font-family: var(--ps-font-serif); font-style: italic; font-size: 22px; color: var(--ps-fg-subtle); transition: transform 280ms var(--ps-ease-out), color 280ms; justify-self: end; }
+    .faq-item.open .faq-plus { transform: rotate(45deg); color: var(--ps-accent); }
+    .faq-body-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-item.open .faq-body-wrap { grid-template-rows: 1fr; }
+    .faq-body-inner { overflow: hidden; }
     .faq-a {
       padding: 0 4px 24px 60px;
       font-family: var(--ps-font-sans); font-size: 15.5px; line-height: 1.65; color: var(--ps-fg-muted);
@@ -824,27 +831,27 @@
         <div class="faq-list">
           <details class="faq-item reveal" data-delay="1">
             <summary class="faq-q"><span class="faq-num">1</span><span data-editable="faq-q-1">Hvorfor er der ingen opstartspris?</span><span class="faq-plus">+</span></summary>
-            <p class="faq-a" data-editable="faq-a-1">Jeg bygger hele din hjemmeside på egen regning — færdig og klar. Du betaler først, når du siger ja og den går live. Siger du nej, koster det ingenting.</p>
+            <div class="faq-body-wrap"><div class="faq-body-inner"><p class="faq-a" data-editable="faq-a-1">Jeg bygger hele din hjemmeside på egen regning — færdig og klar. Du betaler først, når du siger ja og den går live. Siger du nej, koster det ingenting.</p></div></div>
           </details>
           <details class="faq-item reveal" data-delay="2">
             <summary class="faq-q"><span class="faq-num">2</span><span data-editable="faq-q-2">Ejer jeg selv hjemmesiden?</span><span class="faq-plus">+</span></summary>
-            <p class="faq-a" data-editable="faq-a-2">Ja. Indhold, tekster og billeder er dine. Opsiger du abonnementet, stopper hosting og drift — men du må altid tage dine materialer med dig.</p>
+            <div class="faq-body-wrap"><div class="faq-body-inner"><p class="faq-a" data-editable="faq-a-2">Ja. Indhold, tekster og billeder er dine. Opsiger du abonnementet, stopper hosting og drift — men du må altid tage dine materialer med dig.</p></div></div>
           </details>
           <details class="faq-item reveal" data-delay="3">
             <summary class="faq-q"><span class="faq-num">3</span><span data-editable="faq-q-3">Kan jeg sige nej undervejs — eller senere opsige?</span><span class="faq-plus">+</span></summary>
-            <p class="faq-a" data-editable="faq-a-3">Ja på begge. Indtil siden går live er alt gratis — vil du ikke videre, koster det ingenting. Efter siden er live kan du opsige løbende måned, uden binding eller gebyrer.</p>
+            <div class="faq-body-wrap"><div class="faq-body-inner"><p class="faq-a" data-editable="faq-a-3">Ja på begge. Indtil siden går live er alt gratis — vil du ikke videre, koster det ingenting. Efter siden er live kan du opsige løbende måned, uden binding eller gebyrer.</p></div></div>
           </details>
           <details class="faq-item reveal" data-delay="4">
             <summary class="faq-q"><span class="faq-num">4</span><span data-editable="faq-q-4">Hvad hvis jeg allerede har et domæne?</span><span class="faq-plus">+</span></summary>
-            <p class="faq-a" data-editable="faq-a-4">Jeg flytter det for dig — uden ekstra omkostning. Du bevarer det du har, og jeg sørger for at opsætningen sker uden nedetid.</p>
+            <div class="faq-body-wrap"><div class="faq-body-inner"><p class="faq-a" data-editable="faq-a-4">Jeg flytter det for dig — uden ekstra omkostning. Du bevarer det du har, og jeg sørger for at opsætningen sker uden nedetid.</p></div></div>
           </details>
           <details class="faq-item reveal" data-delay="5">
             <summary class="faq-q"><span class="faq-num">5</span><span data-editable="faq-q-5">Hvor ofte kan jeg lave ændringer?</span><span class="faq-plus">+</span></summary>
-            <p class="faq-a" data-editable="faq-a-5">Det afhænger af pakken. Online inkluderer 1 ændring pr. måned. Synlig inkluderer 3 ændringer pr. måned. Vækst giver ubegrænsede småændringer inden for 24 timer. Større redesigns aftales særskilt.</p>
+            <div class="faq-body-wrap"><div class="faq-body-inner"><p class="faq-a" data-editable="faq-a-5">Det afhænger af pakken. Online inkluderer 1 ændring pr. måned. Synlig inkluderer 3 ændringer pr. måned. Vækst giver ubegrænsede småændringer inden for 24 timer. Større redesigns aftales særskilt.</p></div></div>
           </details>
           <details class="faq-item reveal" data-delay="5">
             <summary class="faq-q"><span class="faq-num">6</span><span data-editable="faq-q-6">Hvorfor skulle jeg vælge dig frem for et bureau?</span><span class="faq-plus">+</span></summary>
-            <p class="faq-a" data-editable="faq-a-6">Fordi du driver en lille virksomhed — ikke et IT-projekt. Et bureau tager typisk 20–40.000 forud og efterlader dig med et system du selv skal passe. Jeg bygger til din hverdag: én pris, alt inkluderet, nul tekniske beslutninger.</p>
+            <div class="faq-body-wrap"><div class="faq-body-inner"><p class="faq-a" data-editable="faq-a-6">Fordi du driver en lille virksomhed — ikke et IT-projekt. Et bureau tager typisk 20–40.000 forud og efterlader dig med et system du selv skal passe. Jeg bygger til din hverdag: én pris, alt inkluderet, nul tekniske beslutninger.</p></div></div>
           </details>
         </div>
       </div>
@@ -969,6 +976,18 @@
       updateSpy();
       window.addEventListener('scroll', updateSpy, { passive: true });
       window.addEventListener('resize', updateSpy, { passive: true });
+
+      // FAQ accordion — one open at a time, slide animation
+      var faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(function (item) {
+        var summary = item.querySelector('.faq-q');
+        summary.addEventListener('click', function (e) {
+          e.preventDefault();
+          var isOpen = item.classList.contains('open');
+          faqItems.forEach(function (i) { i.classList.remove('open'); });
+          if (!isOpen) item.classList.add('open');
+        });
+      });
     })();
   </script>
 
@@ -1072,8 +1091,8 @@
       var changed = {};
       var activeEl = null;
 
-      // Keep FAQ open, prevent summary toggle
-      document.querySelectorAll('details').forEach(function (d) { d.open = true; });
+      // Keep all FAQ items open in edit mode
+      document.querySelectorAll('.faq-item').forEach(function (d) { d.classList.add('open'); });
       document.querySelectorAll('summary').forEach(function (s) {
         s.addEventListener('click', function (e) {
           if (!e.target.hasAttribute('contenteditable')) e.preventDefault();
