@@ -36,13 +36,17 @@
       padding: 36px 40px 0;
     }
     .ob-progress-track {
-      height: 2px; background: var(--ps-stone-200);
-      border-radius: 2px; overflow: hidden; margin-bottom: 10px;
+      display: flex; gap: 5px; margin-bottom: 10px;
     }
-    .ob-progress-fill {
-      height: 100%; background: var(--ps-accent); border-radius: 2px;
-      transition: width 400ms cubic-bezier(0.22, 1, 0.36, 1);
+    .ob-seg {
+      flex: 1; height: 3px; padding: 0; border: none;
+      border-radius: 2px; background: var(--ps-stone-200);
+      transition: background 360ms cubic-bezier(0.22, 1, 0.36, 1);
     }
+    .ob-seg.filled { background: var(--ps-accent); }
+    .ob-seg.done { cursor: pointer; }
+    .ob-seg.done:hover { background: var(--ps-accent-hover); }
+    .ob-seg:not(.done) { cursor: default; }
     .ob-progress-label {
       font-family: var(--ps-font-mono); font-size: 11px;
       color: var(--ps-fg-subtle); letter-spacing: 0.08em; text-transform: uppercase;
@@ -175,7 +179,7 @@
       transition: color 180ms var(--ps-ease-out);
     }
     .ob-prev:hover { color: var(--ps-fg); }
-    .ob-prev[hidden] { visibility: hidden; pointer-events: none; }
+    .ob-prev[hidden] { display: inline-block; visibility: hidden; pointer-events: none; }
 
     .ob-direct {
       margin-top: 32px; padding-top: 28px;
@@ -197,7 +201,7 @@
 
     .ob-error {
       margin-top: 12px; font-family: var(--ps-font-sans);
-      font-size: 14px; color: var(--ps-clay-500); display: none;
+      font-size: 14px; color: var(--ps-clay-600); display: none;
     }
 
     /* ── Success ── */
@@ -246,8 +250,11 @@
   </nav>
 
   <div id="progressWrap" class="ob-progress-wrap">
-    <div class="ob-progress-track">
-      <div class="ob-progress-fill" id="progressFill" style="width:25%"></div>
+    <div class="ob-progress-track" id="progSegs">
+      <button type="button" class="ob-seg filled" data-step="1" aria-label="Trin 1"></button>
+      <button type="button" class="ob-seg" data-step="2" aria-label="Trin 2"></button>
+      <button type="button" class="ob-seg" data-step="3" aria-label="Trin 3"></button>
+      <button type="button" class="ob-seg" data-step="4" aria-label="Trin 4"></button>
     </div>
     <div class="ob-progress-label" id="progressLabel">Trin 1 af 4</div>
   </div>
@@ -296,6 +303,7 @@
           <label class="ob-choice"><input type="radio" name="situation" value="Gammel eller forældet hjemmeside"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Gammel eller forældet hjemmeside</div><div class="ob-choice-desc">Jeg vil have noget nyt</div></div></div></label>
           <label class="ob-choice"><input type="radio" name="situation" value="Hjemmeside der ikke giver kunder"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Hjemmeside der ikke giver kunder</div><div class="ob-choice-desc">Den er der, men virker ikke</div></div></div></label>
         </div>
+        <div class="ob-field-err" id="err-situation" style="margin-top:0;">Vælg hvad du har i dag, så jeg ved hvor du står.</div>
       </div>
 
       <div class="ob-group">
@@ -404,6 +412,7 @@
     var toId = n > 4 ? 'step-success' : 'step-' + n;
     document.getElementById(toId).classList.add('active');
     updateProgress(n);
+    saveState();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -412,14 +421,33 @@
       document.getElementById('progressWrap').style.display = 'none';
       return;
     }
-    document.getElementById('progressFill').style.width = (n / 4 * 100) + '%';
+    document.querySelectorAll('.ob-seg').forEach(function (s) {
+      var i = +s.dataset.step;
+      s.classList.toggle('filled', i <= n);
+      s.classList.toggle('done', i < n);
+    });
     document.getElementById('progressLabel').textContent = 'Trin ' + n + ' af 4';
   }
+
+  /* Clickable progress — go back to any completed step only */
+  document.getElementById('progSegs').addEventListener('click', function (e) {
+    var seg = e.target.closest('.ob-seg');
+    if (!seg) return;
+    var s = +seg.dataset.step;
+    if (s < current) goTo(s);
+  });
 
   function validate(step) {
     if (step === 1) {
       if (!val('biz-name', 'Skriv din virksomheds navn.')) return false;
       if (!val('biz-desc', 'Fortæl kort hvad du laver.')) return false;
+    }
+    if (step === 2) {
+      if (!document.querySelector('input[name="situation"]:checked')) {
+        document.getElementById('err-situation').classList.add('show');
+        document.getElementById('sit-choices').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return false;
+      }
     }
     if (step === 4) {
       if (!val('c-name', 'Skriv dit navn.')) return false;
@@ -482,6 +510,7 @@
         })
       });
       if (!res.ok) throw new Error();
+      try { localStorage.removeItem(SKEY); } catch (e) {}
       goTo(5);
     } catch {
       errEl.style.display = 'block';
@@ -490,6 +519,60 @@
       btn.innerHTML = 'Send og få demo <span class="italic">→</span>';
     }
   }
+
+  /* ── Session persistence ── */
+  var SKEY = 'ps_onboarding_v1';
+  var TEXT_IDS = ['biz-name', 'biz-desc', 'c-name', 'c-email', 'c-phone', 'c-extra', 'refs'];
+  var RADIO_NAMES = ['situation', 'plan', 'vibe'];
+
+  function saveState() {
+    if (current > 4) return;
+    var d = { step: current };
+    TEXT_IDS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.value.trim()) d[id] = el.value;
+    });
+    RADIO_NAMES.forEach(function (n) {
+      var r = document.querySelector('input[name="' + n + '"]:checked');
+      if (r) d[n] = r.value;
+    });
+    try { localStorage.setItem(SKEY, JSON.stringify(d)); } catch (e) {}
+  }
+
+  function restoreState() {
+    var raw;
+    try { raw = localStorage.getItem(SKEY); } catch (e) { return; }
+    if (!raw) return;
+    var d;
+    try { d = JSON.parse(raw); } catch (e) { return; }
+    TEXT_IDS.forEach(function (id) {
+      if (d[id] != null) { var el = document.getElementById(id); if (el) el.value = d[id]; }
+    });
+    RADIO_NAMES.forEach(function (n) {
+      if (d[n]) {
+        var r = document.querySelector('input[name="' + n + '"][value="' + d[n] + '"]');
+        if (r) r.checked = true;
+      }
+    });
+    var s = +d.step;
+    if (s > 1 && s <= 4) {
+      document.getElementById('step-1').classList.remove('active');
+      current = s;
+      document.getElementById('step-' + s).classList.add('active');
+      updateProgress(s);
+    }
+  }
+
+  restoreState();
+
+  var stepsEl = document.querySelector('.ob-steps');
+  stepsEl.addEventListener('input', saveState);
+  stepsEl.addEventListener('change', function () {
+    if (document.querySelector('input[name="situation"]:checked')) {
+      document.getElementById('err-situation').classList.remove('show');
+    }
+    saveState();
+  });
 
   /* Enter advances the step (not in textarea — there Enter = newline) */
   document.addEventListener('keydown', function (e) {
