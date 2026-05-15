@@ -40,7 +40,7 @@
       border-radius: 2px; overflow: hidden; margin-bottom: 10px;
     }
     .ob-progress-fill {
-      height: 100%; background: var(--ps-ink); border-radius: 2px;
+      height: 100%; background: var(--ps-accent); border-radius: 2px;
       transition: width 400ms cubic-bezier(0.22, 1, 0.36, 1);
     }
     .ob-progress-label {
@@ -74,6 +74,34 @@
       font-family: var(--ps-font-sans); font-size: 15px;
       color: var(--ps-fg-muted); line-height: 1.55; margin: 0 0 40px;
     }
+    .ob-step-sub .promise {
+      display: block; margin-top: 8px; color: var(--ps-fg);
+      font-weight: 500;
+    }
+
+    /* ── Step 2 question groups ── */
+    .ob-group { margin-bottom: 38px; }
+    .ob-group + .ob-group {
+      padding-top: 38px; border-top: 1px solid var(--ps-border);
+    }
+    .ob-group-q {
+      display: block; font-family: var(--ps-font-serif);
+      font-size: 21px; font-weight: 400; letter-spacing: -0.01em;
+      font-variation-settings: "opsz" 40;
+      color: var(--ps-fg); margin: 0 0 16px;
+    }
+    .ob-choice-help { margin-top: 4px; }
+    .ob-choice-help .ob-choice-inner {
+      border-style: dashed; background: transparent;
+    }
+    .ob-choice-help:hover .ob-choice-inner { border-color: var(--ps-stone-400); }
+
+    /* ── Inline field error ── */
+    .ob-field-err {
+      font-family: var(--ps-font-sans); font-size: 13px;
+      color: var(--ps-clay-600); margin-top: 7px; display: none;
+    }
+    .ob-field-err.show { display: block; }
 
     /* ── Fields ── */
     .ob-field { margin-bottom: 22px; }
@@ -179,9 +207,14 @@
     }
     .ob-success-check {
       width: 56px; height: 56px; border-radius: 50%;
-      background: var(--ps-stone-100);
+      background: var(--ps-clay-50); color: var(--ps-clay-600);
       display: inline-flex; align-items: center; justify-content: center;
       margin-bottom: 28px;
+    }
+    .ob-sign {
+      display: block; margin-top: 18px;
+      font-family: var(--ps-font-serif); font-style: italic;
+      font-size: 16px; color: var(--ps-fg-subtle);
     }
     .ob-success h2 {
       font-family: var(--ps-font-serif); font-weight: 400;
@@ -224,15 +257,17 @@
     <!-- Step 1 -->
     <div class="ob-step active" id="step-1">
       <h1 class="ob-step-title">Din <span class="italic">virksomhed</span></h1>
-      <p class="ob-step-sub">Udfyld 4 hurtige trin — så bygger jeg en rigtig demo til din virksomhed og sender dig et link inden for 24–48 timer. Gratis. Du forpligter dig til ingenting, før du har set den og sagt ja.</p>
+      <p class="ob-step-sub">Udfyld 4 hurtige trin — så bygger jeg en rigtig demo til din virksomhed og sender dig et link på din e-mail inden for 24–48 timer.<span class="promise">Gratis. Du forpligter dig til ingenting, før du har set den og sagt ja.</span></p>
 
       <div class="ob-field">
         <label class="ob-label" for="biz-name">Virksomhedens navn</label>
         <input class="ob-input" type="text" id="biz-name" placeholder="f.eks. Hansen El &amp; VVS" autocomplete="organization">
+        <div class="ob-field-err" id="err-biz-name"></div>
       </div>
       <div class="ob-field">
         <label class="ob-label" for="biz-desc">Hvad laver du?</label>
         <textarea class="ob-textarea" id="biz-desc" placeholder="f.eks. Jeg er frisør i Aarhus og vil gerne have kunder til at booke tid online"></textarea>
+        <div class="ob-field-err" id="err-biz-desc"></div>
       </div>
 
       <div class="ob-nav-row">
@@ -254,19 +289,23 @@
       <h2 class="ob-step-title">Din <span class="italic">situation</span></h2>
       <p class="ob-step-sub">Så jeg kan bygge en demo der passer til præcis din situation.</p>
 
-      <label class="ob-label" style="margin-bottom:10px;">Hvad har du i dag?</label>
-      <div class="ob-choices" id="sit-choices">
-        <label class="ob-choice"><input type="radio" name="situation" value="Ingen hjemmeside endnu"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Ingen hjemmeside endnu</div><div class="ob-choice-desc">Jeg starter fra bunden</div></div></div></label>
-        <label class="ob-choice"><input type="radio" name="situation" value="Gammel eller forældet hjemmeside"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Gammel eller forældet hjemmeside</div><div class="ob-choice-desc">Jeg vil have noget nyt</div></div></div></label>
-        <label class="ob-choice"><input type="radio" name="situation" value="Hjemmeside der ikke giver kunder"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Hjemmeside der ikke giver kunder</div><div class="ob-choice-desc">Den er der, men virker ikke</div></div></div></label>
+      <div class="ob-group">
+        <span class="ob-group-q">Hvad har du i dag?</span>
+        <div class="ob-choices" id="sit-choices">
+          <label class="ob-choice"><input type="radio" name="situation" value="Ingen hjemmeside endnu"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Ingen hjemmeside endnu</div><div class="ob-choice-desc">Jeg starter fra bunden</div></div></div></label>
+          <label class="ob-choice"><input type="radio" name="situation" value="Gammel eller forældet hjemmeside"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Gammel eller forældet hjemmeside</div><div class="ob-choice-desc">Jeg vil have noget nyt</div></div></div></label>
+          <label class="ob-choice"><input type="radio" name="situation" value="Hjemmeside der ikke giver kunder"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Hjemmeside der ikke giver kunder</div><div class="ob-choice-desc">Den er der, men virker ikke</div></div></div></label>
+        </div>
       </div>
 
-      <label class="ob-label" style="margin-bottom:10px;">Hvilken pakke passer dig?</label>
-      <div class="ob-choices" id="plan-choices">
-        <label class="ob-choice"><input type="radio" name="plan" value="Online (199 kr/md)"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Online — 199 kr/md</div><div class="ob-choice-desc">Én side, kontaktformular, grundlæggende synlighed</div></div></div></label>
-        <label class="ob-choice"><input type="radio" name="plan" value="Synlig (299 kr/md)"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Synlig — 299 kr/md</div><div class="ob-choice-desc">Op til 5 sider, SEO-tekster, Google-synlighed</div></div></div></label>
-        <label class="ob-choice"><input type="radio" name="plan" value="Vækst (399 kr/md)"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Vækst — 399 kr/md</div><div class="ob-choice-desc">Op til 10 sider, blog, kalender, udvidet SEO</div></div></div></label>
-        <label class="ob-choice"><input type="radio" name="plan" value="Usikker på pakke"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Jeg er usikker</div><div class="ob-choice-desc">Hjælp mig med at finde den rigtige</div></div></div></label>
+      <div class="ob-group">
+        <span class="ob-group-q">Hvilken pakke passer dig?</span>
+        <div class="ob-choices" id="plan-choices">
+          <label class="ob-choice"><input type="radio" name="plan" value="Online (199 kr/md)"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Online — 199 kr/md</div><div class="ob-choice-desc">Én side, kontaktformular, grundlæggende synlighed</div></div></div></label>
+          <label class="ob-choice"><input type="radio" name="plan" value="Synlig (299 kr/md)"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Synlig — 299 kr/md</div><div class="ob-choice-desc">Op til 5 sider, SEO-tekster, Google-synlighed</div></div></div></label>
+          <label class="ob-choice"><input type="radio" name="plan" value="Vækst (399 kr/md)"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Vækst — 399 kr/md</div><div class="ob-choice-desc">Op til 10 sider, blog, kalender, udvidet SEO</div></div></div></label>
+          <label class="ob-choice ob-choice-help"><input type="radio" name="plan" value="Usikker på pakke"><div class="ob-choice-inner"><span class="ob-dot"></span><div><div class="ob-choice-name">Jeg er ikke sikker endnu</div><div class="ob-choice-desc">Det er helt fint — jeg anbefaler den rigtige pakke ud fra dine svar</div></div></div></label>
+        </div>
       </div>
 
       <div class="ob-nav-row">
@@ -307,10 +346,12 @@
       <div class="ob-field">
         <label class="ob-label" for="c-name">Dit navn</label>
         <input class="ob-input" type="text" id="c-name" placeholder="Fornavn og efternavn" autocomplete="name">
+        <div class="ob-field-err" id="err-c-name"></div>
       </div>
       <div class="ob-field">
         <label class="ob-label" for="c-email">E-mail</label>
         <input class="ob-input" type="email" id="c-email" placeholder="din@email.dk" autocomplete="email">
+        <div class="ob-field-err" id="err-c-email"></div>
       </div>
       <div class="ob-field">
         <label class="ob-label" for="c-phone">Telefon <span class="opt">(valgfri)</span></label>
@@ -335,7 +376,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
         <h2>Tak — jeg er i gang</h2>
-        <p>Jeg bygger din demo og sender dig et link inden for 24–48 timer. Du betaler ingenting, før du har set den og sagt ja.</p>
+        <p>Jeg går i gang med din demo nu. Du får et link på din e-mail inden for 24–48 timer. Du betaler ingenting, før du har set den og sagt ja.<span class="ob-sign">— Tobias, Plainsite</span></p>
         <a href="/" class="btn-secondary" style="display:inline-flex;">← Tilbage til forsiden</a>
       </div>
     </div>
@@ -377,29 +418,36 @@
 
   function validate(step) {
     if (step === 1) {
-      if (!val('biz-name')) return false;
-      if (!val('biz-desc')) return false;
+      if (!val('biz-name', 'Skriv din virksomheds navn.')) return false;
+      if (!val('biz-desc', 'Fortæl kort hvad du laver.')) return false;
     }
     if (step === 4) {
-      if (!val('c-name')) return false;
-      if (!val('c-email') || !document.getElementById('c-email').value.includes('@')) {
-        mark('c-email'); return false;
+      if (!val('c-name', 'Skriv dit navn.')) return false;
+      var email = document.getElementById('c-email').value.trim();
+      if (!email) { mark('c-email', 'Skriv din e-mail — det er her du får dit demo-link.'); return false; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        mark('c-email', 'Tjek din e-mail — den ser ikke helt rigtig ud.'); return false;
       }
     }
     return true;
   }
 
-  function val(id) {
+  function val(id, msg) {
     var el = document.getElementById(id);
-    if (!el.value.trim()) { mark(id); return false; }
+    if (!el.value.trim()) { mark(id, msg); return false; }
     return true;
   }
 
-  function mark(id) {
+  function mark(id, msg) {
     var el = document.getElementById(id);
+    var errEl = document.getElementById('err-' + id);
     el.classList.add('error');
+    if (errEl && msg) { errEl.textContent = msg; errEl.classList.add('show'); }
     el.focus();
-    el.addEventListener('input', function () { el.classList.remove('error'); }, { once: true });
+    el.addEventListener('input', function () {
+      el.classList.remove('error');
+      if (errEl) errEl.classList.remove('show');
+    }, { once: true });
   }
 
   async function submitForm() {
@@ -442,6 +490,15 @@
       btn.innerHTML = 'Send og få demo <span class="italic">→</span>';
     }
   }
+
+  /* Enter advances the step (not in textarea — there Enter = newline) */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || e.target.tagName === 'TEXTAREA') return;
+    if (!e.target.classList || !e.target.classList.contains('ob-input')) return;
+    e.preventDefault();
+    if (current === 4) submitForm();
+    else if (current >= 1 && current < 4) goTo(current + 1);
+  });
 </script>
 </body>
 </html>
