@@ -66,6 +66,5 @@ Det gør Tobias. Hosting, sikkerhed og drift er inkluderet. Du skal ikke gøre n
 ## Sider
 
 - [Forside](https://plainsite.dk/)
-- [Cases](https://plainsite.dk/cases.html)
 - [Privatlivspolitik](https://plainsite.dk/privacy.html)
 - [Vilkår](https://plainsite.dk/vilkaar.html)
